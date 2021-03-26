@@ -72,3 +72,66 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
         message: 'Product deleted',
     });
 });
+
+exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
+    const { rating, comment, productId } = req.body;
+    const review = {
+        user: req.user.id,
+        name: req.user.name,
+        rating: Number(rating),
+        comment,
+    };
+
+    const product = await Product.findById(productId);
+    const isReviewed = product.reviews.find((r) => r.user.toString() === req.user.id.toString());
+    if (isReviewed) {
+        product.reviews.forEach((r) => {
+            if (r.user.toString() == req.user.id.toString()) {
+                r.comment = comment;
+                r.rating = rating;
+            }
+        });
+    } else {
+        product.reviews.push(review);
+        product.numOfReviews = product.reviews.length;
+    }
+
+    product.ratings = product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length;
+    await product.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+        success: true,
+        review,
+    });
+});
+
+exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
+    const product = await Product.findById(req.query.id);
+
+    res.status(200).json({
+        success: true,
+        reviews: product.reviews,
+    });
+});
+
+exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
+    const product = await Product.findById(req.query.productId);
+    const reviews = product.reviews.filter((review) => review._id.toString() != req.query.id.toString());
+
+    const ratings = product.reviews.reduce((acc, item) => item.rating + acc, 0) / reviews.length;
+    const numOfReviews = reviews.length;
+
+    await Product.findByIdAndUpdate(
+        req.query.productId,
+        { reviews, ratings, numOfReviews },
+        {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false,
+        }
+    );
+
+    res.status(200).json({
+        success: true,
+    });
+});
