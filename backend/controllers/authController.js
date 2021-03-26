@@ -11,10 +11,10 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
         name,
         email,
         password,
-        avatar :{
+        avatar: {
             public_id: 'avatars/kccvibpsuiusmwfepb3m',
-            url: 'https://res.cloudinary.com/shopit/image/upload/v1606305757/avatars/kccvibpsuiusmwfepb3m.png'
-        }
+            url: 'https://res.cloudinary.com/shopit/image/upload/v1606305757/avatars/kccvibpsuiusmwfepb3m.png',
+        },
     });
 
     sendToken(user, 200, res);
@@ -42,13 +42,13 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 exports.logout = catchAsyncErrors(async (req, res, next) => {
     const cookieOptions = {
         expires: new Date(Date.now()),
-        httpOnly: true
+        httpOnly: true,
     };
     res.cookie('token', null, cookieOptions);
 
     res.status(200).json({
         success: true,
-        message: 'Logged out'
+        message: 'Logged out',
     });
 });
 
@@ -70,13 +70,13 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
         await sendEmail({
             email: user.email,
             subject: 'Shopit password recovery',
-            message
+            message,
         });
         res.status(200).json({
             success: true,
-            message: `Email sent to: ${user.email}`
+            message: `Email sent to: ${user.email}`,
         });
-    } catch(error) {
+    } catch (error) {
         user.resetPasswordToken = undefined;
         user.resetPasswordExpire = undefined;
         await user.save({ validateBeforeSave: false });
@@ -91,7 +91,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
     const user = await User.findOne({
         resetPasswordToken: resetPasswordTokenHash,
-        resetPasswordExpire: { $gt: Date.now() }
+        resetPasswordExpire: { $gt: Date.now() },
     });
     if (!user) {
         return next(new ErrorHandler('Password reset token is invalid or has been expired', 400));
@@ -106,6 +106,106 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
     await user.save();
-    
+
     sendToken(user, 200, res);
+});
+
+exports.getuserProfile = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+
+    res.status(200).json({
+        success: true,
+        user,
+    });
+});
+
+exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.user.id).select('+password');
+
+    const isMatched = await user.comparePassword(req.body.old_password);
+    if (!isMatched) {
+        return next(new ErrorHandler('Old password is incorrect', 400));
+    }
+
+    user.password = req.body.password;
+    await user.save();
+
+    sendToken(user, 200, res);
+});
+
+exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
+    const newUserData = {
+        name: req.body.name,
+        email: req.body.email,
+    };
+
+    // TODO: Update avatar
+
+    const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+    });
+
+    res.status(200).json({
+        success: true,
+        user: newUserData,
+    });
+});
+
+exports.allUsers = catchAsyncErrors(async (req, res, next) => {
+    const users = await User.find();
+    const userCount = await User.countDocuments();
+
+    res.status(200).json({
+        success: true,
+        count: users.length,
+        userCount,
+        users,
+    });
+});
+
+exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+        next(new ErrorHandler(`User does not found with id: ${req.params.id}`, 404));
+    }
+
+    res.status(200).json({
+        success: true,
+        user,
+    });
+});
+
+exports.updateUser = catchAsyncErrors(async (req, res, next) => {
+    const newUserData = {
+        name: req.body.name,
+        email: req.body.email,
+        role: req.body.role,
+    };
+
+    const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+    });
+
+    res.status(200).json({
+        success: true,
+        user: newUserData,
+    });
+});
+
+exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+        next(new ErrorHandler(`User does not found with id: ${req.params.id}`, 404));
+    }
+
+    await user.remove();
+    // TODO: remove avatar from cloudiary
+
+    res.status(200).json({
+        success: true,
+    });
 });
