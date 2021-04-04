@@ -70,7 +70,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     await user.save({ validateBeforeSave: false });
 
     // Create reset password url
-    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`;
+    const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
     const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, then ignore it.`;
 
     try {
@@ -104,7 +104,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('Password reset token is invalid or has been expired', 400));
     }
 
-    if (req.body.password !== req.body.confirm_password) {
+    if (req.body.password !== req.body.confirmPassword) {
         return next(new ErrorHandler('Password does not match', 400));
     }
 
@@ -129,7 +129,7 @@ exports.getuserProfile = catchAsyncErrors(async (req, res, next) => {
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findById(req.user.id).select('+password');
 
-    const isMatched = await user.comparePassword(req.body.old_password);
+    const isMatched = await user.comparePassword(req.body.oldPassword);
     if (!isMatched) {
         return next(new ErrorHandler('Old password is incorrect', 400));
     }
@@ -146,7 +146,22 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
         email: req.body.email,
     };
 
-    // TODO: Update avatar
+    if (req.body.avatar !== '') {
+        const user = await User.findById(req.user.id);
+        const imageId = user.avatar.public_id;
+        await cloudinary.v2.uploader.destroy(imageId);
+
+        const cloudinaryResult = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: 'avatars',
+            width: 150,
+            crop: 'scale',
+        });
+
+        newUserData.avatar = {
+            public_id: cloudinaryResult.public_id,
+            url: cloudinaryResult.secure_url,
+        };
+    }
 
     const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
         new: true,
