@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { clearErrors, updatePassword, updatePasswordReset, updateProfile } from '../../store/actions/authActions';
+import { clearErrors, updatePassword, updatePasswordReset } from '../../store/actions/authActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MetaData from '../common/MetaData';

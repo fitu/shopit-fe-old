@@ -2,6 +2,7 @@ import './App.css';
 
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
+import Cart from './components/cart/Cart';
 import Footer from './components/common/Footer';
 import ForgotPassword from './components/user/ForgotPassword';
 import Header from './components/common/Header';
@@ -36,6 +37,7 @@ function App() {
                     <Route path="/register" component={Register} />
                     <Route path="/password/forgot" component={ForgotPassword} />
                     <Route path="/password/reset/:token" component={NewPassword} />
+                    <Route path="/cart" component={Cart} />
                     <ProtectedRoute path="/me" component={Profile} exact />
                     <ProtectedRoute path="/me/update" component={UpdateProfile} />
                     <ProtectedRoute path="/password/update" component={UpdatePassword} />
