@@ -7,7 +7,7 @@ import Loader from '../common/Loader';
 import MetaData from '../common/MetaData';
 import { useAlert } from 'react-alert';
 
-const Login = ({ history }) => {
+const Login = ({ history, location }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -16,9 +16,11 @@ const Login = ({ history }) => {
 
     const { isAuthenticated, loading, error } = useSelector((state) => state.auth);
 
+    const redirect = location.search ? location.search.split('=')[1] : '/';
+
     useEffect(() => {
         if (isAuthenticated) {
-            history.push('/');
+            history.push(redirect);
             return;
         }
 
@@ -27,7 +29,7 @@ const Login = ({ history }) => {
             dispatch(clearErrors());
             return;
         }
-    }, [dispatch, isAuthenticated, error, alert, history]);
+    }, [dispatch, isAuthenticated, error, alert, history, redirect]);
 
     const submitHandler = (event) => {
         event.preventDefault();

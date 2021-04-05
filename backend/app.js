@@ -17,15 +17,17 @@ app.use(cookieParser());
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
 
-// Import all routes
+// Import routes
 const productsRoute = require('./routes/productsRoute');
 const authRoute = require('./routes/authRoute');
 const orderRoute = require('./routes/orderRoute');
+const paymentRoute = require('./routes/paymentRoute');
 
 // Set routes
 app.use('/api/v1', productsRoute);
 app.use('/api/v1', authRoute);
 app.use('/api/v1', orderRoute);
+app.use('/api/v1', paymentRoute);
 
 // Middleware errors
 const errorMiddleware = require('./middlewares/errors');

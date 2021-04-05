@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import MetaData from '../common/MetaData';
 import React from 'react';
 
-const Cart = () => {
+const Cart = ({ history }) => {
     const dispatch = useDispatch();
     const { cartItems } = useSelector((state) => state.cart);
 
@@ -31,6 +31,10 @@ const Cart = () => {
         dispatch(removeItemFromCart(id));
     };
 
+    const checkoutHandler = () => {
+        history.push('/login?redirect=shipping');
+    };
+
     return (
         <>
             {cartItems.length === 0 ? (
@@ -50,7 +54,7 @@ const Cart = () => {
                                     <div className="cart-item">
                                         <div className="row">
                                             <div className="col-4 col-lg-3">
-                                                <img src={item.image} alt="Laptop" height="90" width="115" />
+                                                <img src={item.images[0].url} alt="Laptop" height="90" width="115" />
                                             </div>
 
                                             <div className="col-5 col-lg-3">
@@ -122,7 +126,11 @@ const Cart = () => {
                                 </p>
 
                                 <hr />
-                                <button id="checkout_btn" className="btn btn-primary btn-block">
+                                <button
+                                    id="checkout_btn"
+                                    className="btn btn-primary btn-block"
+                                    onClick={checkoutHandler}
+                                >
                                     Check out
                                 </button>
                             </div>

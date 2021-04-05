@@ -4,6 +4,7 @@ import { productDetailReducer, productReducer } from './reducers/productReducer'
 
 import { cartReducer } from './reducers/cartReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { orderReducer } from './reducers/orderReducer';
 import thunk from 'redux-thunk';
 
 const reducer = combineReducers({
@@ -13,11 +14,13 @@ const reducer = combineReducers({
     user: userReducer,
     password: passwordReducer,
     cart: cartReducer,
+    order: orderReducer,
 });
 
 const initialState = {
     cart: {
         cartItems: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [],
+        shippingInfo: localStorage.getItem('shippingInfo') ? JSON.parse(localStorage.getItem('shippingInfo')) : {},
     },
 };
 
