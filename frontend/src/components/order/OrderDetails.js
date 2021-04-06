@@ -27,7 +27,7 @@ const OrderDetails = ({ match }) => {
         shippingInfo &&
         `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country}`;
 
-    const isPaid = paymentInfo && paymentInfo.status === 'succeeded';
+    const isPaid = paymentInfo?.status === 'succeeded';
 
     return (
         <>
@@ -42,10 +42,10 @@ const OrderDetails = ({ match }) => {
 
                             <h4 className="mb-4">Shipping Info</h4>
                             <p>
-                                <b>Name:</b> {user && user.name}
+                                <b>Name:</b> {user?.name}
                             </p>
                             <p>
-                                <b>Phone:</b> {shippingInfo && shippingInfo.phoneNumber}
+                                <b>Phone:</b> {shippingInfo?.phoneNumber}
                             </p>
                             <p className="mb-4">
                                 <b>Address:</b> {shippingDetails}
@@ -64,9 +64,7 @@ const OrderDetails = ({ match }) => {
                             <h4 className="my-4">Order Status:</h4>
                             <p
                                 className={
-                                    order.orderStatus && String(order.orderStatus).includes('Delivered')
-                                        ? 'greenColor'
-                                        : 'redColor'
+                                    String(order?.orderStatus ?? '').includes('Delivered') ? 'greenColor' : 'redColor'
                                 }
                             >
                                 <b>{orderStatus}</b>

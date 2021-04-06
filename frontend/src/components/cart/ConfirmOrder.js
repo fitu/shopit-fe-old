@@ -35,7 +35,7 @@ const ConfirmOrder = ({ history }) => {
                     <h4 className="mb-3">Shipping Info</h4>
                     <p>
                         <b>Name: </b>
-                        {user && user.name}
+                        {user?.name}
                     </p>
                     <p>
                         <b>Phone: </b> {shippingInfo.phoneNumber}

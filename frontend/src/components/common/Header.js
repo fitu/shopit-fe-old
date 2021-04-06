@@ -53,12 +53,12 @@ const Header = () => {
                                 aria-expanded="false"
                             >
                                 <figure className="avatar avatar-nav">
-                                    <img src={user.avatar && user.avatar.url} alt="Avatar" className="rounded-circle" />
+                                    <img src={user.avatar?.url} alt="Avatar" className="rounded-circle" />
                                 </figure>
-                                <span>{user && user.name}</span>
+                                <span>{user?.name}</span>
                             </Link>
                             <div className="dropdown-menu" aria-labelledby="dropDownMenuButton">
-                                {user && user.role !== 'admin' && (
+                                {user?.role !== 'admin' && (
                                     <Link to="/dashboard" className="dropdown-item">
                                         Dashboard
                                     </Link>
