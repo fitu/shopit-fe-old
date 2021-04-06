@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { clearErrors, getProductDetails } from '../../store/actions/productAction';
+import { clearErrors, getProductDetails, newReview, newReviewReset } from '../../store/actions/productAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Carousel } from 'react-bootstrap';
+import ListReviews from '../review/ListReviews';
 import Loader from '../common/Loader';
 import MetaData from '../common/MetaData';
 import { addItemToCart } from '../../store/actions/cartActions';
@@ -10,11 +11,15 @@ import { useAlert } from 'react-alert';
 
 const ProductDetails = ({ match }) => {
     const [quantity, setQuantity] = useState(1);
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState('');
 
     const dispatch = useDispatch();
     const alert = useAlert();
 
+    const { user } = useSelector((state) => state.auth);
     const { loading, error, product } = useSelector((state) => state.productDetails);
+    const { error: reviewError, success } = useSelector((state) => state.newReview);
 
     const decreaseQty = () => {
         const count = document.querySelector('.count');
@@ -39,14 +44,67 @@ const ProductDetails = ({ match }) => {
         alert.success('Item added to cart!');
     };
 
+    const setUserRatings = () => {
+        const stars = document.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+            star.starValue = index + 1;
+
+            star.addEventListener('click', function (event) {
+                stars.forEach((star, index) => {
+                    if (index < this.starValue) {
+                        star.classList.add('orange');
+                        setRating(this.starValue);
+                    } else {
+                        star.classList.remove('orange');
+                    }
+                });
+            });
+
+            star.addEventListener('mouseover', function (event) {
+                stars.forEach((star, index) => {
+                    if (index < this.starValue) {
+                        star.classList.add('yellow');
+                    } else {
+                        star.classList.remove('yellow');
+                    }
+                });
+            });
+
+            star.addEventListener('mouseout', function (event) {
+                stars.forEach((star, index) => {
+                    star.classList.remove('yellow');
+                });
+            });
+        });
+    };
+
+    const reviewHandler = () => {
+        const formData = new FormData();
+
+        formData.set('rating', rating);
+        formData.set('comment', comment);
+        formData.set('productId', match.params.id);
+
+        dispatch(newReview(formData));
+    };
+
     useEffect(() => {
         if (error) {
             alert.error(error);
             dispatch(clearErrors());
             return;
         }
+        if (reviewError) {
+            alert.error(error);
+            dispatch(clearErrors());
+            return;
+        }
+        if (success) {
+            alert.success('Review posted succesfully!');
+            dispatch(newReviewReset());
+        }
         dispatch(getProductDetails(match.params.id));
-    }, [dispatch, alert, error, match.params.id]);
+    }, [dispatch, alert, error, reviewError, success, match.params.id]);
 
     return (
         <>
@@ -116,15 +174,23 @@ const ProductDetails = ({ match }) => {
                             <p id="product_seller mb-3">
                                 Sold by: <strong>{product.seller}</strong>
                             </p>
-                            <button
-                                id="review_btn"
-                                type="button"
-                                className="btn btn-primary mt-4"
-                                data-toggle="modal"
-                                data-target="#ratingModal"
-                            >
-                                Submit Your Review
-                            </button>
+                            {user ? (
+                                <button
+                                    id="review_btn"
+                                    type="button"
+                                    className="btn btn-primary mt-4"
+                                    data-toggle="modal"
+                                    data-target="#ratingModal"
+                                    onClick={setUserRatings}
+                                >
+                                    Submit Your Review
+                                </button>
+                            ) : (
+                                <div className="alert alert-danger mt-5" type="alert">
+                                    Login to post your review.
+                                </div>
+                            )}
+
                             <div className="row mt-2 mb-5">
                                 <div className="rating w-50">
                                     <div
@@ -172,11 +238,14 @@ const ProductDetails = ({ match }) => {
                                                         name="review"
                                                         id="review"
                                                         className="form-control mt-3"
+                                                        value={comment}
+                                                        onChange={(event) => setComment(event.target.value)}
                                                     ></textarea>
                                                     <button
                                                         className="btn my-3 float-right review-btn px-4 text-white"
                                                         data-dismiss="modal"
                                                         aria-label="Close"
+                                                        onClick={reviewHandler}
                                                     >
                                                         Submit
                                                     </button>
@@ -188,6 +257,8 @@ const ProductDetails = ({ match }) => {
                             </div>
                         </div>
                     </div>
+
+                    {product.reviews && product.reviews.length > 0 && <ListReviews reviews={product.reviews} />}
                 </>
             )}
         </>

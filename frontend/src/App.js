@@ -10,8 +10,10 @@ import Footer from './components/common/Footer';
 import ForgotPassword from './components/user/ForgotPassword';
 import Header from './components/common/Header';
 import Home from './components/Home';
+import ListOrders from './components/order/ListOrders';
 import Login from './components/user/Login';
 import NewPassword from './components/user/NewPassword';
+import OrderDetails from './components/order/OrderDetails';
 import OrderSuccess from './components/cart/OrderSuccess';
 import Payment from './components/cart/Payment';
 import ProductDetails from './components/product/ProductDetails';
@@ -61,6 +63,8 @@ function App() {
                     <ProtectedRoute path="/shipping" component={Shipping} />
                     <ProtectedRoute path="/order/confirm" component={ConfirmOrder} />
                     <ProtectedRoute path="/success" component={OrderSuccess} />
+                    <ProtectedRoute path="/orders/me" component={ListOrders} />
+                    <ProtectedRoute path="/order/:id" component={OrderDetails} />
 
                     {stripeAPIKey && (
                         <Elements stripe={loadStripe(stripeAPIKey)}>
