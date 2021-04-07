@@ -22,6 +22,7 @@ import OrderSuccess from './components/cart/OrderSuccess';
 import Payment from './components/cart/Payment';
 import ProcessOrder from './components/admin/ProcessOrder';
 import ProductDetails from './components/product/ProductDetails';
+import ProductReviews from './components/admin/ProductReviews';
 import ProductsList from './components/admin/ProductsList';
 import Profile from './components/user/Profile';
 import ProtectedRoute from './components/route/ProtectedRoute';
@@ -90,6 +91,7 @@ function App() {
                 <ProtectedRoute path="/admin/order/:id" isAdmin={true} component={ProcessOrder} />
                 <ProtectedRoute path="/admin/users" isAdmin={true} component={UsersList} />
                 <ProtectedRoute path="/admin/user/:id" isAdmin={true} component={UpdateUser} />
+                <ProtectedRoute path="/admin/reviews" isAdmin={true} component={ProductReviews} />
 
                 {!loading && user?.role !== 'admin' && <Footer />}
             </div>

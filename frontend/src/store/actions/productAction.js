@@ -22,10 +22,19 @@ export const NEW_PRODUCT_SUCCESS = 'NEW_PRODUCT_SUCCESS';
 export const NEW_PRODUCT_FAIL = 'NEW_PRODUCT_FAIL';
 export const NEW_PRODUCT_RESET = 'NEW_PRODUCT_RESET';
 
+export const ALL_REVIEWS_REQUEST = 'ALL_REVIEWS_REQUEST';
+export const ALL_REVIEWS_SUCCESS = 'ALL_REVIEWS_SUCCESS';
+export const ALL_REVIEWS_FAIL = 'ALL_REVIEWS_FAIL';
+
 export const DELETE_PRODUCT_REQUEST = 'DELETE_PRODUCT_REQUEST';
 export const DELETE_PRODUCT_SUCCESS = 'DELETE_PRODUCT_SUCCESS';
 export const DELETE_PRODUCT_FAIL = 'DELETE_PRODUCT_FAIL';
 export const DELETE_PRODUCT_RESET = 'DELETE_PRODUCT_RESET';
+
+export const DELETE_REVIEW_REQUEST = 'DELETE_REVIEW_REQUEST';
+export const DELETE_REVIEW_SUCCESS = 'DELETE_REVIEW_SUCCESS';
+export const DELETE_REVIEW_FAIL = 'DELETE_REVIEW_FAIL';
+export const DELETE_REVIEW_RESET = 'DELETE_REVIEW_RESET';
 
 export const UPDATE_PRODUCT_REQUEST = 'UPDATE_PRODUCT_REQUEST';
 export const UPDATE_PRODUCT_SUCCESS = 'UPDATE_PRODUCT_SUCCESS';
@@ -180,9 +189,51 @@ export const updateProduct = (id, producData) => async (dispatch) => {
     }
 };
 
+export const getProductReviews = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: ALL_REVIEWS_REQUEST,
+        });
+        const { data } = await axios.get(`/api/v1/reviews?id=${id}`);
+        dispatch({
+            type: ALL_REVIEWS_SUCCESS,
+            payload: data.reviews,
+        });
+    } catch (error) {
+        dispatch({
+            type: ALL_REVIEWS_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+export const deleteReview = (id, productId) => async (dispatch) => {
+    try {
+        dispatch({
+            type: DELETE_REVIEW_REQUEST,
+        });
+        const { data } = await axios.delete(`/api/v1/reviews?id=${id}&productId=${productId}`);
+        dispatch({
+            type: DELETE_REVIEW_SUCCESS,
+            payload: data.success,
+        });
+    } catch (error) {
+        dispatch({
+            type: DELETE_REVIEW_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
 export const updateProductReset = () => async (dispatch) => {
     dispatch({
         type: UPDATE_PRODUCT_RESET,
+    });
+};
+
+export const deleteReviewReset = () => async (dispatch) => {
+    dispatch({
+        type: DELETE_REVIEW_RESET,
     });
 };
 
