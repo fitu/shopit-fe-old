@@ -13,14 +13,19 @@ const {
     createProductReview,
     getProductReviews,
     deleteReview,
+    getAdminProducts,
 } = require('../controllers/productController');
 
 router.route('/products').get(getProducts);
 router.route('/product/:id').get(getProduct);
-router.route('/admin/product/:id').put(isAuthenticatedUser, authorizeRoles('admin'), updateProduct);
-router.route('/admin/product/:id').delete(isAuthenticatedUser, authorizeRoles('admin'), deleteProduct);
-router.route('/product/new').post(isAuthenticatedUser, createProduct);
+router
+    .route('/admin/product/:id')
+    .put(isAuthenticatedUser, authorizeRoles('admin'), updateProduct)
+    .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteProduct);
+router.route('/admin/product/new').post(isAuthenticatedUser, authorizeRoles('admin'), createProduct);
 router.route('/review').put(isAuthenticatedUser, createProductReview);
 router.route('/reviews').get(isAuthenticatedUser, getProductReviews).delete(isAuthenticatedUser, deleteReview);
+
+router.route('/admin/products').get(isAuthenticatedUser, authorizeRoles('admin'), getAdminProducts);
 
 module.exports = router;

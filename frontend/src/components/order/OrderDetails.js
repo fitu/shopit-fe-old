@@ -75,25 +75,22 @@ const OrderDetails = ({ match }) => {
                             <hr />
                             <div className="cart-item my-1">
                                 {orderItems &&
-                                    orderItems.map((item) => {
+                                    orderItems.map((item) => (
                                         <div className="row my-5" key={item.product}>
                                             <div className="col-4 col-lg-2">
-                                                <img src={item.image} alt={item.name} height="45" width="65" />
+                                                <img src={item.images[0].url} alt={item.name} height="45" width="65" />
                                             </div>
-
                                             <div className="col-5 col-lg-5">
                                                 <Link to={`/products/${item.product}`}>{item.name}</Link>
                                             </div>
-
                                             <div className="col-4 col-lg-2 mt-4 mt-lg-0">
                                                 <p>${item.price}</p>
                                             </div>
-
                                             <div className="col-4 col-lg-3 mt-4 mt-lg-0">
                                                 <p>{item.quantity} Piece(s)</p>
                                             </div>
-                                        </div>;
-                                    })}
+                                        </div>
+                                    ))}
                             </div>
                             <hr />
                         </div>

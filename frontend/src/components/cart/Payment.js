@@ -26,7 +26,7 @@ const Payment = ({ history }) => {
     const dispatch = useDispatch();
 
     const { user } = useSelector((state) => state.auth);
-    const { error } = useSelector((state) => state.order);
+    const { error } = useSelector((state) => state.orders);
     const { cartItems, shippingInfo } = useSelector((state) => state.cart);
 
     useEffect(() => {

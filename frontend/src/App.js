@@ -1,10 +1,12 @@
 import './App.css';
 
 import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import Cart from './components/cart/Cart';
 import ConfirmOrder from './components/cart/ConfirmOrder';
+import Dashboard from './components/admin/Dashboard';
 import { Elements } from '@stripe/react-stripe-js';
 import Footer from './components/common/Footer';
 import ForgotPassword from './components/user/ForgotPassword';
@@ -13,25 +15,31 @@ import Home from './components/Home';
 import ListOrders from './components/order/ListOrders';
 import Login from './components/user/Login';
 import NewPassword from './components/user/NewPassword';
+import NewProduct from './components/admin/NewProduct';
 import OrderDetails from './components/order/OrderDetails';
+import OrderList from './components/admin/OrderList';
 import OrderSuccess from './components/cart/OrderSuccess';
 import Payment from './components/cart/Payment';
+import ProcessOrder from './components/admin/ProcessOrder';
 import ProductDetails from './components/product/ProductDetails';
+import ProductsList from './components/admin/ProductsList';
 import Profile from './components/user/Profile';
 import ProtectedRoute from './components/route/ProtectedRoute';
 import Register from './components/user/Register';
 import Shipping from './components/cart/Shipping';
 import UpdatePassword from './components/user/UpdatePassword';
+import UpdateProduct from './components/admin/UpdateProduct';
 import UpdateProfile from './components/user/UpdateProfile';
 import axios from 'axios';
 import { loadStripe } from '@stripe/stripe-js';
 import { loadUser } from './store/actions/authActions';
-import { useDispatch } from 'react-redux';
 
 function App() {
+    const dispatch = useDispatch();
+
     const [stripeAPIKey, setStripeAPIKey] = useState('');
 
-    const dispatch = useDispatch();
+    const { user, loading } = useSelector((state) => state.auth);
 
     useEffect(() => {
         dispatch(loadUser());
@@ -72,7 +80,14 @@ function App() {
                         </Elements>
                     )}
                 </div>
-                <Footer />
+                <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} />
+                <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductsList} />
+                <ProtectedRoute path="/admin/product" isAdmin={true} component={NewProduct} exact />
+                <ProtectedRoute path="/admin/product/:id" isAdmin={true} component={UpdateProduct} />
+                <ProtectedRoute path="/admin/orders" isAdmin={true} component={OrderList} />
+                <ProtectedRoute path="/admin/order/:id" isAdmin={true} component={ProcessOrder} />
+
+                {!loading && user?.role !== 'admin' && <Footer />}
             </div>
         </Router>
     );

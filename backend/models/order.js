@@ -38,7 +38,7 @@ const orderSchema = mongoose.Schema({
                 type: Number,
                 required: true,
             },
-            image: [
+            images: [
                 {
                     public_id: {
                         type: String,

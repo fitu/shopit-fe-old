@@ -45,7 +45,7 @@ const Register = ({ history }) => {
         dispatch(register(formData));
     };
 
-    const handleChange = (event) => {
+    const changeHandler = (event) => {
         if (event.target.name === 'avatar') {
             const reader = new FileReader();
             reader.onload = () => {
@@ -81,7 +81,7 @@ const Register = ({ history }) => {
                                         className="form-control"
                                         value={user.name}
                                         name="name"
-                                        onChange={handleChange}
+                                        onChange={changeHandler}
                                     />
                                 </div>
 
@@ -93,7 +93,7 @@ const Register = ({ history }) => {
                                         className="form-control"
                                         value={user.email}
                                         name="email"
-                                        onChange={handleChange}
+                                        onChange={changeHandler}
                                     />
                                 </div>
 
@@ -105,7 +105,7 @@ const Register = ({ history }) => {
                                         className="form-control"
                                         value={user.password}
                                         name="password"
-                                        onChange={handleChange}
+                                        onChange={changeHandler}
                                     />
                                 </div>
 
@@ -128,7 +128,7 @@ const Register = ({ history }) => {
                                                 className="custom-file-input"
                                                 id="customFile"
                                                 accept="images/*"
-                                                onChange={handleChange}
+                                                onChange={changeHandler}
                                             />
                                             <label className="custom-file-label" htmlFor="customFile">
                                                 Choose Avatar

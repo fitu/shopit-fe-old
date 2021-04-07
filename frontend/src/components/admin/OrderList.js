@@ -1,26 +1,38 @@
 import React, { useEffect } from 'react';
-import { clearErrors, myOrders } from '../../store/actions/orderActions';
+import { clearErrors, deleteOrder, deleteOrderReset, getAllOrders } from '../../store/actions/orderActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 import Loader from '../common/Loader';
 import { MDBDataTable } from 'mdbreact';
 import MetaData from '../common/MetaData';
+import Sidebar from './Sidebar';
 import { useAlert } from 'react-alert';
 
-const ListOrders = () => {
+const OrderList = ({ history }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { loading, error, orders } = useSelector((state) => state.myOrders);
+    const { loading, error, orders = [] } = useSelector((state) => state.allOrders);
+    const { isDeleted } = useSelector((state) => state.order);
 
     useEffect(() => {
-        dispatch(myOrders());
+        dispatch(getAllOrders());
         if (error) {
             alert.error(error);
             dispatch(clearErrors());
         }
-    }, [dispatch, alert, error]);
+
+        if (isDeleted) {
+            alert.success('Order deleted succesfully!');
+            history.push('/admin/orders');
+            dispatch(deleteOrderReset());
+        }
+    }, [dispatch, alert, error, history, isDeleted]);
+
+    const deleteOrderHandler = (id) => {
+        dispatch(deleteOrder(id));
+    };
 
     const setOrders = () => {
         const data = {
@@ -31,7 +43,7 @@ const ListOrders = () => {
                     sort: 'asc',
                 },
                 {
-                    label: 'Num of items',
+                    label: 'Num of Items',
                     field: 'numOfItems',
                     sort: 'asc',
                 },
@@ -63,9 +75,14 @@ const ListOrders = () => {
                     <p style={{ color: 'red' }}>{order.orderStatus}</p>
                 ),
                 actions: (
-                    <Link to={`/order/${order._id}`} className="btn btn-primary">
-                        <i className="fa fa-eye"></i>
-                    </Link>
+                    <>
+                        <Link to={`/admin/order/${order._id}`} className="btn btn-primary py-1 px-2">
+                            <i className="fa fa-eye"></i>
+                        </Link>
+                        <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteOrderHandler(order._id)}>
+                            <i className="fa fa-trash"></i>
+                        </button>
+                    </>
                 ),
             });
         });
@@ -74,12 +91,24 @@ const ListOrders = () => {
 
     return (
         <>
-            <MetaData title="My Orders" />
-            <h1 className="mt-5">My Orders</h1>
-
-            {loading ? <Loader /> : <MDBDataTable data={setOrders()} className="px-3" bordered striped hover />}
+            <MetaData title="All orders" />
+            <div className="row">
+                <div className="col-12 col-md-2">
+                    <Sidebar />
+                </div>
+                <div className="col-12 col-md-10">
+                    <>
+                        <h1 className="my-5">All orders</h1>
+                        {loading ? (
+                            <Loader />
+                        ) : (
+                            <MDBDataTable data={setOrders()} className="px-3" bordered striped hover />
+                        )}
+                    </>
+                </div>
+            </div>
         </>
     );
 };
 
-export default ListOrders;
+export default OrderList;
