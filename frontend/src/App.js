@@ -30,6 +30,8 @@ import Shipping from './components/cart/Shipping';
 import UpdatePassword from './components/user/UpdatePassword';
 import UpdateProduct from './components/admin/UpdateProduct';
 import UpdateProfile from './components/user/UpdateProfile';
+import UpdateUser from './components/admin/UpdateUser';
+import UsersList from './components/admin/UsersList';
 import axios from 'axios';
 import { loadStripe } from '@stripe/stripe-js';
 import { loadUser } from './store/actions/authActions';
@@ -86,6 +88,8 @@ function App() {
                 <ProtectedRoute path="/admin/product/:id" isAdmin={true} component={UpdateProduct} />
                 <ProtectedRoute path="/admin/orders" isAdmin={true} component={OrderList} />
                 <ProtectedRoute path="/admin/order/:id" isAdmin={true} component={ProcessOrder} />
+                <ProtectedRoute path="/admin/users" isAdmin={true} component={UsersList} />
+                <ProtectedRoute path="/admin/user/:id" isAdmin={true} component={UpdateUser} />
 
                 {!loading && user?.role !== 'admin' && <Footer />}
             </div>

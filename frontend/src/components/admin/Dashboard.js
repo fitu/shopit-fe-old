@@ -7,11 +7,13 @@ import Metadata from '../common/MetaData';
 import Sidebar from './Sidebar';
 import { getAdminProducts } from '../../store/actions/productAction';
 import { getAllOrders } from '../../store/actions/orderActions';
+import { getAllUsers } from '../../store/actions/authActions';
 
 const Dashboard = () => {
     const dispatch = useDispatch();
     const { products } = useSelector((state) => state.products);
     const { orders, totalAmount, loading } = useSelector((state) => state.allOrders);
+    const { users } = useSelector((state) => state.allUsers);
 
     let outOfStock = 0;
     products.forEach((product) => {
@@ -23,6 +25,7 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(getAdminProducts());
         dispatch(getAllOrders());
+        dispatch(getAllUsers());
     }, [dispatch]);
 
     return (
@@ -45,7 +48,7 @@ const Dashboard = () => {
                                         <div className="card-body">
                                             <div className="text-center card-font-size">
                                                 Total Amount
-                                                <br /> <b>${totalAmount.toFixed(2)}</b>
+                                                <br /> <b>${totalAmount?.toFixed(2)}</b>
                                             </div>
                                         </div>
                                     </div>
@@ -92,7 +95,7 @@ const Dashboard = () => {
                                         <div className="card-body">
                                             <div className="text-center card-font-size">
                                                 Users
-                                                <br /> <b>45</b>
+                                                <br /> <b>{users?.length ?? 0}</b>
                                             </div>
                                         </div>
                                         <Link className="card-footer text-white clearfix small z-1" to="/admin/users">

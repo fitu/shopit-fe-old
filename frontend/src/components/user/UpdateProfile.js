@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { clearErrors, loadUser, resetProfile, updateProfile } from '../../store/actions/authActions';
+import { clearErrors, loadUser, updateProfile, updateProfileReset } from '../../store/actions/authActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MetaData from '../common/MetaData';
@@ -34,7 +34,7 @@ const UpdateProfile = ({ history }) => {
             dispatch(loadUser());
 
             history.push('/me');
-            dispatch(resetProfile());
+            dispatch(updateProfileReset());
         }
     }, [dispatch, error, alert, history, user, isUpdated]);
 

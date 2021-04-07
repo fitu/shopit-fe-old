@@ -5,8 +5,8 @@ import {
     orderReducer,
     ordersReducer,
 } from './reducers/orderReducer';
+import { allUsersReducer, authReducer, passwordReducer, userDetailsReducer, userReducer } from './reducers/authReducer';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
-import { authReducer, passwordReducer, userReducer } from './reducers/authReducer';
 import {
     newProductReducer,
     newReviewReducer,
@@ -25,6 +25,8 @@ const reducer = combineReducers({
     productDetails: productDetailReducer,
     auth: authReducer,
     user: userReducer,
+    allUsers: allUsersReducer,
+    userDetails: userDetailsReducer,
     password: passwordReducer,
     cart: cartReducer,
     orders: ordersReducer,
