@@ -1,6 +1,8 @@
 // Setting up config file
-const dotenv = require('dotenv');
-dotenv.config({ path: 'backend/config/config.env' });
+if (process.env.NODE_ENV !== 'PRODUCTION') {
+    const dotenv = require('dotenv');
+    dotenv.config({ path: 'backend/config/config.env' });
+}
 
 // Handle Uncaught exceptions
 process.on('uncaughtException', (err) => {
