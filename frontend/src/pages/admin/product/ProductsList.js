@@ -9,6 +9,7 @@ import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
 
 import { clearErrors, deleteProduct, deleteProductReset, getAdminProducts } from '../../../store/actions/productAction';
+import { Routes } from '../../../components/router/routes';
 
 const ProductsList = ({ history }) => {
     const alert = useAlert();
@@ -29,7 +30,7 @@ const ProductsList = ({ history }) => {
         }
         if (isDeleted) {
             alert.success('Product deleted succesfully!');
-            history.push('/admin/products');
+            history.push(Routes.ADMIN_PRODUCTS);
             dispatch(deleteProductReset());
         }
     }, [dispatch, alert, error, deleteError, isDeleted, history]);
@@ -72,7 +73,7 @@ const ProductsList = ({ history }) => {
                 stock: product.stock,
                 actions: (
                     <>
-                        <Link to={`/admin/product/${product._id}`} className="btn btn-primary py-1 px-2">
+                        <Link to={`${Routes.ADMIN_PRODUCT}/${product._id}`} className="btn btn-primary py-1 px-2">
                             <i className="fa fa-pencil"></i>
                         </Link>
                         <button

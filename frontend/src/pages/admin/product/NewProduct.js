@@ -6,6 +6,7 @@ import Sidebar from '../Sidebar';
 import MetaData from '../../../components/util/MetaData';
 
 import { clearErrors, newProduct, newProductReset } from '../../../store/actions/productAction';
+import { Routes } from '../../../components/router/routes';
 
 const NewProduct = ({ history }) => {
     const alert = useAlert();
@@ -44,7 +45,7 @@ const NewProduct = ({ history }) => {
         }
 
         if (success) {
-            history.push('/admin/products');
+            history.push(Routes.ADMIN_PRODUCTS);
             alert.success('Product created succesfully!');
             dispatch(newProductReset());
         }

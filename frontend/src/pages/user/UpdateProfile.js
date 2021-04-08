@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
+import { Routes } from '../../components/router/routes';
 
 import MetaData from '../../components/util/MetaData';
 
@@ -34,7 +35,7 @@ const UpdateProfile = ({ history }) => {
             alert.success('User updated successfully.');
             dispatch(loadUser());
 
-            history.push('/me');
+            history.push(Routes.USER_MY_PROFILE);
             dispatch(updateProfileReset());
         }
     }, [dispatch, error, alert, history, user, isUpdated]);

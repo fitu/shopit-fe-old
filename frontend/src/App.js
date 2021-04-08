@@ -6,9 +6,10 @@ import { useSelector } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import AppRouter from './components/router/AppRouter';
-
 import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
+
+import { Roles } from './models/roles';
 
 const alertOptions = {
     timeout: 5000,
@@ -24,7 +25,7 @@ function App() {
                 <div className="App">
                     <Header />
                     <AppRouter />
-                    {!loading && user?.role !== 'admin' && <Footer />}
+                    {!loading && user?.role !== Roles.ADMIN && <Footer />}
                 </div>
             </Router>
         </AlertProvider>

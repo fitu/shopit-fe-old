@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Routes } from '../../components/router/routes';
 
 import MetaData from '../../components/util/MetaData';
 
@@ -59,7 +60,7 @@ const Cart = ({ history }) => {
                                             </div>
 
                                             <div className="col-5 col-lg-3">
-                                                <Link to={`/product/${item.product}`}>{item.name}</Link>
+                                                <Link to={`${Routes.PRODUCT}/${item.product}`}>{item.name}</Link>
                                             </div>
 
                                             <div className="col-4 col-lg-2 mt-4 mt-lg-0">

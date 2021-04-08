@@ -8,6 +8,7 @@ import MetaData from '../../components/util/MetaData';
 
 import { processPayment } from '../../api/api';
 import { clearErrors, createOrder } from '../../store/actions/orderActions';
+import { Routes } from '../../components/router/routes';
 
 const options = {
     style: {
@@ -94,7 +95,7 @@ const Payment = ({ history }) => {
             };
 
             dispatch(createOrder(order));
-            history.push('/success');
+            history.push(Routes.CHECKOUT_STEP_SUCCESS);
         } catch (error) {
             document.querySelector('#pay_btn').disabled = false;
             alert.error(error.response.data.message);

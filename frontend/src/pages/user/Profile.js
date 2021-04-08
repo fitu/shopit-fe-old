@@ -1,9 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Routes } from '../../components/router/routes';
 
 import Loader from '../../components/util/Loader';
 import Metadata from '../../components/util/MetaData';
+
+import { Roles } from '../../models/roles';
 
 const Profile = () => {
     const { user, loading } = useSelector((state) => state.auth);
@@ -21,7 +24,11 @@ const Profile = () => {
                             <figure className="avatar avatar-profile">
                                 <img className="rounded-circle img-fluid" src={user.avatar.url} alt={user.name} />
                             </figure>
-                            <Link to="/me/update" id="edit_profile" className="btn btn-primary btn-block my-5">
+                            <Link
+                                to={Routes.USER_UPDATE_PROFILE}
+                                id="edit_profile"
+                                className="btn btn-primary btn-block my-5"
+                            >
                                 Edit Profile
                             </Link>
                         </div>
@@ -36,13 +43,13 @@ const Profile = () => {
                             <h4>Joined on</h4>
                             <p>{String(user.createdAt).substring(0, 10)}</p>
 
-                            {user.role !== 'admin' && (
-                                <Link to="/orders/me" className="btn btn-danger btn-block mt-5">
+                            {user.role !== Roles.ADMIN && (
+                                <Link to={Routes.ORDER_MY} className="btn btn-danger btn-block mt-5">
                                     My Orders
                                 </Link>
                             )}
 
-                            <Link to="/password/update" className="btn btn-primary btn-block mt-3">
+                            <Link to={Routes.PASSWORD_UPDATE} className="btn btn-primary btn-block mt-3">
                                 Change Password
                             </Link>
                         </div>

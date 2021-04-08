@@ -9,6 +9,7 @@ import Metadata from '../../components/util/MetaData';
 import { getAllUsers } from '../../store/actions/authActions';
 import { getAllOrders } from '../../store/actions/orderActions';
 import { getAdminProducts } from '../../store/actions/productAction';
+import { Routes } from '../../components/router/routes';
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -66,7 +67,7 @@ const Dashboard = () => {
                                         </div>
                                         <Link
                                             className="card-footer text-white clearfix small z-1"
-                                            to="/admin/products"
+                                            to={Routes.ADMIN_PRODUCTS}
                                         >
                                             <span className="float-left">View Details</span>
                                             <span className="float-right">
@@ -83,7 +84,10 @@ const Dashboard = () => {
                                                 <br /> <b>{orders?.length ?? 0}</b>
                                             </div>
                                         </div>
-                                        <Link className="card-footer text-white clearfix small z-1" to="/admin/orders">
+                                        <Link
+                                            to={Routes.ADMIN_ORDERS}
+                                            className="card-footer text-white clearfix small z-1"
+                                        >
                                             <span className="float-left">View Details</span>
                                             <span className="float-right">
                                                 <i className="fa fa-angle-right"></i>
@@ -99,7 +103,10 @@ const Dashboard = () => {
                                                 <br /> <b>{users?.length ?? 0}</b>
                                             </div>
                                         </div>
-                                        <Link className="card-footer text-white clearfix small z-1" to="/admin/users">
+                                        <Link
+                                            to={Routes.ADMIN_USERS}
+                                            className="card-footer text-white clearfix small z-1"
+                                        >
                                             <span className="float-left">View Details</span>
                                             <span className="float-right">
                                                 <i className="fa fa-angle-right"></i>

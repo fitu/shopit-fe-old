@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../components/util/Loader';
 import MetaData from '../../components/util/MetaData';
 
+import { Routes } from '../../components/router/routes';
 import { clearErrors, register } from '../../store/actions/authActions';
 
 const Register = ({ history }) => {
@@ -23,7 +24,7 @@ const Register = ({ history }) => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            history.push('/');
+            history.push(Routes.HOME);
             return;
         }
 

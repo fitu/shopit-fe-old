@@ -5,7 +5,9 @@ import { Link, Route } from 'react-router-dom';
 
 import Search from '../util/Search';
 
+import { Roles } from '../../models/roles';
 import { logoutUser } from '../../store/actions/authActions';
+import { Routes } from '../router/routes';
 
 const Header = () => {
     const alert = useAlert();
@@ -23,7 +25,7 @@ const Header = () => {
             <nav className="navbar row">
                 <div className="col-12 col-md-3">
                     <div className="navbar-brand">
-                        <Link to="/">
+                        <Link to={Routes.HOME}>
                             <img src="./images/logo.png" alt="Logo" />
                         </Link>
                     </div>
@@ -34,7 +36,7 @@ const Header = () => {
                 </div>
 
                 <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-                    <Link to="/cart" style={{ textDecoration: 'none' }}>
+                    <Link to={Routes.CART} style={{ textDecoration: 'none' }}>
                         <span id="cart" className="ml-3">
                             Cart
                         </span>
@@ -59,25 +61,25 @@ const Header = () => {
                                 <span>{user?.name}</span>
                             </Link>
                             <div className="dropdown-menu" aria-labelledby="dropDownMenuButton">
-                                {user?.role === 'admin' && (
-                                    <Link to="/dashboard" className="dropdown-item">
+                                {user?.role === Roles.ADMIN && (
+                                    <Link to={Routes.ADMIN_HOME} className="dropdown-item">
                                         Dashboard
                                     </Link>
                                 )}
-                                <Link to="/orders/me" className="dropdown-item">
+                                <Link to={Routes.ORDER_MY} className="dropdown-item">
                                     Orders
                                 </Link>
-                                <Link to="/me" className="dropdown-item">
+                                <Link to={Routes.USER_MY_PROFILE} className="dropdown-item">
                                     Profile
                                 </Link>
-                                <Link to="/" className="dropdown-item text-danger" onClick={logoutHandler}>
+                                <Link to={Routes.HOME} className="dropdown-item text-danger" onClick={logoutHandler}>
                                     Logout
                                 </Link>
                             </div>
                         </div>
                     ) : (
                         !loading && (
-                            <Link to="/login" className="btn ml-4" id="login_btn">
+                            <Link to={Routes.LOGIN} className="btn ml-4" id="login_btn">
                                 Login
                             </Link>
                         )

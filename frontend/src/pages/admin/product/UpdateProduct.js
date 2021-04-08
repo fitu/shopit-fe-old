@@ -11,6 +11,7 @@ import {
     updateProduct,
     updateProductReset,
 } from '../../../store/actions/productAction';
+import { Routes } from '../../../components/router/routes';
 
 const UpdateProduct = ({ match, history }) => {
     const alert = useAlert();
@@ -55,7 +56,7 @@ const UpdateProduct = ({ match, history }) => {
         }
 
         if (isUpdated) {
-            history.push('/admin/products');
+            history.push(Routes.ADMIN_PRODUCTS);
             alert.success('Product updated succesfully!');
             dispatch(updateProductReset());
         }

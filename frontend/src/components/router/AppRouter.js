@@ -25,6 +25,7 @@ import UpdateProfile from '../../pages/user/UpdateProfile';
 
 import { getStripeApi } from '../../api/api';
 import { loadUser } from '../../store/actions/authActions';
+import { Routes } from './routes';
 
 const AppRouter = () => {
     const dispatch = useDispatch();
@@ -46,37 +47,32 @@ const AppRouter = () => {
         <>
             <div className="container container-fluid">
                 {/* Home */}
-                <Route path="/" component={Home} exact />
-
+                <Route path={Routes.HOME} component={Home} exact />
                 {/* User */}
-                <Route path="/login" component={Login} />
-                <Route path="/password/forgot" component={ForgotPassword} />
-                <Route path="/password/reset/:token" component={NewPassword} />
-                <RouterProtector path="/password/update" component={UpdatePassword} exact />
-                <Route path="/register" component={Register} />
-                <RouterProtector path="/me" component={Profile} exact />
-                <RouterProtector path="/me/update" component={UpdateProfile} exact />
-
+                <Route path={Routes.LOGIN} component={Login} />
+                <Route path={Routes.PASSWORD_FORGOT} component={ForgotPassword} />
+                <Route path={`${Routes.PASSWORD_RESET}/:token`} component={NewPassword} />
+                <RouterProtector path={Routes.PASSWORD_UPDATE} component={UpdatePassword} exact />
+                <Route path={Routes.USER_REGISTER} component={Register} />
+                <RouterProtector path={Routes.USER_MY_PROFILE} component={Profile} exact />
+                <RouterProtector path={Routes.USER_UPDATE_PROFILE} component={UpdateProfile} exact />
                 {/* Products */}
-                <Route path="/product/:id" component={ProductDetails} />
-
+                <Route path={`${Routes.PRODUCT}/:id`} component={ProductDetails} />
                 {/* Cart & Checkout */}
-                <Route path="/cart" component={Cart} />
-                <RouterProtector path="/shipping" component={Shipping} exact />
-                <RouterProtector path="/confirm" component={ConfirmOrder} exact />
+                <Route path={Routes.CART} component={Cart} />
+                <RouterProtector path={Routes.CHECKOUT_STEP_SHIPPING} component={Shipping} exact />
+                <RouterProtector path={Routes.CHECKOUT_STEP_CONFIRM} component={ConfirmOrder} exact />
                 {stripeAPIKey && (
                     <Elements stripe={loadStripe(stripeAPIKey)}>
-                        <RouterProtector path="/payment" component={Payment} />
+                        <RouterProtector path={Routes.CHECKOUT_STEP_PAYMENT} component={Payment} />
                     </Elements>
                 )}
-                <RouterProtector path="/success" component={OrderSuccess} exact />
-
-                {/* Orders */}
-                <RouterProtector path="/order/:id" component={OrderDetails} exact />
-                <RouterProtector path="/orders/me" component={ListOrders} exact />
-
+                <RouterProtector path={Routes.CHECKOUT_STEP_SUCCESS} component={OrderSuccess} exact />
+                {/* Orders */}$
+                <RouterProtector path={`${Routes.ORDER}/:id`} component={OrderDetails} exact />
+                <RouterProtector path={Routes.ORDER_MY} component={ListOrders} exact />
                 {/* Extras */}
-                <Route path="/search/:keyword" component={Home} />
+                <Route path={`${Routes.SEARCH}/:keyword`} component={Home} />
             </div>
             <AdminRoutes />
         </>

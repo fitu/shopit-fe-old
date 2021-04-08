@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Routes } from '../../components/router/routes';
 
 import MetaData from '../../components/util/MetaData';
 
@@ -19,7 +20,7 @@ const OrderSuccess = () => {
 
                     <h2>Your Order has been placed successfully.</h2>
 
-                    <Link to="/orders/me">Go to Orders</Link>
+                    <Link to={Routes.ORDER_MY}>Go to Orders</Link>
                 </div>
             </div>
         </>

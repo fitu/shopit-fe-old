@@ -6,6 +6,7 @@ import CheckoutSteps from './CheckoutSteps';
 import MetaData from '../../components/util/MetaData';
 
 import { saveShippingInfo } from '../../store/actions/cartActions';
+import { Routes } from '../../components/router/routes';
 
 const Shipping = ({ history }) => {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Shipping = ({ history }) => {
         event.preventDefault();
 
         dispatch(saveShippingInfo({ address, city, phoneNumber, postalCode, country }));
-        history.push('/confirm');
+        history.push(Routes.CHECKOUT_STEP_CONFIRM);
     };
 
     return (
