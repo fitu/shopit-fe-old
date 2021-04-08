@@ -4,10 +4,10 @@
   "description": "Full ecommerce site using mern",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "dev": "NODE_ENV=DEVELOPMENT nodemon backend/server",
-    "prod": "NODE_ENV=PRODUCTION nodemon backend/server",
-    "seeder": "node backend/data/seeder.js",
+    "start": "SET node backend/server.js",
+    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/server",
+    "prod": "SET NODE_ENV=PRODUCTION& nodemon backend/server",
+    "seeder": "node backend/utils/seeder.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Victorio Matteucci",
@@ -27,6 +27,6 @@
     "validator": "^13.5.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.6"
   }
 }
