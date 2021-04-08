@@ -20,6 +20,7 @@ import {
     productsReducer,
     reviewReducer,
 } from './reducers/productReducer';
+import { StorageKeys } from './repository/repository';
 
 const reducer = combineReducers({
     products: productsReducer,
@@ -44,8 +45,12 @@ const reducer = combineReducers({
 
 const initialState = {
     cart: {
-        cartItems: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [],
-        shippingInfo: localStorage.getItem('shippingInfo') ? JSON.parse(localStorage.getItem('shippingInfo')) : {},
+        cartItems: localStorage.getItem(StorageKeys.CART_ITEMS_KEY)
+            ? JSON.parse(localStorage.getItem(StorageKeys.CART_ITEMS_KEY))
+            : [],
+        shippingInfo: localStorage.getItem(StorageKeys.SHIPPING_INFO_KEY)
+            ? JSON.parse(localStorage.getItem(StorageKeys.SHIPPING_INFO_KEY))
+            : {},
     },
 };
 
