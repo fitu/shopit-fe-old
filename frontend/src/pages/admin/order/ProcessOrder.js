@@ -15,7 +15,7 @@ const ProcessOrder = ({ match }) => {
 
     const [status, setStatus] = useState('');
 
-    const { loading, order = {} } = useSelector((state) => state.orderDetails);
+    const { loading, order } = useSelector((state) => state.orderDetails);
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order;
     const { error, isUpdated } = useSelector((state) => state.order);
 

@@ -22,7 +22,7 @@ import {
     UPDATE_ORDER_SUCCESS,
 } from '../actions/orderActions';
 
-export const ordersReducer = (state = {}, action) => {
+export const ordersReducer = (state = { order: {} }, action) => {
     switch (action.type) {
         case CREATE_ORDER_REQUEST: {
             return {
@@ -32,12 +32,14 @@ export const ordersReducer = (state = {}, action) => {
         }
         case CREATE_ORDER_SUCCESS: {
             return {
+                ...state,
                 loading: false,
                 order: action.payload,
             };
         }
         case CREATE_ORDER_FAIL: {
             return {
+                ...state,
                 loading: false,
                 error: action.payload,
             };
@@ -58,17 +60,20 @@ export const myOrdersReducer = (state = { orders: [] }, action) => {
     switch (action.type) {
         case MY_ORDERS_REQUEST: {
             return {
+                ...state,
                 loading: true,
             };
         }
         case MY_ORDERS_SUCCESS: {
             return {
+                ...state,
                 loading: false,
                 orders: action.payload,
             };
         }
         case MY_ORDERS_FAIL: {
             return {
+                ...state,
                 loading: false,
                 error: action.payload,
             };
@@ -89,17 +94,20 @@ export const orderDetailsReducer = (state = { order: {} }, action) => {
     switch (action.type) {
         case ORDER_DETAILS_REQUEST: {
             return {
+                ...state,
                 loading: true,
             };
         }
         case ORDER_DETAILS_SUCCESS: {
             return {
+                ...state,
                 loading: false,
                 order: action.payload,
             };
         }
         case ORDER_DETAILS_FAIL: {
             return {
+                ...state,
                 loading: false,
                 error: action.payload,
             };
@@ -120,11 +128,13 @@ export const allOrdersReducer = (state = { orders: [] }, action) => {
     switch (action.type) {
         case ALL_ORDERS_REQUEST: {
             return {
+                ...state,
                 loading: true,
             };
         }
         case ALL_ORDERS_SUCCESS: {
             return {
+                ...state,
                 loading: false,
                 orders: action.payload.orders,
                 totalAmount: action.payload.totalAmount,
@@ -132,6 +142,7 @@ export const allOrdersReducer = (state = { orders: [] }, action) => {
         }
         case ALL_ORDERS_FAIL: {
             return {
+                ...state,
                 loading: false,
                 error: action.payload,
             };

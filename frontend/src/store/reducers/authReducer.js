@@ -41,12 +41,13 @@ import {
     USER_DETAILS_SUCCESS,
 } from '../actions/authActions';
 
-export const authReducer = (state = { user: {} }, action) => {
+export const authReducer = (state = { loading: false, isAuthenticated: false, user: {}, error: {} }, action) => {
     switch (action.type) {
         case LOGIN_REQUEST:
         case REGISTER_USER_REQUEST:
         case LOAD_USER_REQUEST: {
             return {
+                ...state,
                 loading: true,
                 isAuthenticated: false,
             };
@@ -63,6 +64,7 @@ export const authReducer = (state = { user: {} }, action) => {
         }
         case LOGOUT_SUCCESS: {
             return {
+                ...state,
                 loading: false,
                 isAuthenticated: false,
                 user: null,
@@ -97,7 +99,7 @@ export const authReducer = (state = { user: {} }, action) => {
     }
 };
 
-export const userReducer = (state = {}, action) => {
+export const userReducer = (state = { loading: false, isUpdated: false, isDeleted: false, error: {} }, action) => {
     switch (action.type) {
         case UPDATE_PROFILE_REQUEST:
         case UPDATE_PASSWORD_REQUEST:
@@ -160,7 +162,7 @@ export const userReducer = (state = {}, action) => {
     }
 };
 
-export const passwordReducer = (state = {}, action) => {
+export const passwordReducer = (state = { loading: false, message: '', success: false, error: {} }, action) => {
     switch (action.type) {
         case FORGOT_PASSWORD_REQUEST:
         case NEW_PASSWORD_REQUEST: {
@@ -203,7 +205,7 @@ export const passwordReducer = (state = {}, action) => {
     }
 };
 
-export const allUsersReducer = (state = { users: [] }, action) => {
+export const allUsersReducer = (state = { loading: false, users: [], error: {} }, action) => {
     switch (action.type) {
         case ALL_USER_REQUEST: {
             return {
@@ -237,7 +239,7 @@ export const allUsersReducer = (state = { users: [] }, action) => {
     }
 };
 
-export const userDetailsReducer = (state = { user: {} }, action) => {
+export const userDetailsReducer = (state = { loading: false, user: {}, error: {} }, action) => {
     switch (action.type) {
         case USER_DETAILS_REQUEST: {
             return {

@@ -34,17 +34,22 @@ import {
     UPDATE_PRODUCT_SUCCESS,
 } from '../actions/productAction';
 
-export const productsReducer = (state = { products: [] }, action) => {
+export const productsReducer = (
+    state = { loading: false, productCount: 0, resultsPerPage: 0, products: [], error: {} },
+    action
+) => {
     switch (action.type) {
         case ALL_PRODUCTS_REQUEST:
         case ADMIN_PRODUCTS_REQUEST: {
             return {
+                ...state,
                 loading: true,
                 products: [],
             };
         }
         case ALL_PRODUCTS_SUCCESS: {
             return {
+                ...state,
                 loading: false,
                 products: action.payload.products,
                 productsCount: action.payload.productCount,
@@ -53,6 +58,7 @@ export const productsReducer = (state = { products: [] }, action) => {
         }
         case ADMIN_PRODUCTS_SUCCESS: {
             return {
+                ...state,
                 loading: false,
                 products: action.payload,
             };
@@ -60,6 +66,7 @@ export const productsReducer = (state = { products: [] }, action) => {
         case ALL_PRODUCTS_FAIL:
         case ADMIN_PRODUCTS_FAIL: {
             return {
+                ...state,
                 loading: false,
                 error: action.payload,
             };
@@ -76,7 +83,7 @@ export const productsReducer = (state = { products: [] }, action) => {
     }
 };
 
-export const productDetailReducer = (state = { product: {} }, action) => {
+export const productDetailReducer = (state = { loading: false, product: {}, error: {} }, action) => {
     switch (action.type) {
         case PRODUCT_DETAILS_REQUEST: {
             return {
@@ -86,6 +93,7 @@ export const productDetailReducer = (state = { product: {} }, action) => {
         }
         case PRODUCT_DETAILS_SUCCESS: {
             return {
+                ...state,
                 loading: false,
                 product: action.payload,
             };
@@ -109,7 +117,7 @@ export const productDetailReducer = (state = { product: {} }, action) => {
     }
 };
 
-export const newReviewReducer = (state = { product: {} }, action) => {
+export const newReviewReducer = (state = { loading: false, success: false, error: {} }, action) => {
     switch (action.type) {
         case NEW_REVIEW_REQUEST: {
             return {
@@ -119,6 +127,7 @@ export const newReviewReducer = (state = { product: {} }, action) => {
         }
         case NEW_REVIEW_SUCCESS: {
             return {
+                ...state,
                 loading: false,
                 success: action.payload,
             };
@@ -148,7 +157,7 @@ export const newReviewReducer = (state = { product: {} }, action) => {
     }
 };
 
-export const newProductReducer = (state = { product: {} }, action) => {
+export const newProductReducer = (state = { loading: false, success: false, product: {}, error: {} }, action) => {
     switch (action.type) {
         case NEW_PRODUCT_REQUEST: {
             return {
@@ -158,6 +167,7 @@ export const newProductReducer = (state = { product: {} }, action) => {
         }
         case NEW_PRODUCT_SUCCESS: {
             return {
+                ...state,
                 loading: false,
                 success: action.payload.success,
                 product: action.payload.product,
@@ -188,7 +198,10 @@ export const newProductReducer = (state = { product: {} }, action) => {
     }
 };
 
-export const productReducer = (state = { product: {} }, action) => {
+export const productReducer = (
+    state = { loading: false, isDeleted: false, isUpdated: false, product: {}, error: {} },
+    action
+) => {
     switch (action.type) {
         case DELETE_PRODUCT_REQUEST:
         case UPDATE_PRODUCT_REQUEST: {
@@ -243,7 +256,7 @@ export const productReducer = (state = { product: {} }, action) => {
     }
 };
 
-export const productReviewsReducer = (state = { reviews: [] }, action) => {
+export const productReviewsReducer = (state = { loading: false, reviews: [], error: {} }, action) => {
     switch (action.type) {
         case ALL_REVIEWS_REQUEST: {
             return {
@@ -253,12 +266,14 @@ export const productReviewsReducer = (state = { reviews: [] }, action) => {
         }
         case ALL_REVIEWS_SUCCESS: {
             return {
+                ...state,
                 loading: false,
                 reviews: action.payload,
             };
         }
         case ALL_REVIEWS_FAIL: {
             return {
+                ...state,
                 loading: false,
                 error: action.payload,
             };
@@ -275,7 +290,7 @@ export const productReviewsReducer = (state = { reviews: [] }, action) => {
     }
 };
 
-export const reviewReducer = (state = {}, action) => {
+export const reviewReducer = (state = { loading: false, isDeleted: false, error: {} }, action) => {
     switch (action.type) {
         case DELETE_REVIEW_REQUEST: {
             return {
@@ -285,18 +300,21 @@ export const reviewReducer = (state = {}, action) => {
         }
         case DELETE_REVIEW_SUCCESS: {
             return {
+                ...state,
                 loading: false,
                 isDeleted: action.payload,
             };
         }
         case DELETE_REVIEW_FAIL: {
             return {
+                ...state,
                 loading: false,
                 error: action.payload,
             };
         }
         case DELETE_REVIEW_RESET: {
             return {
+                ...state,
                 loading: false,
                 isDeleted: false,
             };
