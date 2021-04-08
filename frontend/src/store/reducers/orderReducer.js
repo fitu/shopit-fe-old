@@ -22,7 +22,7 @@ import {
     UPDATE_ORDER_SUCCESS,
 } from '../actions/orderActions';
 
-export const ordersReducer = (state = { order: {} }, action) => {
+export const ordersReducer = (state = { loading: false, order: {}, error: null }, action) => {
     switch (action.type) {
         case CREATE_ORDER_REQUEST: {
             return {
@@ -56,7 +56,7 @@ export const ordersReducer = (state = { order: {} }, action) => {
     }
 };
 
-export const myOrdersReducer = (state = { orders: [] }, action) => {
+export const myOrdersReducer = (state = { loading: false, orders: [], error: null }, action) => {
     switch (action.type) {
         case MY_ORDERS_REQUEST: {
             return {
@@ -90,7 +90,7 @@ export const myOrdersReducer = (state = { orders: [] }, action) => {
     }
 };
 
-export const orderDetailsReducer = (state = { order: {} }, action) => {
+export const orderDetailsReducer = (state = { loading: false, order: {}, error: null }, action) => {
     switch (action.type) {
         case ORDER_DETAILS_REQUEST: {
             return {
@@ -124,7 +124,7 @@ export const orderDetailsReducer = (state = { order: {} }, action) => {
     }
 };
 
-export const allOrdersReducer = (state = { orders: [] }, action) => {
+export const allOrdersReducer = (state = { loading: false, orders: [], totalAmount: 0, error: null }, action) => {
     switch (action.type) {
         case ALL_ORDERS_REQUEST: {
             return {
@@ -159,7 +159,7 @@ export const allOrdersReducer = (state = { orders: [] }, action) => {
     }
 };
 
-export const orderReducer = (state = {}, action) => {
+export const orderReducer = (state = { loading: false, isUpdated: false, isDeleted: false, error: null }, action) => {
     switch (action.type) {
         case UPDATE_ORDER_REQUEST:
         case DELETE_ORDER_REQUEST: {

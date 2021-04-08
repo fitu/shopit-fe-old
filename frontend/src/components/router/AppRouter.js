@@ -1,6 +1,5 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route } from 'react-router-dom';
@@ -24,6 +23,7 @@ import Register from '../../pages/user/Register';
 import UpdatePassword from '../../pages/user/UpdatePassword';
 import UpdateProfile from '../../pages/user/UpdateProfile';
 
+import { getStripeApi } from '../../api/api';
 import { loadUser } from '../../store/actions/authActions';
 
 const AppRouter = () => {
@@ -35,7 +35,7 @@ const AppRouter = () => {
         dispatch(loadUser());
 
         async function getStripeAPIKey() {
-            const { data } = await axios.get('api/v1/stripeapi');
+            const { data } = await getStripeApi();
             setStripeAPIKey(data.stripeApiKey);
         }
 

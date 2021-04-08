@@ -1,5 +1,4 @@
 import { CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CheckoutSteps from './CheckoutSteps';
 import MetaData from '../../components/util/MetaData';
 
+import { processPayment } from '../../api/api';
 import { clearErrors, createOrder } from '../../store/actions/orderActions';
 
 const options = {
@@ -63,12 +63,7 @@ const Payment = ({ history }) => {
                 return;
             }
 
-            const response = await axios.post('/api/v1/payment/process', paymentData, {
-                headers: {
-                    'Content-type': 'application/json',
-                },
-            });
-
+            const response = await processPayment(paymentData);
             const clientSecret = response.data.client_secret;
             const result = await stripe.confirmCardPayment(clientSecret, {
                 payment_method: {

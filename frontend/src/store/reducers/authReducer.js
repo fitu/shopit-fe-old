@@ -41,7 +41,7 @@ import {
     USER_DETAILS_SUCCESS,
 } from '../actions/authActions';
 
-export const authReducer = (state = { loading: false, isAuthenticated: false, user: {}, error: {} }, action) => {
+export const authReducer = (state = { loading: false, isAuthenticated: false, user: {}, error: null }, action) => {
     switch (action.type) {
         case LOGIN_REQUEST:
         case REGISTER_USER_REQUEST:
@@ -99,7 +99,7 @@ export const authReducer = (state = { loading: false, isAuthenticated: false, us
     }
 };
 
-export const userReducer = (state = { loading: false, isUpdated: false, isDeleted: false, error: {} }, action) => {
+export const userReducer = (state = { loading: false, isUpdated: false, isDeleted: false, error: null }, action) => {
     switch (action.type) {
         case UPDATE_PROFILE_REQUEST:
         case UPDATE_PASSWORD_REQUEST:
@@ -162,7 +162,7 @@ export const userReducer = (state = { loading: false, isUpdated: false, isDelete
     }
 };
 
-export const passwordReducer = (state = { loading: false, message: '', success: false, error: {} }, action) => {
+export const passwordReducer = (state = { loading: false, message: '', success: false, error: null }, action) => {
     switch (action.type) {
         case FORGOT_PASSWORD_REQUEST:
         case NEW_PASSWORD_REQUEST: {
@@ -205,7 +205,7 @@ export const passwordReducer = (state = { loading: false, message: '', success: 
     }
 };
 
-export const allUsersReducer = (state = { loading: false, users: [], error: {} }, action) => {
+export const allUsersReducer = (state = { loading: false, users: [], error: null }, action) => {
     switch (action.type) {
         case ALL_USER_REQUEST: {
             return {
@@ -239,7 +239,7 @@ export const allUsersReducer = (state = { loading: false, users: [], error: {} }
     }
 };
 
-export const userDetailsReducer = (state = { loading: false, user: {}, error: {} }, action) => {
+export const userDetailsReducer = (state = { loading: false, user: {}, error: null }, action) => {
     switch (action.type) {
         case USER_DETAILS_REQUEST: {
             return {

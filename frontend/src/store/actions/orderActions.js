@@ -1,4 +1,11 @@
-import axios from 'axios';
+import {
+    createOrder as apiCreateOrder,
+    myOrders as apiMyOrders,
+    getOrderDetails as apiGetOrderDetails,
+    getAllOrders as apiGetAllOrders,
+    updateOrder as apiUpdateOrder,
+    deleteOrder as apiDeleteOrder,
+} from '../../api/api';
 
 export const ALL_ORDERS_FAIL = 'ALL_ORDERS_FAIL';
 export const ALL_ORDERS_REQUEST = 'ALL_ORDERS_REQUEST';
@@ -31,15 +38,7 @@ export const UPDATE_ORDER_SUCCESS = 'UPDATE_ORDER_SUCCESS';
 export const createOrder = (order) => async (dispatch, getState) => {
     try {
         dispatch({ type: CREATE_ORDER_REQUEST });
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-
-        const { data } = await axios.post('/api/v1/order/new', order, config);
-
+        const { data } = await apiCreateOrder(order);
         dispatch({
             type: CREATE_ORDER_SUCCESS,
             payload: data,
@@ -52,7 +51,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
 export const myOrders = () => async (dispatch) => {
     try {
         dispatch({ type: MY_ORDERS_REQUEST });
-        const { data } = await axios.get('/api/v1/orders/me');
+        const { data } = await apiMyOrders();
         dispatch({ type: MY_ORDERS_SUCCESS, payload: data.orders });
     } catch (error) {
         dispatch({ type: MY_ORDERS_FAIL, payload: error.response.data.message });
@@ -62,7 +61,7 @@ export const myOrders = () => async (dispatch) => {
 export const getOrderDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: ORDER_DETAILS_REQUEST });
-        const { data } = await axios.get(`/api/v1/order/${id}`);
+        const { data } = await apiGetOrderDetails(id);
         dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order });
     } catch (error) {
         dispatch({ type: ORDER_DETAILS_FAIL, payload: error.response.data.message });
@@ -72,7 +71,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
 export const getAllOrders = () => async (dispatch) => {
     try {
         dispatch({ type: ALL_ORDERS_REQUEST });
-        const { data } = await axios.get(`/api/v1/admin/orders`);
+        const { data } = await apiGetAllOrders();
         dispatch({ type: ALL_ORDERS_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: ALL_ORDERS_FAIL, payload: error.response.data.message });
@@ -81,15 +80,8 @@ export const getAllOrders = () => async (dispatch) => {
 
 export const updateOrder = (id, orderData) => async (dispatch) => {
     try {
-        dispatch({
-            type: UPDATE_ORDER_REQUEST,
-        });
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-        const { data } = await axios.put(`/api/v1/admin/order/${id}`, orderData, config);
+        dispatch({ type: UPDATE_ORDER_REQUEST });
+        const { data } = await apiUpdateOrder(id, orderData);
         dispatch({
             type: UPDATE_ORDER_SUCCESS,
             payload: data.success,
@@ -104,10 +96,8 @@ export const updateOrder = (id, orderData) => async (dispatch) => {
 
 export const deleteOrder = (id) => async (dispatch) => {
     try {
-        dispatch({
-            type: DELETE_ORDER_REQUEST,
-        });
-        const { data } = await axios.delete(`/api/v1/admin/order/${id}`);
+        dispatch({ type: DELETE_ORDER_REQUEST });
+        const { data } = await apiDeleteOrder(id);
         dispatch({
             type: DELETE_ORDER_SUCCESS,
             payload: data.success,
@@ -121,19 +111,13 @@ export const deleteOrder = (id) => async (dispatch) => {
 };
 
 export const deleteOrderReset = () => async (dispatch) => {
-    dispatch({
-        type: DELETE_ORDER_RESET,
-    });
+    dispatch({ type: DELETE_ORDER_RESET });
 };
 
 export const updateOrderReset = () => async (dispatch) => {
-    dispatch({
-        type: UPDATE_ORDER_RESET,
-    });
+    dispatch({ type: UPDATE_ORDER_RESET });
 };
 
 export const clearErrors = () => async (dispatch) => {
-    dispatch({
-        type: CLEAR_ERRORS,
-    });
+    dispatch({ type: CLEAR_ERRORS });
 };

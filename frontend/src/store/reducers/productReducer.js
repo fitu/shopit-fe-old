@@ -35,7 +35,7 @@ import {
 } from '../actions/productAction';
 
 export const productsReducer = (
-    state = { loading: false, productCount: 0, resultsPerPage: 0, products: [], error: {} },
+    state = { loading: false, productCount: 0, resultsPerPage: 0, products: [], error: null },
     action
 ) => {
     switch (action.type) {
@@ -83,7 +83,7 @@ export const productsReducer = (
     }
 };
 
-export const productDetailReducer = (state = { loading: false, product: {}, error: {} }, action) => {
+export const productDetailReducer = (state = { loading: false, product: {}, error: null }, action) => {
     switch (action.type) {
         case PRODUCT_DETAILS_REQUEST: {
             return {
@@ -117,7 +117,7 @@ export const productDetailReducer = (state = { loading: false, product: {}, erro
     }
 };
 
-export const newReviewReducer = (state = { loading: false, success: false, error: {} }, action) => {
+export const newReviewReducer = (state = { loading: false, success: false, error: null }, action) => {
     switch (action.type) {
         case NEW_REVIEW_REQUEST: {
             return {
@@ -157,7 +157,7 @@ export const newReviewReducer = (state = { loading: false, success: false, error
     }
 };
 
-export const newProductReducer = (state = { loading: false, success: false, product: {}, error: {} }, action) => {
+export const newProductReducer = (state = { loading: false, success: false, product: {}, error: null }, action) => {
     switch (action.type) {
         case NEW_PRODUCT_REQUEST: {
             return {
@@ -199,7 +199,7 @@ export const newProductReducer = (state = { loading: false, success: false, prod
 };
 
 export const productReducer = (
-    state = { loading: false, isDeleted: false, isUpdated: false, product: {}, error: {} },
+    state = { loading: false, isDeleted: false, isUpdated: false, product: {}, error: null },
     action
 ) => {
     switch (action.type) {
@@ -256,7 +256,7 @@ export const productReducer = (
     }
 };
 
-export const productReviewsReducer = (state = { loading: false, reviews: [], error: {} }, action) => {
+export const productReviewsReducer = (state = { loading: false, reviews: [], error: null }, action) => {
     switch (action.type) {
         case ALL_REVIEWS_REQUEST: {
             return {
@@ -290,7 +290,7 @@ export const productReviewsReducer = (state = { loading: false, reviews: [], err
     }
 };
 
-export const reviewReducer = (state = { loading: false, isDeleted: false, error: {} }, action) => {
+export const reviewReducer = (state = { loading: false, isDeleted: false, error: null }, action) => {
     switch (action.type) {
         case DELETE_REVIEW_REQUEST: {
             return {
