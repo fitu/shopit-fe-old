@@ -5,7 +5,7 @@ import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CheckoutSteps from './CheckoutSteps';
-import MetaData from '../../components/common/MetaData';
+import MetaData from '../../components/util/MetaData';
 
 import { clearErrors, createOrder } from '../../store/actions/orderActions';
 

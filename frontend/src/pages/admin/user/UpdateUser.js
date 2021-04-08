@@ -3,7 +3,7 @@ import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Sidebar from '../Sidebar';
-import MetaData from '../../../components/common/MetaData';
+import MetaData from '../../../components/util/MetaData';
 
 import { clearErrors, getUserDetails, updateUser, updateUserReset } from '../../../store/actions/authActions';
 

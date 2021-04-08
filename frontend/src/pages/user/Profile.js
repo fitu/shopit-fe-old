@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Loader from '../../components/common/Loader';
-import Metadata from '../../components/common/MetaData';
+import Loader from '../../components/util/Loader';
+import Metadata from '../../components/util/MetaData';
 
 const Profile = () => {
     const { user, loading } = useSelector((state) => state.auth);

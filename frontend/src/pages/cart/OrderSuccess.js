@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import MetaData from '../../components/common/MetaData';
+import MetaData from '../../components/util/MetaData';
 
 const OrderSuccess = () => {
     return (

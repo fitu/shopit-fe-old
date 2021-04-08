@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Sidebar from '../Sidebar';
-import Loader from '../../../components/common/Loader';
-import MetaData from '../../../components/common/MetaData';
+import Loader from '../../../components/util/Loader';
+import MetaData from '../../../components/util/MetaData';
 
 import { clearErrors, deleteProduct, deleteProductReset, getAdminProducts } from '../../../store/actions/productAction';
 

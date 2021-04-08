@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CheckoutSteps from './CheckoutSteps';
-import MetaData from '../../components/common/MetaData';
+import MetaData from '../../components/util/MetaData';
 
 import { saveShippingInfo } from '../../store/actions/cartActions';
 

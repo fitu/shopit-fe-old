@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
-import MetaData from '../../components/common/MetaData';
+import MetaData from '../../components/util/MetaData';
 
 import { clearErrors, resetPassword } from '../../store/actions/authActions';
 

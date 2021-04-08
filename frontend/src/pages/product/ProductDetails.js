@@ -4,8 +4,8 @@ import { Carousel } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ListReviews from '../review/ListReviews';
-import Loader from '../../components/common/Loader';
-import MetaData from '../../components/common/MetaData';
+import Loader from '../../components/util/Loader';
+import MetaData from '../../components/util/MetaData';
 
 import { addItemToCart } from '../../store/actions/cartActions';
 import { clearErrors, getProductDetails, newReview, newReviewReset } from '../../store/actions/productAction';

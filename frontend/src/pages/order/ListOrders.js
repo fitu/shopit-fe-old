@@ -4,8 +4,8 @@ import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Loader from '../../components/common/Loader';
-import MetaData from '../../components/common/MetaData';
+import Loader from '../../components/util/Loader';
+import MetaData from '../../components/util/MetaData';
 
 import { clearErrors, myOrders } from '../../store/actions/orderActions';
 

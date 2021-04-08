@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
-const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
+const RouterProtector = ({ isAdmin, component: Component, ...rest }) => {
     const { isAuthenticated, user, loading } = useSelector((state) => state.auth);
 
     return (
@@ -26,4 +26,4 @@ const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
     );
 };
 
-export default ProtectedRoute;
+export default RouterProtector;

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Loader from '../../components/common/Loader';
-import MetaData from '../../components/common/MetaData';
+import Loader from '../../components/util/Loader';
+import MetaData from '../../components/util/MetaData';
 
 import { clearErrors, register } from '../../store/actions/authActions';
 

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
-import Loader from '../../components/common/Loader';
-import Metadata from '../../components/common/MetaData';
+import Loader from '../../components/util/Loader';
+import Metadata from '../../components/util/MetaData';
 
 import { getAllUsers } from '../../store/actions/authActions';
 import { getAllOrders } from '../../store/actions/orderActions';

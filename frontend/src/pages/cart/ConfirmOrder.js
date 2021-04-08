@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import CheckoutSteps from './CheckoutSteps';
-import MetaData from '../../components/common/MetaData';
+import MetaData from '../../components/util/MetaData';
 
 const ConfirmOrder = ({ history }) => {
     const { cartItems, shippingInfo } = useSelector((state) => state.cart);

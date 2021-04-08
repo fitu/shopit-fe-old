@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import MetaData from '../../components/common/MetaData';
+import MetaData from '../../components/util/MetaData';
 
 import { addItemToCart, removeItemFromCart } from '../../store/actions/cartActions';
 

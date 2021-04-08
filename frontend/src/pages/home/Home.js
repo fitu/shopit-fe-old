@@ -6,9 +6,9 @@ import Pagination from 'react-js-pagination';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'rc-slider';
 
-import Loader from '../../components/common/Loader';
-import MetaData from '../../components/common/MetaData';
-import Product from '../../components/product/Product';
+import Loader from '../../components/util/Loader';
+import MetaData from '../../components/util/MetaData';
+import Product from '../product/Product';
 
 import { clearErrors, getProducts } from '../../store/actions/productAction';
 

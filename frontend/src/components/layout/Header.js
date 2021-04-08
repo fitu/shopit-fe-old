@@ -3,7 +3,7 @@ import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Route } from 'react-router-dom';
 
-import Search from './Search';
+import Search from '../util/Search';
 
 import { logoutUser } from '../../store/actions/authActions';
 
