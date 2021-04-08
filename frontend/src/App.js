@@ -1,40 +1,41 @@
 import './App.css';
 
-import { Route, BrowserRouter as Router } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-
-import Cart from './components/cart/Cart';
-import ConfirmOrder from './components/cart/ConfirmOrder';
-import Dashboard from './components/admin/Dashboard';
 import { Elements } from '@stripe/react-stripe-js';
-import Footer from './components/common/Footer';
-import ForgotPassword from './components/user/ForgotPassword';
-import Header from './components/common/Header';
-import Home from './components/Home';
-import ListOrders from './components/order/ListOrders';
-import Login from './components/user/Login';
-import NewPassword from './components/user/NewPassword';
-import NewProduct from './components/admin/NewProduct';
-import OrderDetails from './components/order/OrderDetails';
-import OrderList from './components/admin/OrderList';
-import OrderSuccess from './components/cart/OrderSuccess';
-import Payment from './components/cart/Payment';
-import ProcessOrder from './components/admin/ProcessOrder';
-import ProductDetails from './components/product/ProductDetails';
-import ProductReviews from './components/admin/ProductReviews';
-import ProductsList from './components/admin/ProductsList';
-import Profile from './components/user/Profile';
-import ProtectedRoute from './components/route/ProtectedRoute';
-import Register from './components/user/Register';
-import Shipping from './components/cart/Shipping';
-import UpdatePassword from './components/user/UpdatePassword';
-import UpdateProduct from './components/admin/UpdateProduct';
-import UpdateProfile from './components/user/UpdateProfile';
-import UpdateUser from './components/admin/UpdateUser';
-import UsersList from './components/admin/UsersList';
-import axios from 'axios';
 import { loadStripe } from '@stripe/stripe-js';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+
+import Footer from './components/common/Footer';
+import Header from './components/common/Header';
+import ProtectedRoute from './components/routes/ProtectedRoute';
+import Dashboard from './pages/admin/Dashboard';
+import OrderList from './pages/admin/order/OrderList';
+import ProcessOrder from './pages/admin/order/ProcessOrder';
+import NewProduct from './pages/admin/product/NewProduct';
+import ProductsList from './pages/admin/product/ProductsList';
+import UpdateProduct from './pages/admin/product/UpdateProduct';
+import ProductReviews from './pages/admin/review/ProductReviews';
+import UpdateUser from './pages/admin/user/UpdateUser';
+import UsersList from './pages/admin/user/UsersList';
+import Cart from './pages/cart/Cart';
+import ConfirmOrder from './pages/cart/ConfirmOrder';
+import OrderSuccess from './pages/cart/OrderSuccess';
+import Payment from './pages/cart/Payment';
+import Shipping from './pages/cart/Shipping';
+import Home from './pages/home/Home';
+import ProductDetails from './pages/product/ProductDetails';
+import ListOrders from './pages/order/ListOrders';
+import OrderDetails from './pages/order/OrderDetails';
+import ForgotPassword from './pages/user/ForgotPassword';
+import Login from './pages/user/Login';
+import NewPassword from './pages/user/NewPassword';
+import Profile from './pages/user/Profile';
+import Register from './pages/user/Register';
+import UpdatePassword from './pages/user/UpdatePassword';
+import UpdateProfile from './pages/user/UpdateProfile';
+
 import { loadUser } from './store/actions/authActions';
 
 function App() {

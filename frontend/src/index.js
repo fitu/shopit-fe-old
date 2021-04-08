@@ -1,10 +1,11 @@
-import { Provider as AlertProvider, positions, transitions } from 'react-alert';
-
-import AlertTemplate from 'react-alert-template-basic';
-import App from './App';
-import { Provider } from 'react-redux';
 import React from 'react';
+import { Provider as AlertProvider, positions, transitions } from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
+import App from './App';
+
 import store from './store/store';
 
 const options = {

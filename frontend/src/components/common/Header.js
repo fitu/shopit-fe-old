@@ -1,10 +1,11 @@
-import { Link, Route } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-
 import React from 'react';
-import Search from './Search';
-import { logoutUser } from '../../store/actions/authActions';
 import { useAlert } from 'react-alert';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Route } from 'react-router-dom';
+
+import Search from './Search';
+
+import { logoutUser } from '../../store/actions/authActions';
 
 const Header = () => {
     const alert = useAlert();
