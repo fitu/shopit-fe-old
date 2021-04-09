@@ -6,16 +6,16 @@ const sendEmail = async (fields) => {
         port: process.env.SMTP_PORT,
         auth: {
             user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASSWORD
-        }
+            pass: process.env.SMTP_PASSWORD,
+        },
     });
 
     const message = {
         from: `${process.env.SMTP_FROM_NAME} <${process.env.SMTP_FROM_EMAIL}>`,
         to: fields.email,
         subject: fields.subject,
-        text: fields.message
-    }
+        text: fields.message,
+    };
 
     await transporter.sendMail(message);
 };

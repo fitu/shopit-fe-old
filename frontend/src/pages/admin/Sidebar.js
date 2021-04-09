@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Routes } from '../../components/router/routes';
+import { Route } from '../../components/router/route';
 
 const Sidebar = () => {
     return (
@@ -8,7 +8,7 @@ const Sidebar = () => {
             <nav id="sidebar">
                 <ul className="list-unstyled components">
                     <li>
-                        <Link to={Routes.ADMIN_HOME}>
+                        <Link to={Route.ADMIN_HOME}>
                             <i className="fa fa-tachometer-alt"></i> Dashboard
                         </Link>
                     </li>
@@ -23,29 +23,29 @@ const Sidebar = () => {
                         </a>
                         <ul className="collapse list-unstyled" id="productSubmenu">
                             <li>
-                                <Link to={Routes.ADMIN_PRODUCTS}>
+                                <Link to={Route.ADMIN_PRODUCTS}>
                                     <i className="fa fa-clipboard-list"></i> All
                                 </Link>
                             </li>
                             <li>
-                                <Link to={Routes.ADMIN_PRODUCT}>
+                                <Link to={Route.ADMIN_PRODUCT}>
                                     <i className="fa fa-plus"></i> Create
                                 </Link>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <Link to={Routes.ADMIN_ORDERS}>
+                        <Link to={Route.ADMIN_ORDERS}>
                             <i className="fa fa-shopping-basket"></i> Orders
                         </Link>
                     </li>
                     <li>
-                        <Link to={Routes.ADMIN_USERS}>
+                        <Link to={Route.ADMIN_USERS}>
                             <i className="fa fa-users"></i> Users
                         </Link>
                     </li>
                     <li>
-                        <Link to={Routes.ADMIN_REVIEWS}>
+                        <Link to={Route.ADMIN_REVIEWS}>
                             <i className="fa fa-star"></i> Reviews
                         </Link>
                     </li>

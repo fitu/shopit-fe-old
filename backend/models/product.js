@@ -1,5 +1,20 @@
 const mongoose = require('mongoose');
 
+const categories = [
+    'Electronics',
+    'Cameras',
+    'Laptops',
+    'Accessories',
+    'Headphones',
+    'Food',
+    'Books',
+    'Clothes/Shoes',
+    'Beauty/Health',
+    'Sports',
+    'Outdoor',
+    'Home',
+];
+
 const productSchema = mongoose.Schema({
     name: {
         type: String,
@@ -37,20 +52,7 @@ const productSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please select category for this product'],
         enum: {
-            values: [
-                'Electronics',
-                'Cameras',
-                'Laptops',
-                'Accessories',
-                'Headphones',
-                'Food',
-                'Books',
-                'Clothes/Shoes',
-                'Beauty/Health',
-                'Sports',
-                'Outdoor',
-                'Home',
-            ],
+            values: categories,
             message: 'Please select correct category for product',
         },
     },

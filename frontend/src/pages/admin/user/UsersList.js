@@ -9,7 +9,7 @@ import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
 
 import { clearErrors, deleteUser, deleteUserReset, getAllUsers } from '../../../store/actions/authActions';
-import { Routes } from '../../../components/router/routes';
+import { Route } from '../../../components/router/route';
 
 const UsersList = ({ history }) => {
     const alert = useAlert();
@@ -27,7 +27,7 @@ const UsersList = ({ history }) => {
 
         if (isDeleted) {
             alert.success('User deleted succesfully!');
-            history.push(Routes.ADMIN_USERS);
+            history.push(Route.ADMIN_USERS);
             dispatch(deleteUserReset());
         }
     }, [dispatch, alert, error, history, isDeleted]);
@@ -74,7 +74,7 @@ const UsersList = ({ history }) => {
                 role: user.role,
                 actions: (
                     <>
-                        <Link to={`${Routes.ADMIN_USER}/${user._id}`} className="btn btn-primary py-1 px-2">
+                        <Link to={`${Route.ADMIN_USER}/${user._id}`} className="btn btn-primary py-1 px-2">
                             <i className="fa fa-pencil"></i>
                         </Link>
                         <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteUserHandler(user._id)}>

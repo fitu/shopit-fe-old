@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Loader from '../../components/util/Loader';
 import MetaData from '../../components/util/MetaData';
 
-import { Routes } from '../../components/router/routes';
+import { Route } from '../../components/router/route';
 import { clearErrors, login } from '../../store/actions/authActions';
 
 const Login = ({ history, location }) => {
@@ -18,7 +18,7 @@ const Login = ({ history, location }) => {
 
     const { isAuthenticated, loading, error } = useSelector((state) => state.auth);
 
-    const redirect = location.search ? location.search.split('=')[1] : Routes.HOME;
+    const redirect = location.search ? location.search.split('=')[1] : Route.HOME;
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -71,7 +71,7 @@ const Login = ({ history, location }) => {
                                     />
                                 </div>
 
-                                <Link to={Routes.PASSWORD_FORGOT} className="float-right mb-4">
+                                <Link to={Route.PASSWORD_FORGOT} className="float-right mb-4">
                                     Forgot Password?
                                 </Link>
 
@@ -79,7 +79,7 @@ const Login = ({ history, location }) => {
                                     LOGIN
                                 </button>
 
-                                <Link to={Routes.USER_REGISTER} className="float-right mt-3">
+                                <Link to={Route.USER_REGISTER} className="float-right mt-3">
                                     New User?
                                 </Link>
                             </form>

@@ -11,26 +11,12 @@ import {
     updateProduct,
     updateProductReset,
 } from '../../../store/actions/productAction';
-import { Routes } from '../../../components/router/routes';
+import { Route } from '../../../components/router/route';
+import { Category } from '../../../models/category';
 
 const UpdateProduct = ({ match, history }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
-
-    const categories = [
-        'Electronics',
-        'Cameras',
-        'Laptops',
-        'Accessories',
-        'Headphones',
-        'Food',
-        'Books',
-        'Clothes/Shoes',
-        'Beauty/Health',
-        'Sports',
-        'Outdoor',
-        'Home',
-    ];
 
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
@@ -56,7 +42,7 @@ const UpdateProduct = ({ match, history }) => {
         }
 
         if (isUpdated) {
-            history.push(Routes.ADMIN_PRODUCTS);
+            history.push(Route.ADMIN_PRODUCTS);
             alert.success('Product updated succesfully!');
             dispatch(updateProductReset());
         }
@@ -161,7 +147,7 @@ const UpdateProduct = ({ match, history }) => {
                                         value={category}
                                         onChange={(event) => setCategory(event.target.value)}
                                     >
-                                        {categories.map((category) => (
+                                        {Object.values(Category).map((category) => (
                                             <option key={category} value={category}>
                                                 {category}
                                             </option>

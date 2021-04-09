@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Routes } from '../../components/router/routes';
+import { Route } from '../../components/router/route';
 
 import Loader from '../../components/util/Loader';
 import MetaData from '../../components/util/MetaData';
@@ -65,7 +65,7 @@ const ListOrders = () => {
                     <p style={{ color: 'red' }}>{order.orderStatus}</p>
                 ),
                 actions: (
-                    <Link to={`${Routes.ORDER}/${order._id}`} className="btn btn-primary">
+                    <Link to={`${Route.ORDER}/${order._id}`} className="btn btn-primary">
                         <i className="fa fa-eye"></i>
                     </Link>
                 ),

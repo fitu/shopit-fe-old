@@ -5,9 +5,9 @@ import { Link, Route } from 'react-router-dom';
 
 import Search from '../util/Search';
 
-import { Roles } from '../../models/roles';
+import { Role } from '../../models/role';
 import { logoutUser } from '../../store/actions/authActions';
-import { Routes } from '../router/routes';
+import { Route as LocalRoutes } from '../router/route';
 
 const Header = () => {
     const alert = useAlert();
@@ -25,7 +25,7 @@ const Header = () => {
             <nav className="navbar row">
                 <div className="col-12 col-md-3">
                     <div className="navbar-brand">
-                        <Link to={Routes.HOME}>
+                        <Link to={Route.HOME}>
                             <img src="./images/logo.png" alt="Logo" />
                         </Link>
                     </div>
@@ -36,7 +36,7 @@ const Header = () => {
                 </div>
 
                 <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-                    <Link to={Routes.CART} style={{ textDecoration: 'none' }}>
+                    <Link to={LocalRoutes.CART} style={{ textDecoration: 'none' }}>
                         <span id="cart" className="ml-3">
                             Cart
                         </span>
@@ -61,25 +61,29 @@ const Header = () => {
                                 <span>{user?.name}</span>
                             </Link>
                             <div className="dropdown-menu" aria-labelledby="dropDownMenuButton">
-                                {user?.role === Roles.ADMIN && (
-                                    <Link to={Routes.ADMIN_HOME} className="dropdown-item">
+                                {user?.role === Role.ADMIN && (
+                                    <Link to={LocalRoutes.ADMIN_HOME} className="dropdown-item">
                                         Dashboard
                                     </Link>
                                 )}
-                                <Link to={Routes.ORDER_MY} className="dropdown-item">
+                                <Link to={LocalRoutes.ORDER_MY} className="dropdown-item">
                                     Orders
                                 </Link>
-                                <Link to={Routes.USER_MY_PROFILE} className="dropdown-item">
+                                <Link to={LocalRoutes.USER_MY_PROFILE} className="dropdown-item">
                                     Profile
                                 </Link>
-                                <Link to={Routes.HOME} className="dropdown-item text-danger" onClick={logoutHandler}>
+                                <Link
+                                    to={LocalRoutes.HOME}
+                                    className="dropdown-item text-danger"
+                                    onClick={logoutHandler}
+                                >
                                     Logout
                                 </Link>
                             </div>
                         </div>
                     ) : (
                         !loading && (
-                            <Link to={Routes.LOGIN} className="btn ml-4" id="login_btn">
+                            <Link to={Route.LOGIN} className="btn ml-4" id="login_btn">
                                 Login
                             </Link>
                         )

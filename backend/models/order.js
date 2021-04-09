@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
 
+const orderStatus = {
+    processing: 'Processing',
+    shipped: 'Shipped',
+    delivered: 'Delivered',
+};
+
 const orderSchema = mongoose.Schema({
     shippingInfo: {
         address: {
@@ -95,7 +101,7 @@ const orderSchema = mongoose.Schema({
     orderStatus: {
         type: String,
         required: true,
-        default: 'Processing',
+        default: orderStatus.processing,
     },
     deliveredAt: {
         type: Date,

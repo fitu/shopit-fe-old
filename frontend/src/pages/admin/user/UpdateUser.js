@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Sidebar from '../Sidebar';
 import MetaData from '../../../components/util/MetaData';
 
-import { Roles } from '../../../models/roles';
+import { Role } from '../../../models/role';
 import { clearErrors, getUserDetails, updateUser, updateUserReset } from '../../../store/actions/authActions';
-import { Routes } from '../../../components/router/routes';
+import { Route } from '../../../components/router/route';
 
 const UpdateUser = ({ match, history }) => {
     const [name, setName] = useState('');
@@ -36,7 +36,7 @@ const UpdateUser = ({ match, history }) => {
 
         if (isUpdated) {
             alert.success('User updated successfully.');
-            history.push(Routes.ADMIN_USERS);
+            history.push(Route.ADMIN_USERS);
             dispatch(updateUserReset());
         }
     }, [dispatch, error, alert, history, user, isUpdated, match.params.id]);
@@ -99,7 +99,7 @@ const UpdateUser = ({ match, history }) => {
                                             value={role}
                                             onChange={(event) => setRole(event.target.value)}
                                         >
-                                            {Object.values(Roles).map((role) => (
+                                            {Object.values(Role).map((role) => (
                                                 <option value={role}>{role}</option>
                                             ))}
                                         </select>

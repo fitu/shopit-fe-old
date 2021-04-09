@@ -9,7 +9,7 @@ import Metadata from '../../components/util/MetaData';
 import { getAllUsers } from '../../store/actions/authActions';
 import { getAllOrders } from '../../store/actions/orderActions';
 import { getAdminProducts } from '../../store/actions/productAction';
-import { Routes } from '../../components/router/routes';
+import { Route } from '../../components/router/route';
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const Dashboard = () => {
                                         </div>
                                         <Link
                                             className="card-footer text-white clearfix small z-1"
-                                            to={Routes.ADMIN_PRODUCTS}
+                                            to={Route.ADMIN_PRODUCTS}
                                         >
                                             <span className="float-left">View Details</span>
                                             <span className="float-right">
@@ -85,7 +85,7 @@ const Dashboard = () => {
                                             </div>
                                         </div>
                                         <Link
-                                            to={Routes.ADMIN_ORDERS}
+                                            to={Route.ADMIN_ORDERS}
                                             className="card-footer text-white clearfix small z-1"
                                         >
                                             <span className="float-left">View Details</span>
@@ -104,7 +104,7 @@ const Dashboard = () => {
                                             </div>
                                         </div>
                                         <Link
-                                            to={Routes.ADMIN_USERS}
+                                            to={Route.ADMIN_USERS}
                                             className="card-footer text-white clearfix small z-1"
                                         >
                                             <span className="float-left">View Details</span>

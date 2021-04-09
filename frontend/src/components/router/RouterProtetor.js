@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
-import { Roles } from '../../models/roles';
-import { Routes } from './routes';
+import { Role } from '../../models/role';
+import { Route as LocalRoutes } from './route';
 
 const RouterProtector = ({ isAdmin, component: Component, ...rest }) => {
     const { isAuthenticated, user, loading } = useSelector((state) => state.auth);
@@ -15,11 +15,11 @@ const RouterProtector = ({ isAdmin, component: Component, ...rest }) => {
                     {...rest}
                     render={(props) => {
                         if (!isAuthenticated) {
-                            return <Redirect to={Routes.LOGIN} />;
+                            return <Redirect to={LocalRoutes.LOGIN} />;
                         }
 
-                        if (isAdmin && user.role !== Roles.ADMIN) {
-                            return <Redirect to={Routes.HOME} />;
+                        if (isAdmin && user.role !== Role.ADMIN) {
+                            return <Redirect to={LocalRoutes.HOME} />;
                         }
                         return <Component {...props} />;
                     }}

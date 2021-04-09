@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Routes } from '../../components/router/routes';
+import { Route } from '../../components/router/route';
 
 const Product = ({ product, col }) => {
     return (
@@ -9,7 +9,7 @@ const Product = ({ product, col }) => {
                 <img className="card-img-top mx-auto" alt="Product images" src={product.images[0].url} />
                 <div className="card-body d-flex flex-column">
                     <h5 className="card-title">
-                        <Link to={`${Routes.PRODUCT}/${product._id}`}>{product.name}</Link>
+                        <Link to={`${Route.PRODUCT}/${product._id}`}>{product.name}</Link>
                     </h5>
                     <div className="ratings mt-auto">
                         <div className="rating-outer">
@@ -18,7 +18,7 @@ const Product = ({ product, col }) => {
                         <span id="no_of_reviews">({product.numOfReviews})</span>
                     </div>
                     <p className="card-text">{product.price}</p>
-                    <Link to={`${Routes.PRODUCT}/${product._id}`} id="view_btn" className="btn btn-block">
+                    <Link to={`${Route.PRODUCT}/${product._id}`} id="view_btn" className="btn btn-block">
                         View Details
                     </Link>
                 </div>

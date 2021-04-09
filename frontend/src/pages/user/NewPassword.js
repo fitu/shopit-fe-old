@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { Routes } from '../../components/router/routes';
+import { Route } from '../../components/router/route';
 
 import MetaData from '../../components/util/MetaData';
 
@@ -24,7 +24,7 @@ const NewPassword = ({ history, match }) => {
 
         if (success) {
             alert.success('Password updated succesfully!');
-            history.push(Routes.LOGIN);
+            history.push(Route.LOGIN);
         }
     }, [dispatch, error, alert, success, history]);
 

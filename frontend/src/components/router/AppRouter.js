@@ -25,7 +25,7 @@ import UpdateProfile from '../../pages/user/UpdateProfile';
 
 import { getStripeApi } from '../../api/api';
 import { loadUser } from '../../store/actions/authActions';
-import { Routes } from './routes';
+import { Route as LocalRoutes } from './route';
 
 const AppRouter = () => {
     const dispatch = useDispatch();
@@ -47,32 +47,32 @@ const AppRouter = () => {
         <>
             <div className="container container-fluid">
                 {/* Home */}
-                <Route path={Routes.HOME} component={Home} exact />
+                <Route path={LocalRoutes.HOME} component={Home} exact />
                 {/* User */}
-                <Route path={Routes.LOGIN} component={Login} />
-                <Route path={Routes.PASSWORD_FORGOT} component={ForgotPassword} />
-                <Route path={`${Routes.PASSWORD_RESET}/:token`} component={NewPassword} />
-                <RouterProtector path={Routes.PASSWORD_UPDATE} component={UpdatePassword} exact />
-                <Route path={Routes.USER_REGISTER} component={Register} />
-                <RouterProtector path={Routes.USER_MY_PROFILE} component={Profile} exact />
-                <RouterProtector path={Routes.USER_UPDATE_PROFILE} component={UpdateProfile} exact />
+                <Route path={LocalRoutes.LOGIN} component={Login} />
+                <Route path={LocalRoutes.PASSWORD_FORGOT} component={ForgotPassword} />
+                <Route path={`${LocalRoutes.PASSWORD_RESET}/:token`} component={NewPassword} />
+                <RouterProtector path={LocalRoutes.PASSWORD_UPDATE} component={UpdatePassword} exact />
+                <Route path={LocalRoutes.USER_REGISTER} component={Register} />
+                <RouterProtector path={LocalRoutes.USER_MY_PROFILE} component={Profile} exact />
+                <RouterProtector path={LocalRoutes.USER_UPDATE_PROFILE} component={UpdateProfile} exact />
                 {/* Products */}
-                <Route path={`${Routes.PRODUCT}/:id`} component={ProductDetails} />
+                <Route path={`${LocalRoutes.PRODUCT}/:id`} component={ProductDetails} />
                 {/* Cart & Checkout */}
-                <Route path={Routes.CART} component={Cart} />
-                <RouterProtector path={Routes.CHECKOUT_STEP_SHIPPING} component={Shipping} exact />
-                <RouterProtector path={Routes.CHECKOUT_STEP_CONFIRM} component={ConfirmOrder} exact />
+                <Route path={LocalRoutes.CART} component={Cart} />
+                <RouterProtector path={LocalRoutes.CHECKOUT_STEP_SHIPPING} component={Shipping} exact />
+                <RouterProtector path={LocalRoutes.CHECKOUT_STEP_CONFIRM} component={ConfirmOrder} exact />
                 {stripeAPIKey && (
                     <Elements stripe={loadStripe(stripeAPIKey)}>
-                        <RouterProtector path={Routes.CHECKOUT_STEP_PAYMENT} component={Payment} />
+                        <RouterProtector path={LocalRoutes.CHECKOUT_STEP_PAYMENT} component={Payment} />
                     </Elements>
                 )}
-                <RouterProtector path={Routes.CHECKOUT_STEP_SUCCESS} component={OrderSuccess} exact />
+                <RouterProtector path={LocalRoutes.CHECKOUT_STEP_SUCCESS} component={OrderSuccess} exact />
                 {/* Orders */}$
-                <RouterProtector path={`${Routes.ORDER}/:id`} component={OrderDetails} exact />
-                <RouterProtector path={Routes.ORDER_MY} component={ListOrders} exact />
+                <RouterProtector path={`${LocalRoutes.ORDER}/:id`} component={OrderDetails} exact />
+                <RouterProtector path={LocalRoutes.ORDER_MY} component={ListOrders} exact />
                 {/* Extras */}
-                <Route path={`${Routes.SEARCH}/:keyword`} component={Home} />
+                <Route path={`${LocalRoutes.SEARCH}/:keyword`} component={Home} />
             </div>
             <AdminRoutes />
         </>

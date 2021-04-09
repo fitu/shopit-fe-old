@@ -9,7 +9,7 @@ import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
 
 import { clearErrors, deleteOrder, deleteOrderReset, getAllOrders } from '../../../store/actions/orderActions';
-import { Routes } from '../../../components/router/routes';
+import { Route } from '../../../components/router/route';
 
 const OrderList = ({ history }) => {
     const alert = useAlert();
@@ -27,7 +27,7 @@ const OrderList = ({ history }) => {
 
         if (isDeleted) {
             alert.success('Order deleted succesfully!');
-            history.push(Routes.ADMIN_ORDERS);
+            history.push(Route.ADMIN_ORDERS);
             dispatch(deleteOrderReset());
         }
     }, [dispatch, alert, error, history, isDeleted]);
@@ -78,7 +78,7 @@ const OrderList = ({ history }) => {
                 ),
                 actions: (
                     <>
-                        <Link to={`${Routes.ADMIN_ORDER}/${order._id}`} className="btn btn-primary py-1 px-2">
+                        <Link to={`${Route.ADMIN_ORDER}/${order._id}`} className="btn btn-primary py-1 px-2">
                             <i className="fa fa-eye"></i>
                         </Link>
                         <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteOrderHandler(order._id)}>

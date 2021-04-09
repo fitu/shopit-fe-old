@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Routes } from '../router/routes';
+import { Route } from '../router/route';
 
 const Search = ({ history }) => {
     const [keyword, setKeyword] = useState('');
@@ -9,9 +9,9 @@ const Search = ({ history }) => {
         event.preventDefault();
 
         if (keyword.trim()) {
-            history.push(`${Routes.SEARCH}/${keyword}`);
+            history.push(`${Route.SEARCH}/${keyword}`);
         } else {
-            history.push(Routes.HOME);
+            history.push(Route.HOME);
         }
     };
 

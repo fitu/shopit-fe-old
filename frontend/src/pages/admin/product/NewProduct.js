@@ -6,7 +6,8 @@ import Sidebar from '../Sidebar';
 import MetaData from '../../../components/util/MetaData';
 
 import { clearErrors, newProduct, newProductReset } from '../../../store/actions/productAction';
-import { Routes } from '../../../components/router/routes';
+import { Route } from '../../../components/router/route';
+import { Category } from '../../../models/category';
 
 const NewProduct = ({ history }) => {
     const alert = useAlert();
@@ -21,21 +22,6 @@ const NewProduct = ({ history }) => {
     const [images, setImage] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
 
-    const categories = [
-        'Electronics',
-        'Cameras',
-        'Laptops',
-        'Accessories',
-        'Headphones',
-        'Food',
-        'Books',
-        'Clothes/Shoes',
-        'Beauty/Health',
-        'Sports',
-        'Outdoor',
-        'Home',
-    ];
-
     const { loading, error, success } = useSelector((state) => state.newProduct);
 
     useEffect(() => {
@@ -45,7 +31,7 @@ const NewProduct = ({ history }) => {
         }
 
         if (success) {
-            history.push(Routes.ADMIN_PRODUCTS);
+            history.push(Route.ADMIN_PRODUCTS);
             alert.success('Product created succesfully!');
             dispatch(newProductReset());
         }
@@ -137,7 +123,7 @@ const NewProduct = ({ history }) => {
                                         value={category}
                                         onChange={(event) => setCategory(event.target.value)}
                                     >
-                                        {categories.map((category) => (
+                                        {Object.values(Category).map((category) => (
                                             <option key={category} value={category}>
                                                 {category}
                                             </option>

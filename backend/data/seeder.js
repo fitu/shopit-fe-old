@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const connectDatabase = require('../config/database');
 const mockProducts = require('./products');
 
-dotenv.config({ path: 'backend/config/config.env'});
+dotenv.config({ path: 'backend/config/config.env' });
 
 connectDatabase();
 
@@ -14,10 +14,11 @@ const seedProducts = async () => {
 
         await Product.insertMany(mockProducts);
         console.log('Products added');
-    } catch(error) {
+    } catch (error) {
         console.log(error.message);
+    } finally {
+        process.exit();
     }
-    process.exit();
 };
 
 seedProducts();

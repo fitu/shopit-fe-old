@@ -8,6 +8,7 @@ import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
 
 import { clearErrors, getOrderDetails, updateOrder, updateOrderReset } from '../../../store/actions/orderActions';
+import { OrderStatus } from '../../../models/orderStatus';
 
 const ProcessOrder = ({ match }) => {
     const alert = useAlert();
@@ -129,9 +130,11 @@ const ProcessOrder = ({ match }) => {
                                             value={status}
                                             onChange={(event) => setStatus(event.target.value)}
                                         >
-                                            <option value="Processing">Processing</option>
-                                            <option value="Shipped">Shipped</option>
-                                            <option value="Delivered">Delivered</option>
+                                            {Object.values(OrderStatus).map((status) => (
+                                                <option key={status} value={status}>
+                                                    {status}
+                                                </option>
+                                            ))}
                                         </select>
                                     </div>
                                     <button
