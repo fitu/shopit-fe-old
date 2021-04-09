@@ -68,7 +68,7 @@ const AppRouter = () => {
                     </Elements>
                 )}
                 <RouterProtector path={LocalRoutes.CHECKOUT_STEP_SUCCESS} component={OrderSuccess} exact />
-                {/* Orders */}$
+                {/* Orders */}
                 <RouterProtector path={`${LocalRoutes.ORDER}/:id`} component={OrderDetails} exact />
                 <RouterProtector path={LocalRoutes.ORDER_MY} component={ListOrders} exact />
                 {/* Extras */}

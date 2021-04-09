@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 
 import { Provider as AlertProvider, positions, transitions } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
@@ -22,11 +22,9 @@ function App() {
     return (
         <AlertProvider template={AlertTemplate} {...alertOptions}>
             <Router>
-                <div className="App">
-                    <Header />
-                    <AppRouter />
-                    {!loading && user?.role !== Role.ADMIN && <Footer />}
-                </div>
+                <Header />
+                <AppRouter />
+                {!loading && user?.role !== Role.ADMIN && <Footer />}
             </Router>
         </AlertProvider>
     );
