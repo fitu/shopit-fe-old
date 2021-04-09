@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import CheckoutSteps from './CheckoutSteps';
 import MetaData from '../../components/util/MetaData';
 import { Route } from '../../components/router/route';
+import { StorageKeys } from '../../store/repository/repository';
 
 const ConfirmOrder = ({ history }) => {
     const { cartItems, shippingInfo } = useSelector((state) => state.cart);
@@ -23,7 +24,7 @@ const ConfirmOrder = ({ history }) => {
             totalPrice,
         };
 
-        sessionStorage.setItem('orderInfo', JSON.stringify(data));
+        sessionStorage.setItem(StorageKeys.ORDER_INFO_KEY, JSON.stringify(data));
         history.push(Route.CHECKOUT_STEP_PAYMENT);
     };
 

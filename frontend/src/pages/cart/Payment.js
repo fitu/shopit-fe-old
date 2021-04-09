@@ -9,6 +9,7 @@ import MetaData from '../../components/util/MetaData';
 import { processPayment } from '../../api/api';
 import { clearErrors, createOrder } from '../../store/actions/orderActions';
 import { Route } from '../../components/router/route';
+import { StorageKeys } from '../../store/repository/repository';
 
 const options = {
     style: {
@@ -38,7 +39,7 @@ const Payment = ({ history }) => {
         }
     }, [dispatch, alert, error]);
 
-    const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'));
+    const orderInfo = JSON.parse(sessionStorage.getItem(StorageKeys.ORDER_INFO_KEY));
     const order = {
         orderItems: cartItems,
         shippingInfo,
