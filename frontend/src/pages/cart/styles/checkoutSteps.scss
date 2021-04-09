@@ -1,0 +1,37 @@
+.steps__container {
+    //block w-auto clear-both overflow-auto my-5 mx-auto flex justify-content-center mt-5
+}
+
+.step-shipping {
+    //float-right
+}
+.step-confirm {
+    //float-right
+}
+.step-payment {
+    //float-right
+}
+
+.step-active-before {
+    //triangle2-active float-left w-0 -mr-0.5
+}
+
+.step-active-text {
+    //step bg-orange text-white
+}
+
+.step-active-after {
+    //triangle-active float-left w-0 -ml-0.5
+}
+
+.step-deactive-before {
+    //triangle2-incomplete float-left w-0 -mr-0.5
+}
+
+.step-deactive-text {
+    //step bg-grey5
+}
+
+.step-deactive-text {
+    //triangle-incomplete float-left w-0 -ml-0.5
+}

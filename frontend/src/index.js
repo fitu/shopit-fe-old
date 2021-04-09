@@ -1,6 +1,4 @@
-import './styles/tailwind.css';
-
-import React from 'react';
+import './styles/index.scss';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 

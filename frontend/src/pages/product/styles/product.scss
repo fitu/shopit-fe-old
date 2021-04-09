@@ -1,0 +1,36 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    border-width: 2px;
+
+    &__image {
+        margin: 0 auto;
+        width: 12rem;
+        height: 10rem;
+    }
+
+    &__name {
+        height: 2rem;
+    }
+
+    &__price {
+    }
+
+    &__details {
+        background-color: var(--primary-color);
+        padding: 0.375rem 1.75rem;
+        text-align: center;
+        border-radius: 0.75rem;
+    }
+}
+
+.product__ratting--container {
+    display: flex;
+    color: '#fdcc0d';
+}
+
+.product__ratting--num-of-reviews {
+    margin-left: 0.5rem;
+    color: black;
+}

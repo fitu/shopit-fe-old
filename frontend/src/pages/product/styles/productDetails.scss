@@ -1,0 +1,38 @@
+.product-details__container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        'images info'
+        'reviews reviews';
+    justify-items: stretch;
+    align-items: stretch;
+
+    $margin: 2rem;
+
+    .images--container {
+        grid-area: images;
+        margin-right: $margin;
+        margin-left: $margin;
+        margin-bottom: $margin;
+    }
+
+    .info--container {
+        grid-area: info;
+        margin-left: $margin;
+        margin-bottom: $margin;
+    }
+
+    .reviews--container {
+        grid-area: reviews;
+    }
+}
+
+.modal--container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}

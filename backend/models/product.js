@@ -101,4 +101,5 @@ const productSchema = mongoose.Schema({
     },
 });
 
+exports.categories;
 module.exports = mongoose.model('Product', productSchema);

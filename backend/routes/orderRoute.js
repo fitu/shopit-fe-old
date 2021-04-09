@@ -1,5 +1,4 @@
 const express = require('express');
-const { roles } = require('../models/user');
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 const {
     newOrder,
@@ -16,10 +15,11 @@ router.route('/orders/me').get(isAuthenticatedUser, getMyOrders);
 router.route('/order/new').post(isAuthenticatedUser, newOrder);
 router.route('/order/:id').get(isAuthenticatedUser, getOrder);
 
-router.route('/admin/orders').get(isAuthenticatedUser, authorizeRoles(roles.admin), allOrders);
+// TODO replace hardcoded
+router.route('/admin/orders').get(isAuthenticatedUser, authorizeRoles("admin"), allOrders);
 router
     .route('/admin/order/:id')
-    .put(isAuthenticatedUser, authorizeRoles(roles.admin), updateOrder)
-    .delete(isAuthenticatedUser, authorizeRoles(roles.admin), deleteOrder);
+    .put(isAuthenticatedUser, authorizeRoles("admin"), updateOrder)
+    .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteOrder);
 
 module.exports = router;

@@ -1,13 +1,11 @@
-import './styles/App.css';
-
 import { Provider as AlertProvider, positions, transitions } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 import { useSelector } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import AppRouter from './components/router/AppRouter';
-import Footer from './components/layout/Footer';
-import Header from './components/layout/Header';
+import AppRouter from './router/AppRouter';
+import Footer from './components/layout/footer/Footer';
+import Header from './components/layout/header/Header';
 
 import { Role } from './models/role';
 
@@ -22,9 +20,13 @@ function App() {
     return (
         <AlertProvider template={AlertTemplate} {...alertOptions}>
             <Router>
-                <Header />
-                <AppRouter />
-                {!loading && user?.role !== Role.ADMIN && <Footer />}
+                <div className="app">
+                    <Header />
+                    <div className="main--container">
+                        <AppRouter />
+                    </div>
+                    {!loading && user?.role !== Role.ADMIN && <Footer />}
+                </div>
             </Router>
         </AlertProvider>
     );
