@@ -6,6 +6,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "@getify/eslint-plugin-proper-arrows": "^11.0.3",
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.13.2",
     "@testing-library/jest-dom": "^5.11.4",
@@ -33,7 +34,6 @@
     "react-scripts": "4.0.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "typescript": "^4.2.4",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -61,9 +61,30 @@
     ]
   },
   "devDependencies": {
+    "@babel/eslint-plugin": "^7.13.16",
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "@typescript-eslint/parser": "^4.22.1",
     "autoprefixer": "^9.8.6",
+    "eslint": "^7.25.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-const-case": "^1.2.2",
+    "eslint-plugin-fp": "^2.3.0",
+    "eslint-plugin-functional": "^3.2.1",
+    "eslint-plugin-immutable": "^1.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-jest-formatting": "^3.0.0",
+    "eslint-plugin-lodash": "^7.2.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-testing-library": "^4.2.0",
+    "eslint-plugin-unicorn": "^31.0.0",
+    "eslint-plugin-unused-imports": "^1.1.1",
     "postcss": "^7.0.35",
-    "redux-devtools-extension": "^2.13.9"
+    "redux-devtools-extension": "^2.13.9",
+    "typescript": "^4.2.4"
   },
   "proxy": "http://127.0.0.1:4000"
 }
