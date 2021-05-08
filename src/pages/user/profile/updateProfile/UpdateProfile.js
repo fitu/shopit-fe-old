@@ -1,12 +1,14 @@
 import './styles/updateProfile.scss';
+
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route } from '../../../../router/route';
 
 import MetaData from '../../../../components/util/MetaData';
-
-import { clearErrors, loadUser, updateProfile, updateProfileReset } from '../../../../store/actions/authActions';
+import { Route } from '../../../../router/route';
+import {
+    clearErrors, loadUser, updateProfile, updateProfileReset,
+} from '../../../../store/actions/authActions';
 
 const UpdateProfile = ({ history }) => {
     const [name, setName] = useState('');
@@ -81,8 +83,8 @@ const UpdateProfile = ({ history }) => {
                                 name="name"
                                 value={name}
                                 onChange={(event) => setName(event.target.value)}
-                            />
-                        </div>
+                          />
+                      </div>
 
                         <div className="">
                             <label htmlFor="email_field">Email</label>
@@ -93,8 +95,8 @@ const UpdateProfile = ({ history }) => {
                                 name="email"
                                 value={email}
                                 onChange={(event) => setEmail(event.target.value)}
-                            />
-                        </div>
+                          />
+                      </div>
 
                         <div className="">
                             <label htmlFor="avatar_upload">Avatar</label>
@@ -102,8 +104,8 @@ const UpdateProfile = ({ history }) => {
                                 <div>
                                     <figure className="">
                                         <img src={avatarPreview} className="" alt="Avatar Preview" />
-                                    </figure>
-                                </div>
+                                  </figure>
+                              </div>
                                 <div className="">
                                     <input
                                         type="file"
@@ -112,21 +114,21 @@ const UpdateProfile = ({ history }) => {
                                         id="customFile"
                                         accept="images/*"
                                         onChange={handleChange}
-                                    />
+                                  />
                                     <label className="" htmlFor="customFile">
-                                        Choose Avatar
+                                    Choose Avatar
                                     </label>
-                                </div>
-                            </div>
-                        </div>
+                              </div>
+                          </div>
+                      </div>
 
                         <button disabled={loading} type="submit" className="">
-                            Update
+                        Update
                         </button>
-                    </form>
-                </div>
-            </div>
-        </>
+                  </form>
+              </div>
+          </div>
+      </>
     );
 };
 

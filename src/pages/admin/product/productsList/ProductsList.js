@@ -1,21 +1,21 @@
 import './styles/productsList.scss';
+
 import { MDBDataTable } from 'mdbreact';
 import React, { useEffect } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Sidebar from '../../sidebar/Sidebar';
 import Loader from '../../../../components/util/Loader';
 import MetaData from '../../../../components/util/MetaData';
-
+import { Route } from '../../../../router/route';
 import {
     clearErrors,
     deleteProduct,
     deleteProductReset,
     getAdminProducts,
 } from '../../../../store/actions/productAction';
-import { Route } from '../../../../router/route';
+import Sidebar from '../../sidebar/Sidebar';
 
 const ProductsList = ({ history }) => {
     const alert = useAlert();
@@ -80,15 +80,15 @@ const ProductsList = ({ history }) => {
                 actions: (
                     <>
                         <Link to={`${Route.ADMIN_PRODUCT}/${product._id}`} className="btn btn-primary py-1 px-2">
-                            <i className="fa fa-pencil"></i>
-                        </Link>
+                            <i className="fa fa-pencil" />
+                      </Link>
                         <button
                             className="btn btn-danger py-1 px-2 ml-2"
                             onClick={() => deleteProductHandler(product._id)}
-                        >
-                            <i className="fa fa-trash"></i>
-                        </button>
-                    </>
+                      >
+                            <i className="fa fa-trash" />
+                      </button>
+                  </>
                 ),
             });
         });
@@ -105,7 +105,7 @@ const ProductsList = ({ history }) => {
             <div className="">
                 <div className="">
                     <Sidebar />
-                </div>
+              </div>
                 <div className="">
                     <>
                         <h1 className="">All products</h1>
@@ -114,10 +114,10 @@ const ProductsList = ({ history }) => {
                         ) : (
                             <MDBDataTable data={setProducts()} className="" bordered striped hover />
                         )}
-                    </>
-                </div>
-            </div>
-        </>
+                  </>
+              </div>
+          </div>
+      </>
     );
 };
 

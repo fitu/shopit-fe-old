@@ -1,19 +1,19 @@
 import './styles/updateProduct.scss';
+
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MetaData from '../../../../components/util/MetaData';
-import Sidebar from '../../sidebar/Sidebar';
-
+import { Category } from '../../../../models/category';
+import { Route } from '../../../../router/route';
 import {
     clearErrors,
     getProductDetails,
     updateProduct,
     updateProductReset,
 } from '../../../../store/actions/productAction';
-import { Route } from '../../../../router/route';
-import { Category } from '../../../../models/category';
+import Sidebar from '../../sidebar/Sidebar';
 
 const UpdateProduct = ({ match, history }) => {
     const alert = useAlert();
@@ -104,7 +104,7 @@ const UpdateProduct = ({ match, history }) => {
             <div className="">
                 <div className="">
                     <Sidebar />
-                </div>
+              </div>
                 <div className="">
                     <>
                         <div className="">
@@ -118,8 +118,8 @@ const UpdateProduct = ({ match, history }) => {
                                         className=""
                                         value={name}
                                         onChange={(event) => setName(event.target.value)}
-                                    />
-                                </div>
+                                  />
+                              </div>
                                 <div className="">
                                     <label htmlFor="price_field">Price</label>
                                     <input
@@ -128,8 +128,8 @@ const UpdateProduct = ({ match, history }) => {
                                         className=""
                                         value={price}
                                         onChange={(event) => setPrice(event.target.value)}
-                                    />
-                                </div>
+                                  />
+                              </div>
                                 <div className="">
                                     <label htmlFor="description_field">Description</label>
                                     <textarea
@@ -138,8 +138,8 @@ const UpdateProduct = ({ match, history }) => {
                                         rows="8"
                                         value={description}
                                         onChange={(event) => setDescription(event.target.value)}
-                                    ></textarea>
-                                </div>
+                                  />
+                              </div>
                                 <div className="">
                                     <label htmlFor="category_field">Category</label>
                                     <select
@@ -147,14 +147,14 @@ const UpdateProduct = ({ match, history }) => {
                                         id="category_field"
                                         value={category}
                                         onChange={(event) => setCategory(event.target.value)}
-                                    >
+                                  >
                                         {Object.values(Category).map((category) => (
                                             <option key={category} value={category}>
                                                 {category}
-                                            </option>
+                                          </option>
                                         ))}
-                                    </select>
-                                </div>
+                                  </select>
+                              </div>
                                 <div className="">
                                     <label htmlFor="stock_field">Stock</label>
                                     <input
@@ -163,8 +163,8 @@ const UpdateProduct = ({ match, history }) => {
                                         className=""
                                         value={stock}
                                         onChange={(event) => setStock(event.target.value)}
-                                    />
-                                </div>
+                                  />
+                              </div>
                                 <div className="">
                                     <label htmlFor="seller_field">Seller Name</label>
                                     <input
@@ -173,8 +173,8 @@ const UpdateProduct = ({ match, history }) => {
                                         className=""
                                         value={seller}
                                         onChange={(event) => setSeller(event.target.value)}
-                                    />
-                                </div>
+                                  />
+                              </div>
                                 <div className="">
                                     <label>Images</label>
                                     <div className="">
@@ -185,14 +185,14 @@ const UpdateProduct = ({ match, history }) => {
                                             id="customFile"
                                             onChange={changeHandler}
                                             multiple
-                                        />
+                                      />
                                         <label className="" htmlFor="customFile">
-                                            Choose Images
+                                        Choose Images
                                         </label>
-                                    </div>
+                                  </div>
 
-                                    {oldImages &&
-                                        oldImages.map((oldImage) => (
+                                    {oldImages
+                                        && oldImages.map((oldImage) => (
                                             <img
                                                 key={oldImage}
                                                 src={oldImage.url}
@@ -200,7 +200,7 @@ const UpdateProduct = ({ match, history }) => {
                                                 className=""
                                                 width="55"
                                                 height="52"
-                                            />
+                                          />
                                         ))}
 
                                     {imagesPreview.map((image) => (
@@ -211,18 +211,18 @@ const UpdateProduct = ({ match, history }) => {
                                             className=""
                                             width="55"
                                             height="52"
-                                        />
+                                      />
                                     ))}
-                                </div>
+                              </div>
                                 <button disabled={loading} id="login_button" type="submit" className="">
-                                    UPDATE
+                                UPDATE
                                 </button>
-                            </form>
-                        </div>
-                    </>
-                </div>
-            </div>
-        </>
+                          </form>
+                      </div>
+                  </>
+              </div>
+          </div>
+      </>
     );
 };
 

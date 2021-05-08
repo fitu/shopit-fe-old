@@ -1,11 +1,11 @@
 import './styles/updatePassword.scss';
+
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route } from '../../../../router/route';
 
 import MetaData from '../../../../components/util/MetaData';
-
+import { Route } from '../../../../router/route';
 import { clearErrors, updatePassword, updatePasswordReset } from '../../../../store/actions/authActions';
 
 const UpdatePassword = ({ history }) => {
@@ -55,8 +55,8 @@ const UpdatePassword = ({ history }) => {
                                 className=""
                                 value={oldPassword}
                                 onChange={(event) => setOldPassword(event.target.value)}
-                            />
-                        </div>
+                          />
+                      </div>
 
                         <div className="">
                             <label htmlFor="new_password_field">New Password</label>
@@ -66,16 +66,16 @@ const UpdatePassword = ({ history }) => {
                                 className=""
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
-                            />
-                        </div>
+                          />
+                      </div>
 
                         <button disabled={loading} type="submit" className="">
-                            Update Password
+                        Update Password
                         </button>
-                    </form>
-                </div>
-            </div>
-        </>
+                  </form>
+              </div>
+          </div>
+      </>
     );
 };
 

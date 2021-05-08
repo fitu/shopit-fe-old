@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 import DropDownMenu from './DropDownMenu';
 
 const LoggedUserHeader = ({ user, logoutHandler }) => {
@@ -23,16 +24,16 @@ const LoggedUserHeader = ({ user, logoutHandler }) => {
             <button onClick={() => setIsActive(!isActive)} className="header-profile__user">
                 <figure>
                     <img src={user.avatar?.url} className="header-profile__user-logo" alt="Avatar" />
-                </figure>
+              </figure>
                 <span className="header-profile__user-name">{user?.name}</span>
-            </button>
+          </button>
 
             {isActive && (
                 <div className="header-profile__drop-down-menu--container">
                     <DropDownMenu user={user} logoutHandler={logoutHandler} />
-                </div>
+            </div>
             )}
-        </div>
+      </div>
     );
 };
 

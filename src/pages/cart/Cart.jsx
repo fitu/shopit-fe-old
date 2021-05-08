@@ -1,11 +1,11 @@
 import './styles/cart.scss';
 
-import React from 'react';
 import { useSelector } from 'react-redux';
-import MetaData from '../../components/util/MetaData';
 
-import CartItems from './components/CartItems';
+import MetaData from '../../components/util/MetaData';
 import CartDetails from './components/CartDetails';
+import CartItems from './components/CartItems';
+
 
 const Cart = ({ history }) => {
     const { cartItems } = useSelector((state) => state.cart);

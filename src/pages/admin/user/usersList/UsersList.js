@@ -1,16 +1,18 @@
 import './styles/usersList.scss';
+
 import { MDBDataTable } from 'mdbreact';
 import React, { useEffect } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Sidebar from '../../sidebar/Sidebar';
 import Loader from '../../../../components/util/Loader';
 import MetaData from '../../../../components/util/MetaData';
-
-import { clearErrors, deleteUser, deleteUserReset, getAllUsers } from '../../../../store/actions/authActions';
 import { Route } from '../../../../router/route';
+import {
+    clearErrors, deleteUser, deleteUserReset, getAllUsers,
+} from '../../../../store/actions/authActions';
+import Sidebar from '../../sidebar/Sidebar';
 
 const UsersList = ({ history }) => {
     const alert = useAlert();
@@ -76,12 +78,12 @@ const UsersList = ({ history }) => {
                 actions: (
                     <>
                         <Link to={`${Route.ADMIN_USER}/${user._id}`} className="btn btn-primary py-1 px-2">
-                            <i className="fa fa-pencil"></i>
-                        </Link>
+                            <i className="fa fa-pencil" />
+                      </Link>
                         <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteUserHandler(user._id)}>
-                            <i className="fa fa-trash"></i>
-                        </button>
-                    </>
+                            <i className="fa fa-trash" />
+                      </button>
+                  </>
                 ),
             });
         });
@@ -94,15 +96,15 @@ const UsersList = ({ history }) => {
             <div className="">
                 <div className="">
                     <Sidebar />
-                </div>
+              </div>
                 <div className="">
                     <>
                         <h1 className="">All users</h1>
                         {loading ? <Loader /> : <MDBDataTable data={setUsers()} className="" bordered striped hover />}
-                    </>
-                </div>
-            </div>
-        </>
+                  </>
+              </div>
+          </div>
+      </>
     );
 };
 

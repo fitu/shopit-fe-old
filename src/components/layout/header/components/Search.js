@@ -1,8 +1,8 @@
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 
 import { Route } from '../../../../router/route';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const Search = ({ history }) => {
     const [keyword, setKeyword] = useState('');
@@ -26,13 +26,13 @@ const Search = ({ history }) => {
                         type="text"
                         placeholder="Enter Product Name ..."
                         onChange={(event) => setKeyword(event.target.value)}
-                    />
+                  />
                     <button className="header_search__button">
                         <FontAwesomeIcon icon={faSearch} />
-                    </button>
-                </div>
-            </form>
-        </div>
+                  </button>
+              </div>
+          </form>
+      </div>
     );
 };
 

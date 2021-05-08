@@ -4,8 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route } from 'react-router-dom';
 
-import AdminRoutes from './AdminRoutes';
-import RouterProtector from './RouterProtetor';
+import { getStripeApi } from '../api/api';
 import Cart from '../pages/cart/Cart';
 import ConfirmOrder from '../pages/cart/confirmOrder/ConfirmOrder';
 import OrderSuccess from '../pages/cart/orderSuccess/OrderSuccess';
@@ -15,17 +14,17 @@ import Home from '../pages/home/Home';
 import ListOrders from '../pages/order/listOrders/ListOrders';
 import OrderDetails from '../pages/order/orderDetails/OrderDetails';
 import ProductDetails from '../pages/product/ProductDetails';
-import Profile from '../pages/user/profile/profile/Profile';
-import ForgotPassword from '../pages/user/password/forgotPassword/ForgotPassword';
 import Login from '../pages/user/login/Login';
+import ForgotPassword from '../pages/user/password/forgotPassword/ForgotPassword';
 import NewPassword from '../pages/user/password/newPassword/NewPassword';
-import Register from '../pages/user/register/Register';
 import UpdatePassword from '../pages/user/password/updatePassword/UpdatePassword';
+import Profile from '../pages/user/profile/profile/Profile';
 import UpdateProfile from '../pages/user/profile/updateProfile/UpdateProfile';
-
-import { getStripeApi } from '../api/api';
+import Register from '../pages/user/register/Register';
 import { loadUser } from '../store/actions/authActions';
+import AdminRoutes from './AdminRoutes';
 import { Route as LocalRoutes } from './route';
+import RouterProtector from './RouterProtetor';
 
 const AppRouter = () => {
     const dispatch = useDispatch();
@@ -65,7 +64,7 @@ const AppRouter = () => {
                 {stripeAPIKey && (
                     <Elements stripe={loadStripe(stripeAPIKey)}>
                         <RouterProtector path={LocalRoutes.CHECKOUT_STEP_PAYMENT} component={Payment} />
-                    </Elements>
+                </Elements>
                 )}
                 <RouterProtector path={LocalRoutes.CHECKOUT_STEP_SUCCESS} component={OrderSuccess} exact />
                 {/* Orders */}
@@ -73,9 +72,9 @@ const AppRouter = () => {
                 <RouterProtector path={LocalRoutes.ORDER_MY} component={ListOrders} exact />
                 {/* Extras */}
                 <Route path={`${LocalRoutes.SEARCH}/:keyword`} component={Home} />
-            </>
+          </>
             <AdminRoutes />
-        </>
+      </>
     );
 };
 

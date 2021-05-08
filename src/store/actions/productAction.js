@@ -1,13 +1,13 @@
 import {
-    getProducts as apiGetProducts,
-    getProductDetails as apiGetProductDetails,
-    newReview as apiNewReview,
-    getAdminProducts as apiGetAdminProducts,
-    newProduct as apiNewProduct,
     deleteProduct as apiDeleteProduct,
-    updateProduct as apiUpdateProduct,
-    getProductReviews as apiGetProdutReviews,
     deleteReview as apiDeleteReview,
+    getAdminProducts as apiGetAdminProducts,
+    getProductDetails as apiGetProductDetails,
+    getProductReviews as apiGetProdutReviews,
+    getProducts as apiGetProducts,
+    newProduct as apiNewProduct,
+    newReview as apiNewReview,
+    updateProduct as apiUpdateProduct,
 } from '../../api/api';
 
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';

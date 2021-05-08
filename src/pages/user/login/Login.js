@@ -1,4 +1,5 @@
 import './styles/login.scss';
+
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
-
 import { Route } from '../../../router/route';
 import { clearErrors, login } from '../../../store/actions/authActions';
 
@@ -30,7 +30,6 @@ const Login = ({ history, location }) => {
         if (error) {
             alert.error(error);
             dispatch(clearErrors());
-            return;
         }
     }, [dispatch, isAuthenticated, error, alert, history, redirect]);
 
@@ -58,8 +57,8 @@ const Login = ({ history, location }) => {
                                 className=""
                                 value={email}
                                 onChange={(event) => setEmail(event.target.value)}
-                            />
-                        </div>
+                          />
+                      </div>
 
                         <div className="">
                             <label htmlFor="password_field">Password</label>
@@ -69,24 +68,24 @@ const Login = ({ history, location }) => {
                                 className=""
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
-                            />
-                        </div>
+                          />
+                      </div>
 
                         <Link to={Route.PASSWORD_FORGOT} className="">
-                            Forgot Password?
+                        Forgot Password?
                         </Link>
 
                         <button id="login_button" type="submit" className="">
-                            LOGIN
+                        LOGIN
                         </button>
 
                         <Link to={Route.USER_REGISTER} className="">
-                            New User?
+                        New User?
                         </Link>
-                    </form>
-                </div>
-            </div>
-        </>
+                  </form>
+              </div>
+          </div>
+      </>
     );
 };
 

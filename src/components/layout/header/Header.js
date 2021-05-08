@@ -1,15 +1,15 @@
 import './styles/header.scss';
+
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Route } from 'react-router-dom';
 
-import Search from './components/Search';
-
-import { logoutUser } from '../../../store/actions/authActions';
 import { Route as LocalRoutes } from '../../../router/route';
+import { logoutUser } from '../../../store/actions/authActions';
 import CartHeader from './components/Cart';
 import LoggedUserHeader from './components/LoggedUser';
 import LoginButton from './components/LoginButton';
+import Search from './components/Search';
 
 const Header = () => {
     const alert = useAlert();
@@ -26,7 +26,7 @@ const Header = () => {
         <nav className="header">
             <Link className="header-logo" to={LocalRoutes.HOME}>
                 <img src="./images/logo.png" alt="Logo" />
-            </Link>
+          </Link>
 
             <Route render={({ history }) => <Search history={history} />} />
 
@@ -38,9 +38,9 @@ const Header = () => {
                     ) : (
                         <LoginButton loading={loading} />
                     )}
-                </div>
-            </div>
-        </nav>
+              </div>
+          </div>
+      </nav>
     );
 };
 

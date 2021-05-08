@@ -1,16 +1,18 @@
 import './styles/orderList.scss';
+
 import { MDBDataTable } from 'mdbreact';
 import React, { useEffect } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Sidebar from '../../sidebar/Sidebar';
 import Loader from '../../../../components/util/Loader';
 import MetaData from '../../../../components/util/MetaData';
-
-import { clearErrors, deleteOrder, deleteOrderReset, getAllOrders } from '../../../../store/actions/orderActions';
 import { Route } from '../../../../router/route';
+import {
+    clearErrors, deleteOrder, deleteOrderReset, getAllOrders,
+} from '../../../../store/actions/orderActions';
+import Sidebar from '../../sidebar/Sidebar';
 
 const OrderList = ({ history }) => {
     const alert = useAlert();
@@ -80,12 +82,12 @@ const OrderList = ({ history }) => {
                 actions: (
                     <>
                         <Link to={`${Route.ADMIN_ORDER}/${order._id}`} className="btn btn-primary py-1 px-2">
-                            <i className="fa fa-eye"></i>
-                        </Link>
+                            <i className="fa fa-eye" />
+                      </Link>
                         <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteOrderHandler(order._id)}>
-                            <i className="fa fa-trash"></i>
-                        </button>
-                    </>
+                            <i className="fa fa-trash" />
+                      </button>
+                  </>
                 ),
             });
         });
@@ -98,15 +100,15 @@ const OrderList = ({ history }) => {
             <div className="">
                 <div className="">
                     <Sidebar />
-                </div>
+              </div>
                 <div className="">
                     <>
                         <h1 className="">All orders</h1>
                         {loading ? <Loader /> : <MDBDataTable data={setOrders()} className="" bordered striped hover />}
-                    </>
-                </div>
-            </div>
-        </>
+                  </>
+              </div>
+          </div>
+      </>
     );
 };
 

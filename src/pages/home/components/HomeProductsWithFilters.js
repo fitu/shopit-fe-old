@@ -1,8 +1,8 @@
 import '../styles/homeProductsWithFilters.scss';
 import 'rc-slider/assets/index.css';
 
-import React from 'react';
 import Slider from 'rc-slider';
+import React from 'react';
 
 import HomeProducts from './HomeProducts';
 
@@ -32,11 +32,11 @@ const HomeProductsWithFilters = ({ products, price, setPrice }) => {
                     }}
                     value={price}
                     onChange={(price) => setPrice(price)}
-                />
-            </div>
+              />
+          </div>
 
             <HomeProducts products={products} />
-        </div>
+      </div>
     );
 };
 

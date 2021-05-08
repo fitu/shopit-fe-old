@@ -1,14 +1,14 @@
 import './styles/listOrders.scss';
+
 import { MDBDataTable } from 'mdbreact';
 import React, { useEffect } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Route } from '../../../router/route';
 
 import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
-
+import { Route } from '../../../router/route';
 import { clearErrors, myOrders } from '../../../store/actions/orderActions';
 
 const ListOrders = () => {
@@ -67,8 +67,8 @@ const ListOrders = () => {
                 ),
                 actions: (
                     <Link to={`${Route.ORDER}/${order._id}`} className="order-go-to">
-                        <i className="fa fa-eye"></i>
-                    </Link>
+                        <i className="fa fa-eye" />
+                  </Link>
                 ),
             });
         });
@@ -81,7 +81,7 @@ const ListOrders = () => {
             <h1 className="my-orders__title">My Orders</h1>
 
             {loading ? <Loader /> : <MDBDataTable data={setOrders()} className="my-orders__table" bordered striped hover />}
-        </>
+      </>
     );
 };
 

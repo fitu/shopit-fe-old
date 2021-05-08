@@ -1,14 +1,14 @@
 import './styles/newProduct.scss';
+
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Sidebar from '../../sidebar/Sidebar';
 import MetaData from '../../../../components/util/MetaData';
-
-import { clearErrors, newProduct, newProductReset } from '../../../../store/actions/productAction';
-import { Route } from '../../../../router/route';
 import { Category } from '../../../../models/category';
+import { Route } from '../../../../router/route';
+import { clearErrors, newProduct, newProductReset } from '../../../../store/actions/productAction';
+import Sidebar from '../../sidebar/Sidebar';
 
 const NewProduct = ({ history }) => {
     const alert = useAlert();
@@ -80,7 +80,7 @@ const NewProduct = ({ history }) => {
             <div className="">
                 <div className="">
                     <Sidebar />
-                </div>
+              </div>
                 <div className="">
                     <>
                         <div className="">
@@ -94,8 +94,8 @@ const NewProduct = ({ history }) => {
                                         className=""
                                         value={name}
                                         onChange={(event) => setName(event.target.value)}
-                                    />
-                                </div>
+                                  />
+                              </div>
                                 <div className="">
                                     <label htmlFor="price_field">Price</label>
                                     <input
@@ -104,8 +104,8 @@ const NewProduct = ({ history }) => {
                                         className=""
                                         value={price}
                                         onChange={(event) => setPrice(event.target.value)}
-                                    />
-                                </div>
+                                  />
+                              </div>
                                 <div className="">
                                     <label htmlFor="description_field">Description</label>
                                     <textarea
@@ -114,8 +114,8 @@ const NewProduct = ({ history }) => {
                                         rows="8"
                                         value={description}
                                         onChange={(event) => setDescription(event.target.value)}
-                                    ></textarea>
-                                </div>
+                                  />
+                              </div>
                                 <div className="">
                                     <label htmlFor="category_field">Category</label>
                                     <select
@@ -123,14 +123,14 @@ const NewProduct = ({ history }) => {
                                         id="category_field"
                                         value={category}
                                         onChange={(event) => setCategory(event.target.value)}
-                                    >
+                                  >
                                         {Object.values(Category).map((category) => (
                                             <option key={category} value={category}>
                                                 {category}
-                                            </option>
+                                          </option>
                                         ))}
-                                    </select>
-                                </div>
+                                  </select>
+                              </div>
                                 <div className="">
                                     <label htmlFor="stock_field">Stock</label>
                                     <input
@@ -139,8 +139,8 @@ const NewProduct = ({ history }) => {
                                         className=""
                                         value={stock}
                                         onChange={(event) => setStock(event.target.value)}
-                                    />
-                                </div>
+                                  />
+                              </div>
                                 <div className="">
                                     <label htmlFor="seller_field">Seller Name</label>
                                     <input
@@ -149,8 +149,8 @@ const NewProduct = ({ history }) => {
                                         className=""
                                         value={seller}
                                         onChange={(event) => setSeller(event.target.value)}
-                                    />
-                                </div>
+                                  />
+                              </div>
                                 <div className="">
                                     <label>Images</label>
                                     <div className="custom-file">
@@ -161,11 +161,11 @@ const NewProduct = ({ history }) => {
                                             id="customFile"
                                             onChange={changeHandler}
                                             multiple
-                                        />
+                                      />
                                         <label className="" htmlFor="customFile">
-                                            Choose Images
+                                        Choose Images
                                         </label>
-                                    </div>
+                                  </div>
                                     {imagesPreview.map((image) => (
                                         <img
                                             src={image}
@@ -174,18 +174,18 @@ const NewProduct = ({ history }) => {
                                             className=""
                                             width="55"
                                             height="52"
-                                        />
+                                      />
                                     ))}
-                                </div>
+                              </div>
                                 <button disabled={loading} id="login_button" type="submit" className="">
-                                    CREATE
+                                CREATE
                                 </button>
-                            </form>
-                        </div>
-                    </>
-                </div>
-            </div>
-        </>
+                          </form>
+                      </div>
+                  </>
+              </div>
+          </div>
+      </>
     );
 };
 

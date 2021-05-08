@@ -1,10 +1,10 @@
 import {
     createOrder as apiCreateOrder,
-    myOrders as apiMyOrders,
-    getOrderDetails as apiGetOrderDetails,
-    getAllOrders as apiGetAllOrders,
-    updateOrder as apiUpdateOrder,
     deleteOrder as apiDeleteOrder,
+    getAllOrders as apiGetAllOrders,
+    getOrderDetails as apiGetOrderDetails,
+    myOrders as apiMyOrders,
+    updateOrder as apiUpdateOrder,
 } from '../../api/api';
 
 export const ALL_ORDERS_FAIL = 'ALL_ORDERS_FAIL';

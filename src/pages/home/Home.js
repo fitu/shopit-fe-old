@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../../components/util/Loader';
 import MetaData from '../../components/util/MetaData';
-
 import { clearErrors, getProducts } from '../../store/actions/productAction';
 import HomeProducts from './components/HomeProducts';
 import HomeProductsWithFilters from './components/HomeProductsWithFilters';
@@ -19,8 +18,10 @@ const Home = ({ match }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { loading, products, productsCount, resultsPerPage, error } = useSelector((state) => state.products);
-    const keyword = match.params.keyword;
+    const {
+        loading, products, productsCount, resultsPerPage, error,
+    } = useSelector((state) => state.products);
+    const { keyword } = match.params;
 
     useEffect(() => {
         if (error) {
@@ -42,7 +43,7 @@ const Home = ({ match }) => {
 
     return (
         <div className="home">
-            <MetaData title='Buy Best Products Online' />
+            <MetaData title="Buy Best Products Online" />
             <h1 className="home--title">Latest Products</h1>
 
             {keyword ? (
@@ -58,15 +59,15 @@ const Home = ({ match }) => {
                     itemsCountPerPage={resultsPerPage}
                     totalItemsCount={productsCount}
                     onChange={setCurrentPageNumber}
-                    nextPageText={'Next'}
-                    prevPageText={'Prev'}
-                    firstPageText={'First'}
-                    lastPageText={'Last'}
+                    nextPageText="Next"
+                    prevPageText="Prev"
+                    firstPageText="First"
+                    lastPageText="Last"
                     itemClass="home__pagination--page-item"
                     linkClass="home__pagination--page-link"
-                />
+            />
             )}
-        </div>
+      </div>
     );
 };
 

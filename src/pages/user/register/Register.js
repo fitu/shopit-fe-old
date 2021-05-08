@@ -1,11 +1,11 @@
 import './styles/register.scss';
+
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
-
 import { Route } from '../../../router/route';
 import { clearErrors, register } from '../../../store/actions/authActions';
 
@@ -32,7 +32,6 @@ const Register = ({ history }) => {
         if (error) {
             alert.error(error);
             dispatch(clearErrors());
-            return;
         }
     }, [dispatch, isAuthenticated, error, alert, history]);
 
@@ -85,8 +84,8 @@ const Register = ({ history }) => {
                                 value={user.name}
                                 name="name"
                                 onChange={changeHandler}
-                            />
-                        </div>
+                          />
+                      </div>
 
                         <div className="">
                             <label htmlFor="email_field">Email</label>
@@ -97,8 +96,8 @@ const Register = ({ history }) => {
                                 value={user.email}
                                 name="email"
                                 onChange={changeHandler}
-                            />
-                        </div>
+                          />
+                      </div>
 
                         <div className="">
                             <label htmlFor="password_field">Password</label>
@@ -109,8 +108,8 @@ const Register = ({ history }) => {
                                 value={user.password}
                                 name="password"
                                 onChange={changeHandler}
-                            />
-                        </div>
+                          />
+                      </div>
 
                         <div className="">
                             <label htmlFor="avatar_upload">Avatar</label>
@@ -118,8 +117,8 @@ const Register = ({ history }) => {
                                 <div>
                                     <figure className="">
                                         <img src={avatarPreview} className="" alt="Avatar preview" />
-                                    </figure>
-                                </div>
+                                  </figure>
+                              </div>
                                 <div className="">
                                     <input
                                         type="file"
@@ -128,21 +127,21 @@ const Register = ({ history }) => {
                                         id="customFile"
                                         accept="images/*"
                                         onChange={changeHandler}
-                                    />
+                                  />
                                     <label className="" htmlFor="customFile">
-                                        Choose Avatar
+                                    Choose Avatar
                                     </label>
-                                </div>
-                            </div>
-                        </div>
+                              </div>
+                          </div>
+                      </div>
 
                         <button id="register_button" type="submit" className="" disabled={loading}>
-                            REGISTER
+                        REGISTER
                         </button>
-                    </form>
-                </div>
-            </div>
-        </>
+                  </form>
+              </div>
+          </div>
+      </>
     );
 };
 

@@ -1,8 +1,10 @@
 import '../styles/cartItems.scss';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Route } from '../../../router/route';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import { Route } from '../../../router/route';
 import { addItemToCart, removeItemFromCart } from '../../../store/actions/cartActions';
 
 const CartItems = ({ cartItems }) => {
@@ -38,36 +40,38 @@ const CartItems = ({ cartItems }) => {
                     <div className="cart__item--container">
                         <div className="item--image">
                             <img src={item.images[0].url} alt="" height="90" width="115" />
-                        </div>
+                      </div>
                         <div className="item--name">
                             <Link to={`${Route.PRODUCT}/${item.product}`}>{item.name}</Link>
-                        </div>
+                      </div>
                         <div className="item--price-container">
-                            <p className="item--price">${item.price}</p>
-                        </div>
+                            <p className="item--price">
+                            ${item.price}
+                          </p>
+                      </div>
                         <div className="item--quantities">
                             <span
                                 className="item--decrease-quantity"
                                 onClick={() => decreaseQuantity(item.product, item.quantity)}
-                            >
-                                -
-                            </span>
+                          >
+                              -
+                          </span>
                             <input type="number" className="item--quantity" value={item.quantity} readOnly />
                             <span
                                 className="item--increase-quantity"
                                 onClick={() => increaseQuantity(item.product, item.quantity, item.stock)}
-                            >
-                                +
-                            </span>
-                        </div>
+                          >
+                              +
+                          </span>
+                      </div>
                         <div className="item--remove-container">
-                            <i className="item--remove" onClick={() => removeCartItemHandler(item.product)}></i>
-                        </div>
-                    </div>
+                            <i className="item--remove" onClick={() => removeCartItemHandler(item.product)} />
+                      </div>
+                  </div>
                     <hr />
-                </div>
+              </div>
             ))}
-        </div>
+      </div>
     );
 };
 

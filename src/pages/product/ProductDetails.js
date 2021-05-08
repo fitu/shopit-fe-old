@@ -1,17 +1,16 @@
 import './styles/productDetails.scss';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ListReviews from '../review/ListReviews';
 import Loader from '../../components/util/Loader';
 import MetaData from '../../components/util/MetaData';
-
 import { clearErrors, getProductDetails, newReviewReset } from '../../store/actions/productAction';
+import ListReviews from '../review/ListReviews';
+import AddReviewModal from './components/AddReviewModal';
 import ProductImages from './components/ProductImages';
 import ProductInfo from './components/ProductInfo';
-import AddReviewModal from './components/AddReviewModal';
 
 const ProductDetails = ({ match }) => {
     const [showModal, setShowModal] = useState(false);
@@ -47,23 +46,23 @@ const ProductDetails = ({ match }) => {
             <div className="product-details__container">
                 <div className="images--container">
                     <ProductImages product={product} />
-                </div>
+              </div>
                 <div className="info--container">
                     <ProductInfo product={product} match={match} showModal={setShowModal} />
-                </div>
+              </div>
                 {product.reviews?.length > 0 && (
                     <div className="reviews--container">
                         <ListReviews reviews={product.reviews} />
-                    </div>
+                </div>
                 )}
-            </div>
+          </div>
 
             {showModal && (
                 <div className="modal--container">
                     <AddReviewModal match={match} showModal={setShowModal} />
-                </div>
+            </div>
             )}
-        </>
+      </>
     );
 };
 

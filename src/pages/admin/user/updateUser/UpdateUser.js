@@ -1,14 +1,16 @@
 import './styles/updateUser.scss';
+
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Sidebar from '../../sidebar/Sidebar';
 import MetaData from '../../../../components/util/MetaData';
-
 import { Role } from '../../../../models/role';
-import { clearErrors, getUserDetails, updateUser, updateUserReset } from '../../../../store/actions/authActions';
 import { Route } from '../../../../router/route';
+import {
+    clearErrors, getUserDetails, updateUser, updateUserReset,
+} from '../../../../store/actions/authActions';
+import Sidebar from '../../sidebar/Sidebar';
 
 const UpdateUser = ({ match, history }) => {
     const [name, setName] = useState('');
@@ -59,7 +61,7 @@ const UpdateUser = ({ match, history }) => {
             <div className="">
                 <div className="">
                     <Sidebar />
-                </div>
+              </div>
                 <div className="">
                     <>
                         <div className="">
@@ -75,8 +77,8 @@ const UpdateUser = ({ match, history }) => {
                                             name="name"
                                             value={name}
                                             onChange={(event) => setName(event.target.value)}
-                                        />
-                                    </div>
+                                      />
+                                  </div>
 
                                     <div className="">
                                         <label htmlFor="email_field">Email</label>
@@ -87,8 +89,8 @@ const UpdateUser = ({ match, history }) => {
                                             name="email"
                                             value={email}
                                             onChange={(event) => setEmail(event.target.value)}
-                                        />
-                                    </div>
+                                      />
+                                  </div>
 
                                     <div className="">
                                         <label htmlFor="role_field">Role</label>
@@ -99,23 +101,23 @@ const UpdateUser = ({ match, history }) => {
                                             name="role"
                                             value={role}
                                             onChange={(event) => setRole(event.target.value)}
-                                        >
+                                      >
                                             {Object.values(Role).map((role) => (
                                                 <option value={role}>{role}</option>
                                             ))}
-                                        </select>
-                                    </div>
+                                      </select>
+                                  </div>
 
                                     <button type="submit" className="">
-                                        Update
+                                    Update
                                     </button>
-                                </form>
-                            </div>
-                        </div>
-                    </>
-                </div>
-            </div>
-        </>
+                              </form>
+                          </div>
+                      </div>
+                  </>
+              </div>
+          </div>
+      </>
     );
 };
 

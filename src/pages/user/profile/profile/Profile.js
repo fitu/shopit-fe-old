@@ -1,13 +1,13 @@
 import './styles/profile.scss';
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Route } from '../../../../router/route';
 
 import Loader from '../../../../components/util/Loader';
 import Metadata from '../../../../components/util/MetaData';
-
 import { Role } from '../../../../models/role';
+import { Route } from '../../../../router/route';
 
 const Profile = () => {
     const { user, loading } = useSelector((state) => state.auth);
@@ -23,11 +23,11 @@ const Profile = () => {
                 <div className="">
                     <figure className="">
                         <img className="" src={user.avatar.url} alt={user.name} />
-                    </figure>
+                  </figure>
                     <Link to={Route.USER_UPDATE_PROFILE} className="">
-                        Edit Profile
+                    Edit Profile
                     </Link>
-                </div>
+              </div>
 
                 <div className="">
                     <h4 className="">Full Name</h4>
@@ -41,16 +41,16 @@ const Profile = () => {
 
                     {user.role !== Role.ADMIN && (
                         <Link to={Route.ORDER_MY} className="">
-                            My Orders
+                      My Orders
                         </Link>
                     )}
 
                     <Link to={Route.PASSWORD_UPDATE} className="">
-                        Change Password
+                    Change Password
                     </Link>
-                </div>
-            </div>
-        </>
+              </div>
+          </div>
+      </>
     );
 };
 

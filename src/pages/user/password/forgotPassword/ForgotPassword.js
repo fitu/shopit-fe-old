@@ -1,10 +1,10 @@
 import './styles/forgotPassword.scss';
+
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MetaData from '../../../../components/util/MetaData';
-
 import { clearErrors, forgotPassword } from '../../../../store/actions/authActions';
 
 const ForgotPassword = () => {
@@ -50,16 +50,16 @@ const ForgotPassword = () => {
                                 className=""
                                 value={email}
                                 onChange={(event) => setEmail(event.target.value)}
-                            />
-                        </div>
+                          />
+                      </div>
 
                         <button disabled={loading} id="forgot_password_button" type="submit" className="">
-                            Send Email
+                        Send Email
                         </button>
-                    </form>
-                </div>
-            </div>
-        </>
+                  </form>
+              </div>
+          </div>
+      </>
     );
 };
 

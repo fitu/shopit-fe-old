@@ -1,4 +1,5 @@
 import '../styles/cartDetails.scss';
+
 import React from 'react';
 
 const CartDetails = ({ cartItems, history }) => {
@@ -11,25 +12,28 @@ const CartDetails = ({ cartItems, history }) => {
             <h4>Order Summary</h4>
             <hr />
             <p>
-                Subtotal:
+            Subtotal:
                 <span className="cart__order--subtotal">
-                    {cartItems.reduce((acc, item) => acc + Number(item.quantity), 0)} (Units)
+                    {cartItems.reduce((acc, item) => acc + Number(item.quantity), 0)}
+                  {' '}
+                  (Units)
                 </span>
-            </p>
+          </p>
             <p>
-                Est. total:
+            Est. total:
                 <span className="cart__order--total">
-                    ${cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}
+                  $
+                    {cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}
                 </span>
-            </p>
+          </p>
             <hr />
             <button
                 className="cart__order--checkout"
                 onClick={checkoutHandler}
-            >
-                Check out
-            </button>
-        </div>
+          >
+              Check out
+          </button>
+      </div>
     );
 };
 

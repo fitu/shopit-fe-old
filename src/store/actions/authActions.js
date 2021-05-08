@@ -1,16 +1,16 @@
 import {
-    login as apiLogin,
-    register as apiRegister,
-    loadUser as apiLoadUser,
-    logoutUser as apiLogoutUser,
-    updateProfile as apiUpdateProfile,
-    updatePassword as apiUpdatePassword,
+    deleteUser as apiDeleteUser,
     forgotPassword as apiForgotPassword,
-    resetPassword as apiResetPassword,
     getAllUsers as apiGetAllUsers,
     getUserDetails as apiGetUserDetails,
+    loadUser as apiLoadUser,
+    login as apiLogin,
+    logoutUser as apiLogoutUser,
+    register as apiRegister,
+    resetPassword as apiResetPassword,
+    updatePassword as apiUpdatePassword,
+    updateProfile as apiUpdateProfile,
     updateUser as apiUpdateUser,
-    deleteUser as apiDeleteUser,
 } from '../../api/api';
 
 export const ALL_USER_FAIL = 'ALL_USER_FAIL';

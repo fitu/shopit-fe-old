@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 import { Role } from '../../../../models/role';
 import { Route as LocalRoutes } from '../../../../router/route';
 
@@ -8,9 +9,9 @@ const DropDownMenu = ({ user, logoutHandler }) => (
         <Link to={LocalRoutes.ORDER_MY}>Orders</Link>
         <Link to={LocalRoutes.USER_MY_PROFILE}>Profile</Link>
         <Link to={LocalRoutes.HOME} onClick={logoutHandler}>
-            Logout
+        Logout
         </Link>
-    </div>
+  </div>
 );
 
 export default DropDownMenu;

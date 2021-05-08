@@ -2,6 +2,7 @@ import '../styles/productInfo.scss';
 
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { addItemToCart } from '../../../store/actions/cartActions';
 
 const ProductInfo = ({ product, match, showModal }) => {
@@ -39,50 +40,56 @@ const ProductInfo = ({ product, match, showModal }) => {
     return (
         <div className="product-info__container">
             <h3 className="title">{product.name}</h3>
-            <p className="product-id">Product # {product._id}</p>
+            <p className="product-id">
+            Product #{product._id}
+          </p>
             <hr />
             <div className="rating">{product.ratings}</div>
             <span className="num-of-reviews" id="num-of-reviews">
-                ({product.numOfReviews} Reviews)
-            </span>
+            ({product.numOfReviews}
+            {' '}
+            Reviews)
+</span>
             <hr />
-            <p className="price">${product.price}</p>
+            <p className="price">
+            ${product.price}
+          </p>
             <div className="quantity-container">
                 <span className="quantity-decrease" onClick={decreaseQuantity}>
-                    -
+                -
                 </span>
                 <input type="number" className="quantity" id="count" value={quantity} readOnly />
                 <span className="quantity-increase" onClick={increaseQuantity}>
-                    +
+                +
                 </span>
-            </div>
+          </div>
             <button className="add-to-cart" type="button" disable={product.stock === 0} onClick={addToCart}>
-                Add to Cart
+            Add to Cart
             </button>
             <hr />
             <p className="status_label">
-                Status:{' '}
+            Status:{' '}
                 <span className="status" style={stockStyle}>
                     {stockLabel}
-                </span>
-            </p>
+              </span>
+          </p>
             <hr />
             <h4 className="description-label">Description:</h4>
             <p className="description">{product.description}</p>
             <hr />
             <p className="seller-label">
-                Sold by: <strong className="seller">{product.seller}</strong>
-            </p>
+            Sold by: <strong className="seller">{product.seller}</strong>
+          </p>
             {user ? (
                 <button className="submit-review" type="button" onClick={() => showModal(true)}>
-                    Submit Your Review
+                Submit Your Review
                 </button>
             ) : (
                 <div className="login" type="alert">
-                    Login to post your review.
+                Login to post your review.
                 </div>
             )}
-        </div>
+      </div>
     );
 };
 

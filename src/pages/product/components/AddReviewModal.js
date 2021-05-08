@@ -1,9 +1,10 @@
 import '../styles/addReviewModal.scss';
 
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { newReview } from '../../../store/actions/productAction';
 import ReactStars from 'react-rating-stars-component';
+import { useDispatch } from 'react-redux';
+
+import { newReview } from '../../../store/actions/productAction';
 
 const AddReviewModal = ({ match, showModal }) => {
     const [rating, setRating] = useState(0);
@@ -27,30 +28,30 @@ const AddReviewModal = ({ match, showModal }) => {
                 <h5 className="modal-title">Submit Review</h5>
                 <button type="button" className="close" onClick={() => showModal(false)}>
                     <span>&times;</span>
-                </button>
-            </div>
+              </button>
+          </div>
             <div className="modal-body">
                 <div className="stars-container">
                     <ReactStars
                         count={5}
-                        isHalf={true}
-                        emptyIcon={<i className="far fa-star"></i>}
-                        halfIcon={<i className="fa fa-star-half-alt"></i>}
-                        fullIcon={<i className="fa fa-star"></i>}
+                        isHalf
+                        emptyIcon={<i className="far fa-star" />}
+                        halfIcon={<i className="fa fa-star-half-alt" />}
+                        fullIcon={<i className="fa fa-star" />}
                         onChange={(value) => {}}
-                        activeColor="#febd69" // TODO remove hardcoded
-                    />
-                </div>
+                        activeColor="#febd69"
+                  />
+              </div>
                 <textarea
                     className="comment"
                     value={comment}
                     onChange={(event) => setComment(event.target.value)}
-                ></textarea>
+              />
                 <button className="submit" onClick={reviewHandler}>
-                    Submit
+                Submit
                 </button>
-            </div>
-        </div>
+          </div>
+      </div>
     );
 };
 

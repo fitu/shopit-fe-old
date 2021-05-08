@@ -23,9 +23,9 @@ const RouterProtector = ({ isAdmin, component: Component, ...rest }) => {
                         }
                         return <Component {...props} />;
                     }}
-                />
+            />
             )}
-        </>
+      </>
     );
 };
 

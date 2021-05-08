@@ -1,15 +1,17 @@
 import './styles/processOrder.scss';
+
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Sidebar from '../../sidebar/Sidebar';
 import Loader from '../../../../components/util/Loader';
 import MetaData from '../../../../components/util/MetaData';
-
-import { clearErrors, getOrderDetails, updateOrder, updateOrderReset } from '../../../../store/actions/orderActions';
 import { OrderStatus } from '../../../../models/orderStatus';
+import {
+    clearErrors, getOrderDetails, updateOrder, updateOrderReset,
+} from '../../../../store/actions/orderActions';
+import Sidebar from '../../sidebar/Sidebar';
 
 const ProcessOrder = ({ match }) => {
     const alert = useAlert();
@@ -18,7 +20,9 @@ const ProcessOrder = ({ match }) => {
     const [status, setStatus] = useState('');
 
     const { loading, order } = useSelector((state) => state.orderDetails);
-    const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order;
+    const {
+        shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus,
+    } = order;
     const { error, isUpdated } = useSelector((state) => state.order);
 
     useEffect(() => {
@@ -41,9 +45,8 @@ const ProcessOrder = ({ match }) => {
         dispatch(updateOrder(id, formData));
     };
 
-    const shippingDetails =
-        shippingInfo &&
-        `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country}`;
+    const shippingDetails = shippingInfo
+        && `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country}`;
     const isPaid = paymentInfo && paymentInfo.status === 'succeeded';
 
     return (
@@ -52,7 +55,7 @@ const ProcessOrder = ({ match }) => {
             <div className="">
                 <div className="">
                     <Sidebar />
-                </div>
+              </div>
                 <div className="">
                     <>
                         {loading ? (
@@ -60,30 +63,38 @@ const ProcessOrder = ({ match }) => {
                         ) : (
                             <div className="">
                                 <div className="">
-                                    <h2 className="">Order # {order?._id}</h2>
+                                    <h2 className="">
+                                    Order #{order?._id}
+                                  </h2>
                                     <h4 className="">Shipping Info</h4>
                                     <p>
-                                        <b>Name: </b> {user?.name}
-                                    </p>
+                                        <b>Name: </b>
+                                    {' '}
+                                    {user?.name}
+                                  </p>
                                     <p>
-                                        <b>Phone: </b> {shippingInfo?.phoneNumber}
-                                    </p>
+                                        <b>Phone: </b>
+                                    {' '}
+                                    {shippingInfo?.phoneNumber}
+                                  </p>
                                     <p className="">
                                         <b>Address:</b>
                                         {shippingDetails}
-                                    </p>
+                                  </p>
                                     <p>
-                                        <b>Amount: </b> ${totalPrice}
-                                    </p>
+                                        <b>Amount: </b>
+                                    {' '}
+                                    ${totalPrice}
+                                  </p>
                                     <hr />
                                     <h4 className="">Payment</h4>
                                     <p className={isPaid ? 'text-green-500' : 'text-red-600'}>
                                         <b>{isPaid ? 'PAID' : 'NOT PAID'}</b>
-                                    </p>
+                                  </p>
                                     <h4 className="">Stripe ID</h4>
                                     <p>
                                         <b>{paymentInfo?.id}</b>
-                                    </p>
+                                  </p>
                                     <h4 className="">Order Status:</h4>
                                     <p
                                         className={
@@ -91,14 +102,14 @@ const ProcessOrder = ({ match }) => {
                                                 ? 'text-green-500'
                                                 : 'text-red-600'
                                         }
-                                    >
+                                  >
                                         <b>{orderStatus}</b>
-                                    </p>
+                                  </p>
                                     <h4 className="">Order Items:</h4>
                                     <hr />
                                     <div className="">
-                                        {orderItems &&
-                                            orderItems.map((item) => (
+                                        {orderItems
+                                            && orderItems.map((item) => (
                                                 <div className="" key={item.product}>
                                                     <div className="">
                                                         <img
@@ -106,22 +117,28 @@ const ProcessOrder = ({ match }) => {
                                                             alt={item.name}
                                                             height="45"
                                                             width="65"
-                                                        />
-                                                    </div>
+                                                      />
+                                                  </div>
                                                     <div className="">
                                                         <Link to={`/products/${item.product}`}>{item.name}</Link>
-                                                    </div>
+                                                  </div>
                                                     <div className="">
-                                                        <p>${item.price}</p>
-                                                    </div>
+                                                        <p>
+                                                        ${item.price}
+                                                      </p>
+                                                  </div>
                                                     <div className="">
-                                                        <p>{item.quantity} Piece(s)</p>
-                                                    </div>
-                                                </div>
+                                                        <p>
+                                                        {item.quantity}
+                                                            {' '}
+                                                        Piece(s)
+</p>
+                                                  </div>
+                                              </div>
                                             ))}
-                                    </div>
+                                  </div>
                                     <hr />
-                                </div>
+                              </div>
                                 <div className="">
                                     <h4 className="">Status</h4>
                                     <div className="">
@@ -130,24 +147,24 @@ const ProcessOrder = ({ match }) => {
                                             name="status"
                                             value={status}
                                             onChange={(event) => setStatus(event.target.value)}
-                                        >
+                                      >
                                             {Object.values(OrderStatus).map((status) => (
                                                 <option key={status} value={status}>
                                                     {status}
-                                                </option>
+                                              </option>
                                             ))}
-                                        </select>
-                                    </div>
+                                      </select>
+                                  </div>
                                     <button className="" onClick={() => updateOrderHanlder(order._id)}>
-                                        Update Status
+                                    Update Status
                                     </button>
-                                </div>
-                            </div>
+                              </div>
+                          </div>
                         )}
-                    </>
-                </div>
-            </div>
-        </>
+                  </>
+              </div>
+          </div>
+      </>
     );
 };
 

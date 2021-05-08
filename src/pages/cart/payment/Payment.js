@@ -1,16 +1,18 @@
 import './styles/payment.scss';
-import { CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useStripe } from '@stripe/react-stripe-js';
+
+import {
+    CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useStripe,
+} from '@stripe/react-stripe-js';
 import React, { useEffect } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
-import CheckoutSteps from '../components/CheckoutSteps';
-import MetaData from '../../../components/util/MetaData';
-
 import { processPayment } from '../../../api/api';
-import { clearErrors, createOrder } from '../../../store/actions/orderActions';
+import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
+import { clearErrors, createOrder } from '../../../store/actions/orderActions';
 import { StorageKeys } from '../../../store/repository/repository';
+import CheckoutSteps from '../components/CheckoutSteps';
 
 const options = {
     style: {
@@ -111,30 +113,30 @@ const Payment = ({ history }) => {
             <div className="payment__container">
                 <div className="payment__steps">
                     <CheckoutSteps shippingStep confirmOrderStep paymentStep />
-                </div>
+              </div>
                 <form className="payment__form" onSubmit={submitHandler}>
                     <h1 className="form--title">Card Info</h1>
                     <div className="form--card-number">
                         <label htmlFor="card_num_field">Card Number</label>
                         <CardNumberElement type="text" id="card_num_field" options={options} />
-                    </div>
+                  </div>
 
                     <div className="form--card-exp">
                         <label htmlFor="card_exp_field">Card Expiry</label>
                         <CardExpiryElement type="text" id="card_exp_field" options={options} />
-                    </div>
+                  </div>
 
                     <div className="form--card-cvc">
                         <label htmlFor="card_cvc_field">Card CVC</label>
                         <CardCvcElement type="text" id="card_cvc_field" />
-                    </div>
+                  </div>
 
                     <button id="pay_btn" type="submit" className="btn btn-block py-3">
-                        Pay {` - $${orderInfo?.totalPrice}`}
-                    </button>
-                </form>
-            </div>
-        </>
+                    Pay {` - $${orderInfo?.totalPrice}`}
+                  </button>
+              </form>
+          </div>
+      </>
     );
 };
 
