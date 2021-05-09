@@ -7,35 +7,35 @@ import {
     updateOrder as apiUpdateOrder,
 } from '../../api/api';
 
-export const ALL_ORDERS_FAIL = 'ALL_ORDERS_FAIL';
-export const ALL_ORDERS_REQUEST = 'ALL_ORDERS_REQUEST';
-export const ALL_ORDERS_SUCCESS = 'ALL_ORDERS_SUCCESS';
+const ALL_ORDERS_FAIL = 'ALL_ORDERS_FAIL';
+const ALL_ORDERS_REQUEST = 'ALL_ORDERS_REQUEST';
+const ALL_ORDERS_SUCCESS = 'ALL_ORDERS_SUCCESS';
 
-export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
-export const CREATE_ORDER_FAIL = 'CREATE_ORDER_FAIL';
-export const CREATE_ORDER_REQUEST = 'CREATE_ORDER_REQUEST';
-export const CREATE_ORDER_SUCCESS = 'CREATE_ORDER_SUCCESS';
+const CREATE_ORDER_FAIL = 'CREATE_ORDER_FAIL';
+const CREATE_ORDER_REQUEST = 'CREATE_ORDER_REQUEST';
+const CREATE_ORDER_SUCCESS = 'CREATE_ORDER_SUCCESS';
 
-export const DELETE_ORDER_FAIL = 'DELETE_ORDER_FAIL';
-export const DELETE_ORDER_REQUEST = 'DELETE_ORDER_REQUEST';
-export const DELETE_ORDER_RESET = 'DELETE_ORDER_RESET';
-export const DELETE_ORDER_SUCCESS = 'DELETE_ORDER_SUCCESS';
+const DELETE_ORDER_FAIL = 'DELETE_ORDER_FAIL';
+const DELETE_ORDER_REQUEST = 'DELETE_ORDER_REQUEST';
+const DELETE_ORDER_RESET = 'DELETE_ORDER_RESET';
+const DELETE_ORDER_SUCCESS = 'DELETE_ORDER_SUCCESS';
 
-export const MY_ORDERS_FAIL = 'MY_ORDERS_FAIL';
-export const MY_ORDERS_REQUEST = 'MY_ORDERS_REQUEST';
-export const MY_ORDERS_SUCCESS = 'MY_ORDERS_SUCCESS';
+const MY_ORDERS_FAIL = 'MY_ORDERS_FAIL';
+const MY_ORDERS_REQUEST = 'MY_ORDERS_REQUEST';
+const MY_ORDERS_SUCCESS = 'MY_ORDERS_SUCCESS';
 
-export const ORDER_DETAILS_FAIL = 'ORDER_DETAILS_FAIL';
-export const ORDER_DETAILS_REQUEST = 'ORDER_DETAILS_REQUEST';
-export const ORDER_DETAILS_SUCCESS = 'ORDER_DETAILS_SUCCESS';
+const ORDER_DETAILS_FAIL = 'ORDER_DETAILS_FAIL';
+const ORDER_DETAILS_REQUEST = 'ORDER_DETAILS_REQUEST';
+const ORDER_DETAILS_SUCCESS = 'ORDER_DETAILS_SUCCESS';
 
-export const UPDATE_ORDER_FAIL = 'UPDATE_ORDER_FAIL';
-export const UPDATE_ORDER_REQUEST = 'UPDATE_ORDER_REQUEST';
-export const UPDATE_ORDER_RESET = 'UPDATE_ORDER_RESET';
-export const UPDATE_ORDER_SUCCESS = 'UPDATE_ORDER_SUCCESS';
+const UPDATE_ORDER_FAIL = 'UPDATE_ORDER_FAIL';
+const UPDATE_ORDER_REQUEST = 'UPDATE_ORDER_REQUEST';
+const UPDATE_ORDER_RESET = 'UPDATE_ORDER_RESET';
+const UPDATE_ORDER_SUCCESS = 'UPDATE_ORDER_SUCCESS';
 
-export const createOrder = (order) => async (dispatch, getState) => {
+const createOrder = (order) => async (dispatch) => {
     try {
         dispatch({ type: CREATE_ORDER_REQUEST });
         const { data } = await apiCreateOrder(order);
@@ -48,7 +48,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     }
 };
 
-export const myOrders = () => async (dispatch) => {
+const myOrders = () => async (dispatch) => {
     try {
         dispatch({ type: MY_ORDERS_REQUEST });
         const { data } = await apiMyOrders();
@@ -58,7 +58,7 @@ export const myOrders = () => async (dispatch) => {
     }
 };
 
-export const getOrderDetails = (id) => async (dispatch) => {
+const getOrderDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: ORDER_DETAILS_REQUEST });
         const { data } = await apiGetOrderDetails(id);
@@ -68,7 +68,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
     }
 };
 
-export const getAllOrders = () => async (dispatch) => {
+const getAllOrders = () => async (dispatch) => {
     try {
         dispatch({ type: ALL_ORDERS_REQUEST });
         const { data } = await apiGetAllOrders();
@@ -78,7 +78,7 @@ export const getAllOrders = () => async (dispatch) => {
     }
 };
 
-export const updateOrder = (id, orderData) => async (dispatch) => {
+const updateOrder = (id, orderData) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_ORDER_REQUEST });
         const { data } = await apiUpdateOrder(id, orderData);
@@ -94,7 +94,7 @@ export const updateOrder = (id, orderData) => async (dispatch) => {
     }
 };
 
-export const deleteOrder = (id) => async (dispatch) => {
+const deleteOrder = (id) => async (dispatch) => {
     try {
         dispatch({ type: DELETE_ORDER_REQUEST });
         const { data } = await apiDeleteOrder(id);
@@ -110,14 +110,47 @@ export const deleteOrder = (id) => async (dispatch) => {
     }
 };
 
-export const deleteOrderReset = () => async (dispatch) => {
+const deleteOrderReset = () => async (dispatch) => {
     dispatch({ type: DELETE_ORDER_RESET });
 };
 
-export const updateOrderReset = () => async (dispatch) => {
+const updateOrderReset = () => async (dispatch) => {
     dispatch({ type: UPDATE_ORDER_RESET });
 };
 
-export const clearErrors = () => async (dispatch) => {
+const clearErrors = () => async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
+};
+
+export {
+    ALL_ORDERS_FAIL,
+    ALL_ORDERS_REQUEST,
+    ALL_ORDERS_SUCCESS,
+    CLEAR_ERRORS,
+    CREATE_ORDER_FAIL,
+    CREATE_ORDER_REQUEST,
+    CREATE_ORDER_SUCCESS,
+    DELETE_ORDER_FAIL,
+    DELETE_ORDER_REQUEST,
+    DELETE_ORDER_RESET,
+    DELETE_ORDER_SUCCESS,
+    MY_ORDERS_FAIL,
+    MY_ORDERS_REQUEST,
+    MY_ORDERS_SUCCESS,
+    ORDER_DETAILS_FAIL,
+    ORDER_DETAILS_REQUEST,
+    ORDER_DETAILS_SUCCESS,
+    UPDATE_ORDER_FAIL,
+    UPDATE_ORDER_REQUEST,
+    UPDATE_ORDER_RESET,
+    UPDATE_ORDER_SUCCESS,
+    createOrder,
+    myOrders,
+    getOrderDetails,
+    getAllOrders,
+    updateOrder,
+    deleteOrder,
+    deleteOrderReset,
+    updateOrderReset,
+    clearErrors,
 };

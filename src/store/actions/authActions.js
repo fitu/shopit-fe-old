@@ -13,206 +13,254 @@ import {
     updateUser as apiUpdateUser,
 } from '../../api/api';
 
-export const ALL_USER_FAIL = 'ALL_USER_FAIL';
-export const ALL_USER_REQUEST = 'ALL_USER_REQUEST';
-export const ALL_USER_SUCCESS = 'ALL_USER_SUCCESS';
+const ALL_USER_FAIL = 'ALL_USER_FAIL';
+const ALL_USER_REQUEST = 'ALL_USER_REQUEST';
+const ALL_USER_SUCCESS = 'ALL_USER_SUCCESS';
 
-export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
-export const DELETE_USER_FAIL = 'DELETE_USER_FAIL';
-export const DELETE_USER_REQUEST = 'DELETE_USER_REQUEST';
-export const DELETE_USER_RESET = 'DELETE_USER_RESET';
-export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
+const DELETE_USER_FAIL = 'DELETE_USER_FAIL';
+const DELETE_USER_REQUEST = 'DELETE_USER_REQUEST';
+const DELETE_USER_RESET = 'DELETE_USER_RESET';
+const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 
-export const FORGOT_PASSWORD_FAIL = 'FORGOT_PASSWORD_FAIL';
-export const FORGOT_PASSWORD_REQUEST = 'FORGOT_PASSWORD_REQUEST';
-export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
+const FORGOT_PASSWORD_FAIL = 'FORGOT_PASSWORD_FAIL';
+const FORGOT_PASSWORD_REQUEST = 'FORGOT_PASSWORD_REQUEST';
+const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
 
-export const LOAD_USER_FAIL = 'LOAD_USER_FAIL';
-export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
-export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
+const LOAD_USER_FAIL = 'LOAD_USER_FAIL';
+const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
+const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
 
-export const LOGOUT_FAIL = 'LOGOUT_FAIL';
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+const LOGOUT_FAIL = 'LOGOUT_FAIL';
+const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
-export const LOGIN_FAIL = 'LOGIN_FAIL';
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+const LOGIN_FAIL = 'LOGIN_FAIL';
+const LOGIN_REQUEST = 'LOGIN_REQUEST';
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
-export const NEW_PASSWORD_FAIL = 'NEW_PASSWORD_FAIL';
-export const NEW_PASSWORD_REQUEST = 'NEW_PASSWORD_REQUEST';
-export const NEW_PASSWORD_SUCCESS = 'NEW_PASSWORD_SUCCESS';
+const NEW_PASSWORD_FAIL = 'NEW_PASSWORD_FAIL';
+const NEW_PASSWORD_REQUEST = 'NEW_PASSWORD_REQUEST';
+const NEW_PASSWORD_SUCCESS = 'NEW_PASSWORD_SUCCESS';
 
-export const REGISTER_USER_FAIL = 'REGISTER_USER_FAIL';
-export const REGISTER_USER_REQUEST = 'REGISTER_USER_REQUEST';
-export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
+const REGISTER_USER_FAIL = 'REGISTER_USER_FAIL';
+const REGISTER_USER_REQUEST = 'REGISTER_USER_REQUEST';
+const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
 
-export const UPDATE_PASSWORD_FAIL = 'UPDATE_PASSWORD_FAIL';
-export const UPDATE_PASSWORD_REQUEST = 'UPDATE_PASSWORD_REQUEST';
-export const UPDATE_PASSWORD_RESET = 'UPDATE_PASSWORD_RESET';
-export const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS';
+const UPDATE_PASSWORD_FAIL = 'UPDATE_PASSWORD_FAIL';
+const UPDATE_PASSWORD_REQUEST = 'UPDATE_PASSWORD_REQUEST';
+const UPDATE_PASSWORD_RESET = 'UPDATE_PASSWORD_RESET';
+const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS';
 
-export const UPDATE_PROFILE_FAIL = 'UPDATE_PROFILE_FAIL';
-export const UPDATE_PROFILE_REQUEST = 'UPDATE_PROFILE_REQUEST';
-export const UPDATE_PROFILE_RESET = 'UPDATE_PROFILE_RESET';
-export const UPDATE_PROFILE_SUCCESS = 'UPDATE_PROFILE_SUCCESS';
+const UPDATE_PROFILE_FAIL = 'UPDATE_PROFILE_FAIL';
+const UPDATE_PROFILE_REQUEST = 'UPDATE_PROFILE_REQUEST';
+const UPDATE_PROFILE_RESET = 'UPDATE_PROFILE_RESET';
+const UPDATE_PROFILE_SUCCESS = 'UPDATE_PROFILE_SUCCESS';
 
-export const UPDATE_USER_FAIL = 'UPDATE_USER_FAIL';
-export const UPDATE_USER_REQUEST = 'UPDATE_USER_REQUEST';
-export const UPDATE_USER_RESET = 'UPDATE_USER_RESET';
-export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+const UPDATE_USER_FAIL = 'UPDATE_USER_FAIL';
+const UPDATE_USER_REQUEST = 'UPDATE_USER_REQUEST';
+const UPDATE_USER_RESET = 'UPDATE_USER_RESET';
+const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
 
-export const USER_DETAILS_FAIL = 'USER_DETAILS_FAIL';
-export const USER_DETAILS_REQUEST = 'USER_DETAILS_REQUEST';
-export const USER_DETAILS_SUCCESS = 'USER_DETAILS_SUCCESS';
+const USER_DETAILS_FAIL = 'USER_DETAILS_FAIL';
+const USER_DETAILS_REQUEST = 'USER_DETAILS_REQUEST';
+const USER_DETAILS_SUCCESS = 'USER_DETAILS_SUCCESS';
 
-export const login = (email, password) => async (dispatch) => {
+const login = (email, password) => async (dispatch) => {
     try {
         dispatch({ type: LOGIN_REQUEST });
         const { data } = await apiLogin(email, password);
         dispatch({ type: LOGIN_SUCCESS, payload: data.user });
     } catch (error) {
-        console.log(error);
         dispatch({ type: LOGIN_FAIL, error: error.response.data.message });
     }
 };
 
-export const register = (userData) => async (dispatch) => {
+const register = (userData) => async (dispatch) => {
     try {
         dispatch({ type: REGISTER_USER_REQUEST });
         const { data } = await apiRegister(userData);
         dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
     } catch (error) {
-        console.log(error);
         dispatch({ type: REGISTER_USER_FAIL, error: error.response.data.message });
     }
 };
 
-export const loadUser = () => async (dispatch) => {
+const loadUser = () => async (dispatch) => {
     try {
         dispatch({ type: LOAD_USER_REQUEST });
         const { data } = await apiLoadUser();
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
     } catch (error) {
-        console.log(error);
         dispatch({ type: LOAD_USER_FAIL, error: error.response.data.message });
     }
 };
 
-export const logoutUser = () => async (dispatch) => {
+const logoutUser = () => async (dispatch) => {
     try {
         await apiLogoutUser();
         dispatch({ type: LOGOUT_SUCCESS });
     } catch (error) {
-        console.log(error);
         dispatch({ type: LOGOUT_FAIL, error: error.response.data.message });
     }
 };
 
-export const updateProfile = (userData) => async (dispatch) => {
+const updateProfile = (userData) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_PROFILE_REQUEST });
         const { data } = await apiUpdateProfile(userData);
         dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
     } catch (error) {
-        console.log(error);
         dispatch({ type: UPDATE_PROFILE_FAIL, error: error.response.data.message });
     }
 };
 
-export const updatePassword = (passwords) => async (dispatch) => {
+const updatePassword = (passwords) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_PASSWORD_REQUEST });
         const { data } = await apiUpdatePassword(passwords);
         dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: data.success });
     } catch (error) {
-        console.log(error);
         dispatch({ type: UPDATE_PASSWORD_FAIL, error: error.response.data.message });
     }
 };
 
-export const forgotPassword = (email) => async (dispatch) => {
+const forgotPassword = (email) => async (dispatch) => {
     try {
         dispatch({ type: FORGOT_PASSWORD_REQUEST });
         const { data } = await apiForgotPassword(email);
         dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
     } catch (error) {
-        console.log(error);
         dispatch({ type: FORGOT_PASSWORD_FAIL, error: error.response.data.message });
     }
 };
 
-export const resetPassword = (token, passwords) => async (dispatch) => {
+const resetPassword = (token, passwords) => async (dispatch) => {
     try {
         dispatch({ type: NEW_PASSWORD_REQUEST });
         const { data } = await apiResetPassword(token, passwords);
         dispatch({ type: NEW_PASSWORD_SUCCESS, payload: data.success });
     } catch (error) {
-        console.log(error);
         dispatch({ type: NEW_PASSWORD_FAIL, error: error.response.data.message });
     }
 };
 
-export const getAllUsers = () => async (dispatch) => {
+const getAllUsers = () => async (dispatch) => {
     try {
         dispatch({ type: ALL_USER_REQUEST });
         const { data } = await apiGetAllUsers();
         dispatch({ type: ALL_USER_SUCCESS, payload: data.users });
     } catch (error) {
-        console.log(error);
         dispatch({ type: ALL_USER_FAIL, error: error.response.data.message });
     }
 };
 
-export const getUserDetails = (id) => async (dispatch) => {
+const getUserDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: USER_DETAILS_REQUEST });
-        const { data } = await apiGetUserDetails();
+        const { data } = await apiGetUserDetails(id);
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data.user });
     } catch (error) {
-        console.log(error);
         dispatch({ type: USER_DETAILS_FAIL, error: error.response.data.message });
     }
 };
 
-export const updateUser = (id, userData) => async (dispatch) => {
+const updateUser = (id, userData) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_USER_REQUEST });
         const { data } = await apiUpdateUser(id, userData);
         dispatch({ type: UPDATE_USER_SUCCESS, payload: data.success });
     } catch (error) {
-        console.log(error);
         dispatch({ type: UPDATE_USER_FAIL, error: error.response.data.message });
     }
 };
 
-export const deleteUser = (id) => async (dispatch) => {
+const deleteUser = (id) => async (dispatch) => {
     try {
         dispatch({ type: DELETE_USER_REQUEST });
         const { data } = await apiDeleteUser(id);
         dispatch({ type: DELETE_USER_SUCCESS, payload: data.success });
     } catch (error) {
-        console.log(error);
         dispatch({ type: DELETE_USER_FAIL, error: error.response.data.message });
     }
 };
 
-export const clearErrors = () => async (dispatch) => {
+const clearErrors = () => async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
 };
 
-export const updateUserReset = () => async (dispatch) => {
+const updateUserReset = () => async (dispatch) => {
     dispatch({ type: UPDATE_USER_RESET });
 };
 
-export const updateProfileReset = () => async (dispatch) => {
+const updateProfileReset = () => async (dispatch) => {
     dispatch({ type: UPDATE_PROFILE_RESET });
 };
 
-export const deleteUserReset = () => async (dispatch) => {
+const deleteUserReset = () => async (dispatch) => {
     dispatch({ type: DELETE_USER_RESET });
 };
 
-export const updatePasswordReset = () => async (dispatch) => {
+const updatePasswordReset = () => async (dispatch) => {
     dispatch({ type: UPDATE_PASSWORD_RESET });
+};
+
+export {
+    ALL_USER_FAIL,
+    ALL_USER_REQUEST,
+    ALL_USER_SUCCESS,
+    CLEAR_ERRORS,
+    DELETE_USER_FAIL,
+    DELETE_USER_REQUEST,
+    DELETE_USER_RESET,
+    DELETE_USER_SUCCESS,
+    FORGOT_PASSWORD_FAIL,
+    FORGOT_PASSWORD_REQUEST,
+    FORGOT_PASSWORD_SUCCESS,
+    LOAD_USER_FAIL,
+    LOAD_USER_REQUEST,
+    LOAD_USER_SUCCESS,
+    LOGOUT_FAIL,
+    LOGOUT_SUCCESS,
+    LOGIN_FAIL,
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    NEW_PASSWORD_FAIL,
+    NEW_PASSWORD_REQUEST,
+    NEW_PASSWORD_SUCCESS,
+    REGISTER_USER_FAIL,
+    REGISTER_USER_REQUEST,
+    REGISTER_USER_SUCCESS,
+    UPDATE_PASSWORD_FAIL,
+    UPDATE_PASSWORD_REQUEST,
+    UPDATE_PASSWORD_RESET,
+    UPDATE_PASSWORD_SUCCESS,
+    UPDATE_PROFILE_FAIL,
+    UPDATE_PROFILE_REQUEST,
+    UPDATE_PROFILE_RESET,
+    UPDATE_PROFILE_SUCCESS,
+    UPDATE_USER_FAIL,
+    UPDATE_USER_REQUEST,
+    UPDATE_USER_RESET,
+    UPDATE_USER_SUCCESS,
+    USER_DETAILS_FAIL,
+    USER_DETAILS_REQUEST,
+    USER_DETAILS_SUCCESS,
+    login,
+    register,
+    loadUser,
+    logoutUser,
+    updateProfile,
+    updatePassword,
+    forgotPassword,
+    resetPassword,
+    getAllUsers,
+    getUserDetails,
+    updateUser,
+    deleteUser,
+    clearErrors,
+    updateUserReset,
+    updateProfileReset,
+    deleteUserReset,
+    updatePasswordReset,
 };

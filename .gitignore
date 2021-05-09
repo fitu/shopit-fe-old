@@ -7,6 +7,9 @@ coverage/
 # production
 build/
 
+# react
+/src/react-app-env.d.ts
+
 # misc
 .env.local
 .env.development.local
