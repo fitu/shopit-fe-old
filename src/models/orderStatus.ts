@@ -1,5 +1,5 @@
-// export enum OrderStatus {
-//     PROCESSING = 'processing',
-//     SHIPPED = 'shipped',
-//     DELIVERED = 'delivered',
-// }
+export enum OrderStatus {
+    PROCESSING = 'processing',
+    SHIPPED = 'shipped',
+    DELIVERED = 'delivered',
+}

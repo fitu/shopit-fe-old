@@ -1,11 +1,11 @@
 // class PaymentInfo {
-    // id: string;
-    // status: OrderStatus;
+// id: string;
+// status: OrderStatus;
 
-    // constructor(id: string, status: OrderStatus) {
-    //     this.id = id;
-    //     this.status = status;
-    // }
+// constructor(id: string, status: OrderStatus) {
+//     this.id = id;
+//     this.status = status;
+// }
 // }
 
-// export {};
+export {};
