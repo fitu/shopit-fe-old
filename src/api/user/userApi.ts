@@ -10,8 +10,7 @@ const updatePassword = (passwords: any) => axios.put(`${BASE_URI_VERSION}/passwo
 
 const forgotPassword = (email: string) => axios.post(`${BASE_URI_VERSION}/password/forgot`, email, baseHeaders);
 
-const resetPassword = (token: string, passwords: any) =>
-    axios.put(`${BASE_URI_VERSION}/password/reset/${token}`, passwords, baseHeaders);
+const resetPassword = (token: string, passwords: any) => axios.put(`${BASE_URI_VERSION}/password/reset/${token}`, passwords, baseHeaders);
 
 const getAllUsers = () => axios.get(`${BASE_URI_VERSION}/admin/users`);
 

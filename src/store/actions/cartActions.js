@@ -11,6 +11,7 @@ const addItemToCart = (id, quantity) => async (dispatch, getState) => {
     dispatch({
         type: ADD_TO_CART,
         payload: {
+            // eslint-disable-next-line no-underscore-dangle
             product: data.product._id,
             name: data.product.name,
             price: data.product.price,
@@ -40,4 +41,11 @@ const saveShippingInfo = (data) => async (dispatch) => {
     localStorage.setItem(StorageKeys.SHIPPING_INFO_KEY, JSON.stringify(data));
 };
 
-export { ADD_TO_CART, REMOVE_ITEM_FROM_CART, SAVE_SHIPPING_INFO, addItemToCart, removeItemFromCart, saveShippingInfo };
+export {
+    ADD_TO_CART,
+    REMOVE_ITEM_FROM_CART,
+    SAVE_SHIPPING_INFO,
+    addItemToCart,
+    removeItemFromCart,
+    saveShippingInfo,
+};

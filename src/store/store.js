@@ -1,8 +1,15 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
+// eslint-disable-next-line unicorn/prevent-abbreviations
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import { allUsersReducer, authReducer, passwordReducer, userDetailsReducer, userReducer } from './reducers/authReducer';
+import {
+    allUsersReducer,
+    authReducer,
+    passwordReducer,
+    userDetailsReducer,
+    userReducer,
+} from './reducers/authReducer';
 import { cartReducer } from './reducers/cartReducer';
 import {
     allOrdersReducer,

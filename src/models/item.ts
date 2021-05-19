@@ -1,4 +1,4 @@
-class Item {
+// class Item {
     // id: string;
     // product: Product;
     // name: string;
@@ -14,6 +14,6 @@ class Item {
     //     this.images = images;
     //     this.quantity = quantity;
     // }
-}
+// }
 
-export {}
+// export {}

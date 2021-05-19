@@ -1,4 +1,4 @@
-class PaymentInfo {
+// class PaymentInfo {
     // id: string;
     // status: OrderStatus;
 
@@ -6,6 +6,6 @@ class PaymentInfo {
     //     this.id = id;
     //     this.status = status;
     // }
-}
+// }
 
-export {};
+// export {};

@@ -1,6 +1,6 @@
-import { Role } from './role';
+// import { Role } from './role';
 
-class Review {
+// class Review {
     // id: string;
     // user: User;
     // name: string;
@@ -14,6 +14,6 @@ class Review {
     //     this.rating = rating;
     //     this.comment = comment;
     // }
-}
+// }
 
-export {};
+// export {};
