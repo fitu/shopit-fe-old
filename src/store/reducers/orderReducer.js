@@ -241,4 +241,10 @@ const orderReducer = (state = initialOrderState, action) => {
     }
 };
 
-export { ordersReducer, myOrdersReducer, orderDetailsReducer, allOrdersReducer, orderReducer };
+export {
+    ordersReducer,
+    myOrdersReducer,
+    orderDetailsReducer,
+    allOrdersReducer,
+    orderReducer,
+};

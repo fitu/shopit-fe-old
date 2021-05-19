@@ -1,11 +1,11 @@
-class Avatar {
-    publicId: string;
-    url: string;
+// class Avatar {
+//     publicId: string;
+//     url: string;
 
-    constructor(publicId: string, url: string) {
-        this.publicId = publicId;
-        this.url = url;
-    }
-}
+//     constructor(publicId: string, url: string) {
+//         this.publicId = publicId;
+//         this.url = url;
+//     }
+// }
 
-export {}
+// export {}

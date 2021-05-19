@@ -1,4 +1,4 @@
-class Image {
+// class Image {
     // id: string;
     // publicId: Role;
     // url: string;
@@ -8,6 +8,6 @@ class Image {
     //     this.publicId = publicId;
     //     this.url = url;
     // }
-}
+// }
 
-export {};
+// export {};

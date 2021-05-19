@@ -1,6 +1,6 @@
-import { Role } from './role';
+// import { Role } from './role';
 
-class User {
+// class User {
     // id: string;
     // role: Role;
     // name: string;
@@ -14,6 +14,6 @@ class User {
     //     this.email = email;
     //     this.avatar = avatar;
     // }
-}
+// }
 
-export {};
+// export {};

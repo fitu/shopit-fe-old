@@ -53,25 +53,23 @@ const UPDATE_PRODUCT_REQUEST = 'UPDATE_PRODUCT_REQUEST';
 const UPDATE_PRODUCT_RESET = 'UPDATE_PRODUCT_RESET';
 const UPDATE_PRODUCT_SUCCESS = 'UPDATE_PRODUCT_SUCCESS';
 
-const getProducts =
-    (keyword = '', price, currentPage = 1) =>
-    async (dispatch) => {
-        try {
-            dispatch({ type: ALL_PRODUCTS_REQUEST });
-            const minPrice = price[0];
-            const maxPrice = price[1];
-            const { data } = await apiGetProducts(keyword, currentPage, minPrice, maxPrice);
-            dispatch({
-                type: ALL_PRODUCTS_SUCCESS,
-                payload: data,
-            });
-        } catch (error) {
-            dispatch({
-                type: ALL_PRODUCTS_FAIL,
-                payload: error.response.data.message,
-            });
-        }
-    };
+const getProducts = (keyword = '', price, currentPage = 1) => async (dispatch) => {
+    try {
+        dispatch({ type: ALL_PRODUCTS_REQUEST });
+        const minPrice = price[0];
+        const maxPrice = price[1];
+        const { data } = await apiGetProducts(keyword, currentPage, minPrice, maxPrice);
+        dispatch({
+            type: ALL_PRODUCTS_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: ALL_PRODUCTS_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
 
 const getProductDetails = (id) => async (dispatch) => {
     try {
