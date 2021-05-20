@@ -42,7 +42,7 @@ const AddReviewModal = ({ match, showModal }) => {
                     />
                 </div>
                 <textarea className={'comment'} value={comment} onChange={(event) => setComment(event.target.value)} />
-                <button className={'submit'} onClick={reviewHandler}>
+                <button type='button' className={'submit'} onClick={reviewHandler}>
                     {'Submit'}
                 </button>
             </div>

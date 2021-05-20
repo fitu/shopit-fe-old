@@ -82,6 +82,7 @@ const ProductsList = ({ history }) => {
                             <i className={'fa fa-pencil'} />
                         </Link>
                         <button
+                            type="button"
                             className={'btn btn-danger py-1 px-2 ml-2'}
                             onClick={() => deleteProductHandler(product._id)}
                         >
@@ -107,8 +108,7 @@ const ProductsList = ({ history }) => {
                 </div>
                 <div className={''}>
                     <h1 className={''}>{'All products'}</h1>
-                    {loading ? <Loader /> : <MDBDataTable bordered hover striped className={''}
-data={setProducts()} />}
+                    {loading ? <Loader /> : <MDBDataTable bordered hover striped className={''} data={setProducts()} />}
                 </div>
             </div>
         </>

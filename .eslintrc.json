@@ -39,92 +39,92 @@
     ],
     "rules": {
         "indent": ["warn", 4, { "SwitchCase": 1 }],
-        "max-len": ["warn", 140]
-        // "linebreak-style": "off", // TODO enable this line
+        "max-len": ["warn", 140],
+        "linebreak-style": ["warn", "unix"],
 
-        // "react/boolean-prop-naming": ["warn", { "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+" }],
-        // "react/button-has-type": ["warn", { "button": true, "submit": true, "reset": true }],
-        // "react/default-props-match-prop-types": ["warn", { "allowRequiredDefaults": false }],
-        // "react/destructuring-assignment": ["warn", "always"],
-        // "react/display-name": ["warn", { "ignoreTranspilerName": true }],
+        "react/boolean-prop-naming": ["warn", { "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+" }],
+        "react/button-has-type": ["warn", { "button": true, "submit": true, "reset": true }],
+        "react/default-props-match-prop-types": ["warn", { "allowRequiredDefaults": false }],
+        "react/destructuring-assignment": ["warn", "always"],
+        "react/display-name": ["warn", { "ignoreTranspilerName": true }],
         // "react/forbid-component-props": ["warn"],
-        // "react/forbid-prop-types": ["warn"],
-        // "react/function-component-definition": [
-        //     "warn",
-        //     { "namedComponents": "arrow-function", "unnamedComponents": "arrow-function" }
-        // ],
-        // "react/no-access-state-in-setstate": "warn",
-        // "react/no-children-prop": "warn",
-        // "react/no-danger": "warn",
-        // "react/no-danger-with-children": "warn",
-        // "react/no-deprecated": "warn",
-        // "react/no-direct-mutation-state": "warn",
-        // "react/no-find-dom-node": "warn",
-        // "react/no-is-mounted": "warn",
-        // "react/no-multi-comp": ["warn", { "ignoreStateless": false }],
-        // "react/no-string-refs": ["warn"],
-        // "react/no-typos": "warn",
-        // "react/no-unescaped-entities": ["warn"],
-        // "react/no-unknown-property": ["warn"],
-        // "react/no-unused-prop-types": ["warn"],
-        // "react/no-unused-state": "warn",
-        // "react/prefer-read-only-props": "warn",
-        // "react/prefer-stateless-function": ["warn"],
+        "react/forbid-prop-types": ["warn"],
+        "react/function-component-definition": [
+            "warn",
+            { "namedComponents": "arrow-function", "unnamedComponents": "arrow-function" }
+        ],
+        "react/no-access-state-in-setstate": "warn",
+        "react/no-children-prop": "warn",
+        "react/no-danger": "warn",
+        "react/no-danger-with-children": "warn",
+        "react/no-deprecated": "warn",
+        "react/no-direct-mutation-state": "warn",
+        "react/no-find-dom-node": "warn",
+        "react/no-is-mounted": "warn",
+        "react/no-multi-comp": ["warn", { "ignoreStateless": false }],
+        "react/no-string-refs": ["warn"],
+        "react/no-typos": "warn",
+        "react/no-unescaped-entities": ["warn"],
+        "react/no-unknown-property": ["warn"],
+        "react/no-unused-prop-types": ["warn"],
+        "react/no-unused-state": "warn",
+        "react/prefer-read-only-props": "warn",
+        "react/prefer-stateless-function": ["warn"],
         // "react/prop-types": ["warn"],
-        // "react/react-in-jsx-scope": "warn",
-        // "react/require-default-props": ["warn", { "forbidDefaultForRequired": true }],
-        // "react/self-closing-comp": ["warn", { "component": true, "html": true }],
-        // "react/sort-prop-types": [
-        //     "warn",
-        //     {
-        //         "ignoreCase": false,
-        //         "callbacksLast": true,
-        //         "requiredFirst": false,
-        //         "sortShapeProp": true,
-        //         "noSortAlphabetically": false
-        //     }
-        // ],
+        "react/react-in-jsx-scope": "warn",
+        "react/require-default-props": ["warn", { "forbidDefaultForRequired": true }],
+        "react/self-closing-comp": ["warn", { "component": true, "html": true }],
+        "react/sort-prop-types": [
+            "warn",
+            {
+                "ignoreCase": false,
+                "callbacksLast": true,
+                "requiredFirst": false,
+                "sortShapeProp": true,
+                "noSortAlphabetically": false
+            }
+        ],
+        "react/style-prop-object": ["warn", { "allow": [] }],
 
-        // "react/style-prop-object": ["warn", { "allow": [] }],
-
-        // "react/jsx-boolean-value": ["warn", "never"],
-        // "react/jsx-child-element-spacing": "warn",
-        // "react/jsx-closing-bracket-location": ["warn", { "nonEmpty": "tag-aligned", "selfClosing": "tag-aligned" }],
-        // "react/jsx-closing-tag-location": "warn",
+        "react/jsx-boolean-value": ["warn", "never"],
+        "react/jsx-child-element-spacing": "warn",
+        "react/jsx-closing-bracket-location": ["warn", { "nonEmpty": "tag-aligned", "selfClosing": "tag-aligned" }],
+        "react/jsx-closing-tag-location": "warn",
         // "react/jsx-curly-brace-presence": ["warn", { "props": "always", "children": "always" }],
-        // "react/jsx-curly-newline": ["warn", { "multiline": "consistent", "singleline": "consistent" }],
-        // "react/jsx-curly-spacing": ["warn", "never"],
-        // "react/jsx-equals-spacing": ["warn", "never"],
-        // "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".ts", ".jsx", ".tsx"] }],
-        // "react/jsx-handler-names": [
-        //     "warn",
-        //     {
-        //         "eventHandlerPrefix": "handle",
-        //         "eventHandlerPropPrefix": "on",
-        //         "checkLocalVariables": false,
-        //         "checkInlineFunction": false
-        //     }
-        // ],
-        // "react/jsx-indent": ["warn", 4, { "checkAttributes": false, "indentLogicalExpressions": false }],
-        // "react/jsx-indent-props": ["warn", { "indentMode": 4, "ignoreTernaryOperator": true }],
-        // "react/jsx-key": ["warn", { "checkFragmentShorthand": false, "checkKeyMustBeforeSpread": false }],
-        // "react/jsx-max-props-per-line": ["warn", { "maximum": 4, "when": "always" }],
-        // "react/jsx-no-bind": [
-        //     "warn",
-        //     {
-        //         "ignoreDOMComponents": false,
-        //         "ignoreRefs": false,
-        //         "allowArrowFunctions": true,
-        //         "allowFunctions": false,
-        //         "allowBind": false
-        //     }
-        // ],
-        // "react/jsx-no-duplicate-props": ["warn", { "ignoreCase": true }],
+        "react/jsx-curly-newline": ["warn", { "multiline": "consistent", "singleline": "consistent" }],
+        "react/jsx-curly-spacing": ["warn", "never"],
+        "react/jsx-equals-spacing": ["warn", "never"],
+        "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".ts", ".jsx", ".tsx"] }],
+        "react/jsx-handler-names": [
+            "warn",
+            {
+                "eventHandlerPrefix": "handle",
+                "eventHandlerPropPrefix": "on",
+                "checkLocalVariables": false,
+                "checkInlineFunction": false
+            }
+        ],
+        "react/jsx-indent": ["warn", 4, { "checkAttributes": false, "indentLogicalExpressions": false }],
+        "react/jsx-indent-props": ["warn", { "indentMode": 4, "ignoreTernaryOperator": true }],
+        "react/jsx-key": ["warn", { "checkFragmentShorthand": false, "checkKeyMustBeforeSpread": false }],
+        "react/jsx-max-props-per-line": ["warn", { "maximum": 4, "when": "always" }],
+        "react/jsx-no-bind": [
+            "warn",
+            {
+                "ignoreDOMComponents": false,
+                "ignoreRefs": false,
+                "allowArrowFunctions": true,
+                "allowFunctions": false,
+                "allowBind": false
+            }
+        ],
+        // TODO keep on uncommenting from here
+        "react/jsx-no-duplicate-props": ["warn", { "ignoreCase": true }],
         // "react/jsx-no-literals": ["warn", { "noStrings": true, "ignoreProps": true, "noAttributeStrings": false }],
-        // "react/jsx-no-useless-fragment": "warn",
+        "react/jsx-no-useless-fragment": "warn",
         // "react/jsx-one-expression-per-line": ["warn", { "allow": "single-child" }],
-        // "react/jsx-pascal-case": ["warn"],
-        // "react/jsx-props-no-multi-spaces": "warn",
+        "react/jsx-pascal-case": ["warn"],
+        "react/jsx-props-no-multi-spaces": "warn",
         // "react/jsx-props-no-spreading": "off",
         // "react/jsx-sort-default-props": ["warn", { "ignoreCase": true }],
         // "react/jsx-sort-props": [
@@ -147,18 +147,18 @@
         // ],
         // "react/jsx-uses-react": "warn",
         // "react/jsx-uses-vars": "warn",
-        // "react/jsx-wrap-multilines": [
-        //     "warn",
-        //     {
-        //         "declaration": "parens-new-line",
-        //         "assignment": "parens-new-line",
-        //         "return": "parens-new-line",
-        //         "arrow": "parens-new-line",
-        //         "condition": "parens-new-line",
-        //         "logical": "parens-new-line",
-        //         "prop": "ignore"
-        //     }
-        // ],
+        "react/jsx-wrap-multilines": [
+            "warn",
+            {
+                "declaration": "parens-new-line",
+                "assignment": "parens-new-line",
+                "return": "parens-new-line",
+                "arrow": "parens-new-line",
+                "condition": "parens-new-line",
+                "logical": "parens-new-line",
+                "prop": "ignore"
+            }
+        ]
 
         // "react-hooks/rules-of-hooks": "error",
         // "react-hooks/exhaustive-deps": "warn",

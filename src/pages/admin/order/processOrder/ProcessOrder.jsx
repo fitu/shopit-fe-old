@@ -64,7 +64,8 @@ const ProcessOrder = ({ match }) => {
                                 </h2>
                                 <h4 className={''}>{'Shipping Info'}</h4>
                                 <p>
-                                    <b>{'Name: '}</b>{user?.name}
+                                    <b>{'Name: '}</b>
+                                    {user?.name}
                                 </p>
                                 <p>
                                     <b>{'Phone: '}</b>
@@ -123,7 +124,7 @@ const ProcessOrder = ({ match }) => {
                                                     <p>
                                                         {item.quantity}
                                                         Piece(s)
-</p>
+                                                    </p>
                                                 </div>
                                             </div>
                                         ))}
@@ -146,7 +147,7 @@ const ProcessOrder = ({ match }) => {
                                         ))}
                                     </select>
                                 </div>
-                                <button className={''} onClick={() => updateOrderHanlder(order._id)}>
+                                <button type="button" className={''} onClick={() => updateOrderHanlder(order._id)}>
                                     {'Update Status'}
                                 </button>
                             </div>

@@ -1,24 +1,24 @@
-import { bool } from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Route as LocalRoutes } from '../../../../router/route';
 
-const LoginButton = ({ loading }) =>
-    !loading && (
+const LoginButton = ({ isLoggedIn }) =>
+    !isLoggedIn && (
         <Link className={'header-profile__login-button'} to={LocalRoutes.LOGIN}>
             {'Login'}
         </Link>
     );
 
-LoginButton.diplayName = 'LoginButton';
+LoginButton.displayName = 'LoginButton';
 
 LoginButton.propTypes = {
-    loading: bool,
+    isLoggedIn: PropTypes.bool,
 };
 
 LoginButton.defaultProps = {
-    loading: false,
+    isLoggedIn: false,
 };
 
 export default LoginButton;

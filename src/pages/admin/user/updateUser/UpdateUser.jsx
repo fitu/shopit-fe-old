@@ -99,7 +99,9 @@ const UpdateUser = ({ match, history }) => {
                                         onChange={(event) => setRole(event.target.value)}
                                     >
                                         {Object.values(Role).map((role) => (
-                                            <option value={role}>{role}</option>
+                                            <option key={role} value={role}>
+                                                {role}
+                                            </option>
                                         ))}
                                     </select>
                                 </div>

@@ -27,7 +27,7 @@ const Search = ({ history }) => {
                         type={'text'}
                         onChange={(event) => setKeyword(event.target.value)}
                     />
-                    <button className={'header_search__button'}>
+                    <button type='button' className={'header_search__button'}>
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
                 </div>

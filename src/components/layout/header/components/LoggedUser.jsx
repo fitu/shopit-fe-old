@@ -21,7 +21,7 @@ const LoggedUserHeader = ({ user, logoutHandler }) => {
 
     return (
         <div className={'header-profile'}>
-            <button className={'header-profile__user'} onClick={() => setIsActive(!isActive)}>
+            <button type='button' className={'header-profile__user'} onClick={() => setIsActive(!isActive)}>
                 <figure>
                     <img alt={'Avatar'} className={'header-profile__user-logo'} src={user.avatar?.url} />
                 </figure>

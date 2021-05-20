@@ -84,7 +84,11 @@ const ProductReviews = ({ history }) => {
                 comment: review.comment,
                 user: review.name,
                 actions: (
-                    <button className={'btn btn-danger py-1 px-2 ml-2'} onClick={() => deleteReviewHandler(review._id)}>
+                    <button
+                        type="button"
+                        className={'btn btn-danger py-1 px-2 ml-2'}
+                        onClick={() => deleteReviewHandler(review._id)}
+                    >
                         <i className={'fa fa-trash'} />
                     </button>
                 ),
@@ -123,9 +127,7 @@ const ProductReviews = ({ history }) => {
                     </div>
 
                     {reviews && reviews.length > 0 ? (
-                        <MDBDataTable bordered hover striped className={''}
-data={setReviews()}
-                        />
+                        <MDBDataTable bordered hover striped className={''} data={setReviews()} />
                     ) : (
                         <p className={''}>{'No reviews'}</p>
                     )}

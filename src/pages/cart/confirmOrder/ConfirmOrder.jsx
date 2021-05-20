@@ -112,7 +112,7 @@ const ConfirmOrder = ({ history }) => {
                         </span>
                     </p>
                     <hr />
-                    <button className={'order--proceed'} onClick={proceedToPayment}>
+                    <button type="button" className={'order--proceed'} onClick={proceedToPayment}>
                         {'Proceed to Payment'}
                     </button>
                 </div>

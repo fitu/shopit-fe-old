@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Item } from '../../../../models/item';
 
 import strings from '../../../../resources/strings/components/layout/header/cartStrings';
 import { Route as LocalRoutes } from '../../../../router/route';
@@ -15,7 +16,7 @@ const CartHeader = ({ cartItems }) => (
 CartHeader.displayName = 'CartHeader';
 
 CartHeader.propTypes = {
-    cartItems: PropTypes.array,
+    cartItems: PropTypes.arrayOf(Item),
 };
 
 CartHeader.defaultProps = {

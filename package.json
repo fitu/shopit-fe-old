@@ -39,7 +39,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "lint": "eslint '*/**/*.{js,ts,jsx,tsx}' --quiet --fix",
+        "lint": "eslint '*/**/*.{js,ts,jsx,tsx}'",
         "lint:fix": "eslint . --ext js,jsx --fix",
         "build": "react-scripts build",
         "test": "react-scripts test",

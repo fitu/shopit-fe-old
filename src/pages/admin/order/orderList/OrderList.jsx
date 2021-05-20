@@ -82,6 +82,7 @@ const OrderList = ({ history }) => {
                             <i className={'fa fa-eye'} />
                         </Link>
                         <button
+                            type="button"
                             className={'btn btn-danger py-1 px-2 ml-2'}
                             onClick={() => deleteOrderHandler(order._id)}
                         >
@@ -103,8 +104,7 @@ const OrderList = ({ history }) => {
                 </div>
                 <div className={''}>
                     <h1 className={''}>{'All orders'}</h1>
-                    {loading ? <Loader /> : <MDBDataTable bordered hover striped className={''}
-data={setOrders()} />}
+                    {loading ? <Loader /> : <MDBDataTable bordered hover striped className={''} data={setOrders()} />}
                 </div>
             </div>
         </>
