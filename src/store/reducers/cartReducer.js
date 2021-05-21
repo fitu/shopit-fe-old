@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_ITEM_FROM_CART, SAVE_SHIPPING_INFO } from '../actions/cartActions';
+import { ADD_TO_CART, REMOVE_ITEM_FROM_CART, SAVE_SHIPPING_INFO, CLEAR_CART } from '../actions/cartActions';
 
 const initialCartState = {
     cartItems: [],
@@ -30,7 +30,14 @@ const cartReducer = (state = initialCartState, action) => {
             return {
                 ...state,
                 shippingInfo: action.payload,
+
             };
+        }
+        case CLEAR_CART: {
+            return {
+                ...state,
+                cartItems: [],
+            }
         }
         default: {
             return state;

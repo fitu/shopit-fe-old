@@ -12,6 +12,7 @@ const ALL_ORDERS_REQUEST = 'ALL_ORDERS_REQUEST';
 const ALL_ORDERS_SUCCESS = 'ALL_ORDERS_SUCCESS';
 
 const CLEAR_ERRORS = 'CLEAR_ERRORS';
+const CLEAR_CART = 'CLEAR_CART';
 
 const CREATE_ORDER_FAIL = 'CREATE_ORDER_FAIL';
 const CREATE_ORDER_REQUEST = 'CREATE_ORDER_REQUEST';
@@ -43,6 +44,7 @@ const createOrder = (order) => async (dispatch) => {
             type: CREATE_ORDER_SUCCESS,
             payload: data,
         });
+        dispatch({type: CLEAR_CART});
     } catch (error) {
         dispatch({ type: CREATE_ORDER_FAIL, payload: error.response.data.message });
     }
@@ -127,6 +129,7 @@ export {
     ALL_ORDERS_REQUEST,
     ALL_ORDERS_SUCCESS,
     CLEAR_ERRORS,
+    CLEAR_CART,
     CREATE_ORDER_FAIL,
     CREATE_ORDER_REQUEST,
     CREATE_ORDER_SUCCESS,
