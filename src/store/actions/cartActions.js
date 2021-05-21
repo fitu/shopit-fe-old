@@ -41,7 +41,7 @@ const clearCart = () => async (dispatch, getState) => {
     dispatch({
         type: CLEAR_CART,
     });
-    localStorage.setItem(StorageKeys.CART_ITEMS_KEY, JSON.stringify(getState().cart.cartItems));
+    localStorage.setItem(StorageKeys.CART_ITEMS_KEY, '');
 }
 
 const saveShippingInfo = (data) => async (dispatch) => {
