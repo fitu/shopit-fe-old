@@ -7,6 +7,7 @@ import { processPayment } from '../../../api/api';
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
 import { clearErrors, createOrder } from '../../../store/actions/orderActions';
+import { clearCart } from '../../../store/actions/cartActions';
 import { StorageKeys } from '../../../store/repository/repository';
 import CheckoutSteps from '../components/CheckoutSteps';
 import './styles/payment.scss';
@@ -97,6 +98,7 @@ const Payment = ({ history }) => {
 
             dispatch(createOrder(order));
             history.push(Route.CHECKOUT_STEP_SUCCESS);
+            dispatch(clearCart(order));
         } catch (error) {
             document.querySelector('#pay_btn').disabled = false;
             alert.error(error.response.data.message);
