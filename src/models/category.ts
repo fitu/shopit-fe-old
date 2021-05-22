@@ -1,4 +1,4 @@
-export enum Category {
+enum Category {
     ELECTRONICS = 'Electronics',
     CAMERA = 'Cameras',
     LAPTOPS = 'Laptops',
@@ -12,3 +12,5 @@ export enum Category {
     OUTDOOR = 'Outdoor',
     HOME = 'Home',
 }
+
+export default Category;

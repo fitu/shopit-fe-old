@@ -15,7 +15,8 @@ const newProduct = (productData: any) => axios.post(`${BASE_URI_VERSION}/admin/p
 
 const deleteProduct = (id: string) => axios.delete(`${BASE_URI_VERSION}/admin/product/${id}`);
 
-const updateProduct = (id: string, productData: any) => axios.put(`${BASE_URI_VERSION}/admin/product/${id}`, productData, baseHeaders);
+const updateProduct = (id: string, productData: any) =>
+    axios.put(`${BASE_URI_VERSION}/admin/product/${id}`, productData, baseHeaders);
 
 const getProductReviews = (id: string) => axios.get(`${BASE_URI_VERSION}/reviews?id=${id}`);
 

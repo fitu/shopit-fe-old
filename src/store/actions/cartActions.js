@@ -37,12 +37,10 @@ const removeItemFromCart = (id) => async (dispatch, getState) => {
     localStorage.setItem(StorageKeys.CART_ITEMS_KEY, JSON.stringify(getState().cart.cartItems));
 };
 
-const clearCart = () => async (dispatch, getState) => {
-    dispatch({
-        type: CLEAR_CART,
-    });
+const clearCart = () => async (dispatch) => {
+    dispatch({ type: CLEAR_CART });
     localStorage.setItem(StorageKeys.CART_ITEMS_KEY, '');
-}
+};
 
 const saveShippingInfo = (data) => async (dispatch) => {
     dispatch({ type: SAVE_SHIPPING_INFO, payload: data });

@@ -1,11 +1,13 @@
-// class PaymentInfo {
-// id: string;
-// status: OrderStatus;
+import OrderStatus from './orderStatus';
 
-// constructor(id: string, status: OrderStatus) {
-//     this.id = id;
-//     this.status = status;
-// }
-// }
+class PaymentInfo {
+    id: string;
+    status: OrderStatus;
 
-export {};
+    constructor(id: string, status: OrderStatus) {
+        this.id = id;
+        this.status = status;
+    }
+}
+
+export default PaymentInfo;

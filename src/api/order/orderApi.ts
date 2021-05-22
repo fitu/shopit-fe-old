@@ -10,15 +10,9 @@ const getOrderDetails = (id: string) => axios.get(`${BASE_URI_VERSION}/order/${i
 
 const getAllOrders = () => axios.get(`${BASE_URI_VERSION}/admin/orders`);
 
-const updateOrder = (id: string, orderData: any) => axios.put(`${BASE_URI_VERSION}/admin/order/${id}`, orderData, baseHeaders);
+const updateOrder = (id: string, orderData: any) =>
+    axios.put(`${BASE_URI_VERSION}/admin/order/${id}`, orderData, baseHeaders);
 
 const deleteOrder = (id: string) => axios.delete(`${BASE_URI_VERSION}/admin/order/${id}`);
 
-export {
-    createOrder,
-    myOrders,
-    getOrderDetails,
-    getAllOrders,
-    updateOrder,
-    deleteOrder,
-};
+export { createOrder, myOrders, getOrderDetails, getAllOrders, updateOrder, deleteOrder };
