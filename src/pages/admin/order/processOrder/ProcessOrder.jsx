@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import './styles/processOrder.scss';
 import Loader from '../../../../components/util/Loader';
 import MetaData from '../../../../components/util/MetaData';
-import { OrderStatus } from '../../../../models/orderStatus';
+import OrderStatus from '../../../../models/orderStatus';
 import { clearErrors, getOrderDetails, updateOrder, updateOrderReset } from '../../../../store/actions/orderActions';
 import Sidebar from '../../sidebar/Sidebar';
 
@@ -147,7 +147,7 @@ const ProcessOrder = ({ match }) => {
                                         ))}
                                     </select>
                                 </div>
-                                <button type="button" className={''} onClick={() => updateOrderHanlder(order._id)}>
+                                <button className={''} type={'button'} onClick={() => updateOrderHanlder(order._id)}>
                                     {'Update Status'}
                                 </button>
                             </div>

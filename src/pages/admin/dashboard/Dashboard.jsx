@@ -18,11 +18,11 @@ const Dashboard = () => {
     const { users } = useSelector((state) => state.allUsers);
 
     let outOfStock = 0;
-    for (const product of products) {
+    products.forEach((product) => {
         if (product.stock === 0) {
             outOfStock += 1;
         }
-    }
+    });
 
     useEffect(() => {
         dispatch(getAdminProducts());

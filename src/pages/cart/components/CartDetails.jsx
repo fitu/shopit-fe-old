@@ -25,7 +25,7 @@ const CartDetails = ({ cartItems, history }) => {
                 </span>
             </p>
             <hr />
-            <button type="button" className={'cart__order--checkout'} onClick={checkoutHandler}>
+            <button className={'cart__order--checkout'} type={'button'} onClick={checkoutHandler}>
                 {'Check out'}
             </button>
         </div>

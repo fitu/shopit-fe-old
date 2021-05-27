@@ -6,7 +6,6 @@ import { Route } from '../../../router/route';
 import '../styles/product.scss';
 
 const Product = ({ product }) => {
-    console.log(product);
     return (
         <div className={'product'}>
             <img alt={'Product images'} className={'product__image'} src={product.images[0].url} />

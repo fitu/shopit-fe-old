@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React from 'react';
 import { positions, Provider as AlertProvider, transitions } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 import { useSelector } from 'react-redux';
@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import Footer from './components/layout/footer/Footer';
 import Header from './components/layout/header/Header';
-import { Role } from './models/role';
+import Role from './models/role';
 import AppRouter from './router/AppRouter';
 
 const alertOptions = {

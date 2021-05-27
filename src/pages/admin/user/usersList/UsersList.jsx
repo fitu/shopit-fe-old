@@ -78,8 +78,8 @@ const UsersList = ({ history }) => {
                             <i className={'fa fa-pencil'} />
                         </Link>
                         <button
-                            type="button"
                             className={'btn btn-danger py-1 px-2 ml-2'}
+                            type={'button'}
                             onClick={() => deleteUserHandler(user._id)}
                         >
                             <i className={'fa fa-trash'} />

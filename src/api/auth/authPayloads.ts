@@ -1,14 +1,25 @@
-// interface LoginRequest {
-//     email: string;
-//     password: string;
-// }
+class LoginPayload {
+    email: string;
+    password: string;
 
-// interface RegisterRequest {
-//     name: string;
-//     email: string;
-//     password: string;
-//     avatar: string; // TODO check this
-// }
+    constructor(email: string, password: string) {
+        this.email = email;
+        this.password = password;
+    }
+}
 
-// export type { LoginRequest, RegisterRequest };
-export {};
+class RegisterPayload {
+    name: string;
+    email: string;
+    password: string;
+    avatar: string; // TODO check this
+
+    constructor(name: string, email: string, password: string, avatar: string) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.avatar = avatar;
+    }
+}
+
+export { LoginPayload, RegisterPayload };

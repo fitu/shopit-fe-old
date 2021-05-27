@@ -85,8 +85,8 @@ const ProductReviews = ({ history }) => {
                 user: review.name,
                 actions: (
                     <button
-                        type="button"
                         className={'btn btn-danger py-1 px-2 ml-2'}
+                        type={'button'}
                         onClick={() => deleteReviewHandler(review._id)}
                     >
                         <i className={'fa fa-trash'} />
