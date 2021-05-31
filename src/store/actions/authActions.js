@@ -12,8 +12,8 @@ import {
     updateUser as apiUpdateUser,
 } from '../../api/api';
 import { login as apiLogin } from '../../api/auth/authApi';
-import { LoginPayload } from '../../api/auth/authPayloads';
-import { LoginError } from '../../api/auth/authErrors';
+import LoginError from '../../api/auth/errors/loginError';
+import LoginPayload from '../../api/auth/payloads/loginPayload';
 
 const ALL_USER_FAIL = 'ALL_USER_FAIL';
 const ALL_USER_REQUEST = 'ALL_USER_REQUEST';

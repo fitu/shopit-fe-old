@@ -7,7 +7,7 @@ import { processPayment } from '../../../api/api';
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
 import { clearErrors, createOrder } from '../../../store/actions/orderActions';
-import { clearCart } from '../../../store/actions/cartActions';
+import { clearCart } from '../../../store/actions/cart/cartActions';
 import { StorageKeys } from '../../../store/repository/repository';
 import CheckoutSteps from '../components/CheckoutSteps';
 import './styles/payment.scss';

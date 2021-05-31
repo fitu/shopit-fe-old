@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { BASE_URI_VERSION, baseHeaders } from '../apiConfing';
+import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
 
 const createOrder = (order: any) => axios.post(`${BASE_URI_VERSION}/order/new`, order, baseHeaders);
 

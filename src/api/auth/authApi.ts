@@ -1,16 +1,19 @@
 import axios from 'axios';
 
-import { BASE_URI_VERSION, baseHeaders } from '../apiConfing';
+import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
 
-import { LoginPayload, RegisterPayload } from './authPayloads';
-import { LoginResponse, LogoutResponse, RegisterResponse } from './authResponses';
-import { LoginError } from './authErrors';
+import LoginError from './errors/loginError';
+import LoginPayload from './payloads/loginPayload';
+import RegisterPayload from './payloads/registerPayload';
+import LoginResponse from './responses/loginResponse';
+import LogoutResponse from './responses/logoutResponse';
+import RegisterResponse from './responses/registerResponse';
 
 const login = async (loginPayload: LoginPayload): Promise<LoginResponse> => {
     try {
-        const response = await axios.post(`${BASE_URI_VERSION}/login`, { ...loginPayload }, baseHeaders);
-        const { token, user } = response.data;
-        return new LoginResponse(token, user);
+        const response = await axios.post<LoginResponse>(`${BASE_URI_VERSION}/login`, { ...loginPayload }, baseHeaders);
+        // TODO: add parser
+        return response.data;
     } catch (error) {
         const { status } = error.response.status;
         if (status === 400 || status === 401) {

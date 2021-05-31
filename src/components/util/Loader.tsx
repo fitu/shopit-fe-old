@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-const Loader = () => <div className={'loader'} />;
+const Loader: React.FC = (): ReactElement => <div className={'loader'} />;
 
 Loader.displayName = 'Loader';
 

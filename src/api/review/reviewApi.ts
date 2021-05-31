@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { BASE_URI_VERSION, baseHeaders } from '../apiConfing';
+import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
 
 const newReview = (reviewData: any) => axios.put(`${BASE_URI_VERSION}/review`, reviewData, baseHeaders);
 

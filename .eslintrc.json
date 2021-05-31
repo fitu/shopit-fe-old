@@ -283,7 +283,7 @@
         // "fp/no-proxy": "warn",
         // "fp/no-rest-parameters": "warn",
         // "fp/no-this": "off",
-        // "fp/no-throw": "warn",
+        // "fp/no-throw": "off",
         // "fp/no-valueof-field": "warn",
         // "no-var": "warn",
 

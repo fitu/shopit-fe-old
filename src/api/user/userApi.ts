@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { BASE_URI_VERSION, baseHeaders } from '../apiConfing';
+import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
 
 const loadUser = (): Promise<any> => axios.get(`${BASE_URI_VERSION}/me`);
 

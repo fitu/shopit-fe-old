@@ -1,13 +1,3 @@
-class LoginPayload {
-    email: string;
-    password: string;
-
-    constructor(email: string, password: string) {
-        this.email = email;
-        this.password = password;
-    }
-}
-
 class RegisterPayload {
     name: string;
     email: string;
@@ -22,4 +12,4 @@ class RegisterPayload {
     }
 }
 
-export { LoginPayload, RegisterPayload };
+export default RegisterPayload;

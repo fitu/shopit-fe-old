@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { BASE_URI_VERSION, baseHeaders } from '../apiConfing';
+import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
 
 const getProducts = (keyword: any, currentPage: any, minPrice: number, maxPrice: number) => {
     const link = `${BASE_URI_VERSION}/products?keyword=${keyword}&page=${currentPage}&price[lte]=${maxPrice}&price[gte]=${minPrice}`;

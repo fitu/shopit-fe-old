@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Route } from '../../../router/route';
-import { addItemToCart, removeItemFromCart } from '../../../store/actions/cartActions';
+import { addItemToCart, removeItemFromCart } from '../../../store/actions/cart/cartActions';
 import '../styles/cartItems.scss';
 
 const CartItems = ({ cartItems }) => {

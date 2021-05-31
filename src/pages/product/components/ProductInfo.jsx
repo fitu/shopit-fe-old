@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addItemToCart } from '../../../store/actions/cartActions';
+import { addItemToCart } from '../../../store/actions/cart/cartActions';
 import '../styles/productInfo.scss';
 
 const ProductInfo = ({ product, match, showModal }) => {
