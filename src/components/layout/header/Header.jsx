@@ -30,15 +30,14 @@ const Header = () => {
             </Link>
 
             <Route render={({ history }) => <Search history={history} />} />
-
             <div className={'header-profile'}>
+                
                 <CartHeader cartItems={cartItems} />
-                <div className={'header-profile__container'}>
-                    {user ? (
-                        <LoggedUserHeader logoutHandler={logoutHandler} user={user} />
-                    ) : (
-                        <LoginButton loading={loading} />
-                    )}
+                <div className={'header-profile__container'}>   
+                    {user ? 
+                        (<LoggedUserHeader logoutHandler={logoutHandler} user={user} />) : (
+                            <LoginButton loading={loading} />
+                        )}
                 </div>
             </div>
         </nav>
