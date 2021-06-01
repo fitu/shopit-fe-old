@@ -1,7 +1,7 @@
-import Item from '../../../models/item';
-import ShippingInfo from '../../../models/shippingInfo';
+import Item from './item';
+import ShippingInfo from './shippingInfo';
 
-class CartState {
+class Cart {
     cartItems: Array<Item>;
     shippingInfo: ShippingInfo;
 
@@ -11,4 +11,4 @@ class CartState {
     }
 }
 
-export default CartState;
+export default Cart;

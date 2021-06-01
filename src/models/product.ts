@@ -9,7 +9,7 @@ class Product {
     numberOfReviews: number;
     name: string;
     description: string;
-    images: Image;
+    images: Array<Image>;
     category: Category;
     seller: string;
     stock: number;
@@ -23,7 +23,7 @@ class Product {
         numberOfReviews: number,
         name: string,
         description: string,
-        images: Image,
+        images: Array<Image>,
         category: Category,
         seller: string,
         stock: number,

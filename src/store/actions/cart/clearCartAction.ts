@@ -1,6 +1,8 @@
+import { Action } from 'redux';
+
 const CLEAR_CART = 'CLEAR_CART';
 
-interface ClearCart {
+interface ClearCart extends Action {
     type: typeof CLEAR_CART;
 }
 

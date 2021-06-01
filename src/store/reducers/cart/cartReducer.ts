@@ -1,11 +1,12 @@
 import _ from 'lodash';
-import CartState from './cartModel';
-import { ADD_TO_CART } from '../../actions/cart/models/addToCartAction';
-import { REMOVE_ITEM_FROM_CART } from '../../actions/cart/models/removeItemFromCart';
-import { SAVE_SHIPPING_INFO } from '../../actions/cart/models/saveShippingInfo';
-import { CLEAR_CART } from '../../actions/cart/models/clearCart';
-import { CartActions } from '../../actions/cart/actions';
-import Item from '../../../models/item';
+
+import { ADD_TO_CART } from '../../actions/cart/addToCartAction';
+import { CartActions } from '../../actions/cart/cartActions';
+import { CLEAR_CART } from '../../actions/cart/clearCartAction';
+import { REMOVE_ITEM_FROM_CART } from '../../actions/cart/removeItemFromCart';
+import { SAVE_SHIPPING_INFO } from '../../actions/cart/saveShippingInfoAction';
+import CartState from '../../state/cartState';
+import ItemState from '../../state/itemState';
 
 const initialCartState = new CartState();
 
@@ -17,7 +18,7 @@ const cartReducer = (state = initialCartState, action: CartActions): CartState =
             if (isItemExists) {
                 return {
                     ...state,
-                    cartItems: _.map(state.cartItems, (cartItem: Item) =>
+                    cartItems: _.map(state.cartItems, (cartItem: ItemState) =>
                         cartItem.product === isItemExists.product ? item : cartItem,
                     ),
                 };
@@ -30,7 +31,7 @@ const cartReducer = (state = initialCartState, action: CartActions): CartState =
         case REMOVE_ITEM_FROM_CART: {
             return {
                 ...state,
-                cartItems: _.reject(state.cartItems, (cartItem: Item) => cartItem.product !== action.payload),
+                cartItems: _.reject(state.cartItems, (cartItem: ItemState) => cartItem.product !== action.payload),
             };
         }
         case SAVE_SHIPPING_INFO: {

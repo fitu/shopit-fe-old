@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-class AvatarResponse {
+class AvatarApi {
     public_id: string;
     url: string;
 
@@ -9,4 +9,4 @@ class AvatarResponse {
     }
 }
 
-export default AvatarResponse;
+export default AvatarApi;

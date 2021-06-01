@@ -1,14 +1,12 @@
 /* eslint-disable no-underscore-dangle */
-import UserResponse from './userResponse';
-
-class ReviewResponse {
+class ReviewApi {
     _id: string;
-    user: UserResponse;
+    user: string;
     name: string;
     rating: number;
     comment: string;
 
-    constructor(_id: string, user: UserResponse, name: string, rating: number, comment: string) {
+    constructor(_id: string, user: string, name: string, rating: number, comment: string) {
         this._id = _id;
         this.user = user;
         this.name = name;
@@ -17,4 +15,4 @@ class ReviewResponse {
     }
 }
 
-export default ReviewResponse;
+export default ReviewApi;

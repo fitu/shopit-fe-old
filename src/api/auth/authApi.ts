@@ -12,7 +12,6 @@ import RegisterResponse from './responses/registerResponse';
 const login = async (loginPayload: LoginPayload): Promise<LoginResponse> => {
     try {
         const response = await axios.post<LoginResponse>(`${BASE_URI_VERSION}/login`, { ...loginPayload }, baseHeaders);
-        // TODO: add parser
         return response.data;
     } catch (error) {
         const { status } = error.response.status;

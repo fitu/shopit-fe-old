@@ -1,21 +1,21 @@
 /* eslint-disable no-underscore-dangle */
 import Category from '../../models/category';
 
-import ImageResponse from './imageResponse';
-import ReviewResponse from './reviewResponse';
+import ImageApi from './imageApi';
+import ReviewApi from './reviewApi';
 
-class ProductResponse {
+class ProductApi {
     _id: string;
     price: number;
     ratings: number;
     numberOfReviews: number;
     name: string;
     description: string;
-    images: ImageResponse;
+    images: Array<ImageApi>;
     category: Category;
     seller: string;
     stock: number;
-    reviews: Array<ReviewResponse>;
+    reviews: Array<ReviewApi>;
     createAt: Date;
 
     constructor(
@@ -25,11 +25,11 @@ class ProductResponse {
         numberOfReviews: number,
         name: string,
         description: string,
-        images: ImageResponse,
+        images: Array<ImageApi>,
         category: Category,
         seller: string,
         stock: number,
-        reviews: Array<ReviewResponse>,
+        reviews: Array<ReviewApi>,
         createAt: Date,
     ) {
         this._id = _id;
@@ -47,4 +47,4 @@ class ProductResponse {
     }
 }
 
-export default ProductResponse;
+export default ProductApi;

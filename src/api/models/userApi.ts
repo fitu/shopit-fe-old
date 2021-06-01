@@ -1,24 +1,24 @@
 /* eslint-disable no-underscore-dangle */
 import Role from '../../models/role';
 
-import AvatarResponse from './avatarResponse';
+import AvatarApi from './avatarApi';
 
-class UserResponse {
-    avatar: AvatarResponse;
-    role: Role;
+class UserApi {
     _id: string;
+    avatar: AvatarApi;
+    role: Role;
     name: string;
     email: string;
     createdAt: string;
 
-    constructor(avatar: AvatarResponse, role: Role, _id: string, name: string, email: string, createdAt: string) {
+    constructor(_id: string, avatar: AvatarApi, role: Role, name: string, email: string, createdAt: string) {
+        this._id = _id;
         this.avatar = avatar;
         this.role = role;
-        this._id = _id;
         this.name = name;
         this.email = email;
         this.createdAt = createdAt;
     }
 }
 
-export default UserResponse;
+export default UserApi;

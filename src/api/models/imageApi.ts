@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable camelcase */
-class ImageResponse {
+class ImageApi {
     _id: string;
     public_id: string;
     url: string;
@@ -12,4 +12,4 @@ class ImageResponse {
     }
 }
 
-export default ImageResponse;
+export default ImageApi;

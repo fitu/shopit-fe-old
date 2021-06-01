@@ -1,13 +1,13 @@
-import UserResponse from '../../models/userResponse';
+import UserApi from '../../models/userApi';
 
-class RegisterResponse {
+class RegisterApi {
     token: string;
-    user: UserResponse;
+    user: UserApi;
 
-    constructor(token: string, user: UserResponse) {
+    constructor(token: string, user: UserApi) {
         this.token = token;
         this.user = user;
     }
 }
 
-export default RegisterResponse;
+export default RegisterApi;

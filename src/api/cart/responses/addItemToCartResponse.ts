@@ -1,5 +1,13 @@
-import ProductResponse from '../../models/productResponse';
+import ProductApi from '../../models/productApi';
 
-class AddItemToCartResponse extends ProductResponse {}
+class AddItemToCartResponse {
+    success: boolean;
+    product: ProductApi;
+
+    constructor(success: boolean, product: ProductApi) {
+        this.success = success;
+        this.product = product;
+    }
+}
 
 export default AddItemToCartResponse;
