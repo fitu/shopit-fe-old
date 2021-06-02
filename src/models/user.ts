@@ -1,19 +1,22 @@
-// import { Role } from './role';
+import Avatar from './avatar';
+import Role from './role';
 
-// class User {
-// id: string;
-// role: Role;
-// name: string;
-// email: string;
-// avatar: Avatar;
+class User {
+    id: string;
+    role: Role;
+    name: string;
+    email: string;
+    avatar: Avatar;
+    createdAt: string;
 
-// constructor(id: string, role: Role, name: string, email: string, avatar: Avatar) {
-//     this.id = id;
-//     this.role = role;
-//     this.name = name;
-//     this.email = email;
-//     this.avatar = avatar;
-// }
-// }
+    constructor(id: string, role: Role, name: string, email: string, avatar: Avatar, createdAt: string) {
+        this.id = id;
+        this.role = role;
+        this.name = name;
+        this.email = email;
+        this.avatar = avatar;
+        this.createdAt = createdAt;
+    }
+}
 
-export {};
+export default User;

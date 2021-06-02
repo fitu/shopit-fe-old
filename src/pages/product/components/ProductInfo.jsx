@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAlert } from 'react-alert';
 
-import { addItemToCart } from '../../../store/actions/cartActions';
+import { addItemToCart } from '../../../store/actions/cart/cartActions';
 import '../styles/productInfo.scss';
 
 const ProductInfo = ({ product, match, showModal }) => {
@@ -35,7 +35,7 @@ const ProductInfo = ({ product, match, showModal }) => {
 
     const addToCart = () => {
         dispatch(addItemToCart(match.params.id, quantity));
-        alert.success('Item added to cart!');
+        alert('Item added to cart!');
     };
 
     return (

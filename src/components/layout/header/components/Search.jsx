@@ -1,5 +1,6 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import _ from 'lodash';
 import React, { useState } from 'react';
 
 import { Route } from '../../../../router/route';
@@ -10,7 +11,7 @@ const Search = ({ history }) => {
     const handleSearch = (event) => {
         event.preventDefault();
 
-        if (keyword.trim()) {
+        if (_.trim(keyword)) {
             history.push(`${Route.SEARCH}/${keyword}`);
         } else {
             history.push(Route.HOME);
@@ -27,7 +28,7 @@ const Search = ({ history }) => {
                         type={'text'}
                         onChange={(event) => setKeyword(event.target.value)}
                     />
-                    <button className={'header_search__button'}>
+                    <button className={'header_search__button'} type={'button'}>
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
                 </div>

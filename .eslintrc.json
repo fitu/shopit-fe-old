@@ -1,4 +1,3 @@
-//TODO uncomment all commented lines
 {
     "env": {
         "browser": true,
@@ -23,6 +22,11 @@
     "settings": {
         "react": {
             "version": "detect"
+        },
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
         }
     },
     "plugins": [
@@ -38,9 +42,11 @@
         "lodash"
     ],
     "rules": {
-        "indent": ["warn", 4, { "SwitchCase": 1 }],
-        "max-len": ["warn", 140]
-        // "linebreak-style": "off", // TODO enable this line
+        // "indent": ["warn", 4, { "SwitchCase": 1 }],
+        // "max-len": ["warn", 140],
+        // "linebreak-style": ["warn", "unix"],
+        // "object-curly-newline": ["warn", { "multiline": true }],
+        // "lines-between-class-members": "off",
 
         // "react/boolean-prop-naming": ["warn", { "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+" }],
         // "react/button-has-type": ["warn", { "button": true, "submit": true, "reset": true }],
@@ -84,7 +90,6 @@
         //         "noSortAlphabetically": false
         //     }
         // ],
-
         // "react/style-prop-object": ["warn", { "allow": [] }],
 
         // "react/jsx-boolean-value": ["warn", "never"],
@@ -125,7 +130,7 @@
         // "react/jsx-one-expression-per-line": ["warn", { "allow": "single-child" }],
         // "react/jsx-pascal-case": ["warn"],
         // "react/jsx-props-no-multi-spaces": "warn",
-        // "react/jsx-props-no-spreading": "off",
+        // "react/jsx-props-no-spreading": "warn",
         // "react/jsx-sort-default-props": ["warn", { "ignoreCase": true }],
         // "react/jsx-sort-props": [
         //     "warn",
@@ -163,7 +168,7 @@
         // "react-hooks/rules-of-hooks": "error",
         // "react-hooks/exhaustive-deps": "warn",
 
-        // "import/no-unresolved": ["warn", { "commonjs": true, "amd": false }],
+        // "import/no-unresolved": ["warn", { "commonjs": false, "amd": false }],
         // "import/named": "warn",
         // "import/default": "warn",
         // "import/namespace": "warn",
@@ -233,7 +238,7 @@
         // "const-case/uppercase": "warn",
 
         // "immutable/no-let": "warn",
-        // "immutable/no-this": "warn",
+        // "immutable/no-this": "off",
 
         // "prefer-arrow/prefer-arrow-functions": [
         //     "warn",
@@ -246,10 +251,17 @@
 
         // "unicorn/filename-case": ["warn", { "case": "camelCase", "ignore": ["^\\w*.[jt]sx"] }],
         // "unicorn/consistent-function-scoping": "off",
-        // "unicorn/prevent-abbreviations": "off", // TODO enable this line
+        // "unicorn/prevent-abbreviations": [
+        //     "warn",
+        //     {
+        //         "allowList": {
+        //             "composeWithDevTools": true
+        //         }
+        //     }
+        // ],
 
         // "fp/no-arguments": "warn",
-        // "fp/no-class": "warn",
+        // "fp/no-class": "off",
         // "fp/no-delete": "warn",
         // "fp/no-events": "warn",
         // "fp/no-get-set": "warn",
@@ -260,6 +272,7 @@
         // "fp/no-mutation": [
         //     "warn",
         //     {
+        //         "allowThis": true,
         //         "exceptions": [
         //             { "property": "displayName" },
         //             { "property": "propTypes" },
@@ -269,8 +282,8 @@
         // ],
         // "fp/no-proxy": "warn",
         // "fp/no-rest-parameters": "warn",
-        // "fp/no-this": "warn",
-        // "fp/no-throw": "warn",
+        // "fp/no-this": "off",
+        // "fp/no-throw": "off",
         // "fp/no-valueof-field": "warn",
         // "no-var": "warn",
 
@@ -278,6 +291,9 @@
         // "no-use-before-define": "off",
         // "@typescript-eslint/no-use-before-define": ["error"],
 
-        // "@typescript-eslint/explicit-module-boundary-types": "off" // TODO enable this line
+        // "no-shadow": "off",
+        // "@typescript-eslint/no-shadow": ["error"],
+
+        // "@typescript-eslint/explicit-module-boundary-types": "warn"
     }
 }

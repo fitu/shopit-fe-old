@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
-import { saveShippingInfo } from '../../../store/actions/cartActions';
+import { saveShippingInfo } from '../../../store/actions/cart/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 import './styles/shipping.scss';
 

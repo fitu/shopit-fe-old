@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
-import { Role } from '../models/role.ts';
+import Role from '../models/role.ts';
 
 import { Route as LocalRoutes } from './route.ts';
 

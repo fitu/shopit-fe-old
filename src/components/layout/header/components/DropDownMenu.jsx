@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Role } from '../../../../models/role';
+import Role from '../../../../models/role';
 import { Route as LocalRoutes } from '../../../../router/route';
 
 const DropDownMenu = ({ user, logoutHandler }) => (

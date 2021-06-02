@@ -301,10 +301,4 @@ const userDetailsReducer = (state = initialUserDetailsState, action) => {
     }
 };
 
-export {
-    authReducer,
-    userReducer,
-    passwordReducer,
-    allUsersReducer,
-    userDetailsReducer,
-};
+export { authReducer, userReducer, passwordReducer, allUsersReducer, userDetailsReducer };

@@ -15,6 +15,7 @@ import Search from './components/Search';
 const Header = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
+    // TODO replace loading to isLoggedIn
     const { user, loading } = useSelector((state) => state.auth);
     const { cartItems } = useSelector((state) => state.cart);
 
@@ -33,11 +34,12 @@ const Header = () => {
             <div className={'header-profile'}>
                 
                 <CartHeader cartItems={cartItems} />
-                <div className={'header-profile__container'}>   
-                    {user ? 
-                        (<LoggedUserHeader logoutHandler={logoutHandler} user={user} />) : (
-                            <LoginButton loading={loading} />
-                        )}
+                <div className={'header-profile__container'}>
+                    {user ? (
+                        <LoggedUserHeader logoutHandler={logoutHandler} user={user} />
+                    ) : (
+                        <LoginButton isLoggedIn={loading} />
+                    )}
                 </div>
             </div>
         </nav>

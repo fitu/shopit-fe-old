@@ -4,7 +4,6 @@ import {
     getAllUsers as apiGetAllUsers,
     getUserDetails as apiGetUserDetails,
     loadUser as apiLoadUser,
-    login as apiLogin,
     logoutUser as apiLogoutUser,
     register as apiRegister,
     resetPassword as apiResetPassword,
@@ -12,6 +11,9 @@ import {
     updateProfile as apiUpdateProfile,
     updateUser as apiUpdateUser,
 } from '../../api/api';
+import { login as apiLogin } from '../../api/auth/authApi';
+import LoginError from '../../api/auth/errors/loginError';
+import LoginPayload from '../../api/auth/payloads/loginPayload';
 
 const ALL_USER_FAIL = 'ALL_USER_FAIL';
 const ALL_USER_REQUEST = 'ALL_USER_REQUEST';
@@ -69,10 +71,15 @@ const USER_DETAILS_SUCCESS = 'USER_DETAILS_SUCCESS';
 const login = (email, password) => async (dispatch) => {
     try {
         dispatch({ type: LOGIN_REQUEST });
-        const { data } = await apiLogin(email, password);
-        dispatch({ type: LOGIN_SUCCESS, payload: data.user });
+        const loginPayload = new LoginPayload(email, password);
+        const loginResponse = await apiLogin(loginPayload);
+        dispatch({ type: LOGIN_SUCCESS, payload: loginResponse.user });
     } catch (error) {
-        dispatch({ type: LOGIN_FAIL, error: error.response.data.message });
+        if (error instanceof LoginError) {
+            dispatch({ type: LOGIN_FAIL, error: error.message });
+            return;
+        }
+        dispatch({ type: LOGIN_FAIL, error: 'Server error' });
     }
 };
 

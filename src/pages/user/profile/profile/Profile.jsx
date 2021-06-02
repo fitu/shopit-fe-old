@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Loader from '../../../../components/util/Loader';
 import Metadata from '../../../../components/util/MetaData';
-import { Role } from '../../../../models/role';
+import Role from '../../../../models/role';
 import { Route } from '../../../../router/route';
 import './styles/profile.scss';
 

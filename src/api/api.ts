@@ -1,13 +1,6 @@
-import { login, register, logoutUser } from './auth/authApi';
+import { register, logoutUser } from './auth/authApi';
 import { addItemToCart } from './cart/cartApi';
-import {
-    createOrder,
-    myOrders,
-    getOrderDetails,
-    getAllOrders,
-    updateOrder,
-    deleteOrder,
-} from './order/orderApi';
+import { createOrder, myOrders, getOrderDetails, getAllOrders, updateOrder, deleteOrder } from './order/orderApi';
 import { processPayment } from './payment/paymentApi';
 import {
     getProducts,
@@ -32,8 +25,8 @@ import {
     deleteUser,
 } from './user/userApi';
 
+// TODO delete this module
 export {
-    login,
     register,
     loadUser,
     logoutUser,

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { processPayment } from '../../../api/api';
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
+import { clearCart } from '../../../store/actions/cart/cartActions';
 import { clearErrors, createOrder } from '../../../store/actions/orderActions';
 import { StorageKeys } from '../../../store/repository/repository';
 import CheckoutSteps from '../components/CheckoutSteps';
@@ -97,6 +98,7 @@ const Payment = ({ history }) => {
 
             dispatch(createOrder(order));
             history.push(Route.CHECKOUT_STEP_SUCCESS);
+            dispatch(clearCart(order));
         } catch (error) {
             document.querySelector('#pay_btn').disabled = false;
             alert.error(error.response.data.message);

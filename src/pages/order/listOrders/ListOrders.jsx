@@ -86,9 +86,7 @@ const ListOrders = () => {
             {loading ? (
                 <Loader />
             ) : (
-                <MDBDataTable bordered hover striped className={'my-orders__table'}
-data={setOrders()}
-                />
+                <MDBDataTable bordered hover striped className={'my-orders__table'} data={setOrders()} />
             )}
         </>
     );

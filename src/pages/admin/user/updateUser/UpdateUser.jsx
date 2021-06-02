@@ -3,7 +3,7 @@ import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MetaData from '../../../../components/util/MetaData';
-import { Role } from '../../../../models/role';
+import Role from '../../../../models/role';
 import { Route } from '../../../../router/route';
 import { clearErrors, getUserDetails, updateUser, updateUserReset } from '../../../../store/actions/authActions';
 import Sidebar from '../../sidebar/Sidebar';
@@ -99,7 +99,9 @@ const UpdateUser = ({ match, history }) => {
                                         onChange={(event) => setRole(event.target.value)}
                                     >
                                         {Object.values(Role).map((role) => (
-                                            <option value={role}>{role}</option>
+                                            <option key={role} value={role}>
+                                                {role}
+                                            </option>
                                         ))}
                                     </select>
                                 </div>
