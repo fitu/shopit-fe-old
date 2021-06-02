@@ -20,7 +20,7 @@ const alertOptions = {
 const App = () => {
     const { user, loading } = useSelector((state) => state.auth);
     return (
-        <AlertProvider template={AlertTemplate}>
+        <AlertProvider template={AlertTemplate} {...alertOptions}>
             <Router>
                 <div className={'app'}>
                     <Header />
