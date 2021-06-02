@@ -5,7 +5,7 @@ import { Link, Route } from 'react-router-dom';
 
 import './styles/header.scss';
 import { Route as LocalRoutes } from '../../../router/route';
-import { logoutUser } from '../../../store/actions/authActions';
+import { logout } from '../../../store/actions/auth/authActions';
 
 import CartHeader from './components/Cart';
 import LoggedUserHeader from './components/LoggedUser';
@@ -15,12 +15,12 @@ import Search from './components/Search';
 const Header = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
-    // TODO replace loading to isLoggedIn
+    // TODO: replace loading to isLoggedIn
     const { user, loading } = useSelector((state) => state.auth);
     const { cartItems } = useSelector((state) => state.cart);
 
     const logoutHandler = () => {
-        dispatch(logoutUser());
+        dispatch(logout());
         alert.success('Logged out success!');
     };
 

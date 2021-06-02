@@ -1,20 +1,20 @@
-import { register, logoutUser } from './auth/authApi';
+import { register, logout } from './auth/authApi';
 import { addItemToCart } from './cart/cartApi';
-import { createOrder, myOrders, getOrderDetails, getAllOrders, updateOrder, deleteOrder } from './order/orderApi';
+import { createOrder, getMyOrders, getOrderDetails, getAllOrders, updateOrder, deleteOrder } from './order/orderApi';
 import { processPayment } from './payment/paymentApi';
 import {
     getProducts,
     getProductDetails,
     getAdminProducts,
-    newProduct,
+    createNewProduct,
     deleteProduct,
     updateProduct,
     getProductReviews,
 } from './product/productApi';
-import { newReview, deleteReview } from './review/reviewApi';
-import { getStripeApi } from './thirdParty/stripeApi';
+import { addReviewToProduct, deleteReviewFromProduct } from './review/reviewApi';
+import { getStripeApiKey } from './thirdParty/stripeApi';
 import {
-    loadUser,
+    getCurrentUser,
     updateProfile,
     updatePassword,
     forgotPassword,
@@ -25,11 +25,11 @@ import {
     deleteUser,
 } from './user/userApi';
 
-// TODO delete this module
+// TODO: delete this module
 export {
     register,
-    loadUser,
-    logoutUser,
+    getCurrentUser,
+    logout,
     updateProfile,
     updatePassword,
     forgotPassword,
@@ -40,20 +40,20 @@ export {
     deleteUser,
     addItemToCart,
     createOrder,
-    myOrders,
+    getMyOrders,
     getOrderDetails,
     getAllOrders,
     updateOrder,
     deleteOrder,
     getProducts,
     getProductDetails,
-    newReview,
+    addReviewToProduct,
     getAdminProducts,
-    newProduct,
+    createNewProduct,
     deleteProduct,
     updateProduct,
     getProductReviews,
-    deleteReview,
-    getStripeApi,
+    deleteReviewFromProduct,
+    getStripeApiKey,
     processPayment,
 };

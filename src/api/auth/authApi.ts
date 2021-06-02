@@ -2,31 +2,41 @@ import axios from 'axios';
 
 import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
 
-import LoginError from './errors/loginError';
+import { handleApiErrors } from '../apiError';
 import LoginPayload from './payloads/loginPayload';
 import RegisterPayload from './payloads/registerPayload';
 import LoginResponse from './responses/loginResponse';
-import LogoutResponse from './responses/logoutResponse';
 import RegisterResponse from './responses/registerResponse';
 
-const login = async (loginPayload: LoginPayload): Promise<LoginResponse> => {
+const LOGIN_URL = `${BASE_URI_VERSION}/login`;
+const REGISTER_URL = `${BASE_URI_VERSION}/register`;
+const LOGOUT_URL = `${BASE_URI_VERSION}/logout`;
+
+const login = async (payload: LoginPayload): Promise<LoginResponse> => {
     try {
-        const response = await axios.post<LoginResponse>(`${BASE_URI_VERSION}/login`, { ...loginPayload }, baseHeaders);
+        const response = await axios.post<LoginResponse>(LOGIN_URL, payload, baseHeaders);
         return response.data;
     } catch (error) {
-        const { status } = error.response.status;
-        if (status === 400 || status === 401) {
-            throw new LoginError(error.response.data.message);
-        }
-        throw error;
+        throw handleApiErrors(error);
     }
 };
 
-const register = (registerPayload: RegisterPayload): Promise<RegisterResponse> => {
+const register = async (payload: RegisterPayload): Promise<RegisterResponse> => {
     const customHeaders = { headers: { 'Content-type': 'multipart/from-data' } };
-    return axios.post(`${BASE_URI_VERSION}/register`, { ...registerPayload }, customHeaders);
+    try {
+        const response = await axios.post<RegisterResponse>(REGISTER_URL, payload, customHeaders);
+        return response.data;
+    } catch (error) {
+        throw handleApiErrors(error);
+    }
 };
 
-const logoutUser = (): Promise<LogoutResponse> => axios.get(`${BASE_URI_VERSION}/logout`);
+const logout = async (): Promise<void> => {
+    try {
+        await axios.get(LOGOUT_URL);
+    } catch (error) {
+        throw handleApiErrors(error);
+    }
+};
 
-export { login, register, logoutUser };
+export { login, register, logout };

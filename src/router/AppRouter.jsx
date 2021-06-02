@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route } from 'react-router-dom';
 
-import { getStripeApi } from '../api/api.ts';
+import { getStripeApiKey } from '../api/api.ts';
 import Cart from '../pages/cart/Cart';
 import ConfirmOrder from '../pages/cart/confirmOrder/ConfirmOrder';
 import OrderSuccess from '../pages/cart/orderSuccess/OrderSuccess';
@@ -21,11 +21,11 @@ import UpdatePassword from '../pages/user/password/updatePassword/UpdatePassword
 import Profile from '../pages/user/profile/profile/Profile';
 import UpdateProfile from '../pages/user/profile/updateProfile/UpdateProfile';
 import Register from '../pages/user/register/Register';
-import { loadUser } from '../store/actions/authActions';
+import { loadUser } from '../store/actions/auth/authActions';
 
 import AdminRoutes from './AdminRoutes';
 import { Route as LocalRoutes } from './route.ts';
-import RouterProtector from './RouterProtetor';
+import RouterProtector from './RouterProtector';
 
 const AppRouter = () => {
     const dispatch = useDispatch();
@@ -36,8 +36,13 @@ const AppRouter = () => {
         dispatch(loadUser());
 
         const getStripeAPIKey = async () => {
-            const { data } = await getStripeApi();
-            setStripeAPIKey(data.stripeApiKey);
+            try {
+                const { data } = await getStripeApiKey();
+                setStripeAPIKey(data.stripeApiKey);
+            } catch {
+                // TODO: remove console log
+                console.log('There was an error with Stripe');
+            }
         };
 
         getStripeAPIKey();

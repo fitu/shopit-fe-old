@@ -1,4 +1,5 @@
 enum Category {
+    NONE = 'None',
     ELECTRONICS = 'Electronics',
     CAMERA = 'Cameras',
     LAPTOPS = 'Laptops',

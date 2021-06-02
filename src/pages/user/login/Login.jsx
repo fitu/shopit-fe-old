@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
-import { clearErrors, login } from '../../../store/actions/authActions';
+import { clearErrors, login } from '../../../store/actions/auth/authActions';
 import './styles/login.scss';
 
 const Login = ({ history, location }) => {

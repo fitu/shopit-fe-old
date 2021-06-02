@@ -1,3 +1,5 @@
+import ShippingInfoState from '../store/state/models/shippingInfoState';
+
 class ShippingInfo {
     address: string;
     city: string;
@@ -11,6 +13,16 @@ class ShippingInfo {
         this.phoneNumber = phoneNumber;
         this.postalCode = postalCode;
         this.country = country;
+    }
+
+    static toState(shippingInfo: ShippingInfo): ShippingInfoState {
+        return new ShippingInfoState(
+            shippingInfo.address,
+            shippingInfo.city,
+            shippingInfo.phoneNumber,
+            shippingInfo.postalCode,
+            shippingInfo.country,
+        );
     }
 }
 

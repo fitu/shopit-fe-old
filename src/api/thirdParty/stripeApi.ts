@@ -1,7 +1,18 @@
 import axios from 'axios';
 
 import { BASE_URI_VERSION } from '../apiConfig';
+import { handleApiErrors } from '../apiError';
+import StripeApiKeyResponse from './responses/stripeApiKeyResponse';
 
-const getStripeApi = () => axios.get(`${BASE_URI_VERSION}/stripeapi`);
+const GET_STRIPE_URI = `${BASE_URI_VERSION}/stripe`;
 
-export { getStripeApi };
+const getStripeApiKey = async (): Promise<StripeApiKeyResponse> => {
+    try {
+        const response = await axios.get<StripeApiKeyResponse>(GET_STRIPE_URI);
+        return response.data;
+    } catch (error) {
+        throw handleApiErrors(error);
+    }
+};
+
+export { getStripeApiKey };

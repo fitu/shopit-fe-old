@@ -1,5 +1,5 @@
-/* eslint-disable no-underscore-dangle */
 import Role from '../../models/role';
+import UserState from '../../store/state/models/userState';
 
 import AvatarApi from './avatarApi';
 
@@ -18,6 +18,17 @@ class UserApi {
         this.name = name;
         this.email = email;
         this.createdAt = createdAt;
+    }
+
+    static toState(userApi: UserApi): UserState {
+        return new UserState(
+            userApi._id,
+            userApi.role,
+            userApi.name,
+            userApi.email,
+            AvatarApi.toState(userApi.avatar),
+            userApi.createdAt,
+        );
     }
 }
 

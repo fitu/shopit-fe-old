@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactStars from 'react-rating-stars-component';
 import { useDispatch } from 'react-redux';
 
-import { newReview } from '../../../store/actions/productAction';
+import { newReview } from '../../../store/actions/product/productAction';
 import '../styles/addReviewModal.scss';
 
 const AddReviewModal = ({ match, showModal }) => {

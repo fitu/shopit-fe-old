@@ -1,3 +1,4 @@
+import ProductState from '../store/state/models/productState';
 import Category from './category';
 import Image from './image';
 import Review from './review';
@@ -42,6 +43,23 @@ class Product {
         this.stock = stock;
         this.reviews = reviews;
         this.createAt = createAt;
+    }
+
+    static toState(product: Product): ProductState {
+        return new ProductState(
+            product.id,
+            product.price,
+            product.ratings,
+            product.numberOfReviews,
+            product.name,
+            product.description,
+            product.images.map((image) => Image.toState(image)),
+            product.category,
+            product.seller,
+            product.stock,
+            product.reviews.map((review) => Review.toState(review)),
+            product.createAt,
+        );
     }
 }
 
