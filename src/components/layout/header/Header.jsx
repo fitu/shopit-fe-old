@@ -31,8 +31,8 @@ const Header = () => {
             </Link>
 
             <Route render={({ history }) => <Search history={history} />} />
-
             <div className={'header-profile'}>
+                
                 <CartHeader cartItems={cartItems} />
                 <div className={'header-profile__container'}>
                     {user ? (

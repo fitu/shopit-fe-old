@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useAlert } from 'react-alert';
 
 import { addItemToCart } from '../../../store/actions/cart/cartActions';
 import '../styles/productInfo.scss';
@@ -7,6 +8,7 @@ import '../styles/productInfo.scss';
 const ProductInfo = ({ product, match, showModal }) => {
     const [quantity, setQuantity] = useState(1);
 
+    const alert = useAlert();
     const dispatch = useDispatch();
     const { user } = useSelector((state) => state.auth);
 
