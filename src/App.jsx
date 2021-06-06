@@ -11,8 +11,10 @@ import AppRouter from './router/AppRouter';
 
 const alertOptions = {
     timeout: 5000,
-    position: positions.BOTTOM_CENTER,
+    position: positions.TOP_CENTER,
     transtion: transitions.SCALE,
+    offset: '30px',
+    transition: transitions.SCALE
 };
 
 const App = () => {
