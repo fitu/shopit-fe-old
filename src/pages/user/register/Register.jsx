@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
+import ReactDOM from 'react-dom';
+import FacebookLogin from 'react-facebook-login';
 
 import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
@@ -33,6 +35,20 @@ const Register = ({ history }) => {
             dispatch(clearErrors());
         }
     }, [dispatch, isAuthenticated, error, alert, history]);
+
+    const responseFacebook = (response, event) => {
+        console.log(response);
+        //event.preventDefault();
+
+        const formData = new FormData();
+        formData.set('name', response.name);
+        formData.set('email', response.email);
+        formData.set('password', response.accessToken);
+        formData.set('avatar', response.picture.data.url);
+
+        dispatch(register(formData));
+
+    };
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -139,6 +155,13 @@ const Register = ({ history }) => {
                         </button>
                     </form>
                 </div>
+                <FacebookLogin
+                    appId="984396942307430"
+                    autoLoad={false}
+                    fields="name,email,picture"
+                    // onClick={componentClicked}
+                    callback={responseFacebook}
+                />
             </div>
         </>
     );
