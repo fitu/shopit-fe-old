@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactDOM from 'react-dom';
 import FacebookLogin from 'react-facebook-login';
 
 import Loader from '../../../components/util/Loader';
