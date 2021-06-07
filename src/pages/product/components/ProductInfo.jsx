@@ -35,7 +35,7 @@ const ProductInfo = ({ product, match, showModal }) => {
 
     const addToCart = () => {
         dispatch(addItemToCart(match.params.id, quantity));
-        alert('Item added to cart!');
+        alert.success('Item added to cart!');
     };
 
     return (
