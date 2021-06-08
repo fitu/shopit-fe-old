@@ -1,4 +1,5 @@
-/* eslint-disable no-underscore-dangle */
+import ReviewState from '../../store/state/models/reviewState';
+
 class ReviewApi {
     _id: string;
     user: string;
@@ -12,6 +13,10 @@ class ReviewApi {
         this.name = name;
         this.rating = rating;
         this.comment = comment;
+    }
+
+    static toState(reviewApi: ReviewApi): ReviewState {
+        return new ReviewState(reviewApi._id, reviewApi.user, reviewApi.name, reviewApi.rating, reviewApi.comment);
     }
 }
 

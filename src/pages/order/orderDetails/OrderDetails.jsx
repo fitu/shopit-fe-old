@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
-import { clearErrors, getOrderDetails } from '../../../store/actions/orderActions';
+import { clearErrors, getOrderDetails } from '../../../store/actions/order/orderActions';
 import './styles/orderDetails.scss';
 
 const OrderDetails = ({ match }) => {

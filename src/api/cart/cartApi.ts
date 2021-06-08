@@ -1,21 +1,22 @@
 import axios from 'axios';
 
 import { BASE_URI_VERSION } from '../apiConfig';
-import ProductApi from '../models/productApi';
+import { handleApiErrors } from '../apiError';
 
-import AddItemToCartError from './errors/addItemToCartError';
 import AddItemToCartResponse from './responses/addItemToCartResponse';
 
-const addItemToCart = async (productId: string): Promise<ProductApi> => {
+const ADD_ITEM_TO_CART_URI = `${BASE_URI_VERSION}/product`;
+
+const addItemToCart = async (productId: string, quantity: number): Promise<AddItemToCartResponse> => {
     try {
-        const response = await axios.get<AddItemToCartResponse>(`${BASE_URI_VERSION}/product/${productId}`);
-        return response.data.product;
+        const response = await axios.post<AddItemToCartResponse>(`${ADD_ITEM_TO_CART_URI}/${productId}`, {
+            params: {
+                quantity,
+            },
+        });
+        return response.data;
     } catch (error) {
-        const { status } = error.response.status;
-        if (status === 404) {
-            throw new AddItemToCartError(error.response.data.message);
-        }
-        throw error;
+        throw handleApiErrors(error);
     }
 };
 

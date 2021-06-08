@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../../components/util/Loader';
 import MetaData from '../../components/util/MetaData';
-import { clearErrors, getProducts } from '../../store/actions/productAction';
+import { clearErrors, getProducts } from '../../store/actions/product/productAction';
 
 import HomeProducts from './components/HomeProducts';
 import HomeProductsWithFilters from './components/HomeProductsWithFilters';
@@ -18,7 +18,7 @@ const Home = ({ match }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { loading, products, productsCount, resultsPerPage, error } = useSelector((state) => state.products);
+    const { loading, products, productsCount, resultsPerPage, error } = useSelector((state) => state.product);
     const { keyword } = match.params;
 
     useEffect(() => {

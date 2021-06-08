@@ -1,3 +1,5 @@
+import ImageState from '../store/state/models/imageState';
+
 class Image {
     id: string;
     publicId: string;
@@ -7,6 +9,10 @@ class Image {
         this.id = id;
         this.publicId = publicId;
         this.url = url;
+    }
+
+    static toState(image: Image): ImageState {
+        return new ImageState(image.id, image.publicId, image.url);
     }
 }
 

@@ -7,7 +7,7 @@ import './styles/processOrder.scss';
 import Loader from '../../../../components/util/Loader';
 import MetaData from '../../../../components/util/MetaData';
 import OrderStatus from '../../../../models/orderStatus';
-import { clearErrors, getOrderDetails, updateOrder, updateOrderReset } from '../../../../store/actions/orderActions';
+import { clearErrors, getOrderDetails, updateOrder, updateOrderReset } from '../../../../store/actions/order/orderActions';
 import Sidebar from '../../sidebar/Sidebar';
 
 const ProcessOrder = ({ match }) => {

@@ -1,49 +1,90 @@
 import _ from 'lodash';
 
-import { ADD_TO_CART } from '../../actions/cart/addToCartAction';
 import { CartActions } from '../../actions/cart/cartActions';
-import { CLEAR_CART } from '../../actions/cart/clearCartAction';
-import { REMOVE_ITEM_FROM_CART } from '../../actions/cart/removeItemFromCart';
-import { SAVE_SHIPPING_INFO } from '../../actions/cart/saveShippingInfoAction';
-import CartState from '../../state/cartState';
-import ItemState from '../../state/itemState';
+import { ADD_PRODUCT_TO_CART_SUCCESS, ADD_PRODUCT_TO_CART_FAIL } from '../../actions/cart/actions/addToCartActions';
+import {
+    REMOVE_ITEM_FROM_CART_SUCCESS,
+    REMOVE_ITEM_FROM_CART_FAIL,
+} from '../../actions/cart/actions/removeItemFromCartActions';
+import { SAVE_SHIPPING_INFO } from '../../actions/cart/actions/saveShippingInfoActions';
+import { CLEAR_CART_ERRORS } from '../../actions/cart/actions/clearCartErrorsActions';
+import CartStateModel from '../../state/models/cartState';
+import ItemState from '../../state/models/itemState';
+import ShippingInfoState from '../../state/models/shippingInfoState';
 
-const initialCartState = new CartState();
+type CartState = {
+    cart: CartStateModel;
+    errorMessage: string;
+};
 
-const cartReducer = (state = initialCartState, action: CartActions): CartState => {
+const initialState = {
+    cart: {
+        cartItems: [],
+        shippingInfo: new ShippingInfoState('', '', '', '', ''),
+    },
+    errorMessage: '',
+};
+
+const cartReducer = (state: CartState = initialState, action: CartActions): CartState => {
     switch (action.type) {
-        case ADD_TO_CART: {
+        case ADD_PRODUCT_TO_CART_SUCCESS: {
             const item = action.payload;
-            const isItemExists = _.find(state.cartItems, ['product', item.product.id]);
+            const isItemExists = _.find(state?.cart?.cartItems, ['product', item.product.id]);
             if (isItemExists) {
                 return {
                     ...state,
-                    cartItems: _.map(state.cartItems, (cartItem: ItemState) =>
-                        cartItem.product === isItemExists.product ? item : cartItem,
-                    ),
+                    cart: {
+                        ...state.cart,
+                        cartItems: _.map(state?.cart?.cartItems, (cartItem: ItemState) =>
+                            cartItem.product === isItemExists.product ? item : cartItem,
+                        ),
+                    },
                 };
             }
             return {
                 ...state,
-                cartItems: [...state.cartItems, item],
+                cart: {
+                    ...state.cart,
+                    cartItems: [...state?.cart?.cartItems, item],
+                },
             };
         }
-        case REMOVE_ITEM_FROM_CART: {
+        case REMOVE_ITEM_FROM_CART_SUCCESS: {
             return {
                 ...state,
-                cartItems: _.reject(state.cartItems, (cartItem: ItemState) => cartItem.product !== action.payload),
+                cart: {
+                    ...state.cart,
+                    cartItems: _.reject(
+                        state?.cart?.cartItems,
+                        (cartItem: ItemState) => cartItem.product !== action.payload,
+                    ),
+                },
             };
         }
         case SAVE_SHIPPING_INFO: {
             return {
                 ...state,
-                shippingInfo: action.payload,
+                cart: {
+                    ...state.cart,
+                    shippingInfo: action.payload,
+                },
             };
         }
-        case CLEAR_CART: {
+        case REMOVE_ITEM_FROM_CART_FAIL:
+        case ADD_PRODUCT_TO_CART_FAIL: {
             return {
                 ...state,
-                cartItems: [],
+                errorMessage: action.payload.errorMessage,
+            };
+        }
+        case CLEAR_CART_ERRORS: {
+            return {
+                ...state,
+                cart: {
+                    cartItems: [],
+                    shippingInfo: new ShippingInfoState('', '', '', '', ''),
+                },
+                errorMessage: '',
             };
         }
         default: {
@@ -52,4 +93,5 @@ const cartReducer = (state = initialCartState, action: CartActions): CartState =
     }
 };
 
-export { cartReducer };
+export type { CartState };
+export default cartReducer;

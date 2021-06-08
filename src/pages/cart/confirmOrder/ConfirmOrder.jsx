@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
-import { StorageKeys } from '../../../store/repository/repository';
+import { setOrderInfo } from '../../../store/repository/repository';
 import CheckoutSteps from '../components/CheckoutSteps';
 import './styles/confirmOrder.scss';
 
@@ -25,7 +25,7 @@ const ConfirmOrder = ({ history }) => {
             totalPrice,
         };
 
-        sessionStorage.setItem(StorageKeys.ORDER_INFO_KEY, JSON.stringify(data));
+        setOrderInfo(data);
         history.push(Route.CHECKOUT_STEP_PAYMENT);
     };
 

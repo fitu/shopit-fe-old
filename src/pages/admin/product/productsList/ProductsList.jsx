@@ -12,7 +12,7 @@ import {
     deleteProduct,
     deleteProductReset,
     getAdminProducts,
-} from '../../../../store/actions/productAction';
+} from '../../../../store/actions/product/productAction';
 import Sidebar from '../../sidebar/Sidebar';
 import './styles/productsList.scss';
 
@@ -20,7 +20,7 @@ const ProductsList = ({ history }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { loading, error, products } = useSelector((state) => state.products);
+    const { loading, error, products } = useSelector((state) => state.product);
     const { error: deleteError, isDeleted } = useSelector((state) => state.product);
 
     useEffect(() => {

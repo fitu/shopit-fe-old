@@ -1,3 +1,5 @@
+import AvatarState from '../store/state/models/avatarState';
+
 class Avatar {
     publicId: string;
     url: string;
@@ -5,6 +7,10 @@ class Avatar {
     constructor(publicId: string, url: string) {
         this.publicId = publicId;
         this.url = url;
+    }
+
+    static toState(avatar: Avatar): AvatarState {
+        return new AvatarState(avatar.publicId, avatar.url);
     }
 }
 
