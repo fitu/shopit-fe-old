@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import FacebookLogin from 'react-facebook-login';
+import FacebookProperties from '../../../models/thirdParties/facebookIntegration';
 
 import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
@@ -35,29 +36,26 @@ const Register = ({ history }) => {
         }
     }, [dispatch, isAuthenticated, error, alert, history]);
 
-    const responseFacebook = (response, event) => {
-        console.log(response);
-        //event.preventDefault();
-
+    const FacebookResponseHandler = (response) => {
+        if (response.accessToken){
         const formData = new FormData();
         formData.set('name', response.name);
         formData.set('email', response.email);
         formData.set('password', response.accessToken);
         formData.set('avatar', response.picture.data.url);
-
         dispatch(register(formData));
-
-    };
+        }else{
+            alert.error("something went wrong with Facebook log in")
+        }
+}
 
     const submitHandler = (event) => {
         event.preventDefault();
-
         const formData = new FormData();
         formData.set('name', user.name);
         formData.set('email', user.email);
         formData.set('password', user.password);
         formData.set('avatar', avatar);
-
         dispatch(register(formData));
     };
 
@@ -155,11 +153,10 @@ const Register = ({ history }) => {
                     </form>
                 </div>
                 <FacebookLogin
-                    appId="984396942307430"
-                    autoLoad={false}
-                    fields="name,email,picture"
-                    // onClick={componentClicked}
-                    callback={responseFacebook}
+                    appId={FacebookProperties.FacebookAppId}
+                    autoLoad={FacebookProperties.autoLoad}
+                    fields={FacebookProperties.fields}
+                    callback={FacebookResponseHandler}
                 />
             </div>
         </>
