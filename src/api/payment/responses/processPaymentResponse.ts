@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+// TODO: change this in Backend
 class ProcessPaymentResponse {
     client_secret: string;
 

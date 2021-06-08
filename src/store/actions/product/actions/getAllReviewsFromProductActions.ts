@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+
 import ReviewState from '../../../state/models/reviewState';
 
 const GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST = 'GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST';

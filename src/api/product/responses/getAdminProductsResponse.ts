@@ -4,7 +4,7 @@ class GetAdminProductsResponse {
     products: Array<ProductApi>;
 
     constructor(products: Array<ProductApi>) {
-    this.products = products;
+        this.products = products;
     }
 }
 

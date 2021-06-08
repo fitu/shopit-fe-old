@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+
 import ProductState from '../../../state/models/productState';
 
 const GET_PRODUCT_DETAILS_REQUEST = 'GET_PRODUCT_DETAILS_REQUEST';

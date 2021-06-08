@@ -1,10 +1,10 @@
-import { AuthActions } from '../../actions/auth/authActions';
+import { CLEAR_AUTH_ERRORS } from '../../actions/auth/actions/clearAuthErrorsActions';
 import {
     GET_USER_DETAILS_REQUEST,
     GET_USER_DETAILS_SUCCESS,
     GET_USER_DETAILS_FAIL,
 } from '../../actions/auth/actions/getUserDetailsActions';
-import { CLEAR_AUTH_ERRORS } from '../../actions/auth/actions/clearAuthErrorsActions';
+import { AuthActions } from '../../actions/auth/authActions';
 import UserState from '../../state/models/userState';
 
 type UserDetailsState = {

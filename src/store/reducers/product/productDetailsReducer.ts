@@ -1,10 +1,10 @@
-import { ProductActions } from '../../actions/product/productAction';
+import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
 import {
     GET_PRODUCT_DETAILS_REQUEST,
     GET_PRODUCT_DETAILS_SUCCESS,
     GET_PRODUCT_DETAILS_FAIL,
 } from '../../actions/product/actions/getProductDetailsActions';
-import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
+import { ProductActions } from '../../actions/product/productAction';
 import ProductState from '../../state/models/productState';
 
 type ProductDetailsState = {

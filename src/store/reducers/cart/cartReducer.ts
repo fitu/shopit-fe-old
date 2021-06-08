@@ -1,13 +1,13 @@
 import _ from 'lodash';
 
-import { CartActions } from '../../actions/cart/cartActions';
 import { ADD_PRODUCT_TO_CART_SUCCESS, ADD_PRODUCT_TO_CART_FAIL } from '../../actions/cart/actions/addToCartActions';
+import { CLEAR_CART_ERRORS } from '../../actions/cart/actions/clearCartErrorsActions';
 import {
     REMOVE_ITEM_FROM_CART_SUCCESS,
     REMOVE_ITEM_FROM_CART_FAIL,
 } from '../../actions/cart/actions/removeItemFromCartActions';
 import { SAVE_SHIPPING_INFO } from '../../actions/cart/actions/saveShippingInfoActions';
-import { CLEAR_CART_ERRORS } from '../../actions/cart/actions/clearCartErrorsActions';
+import { CartActions } from '../../actions/cart/cartActions';
 import CartStateModel from '../../state/models/cartState';
 import ItemState from '../../state/models/itemState';
 import ShippingInfoState from '../../state/models/shippingInfoState';

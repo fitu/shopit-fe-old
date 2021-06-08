@@ -1,10 +1,10 @@
-import { AuthActions } from '../../actions/auth/authActions';
+import { CLEAR_AUTH_ERRORS } from '../../actions/auth/actions/clearAuthErrorsActions';
 import {
-    UPDATE_USER_REQUEST,
-    UPDATE_USER_SUCCESS,
-    UPDATE_USER_RESET,
-    UPDATE_USER_FAIL,
-} from '../../actions/auth/actions/updateUserActions';
+    DELETE_USER_REQUEST,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_RESET,
+    DELETE_USER_FAIL,
+} from '../../actions/auth/actions/deleteUserActions';
 import {
     UPDATE_PASSWORD_REQUEST,
     UPDATE_PASSWORD_SUCCESS,
@@ -18,12 +18,12 @@ import {
     UPDATE_PROFILE_FAIL,
 } from '../../actions/auth/actions/updateProfileActions';
 import {
-    DELETE_USER_REQUEST,
-    DELETE_USER_SUCCESS,
-    DELETE_USER_RESET,
-    DELETE_USER_FAIL,
-} from '../../actions/auth/actions/deleteUserActions';
-import { CLEAR_AUTH_ERRORS } from '../../actions/auth/actions/clearAuthErrorsActions';
+    UPDATE_USER_REQUEST,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_RESET,
+    UPDATE_USER_FAIL,
+} from '../../actions/auth/actions/updateUserActions';
+import { AuthActions } from '../../actions/auth/authActions';
 
 type UserState = {
     loading: boolean;

@@ -1,5 +1,3 @@
-const strings = {
-    serverError: 'Server error',
-};
+const strings = { serverError: 'Server error' };
 
 export default strings;

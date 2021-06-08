@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+
 import UserState from '../../../state/models/userState';
 
 const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';

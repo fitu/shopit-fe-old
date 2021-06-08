@@ -2,18 +2,19 @@ import axios from 'axios';
 
 import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
 import { handleApiErrors } from '../apiError';
+
 import ForgotPasswordPayload from './payloads/forgotPasswordPayload';
 import ResetPasswordPayload from './payloads/resetPasswordPayload';
 import UpdatePasswordPayload from './payloads/updatePasswordPayload';
 import UpdateProfilePayload from './payloads/updateProfilePayload';
 import UpdateUserPayload from './payloads/updateUserPayload';
+import AllUsersResponse from './responses/allUsersResponse';
+import CurrentUserResponse from './responses/currentUserResponse';
 import ForgotPasswordResponse from './responses/forgotPasswordResponse';
 import ResetPasswordResponse from './responses/resetPasswordResponse';
-import UpdateUserResponse from './responses/updateUserResponse';
-import CurrentUserResponse from './responses/currentUserResponse';
 import UpdatePasswordResponse from './responses/updatePasswordResponse';
 import UpdateProfileResponse from './responses/updateProfileResponse';
-import AllUsersResponse from './responses/allUsersResponse';
+import UpdateUserResponse from './responses/updateUserResponse';
 import UserDetailsResponse from './responses/userDetailsResponse';
 
 const LOAD_USER_URI = `${BASE_URI_VERSION}/me`;

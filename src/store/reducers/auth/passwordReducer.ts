@@ -1,4 +1,4 @@
-import { AuthActions } from '../../actions/auth/authActions';
+import { CLEAR_AUTH_ERRORS } from '../../actions/auth/actions/clearAuthErrorsActions';
 import {
     FORGOT_PASSWORD_REQUEST,
     FORGOT_PASSWORD_SUCCESS,
@@ -9,7 +9,7 @@ import {
     RESET_PASSWORD_SUCCESS,
     RESET_PASSWORD_FAIL,
 } from '../../actions/auth/actions/resetPasswordActions';
-import { CLEAR_AUTH_ERRORS } from '../../actions/auth/actions/clearAuthErrorsActions';
+import { AuthActions } from '../../actions/auth/authActions';
 
 type PasswordState = {
     loading: boolean;

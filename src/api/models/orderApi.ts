@@ -1,6 +1,8 @@
+/* eslint-disable no-underscore-dangle */
+// TODO: change this in Backend
 import OrderStatus from '../../models/orderStatus';
-import ShippingInfo from '../../models/shippingInfo';
 import OrderState from '../../store/state/models/orderState';
+
 import ItemApi from './itemApi';
 import PaymentInfoApi from './paymentInfoApi';
 import ShippingInfoApi from './shippingInfoApi';

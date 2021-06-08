@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+
 import ProductState from '../../../state/models/productState';
 
 const CREATE_NEW_PRODUCT_REQUEST = 'CREATE_NEW_PRODUCT_REQUEST';

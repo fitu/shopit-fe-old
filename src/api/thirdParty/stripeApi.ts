@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { BASE_URI_VERSION } from '../apiConfig';
 import { handleApiErrors } from '../apiError';
+
 import StripeApiKeyResponse from './responses/stripeApiKeyResponse';
 
 const GET_STRIPE_URI = `${BASE_URI_VERSION}/stripe`;

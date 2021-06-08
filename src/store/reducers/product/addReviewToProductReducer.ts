@@ -1,10 +1,10 @@
-import { ProductActions } from '../../actions/product/productAction';
+import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
 import {
     GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST,
     GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS,
     GET_ALL_REVIEWS_FROM_PRODUCT_FAIL,
 } from '../../actions/product/actions/getAllReviewsFromProductActions';
-import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
+import { ProductActions } from '../../actions/product/productAction';
 import ReviewState from '../../state/models/reviewState';
 
 type AddReviewToProductState = {

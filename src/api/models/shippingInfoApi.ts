@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+// TODO: change this in Backend
 import ShippingInfoState from '../../store/state/models/shippingInfoState';
 
 class ShippingInfoApi {

@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+// TODO: change this in Backend
 import AvatarState from '../../store/state/models/avatarState';
 
 class AvatarApi {

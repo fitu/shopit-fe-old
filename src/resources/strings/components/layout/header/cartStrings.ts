@@ -1,5 +1,3 @@
-const strings = {
-    cart: 'Cart',
-};
+const strings = { cart: 'Cart' };
 
 export default strings;

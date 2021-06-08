@@ -1,4 +1,5 @@
-import { AuthActions } from '../../actions/auth/authActions';
+import { CLEAR_AUTH_ERRORS } from '../../actions/auth/actions/clearAuthErrorsActions';
+import { LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAIL } from '../../actions/auth/actions/loadUserActions';
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAIL } from '../../actions/auth/actions/loginActions';
 import { LOGOUT_SUCCESS, LOGOUT_FAIL } from '../../actions/auth/actions/logoutActions';
 import {
@@ -6,8 +7,7 @@ import {
     REGISTER_USER_SUCCESS,
     REGISTER_USER_FAIL,
 } from '../../actions/auth/actions/registerActions';
-import { LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAIL } from '../../actions/auth/actions/loadUserActions';
-import { CLEAR_AUTH_ERRORS } from '../../actions/auth/actions/clearAuthErrorsActions';
+import { AuthActions } from '../../actions/auth/authActions';
 import UserState from '../../state/models/userState';
 
 type AuthState = {

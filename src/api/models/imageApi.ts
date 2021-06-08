@@ -1,3 +1,6 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-underscore-dangle */
+// TODO: change this in Backend
 import ImageState from '../../store/state/models/imageState';
 
 class ImageApi {

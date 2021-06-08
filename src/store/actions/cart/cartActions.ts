@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { ActionCreator } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
@@ -6,6 +7,7 @@ import ItemApi from '../../../api/models/itemApi';
 import ShippingInfo from '../../../models/shippingInfo';
 import { setCartItems, setShippingInfo } from '../../repository/repository';
 import { StoreState } from '../../state/storeState';
+
 import {
     AddProductToCartSuccess,
     AddProductToCartFail,
@@ -47,9 +49,7 @@ const removeItemFromCart: ActionCreator<ThunkAction<Promise<void>, StoreState, v
             setCartItems(getState()?.cart?.cart.cartItems ?? []);
             dispatch({
                 type: REMOVE_ITEM_FROM_CART_SUCCESS,
-                payload: {
-                    id,
-                },
+                payload: { id },
             });
         } catch (error) {
             dispatch({ type: REMOVE_ITEM_FROM_CART_FAIL, payload: { errorMessage: error.message } });

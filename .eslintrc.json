@@ -175,7 +175,7 @@
         // "import/no-absolute-path": ["warn", { "esmodule": true, "commonjs": true, "amd": false }],
         // "import/no-dynamic-require": "warn",
         // "import/no-self-import": "warn",
-        // "import/no-cycle": ["warn", { "maxDepth": 1 }],
+        // "import/no-cycle": "off", // TODO: check if it's required by parsers
         // "import/no-useless-path-segments": ["warn", { "commonjs": true }],
         // "import/export": "warn",
         // "import/no-named-as-default": "warn",

@@ -1,4 +1,5 @@
 import ItemState from '../store/state/models/itemState';
+
 import Product from './product';
 
 class Item {

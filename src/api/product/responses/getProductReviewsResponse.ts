@@ -1,4 +1,3 @@
-import ProductApi from '../../models/productApi';
 import ReviewApi from '../../models/reviewApi';
 
 class GetProductReviewsResponse {

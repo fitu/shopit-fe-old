@@ -14,11 +14,12 @@ import {
     updateProfile as apiUpdateProfile,
     updateUser as apiUpdateUser,
 } from '../../../api/api';
-import { login as apiLogin } from '../../../api/auth/authApi';
-import { StoreState } from '../../state/storeState';
 import ApiError from '../../../api/apiError';
+import { login as apiLogin } from '../../../api/auth/authApi';
 import LoginPayload from '../../../api/auth/payloads/loginPayload';
 import Strings from '../../../resources/strings/store/auth/authStoreStrings';
+import { StoreState } from '../../state/storeState';
+
 import { ClearAuthErrors, CLEAR_AUTH_ERRORS } from './actions/clearAuthErrorsActions';
 import {
     DeleteUserRequest,

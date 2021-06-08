@@ -1,11 +1,11 @@
-import { ProductActions } from '../../actions/product/productAction';
+import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
 import {
     CREATE_NEW_PRODUCT_REQUEST,
     CREATE_NEW_PRODUCT_SUCCESS,
     CREATE_NEW_PRODUCT_RESET,
     CREATE_NEW_PRODUCT_FAIL,
 } from '../../actions/product/actions/createNewProductActions';
-import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
+import { ProductActions } from '../../actions/product/productAction';
 import ProductState from '../../state/models/productState';
 
 type CreateNewProductState = {

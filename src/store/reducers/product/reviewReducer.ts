@@ -1,11 +1,11 @@
-import { ProductActions } from '../../actions/product/productAction';
+import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
 import {
     DELETE_REVIEW_FROM_PRODUCT_REQUEST,
     DELETE_REVIEW_FROM_PRODUCT_SUCCESS,
     DELETE_REVIEW_FROM_PRODUCT_RESET,
     DELETE_REVIEW_FROM_PRODUCT_FAIL,
 } from '../../actions/product/actions/deleteReviewFromProductActions';
-import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
+import { ProductActions } from '../../actions/product/productAction';
 
 type ReviewState = {
     loading: boolean;

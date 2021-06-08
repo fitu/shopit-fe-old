@@ -1,4 +1,4 @@
-import { ProductActions } from '../../actions/product/productAction';
+import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
 import {
     DELETE_PRODUCT_REQUEST,
     DELETE_PRODUCT_SUCCESS,
@@ -11,7 +11,7 @@ import {
     UPDATE_PRODUCT_RESET,
     UPDATE_PRODUCT_FAIL,
 } from '../../actions/product/actions/updateProductActions';
-import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
+import { ProductActions } from '../../actions/product/productAction';
 import ProductState from '../../state/models/productState';
 
 type ModifyProductState = {

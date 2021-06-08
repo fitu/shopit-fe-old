@@ -1,10 +1,10 @@
-import { OrderActions } from '../../actions/order/orderActions';
+import { CLEAR_ORDER_ERRORS } from '../../actions/order/actions/clearOrderErrorActions';
 import {
     GET_ORDER_DETAILS_REQUEST,
     GET_ORDER_DETAILS_SUCCESS,
     GET_ORDER_DETAILS_FAIL,
 } from '../../actions/order/actions/getOrderDetailsActions';
-import { CLEAR_ORDER_ERRORS } from '../../actions/order/actions/clearOrderErrorActions';
+import { OrderActions } from '../../actions/order/orderActions';
 import OrderStateModel from '../../state/models/orderState';
 
 type OrderDetailsState = {

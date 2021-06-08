@@ -1,4 +1,5 @@
 import CartState from '../store/state/models/cartState';
+
 import Item from './item';
 import ShippingInfo from './shippingInfo';
 

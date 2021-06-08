@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+
 import ItemState from '../../../state/models/itemState';
 
 const ADD_PRODUCT_TO_CART_SUCCESS = 'ADD_PRODUCT_TO_CART_SUCCESS';

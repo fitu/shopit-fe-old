@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
 import { handleApiErrors } from '../apiError';
+
 import ProcessPaymentPayload from './payloads/processPaymentPayload';
 import ProcessPaymentResponse from './responses/processPaymentResponse';
 

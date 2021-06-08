@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
-
 import { handleApiErrors } from '../apiError';
+
 import LoginPayload from './payloads/loginPayload';
 import RegisterPayload from './payloads/registerPayload';
 import LoginResponse from './responses/loginResponse';

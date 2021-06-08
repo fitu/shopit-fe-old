@@ -1,4 +1,7 @@
+/* eslint-disable no-underscore-dangle */
+// TODO: change this in Backend
 import ItemState from '../../store/state/models/itemState';
+
 import ProductApi from './productApi';
 
 class ItemApi {

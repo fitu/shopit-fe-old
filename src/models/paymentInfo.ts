@@ -1,4 +1,5 @@
 import PaymentInfoState from '../store/state/models/paymentInfoState';
+
 import OrderStatus from './orderStatus';
 
 class PaymentInfo {

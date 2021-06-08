@@ -1,17 +1,17 @@
-import { OrderActions } from '../../actions/order/orderActions';
-import {
-    UPDATE_ORDER_REQUEST,
-    UPDATE_ORDER_SUCCESS,
-    UPDATE_ORDER_RESET,
-    UPDATE_ORDER_FAIL,
-} from '../../actions/order/actions/updateOrderActions';
+import { CLEAR_ORDER_ERRORS } from '../../actions/order/actions/clearOrderErrorActions';
 import {
     DELETE_ORDER_REQUEST,
     DELETE_ORDER_SUCCESS,
     DELETE_ORDER_RESET,
     DELETE_ORDER_FAIL,
 } from '../../actions/order/actions/deleteOrderActions';
-import { CLEAR_ORDER_ERRORS } from '../../actions/order/actions/clearOrderErrorActions';
+import {
+    UPDATE_ORDER_REQUEST,
+    UPDATE_ORDER_SUCCESS,
+    UPDATE_ORDER_RESET,
+    UPDATE_ORDER_FAIL,
+} from '../../actions/order/actions/updateOrderActions';
+import { OrderActions } from '../../actions/order/orderActions';
 
 type ModifyOrderState = {
     loading: boolean;

@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+
 import UserState from '../../../state/models/userState';
 
 const REGISTER_USER_REQUEST = 'REGISTER_USER_REQUEST';

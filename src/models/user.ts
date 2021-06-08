@@ -1,4 +1,5 @@
 import UserState from '../store/state/models/userState';
+
 import Avatar from './avatar';
 import Role from './role';
 

@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+
 import UserState from '../../../state/models/userState';
 
 const GET_ALL_USER_REQUEST = 'GET_ALL_USER_REQUEST';

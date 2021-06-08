@@ -1,15 +1,15 @@
-import { ProductActions } from '../../actions/product/productAction';
-import {
-    GET_ALL_PRODUCTS_REQUEST,
-    GET_ALL_PRODUCTS_SUCCESS,
-    GET_ALL_PRODUCTS_FAIL,
-} from '../../actions/product/actions/getAllProductsActions';
+import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
 import {
     GET_ADMIN_PRODUCTS_REQUEST,
     GET_ADMIN_PRODUCTS_SUCCESS,
     GET_ADMIN_PRODUCTS_FAIL,
 } from '../../actions/product/actions/getAdminProductsActions';
-import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
+import {
+    GET_ALL_PRODUCTS_REQUEST,
+    GET_ALL_PRODUCTS_SUCCESS,
+    GET_ALL_PRODUCTS_FAIL,
+} from '../../actions/product/actions/getAllProductsActions';
+import { ProductActions } from '../../actions/product/productAction';
 import ProductStateModel from '../../state/models/productState';
 
 type ProductState = {

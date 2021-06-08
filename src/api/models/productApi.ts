@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+// TODO: change this in Backend
 import Category from '../../models/category';
 import ProductState from '../../store/state/models/productState';
 

@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+// TODO: change this in Backend
 import ReviewState from '../../store/state/models/reviewState';
 
 class ReviewApi {

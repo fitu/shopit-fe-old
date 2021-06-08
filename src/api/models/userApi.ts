@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+// TODO: change this in Backend
 import Role from '../../models/role';
 import UserState from '../../store/state/models/userState';
 
