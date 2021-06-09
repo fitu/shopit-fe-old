@@ -14,6 +14,7 @@ import {
 import { login as apiLogin } from '../../api/auth/authApi';
 import LoginError from '../../api/auth/errors/loginError';
 import LoginPayload from '../../api/auth/payloads/loginPayload';
+import Integration from '../../models/integrations/Integrations';
 
 const ALL_USER_FAIL = 'ALL_USER_FAIL';
 const ALL_USER_REQUEST = 'ALL_USER_REQUEST';
@@ -83,7 +84,7 @@ const login = (email, password) => async (dispatch) => {
     }
 };
 
-const register = (userData) => async (dispatch) => {
+const register = (userData, integration = Integration.DEFAULT) => async (dispatch) => {
     try {
         dispatch({ type: REGISTER_USER_REQUEST });
         const { data } = await apiRegister(userData);

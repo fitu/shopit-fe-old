@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Integration from '../../models/integrations/Integrations';
 
 import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
 
@@ -22,9 +23,9 @@ const login = async (loginPayload: LoginPayload): Promise<LoginResponse> => {
     }
 };
 
-const register = (registerPayload: RegisterPayload): Promise<RegisterResponse> => {
+const register = (registerPayload: RegisterPayload, integration: Integration): Promise<RegisterResponse> => {
     const customHeaders = { headers: { 'Content-type': 'multipart/from-data' } };
-    return axios.post(`${BASE_URI_VERSION}/register`, { ...registerPayload }, customHeaders);
+    return axios.post(`${BASE_URI_VERSION}/register`, { ...registerPayload, integration }, customHeaders);
 };
 
 const logoutUser = (): Promise<LogoutResponse> => axios.get(`${BASE_URI_VERSION}/logout`);

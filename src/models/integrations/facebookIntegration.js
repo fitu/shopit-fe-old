@@ -1,5 +1,5 @@
-const FacebookProperties = {
-    FacebookAppId: 984396942307430,
+const facebookProperties = {
+    appId: 984396942307430,
     fields: 'name,email,picture',
     autoLoad: false,
 };

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import FacebookLogin from 'react-facebook-login';
-import FacebookProperties from '../../../models/thirdParties/facebookIntegration';
 
+import Integrations from '../../../models/integrations/Integrations';
+import facebookProperties from '../../../models/integrations/facebookIntegration';
 import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
@@ -36,18 +37,18 @@ const Register = ({ history }) => {
         }
     }, [dispatch, isAuthenticated, error, alert, history]);
 
-    const FacebookResponseHandler = (response) => {
-        if (response.accessToken){
-        const formData = new FormData();
-        formData.set('name', response.name);
-        formData.set('email', response.email);
-        formData.set('password', response.accessToken);
-        formData.set('avatar', response.picture.data.url);
-        dispatch(register(formData));
-        }else{
-            alert.error("something went wrong with Facebook log in")
+    const facebookResponseHandler = ({ name, email, accessToken, picture }) => {
+        if (accessToken) {
+            const formData = new FormData();
+            formData.set('name', name);
+            formData.set('email', email);
+            formData.set('token', accessToken);
+            formData.set('avatar', picture.data.url);
+            dispatch(register(formData, Integrations.FACEBOOK));
+        } else {
+            alert.error('something went wrong with Facebook log in');
         }
-}
+    };
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -153,10 +154,10 @@ const Register = ({ history }) => {
                     </form>
                 </div>
                 <FacebookLogin
-                    appId={FacebookProperties.FacebookAppId}
-                    autoLoad={FacebookProperties.autoLoad}
-                    fields={FacebookProperties.fields}
-                    callback={FacebookResponseHandler}
+                    appId={facebookProperties.appId}
+                    autoLoad={facebookProperties.autoLoad}
+                    fields={facebookProperties.fields}
+                    callback={facebookResponseHandler}
                 />
             </div>
         </>
