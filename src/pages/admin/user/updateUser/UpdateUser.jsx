@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MetaData from '../../../../components/util/MetaData';
 import Role from '../../../../models/role';
 import { Route } from '../../../../router/route';
-import { clearErrors, getUserDetails, updateUser, updateUserReset } from '../../../../store/actions/authActions';
+import { clearErrors, getUserDetails, updateUser, updateUserReset } from '../../../../store/actions/auth/authActions';
 import Sidebar from '../../sidebar/Sidebar';
 import './styles/updateUser.scss';
 

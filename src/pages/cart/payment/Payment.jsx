@@ -7,8 +7,8 @@ import { processPayment } from '../../../api/api';
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
 import { clearCart } from '../../../store/actions/cart/cartActions';
-import { clearErrors, createOrder } from '../../../store/actions/orderActions';
-import { StorageKeys } from '../../../store/repository/repository';
+import { clearErrors, createOrder } from '../../../store/actions/order/orderActions';
+import { getOrderInfo } from '../../../store/repository/repository';
 import CheckoutSteps from '../components/CheckoutSteps';
 import './styles/payment.scss';
 
@@ -40,7 +40,7 @@ const Payment = ({ history }) => {
         }
     }, [dispatch, alert, error]);
 
-    const orderInfo = JSON.parse(sessionStorage.getItem(StorageKeys.ORDER_INFO_KEY));
+    const orderInfo = getOrderInfo();
     const order = {
         orderItems: cartItems,
         shippingInfo,

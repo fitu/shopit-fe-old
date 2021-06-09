@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../../components/util/Loader';
 import MetaData from '../../components/util/MetaData';
-import { clearErrors, getProductDetails, newReviewReset } from '../../store/actions/productAction';
+import { clearErrors, getProductDetails, newReviewReset } from '../../store/actions/product/productAction';
 import ListReviews from '../review/ListReviews';
 
 import AddReviewModal from './components/AddReviewModal';

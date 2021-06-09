@@ -11,7 +11,7 @@ import UpdateUser from '../pages/admin/user/updateUser/UpdateUser';
 import UsersList from '../pages/admin/user/usersList/UsersList';
 
 import { Route } from './route.ts';
-import RouterProtector from './RouterProtetor';
+import RouterProtector from './RouterProtector';
 
 const AdminRoutes = () => (
     <>

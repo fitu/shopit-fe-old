@@ -1,12 +1,10 @@
-import ProductApi from '../../models/productApi';
+import ItemApi from '../../models/itemApi';
 
 class AddItemToCartResponse {
-    success: boolean;
-    product: ProductApi;
+    item: ItemApi;
 
-    constructor(success: boolean, product: ProductApi) {
-        this.success = success;
-        this.product = product;
+    constructor(item: ItemApi) {
+        this.item = item;
     }
 }
 

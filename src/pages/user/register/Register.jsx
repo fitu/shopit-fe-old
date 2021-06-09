@@ -8,7 +8,7 @@ import facebookProperties from '../../../models/integrations/facebookIntegration
 import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
-import { clearErrors, register } from '../../../store/actions/authActions';
+import { clearErrors, register } from '../../../store/actions/auth/authActions';
 import './styles/register.scss';
 
 const Register = ({ history }) => {

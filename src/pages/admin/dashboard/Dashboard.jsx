@@ -6,14 +6,14 @@ import './styles/dashboard.scss';
 import Loader from '../../../components/util/Loader';
 import Metadata from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
-import { getAllUsers } from '../../../store/actions/authActions';
-import { getAllOrders } from '../../../store/actions/orderActions';
-import { getAdminProducts } from '../../../store/actions/productAction';
+import { getAllUsers } from '../../../store/actions/auth/authActions';
+import { getAllOrders } from '../../../store/actions/order/orderActions';
+import { getAdminProducts } from '../../../store/actions/product/productAction';
 import Sidebar from '../sidebar/Sidebar';
 
 const Dashboard = () => {
     const dispatch = useDispatch();
-    const { products } = useSelector((state) => state.products);
+    const { products } = useSelector((state) => state.product);
     const { orders, totalAmount, loading } = useSelector((state) => state.allOrders);
     const { users } = useSelector((state) => state.allUsers);
 

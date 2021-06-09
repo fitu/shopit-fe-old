@@ -10,7 +10,7 @@ import {
     getProductDetails,
     updateProduct,
     updateProductReset,
-} from '../../../../store/actions/productAction';
+} from '../../../../store/actions/product/productAction';
 import Sidebar from '../../sidebar/Sidebar';
 import './styles/updateProduct.scss';
 

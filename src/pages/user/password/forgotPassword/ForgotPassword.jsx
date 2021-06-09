@@ -3,7 +3,7 @@ import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MetaData from '../../../../components/util/MetaData';
-import { clearErrors, forgotPassword } from '../../../../store/actions/authActions';
+import { clearErrors, forgotPassword } from '../../../../store/actions/auth/authActions';
 import './styles/forgotPassword.scss';
 
 const ForgotPassword = () => {

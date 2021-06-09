@@ -1,53 +1,71 @@
-import { Action, ActionCreator } from 'redux';
+/* eslint-disable indent */
+import { ActionCreator } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 import { addItemToCart as apiAddItemToCart } from '../../../api/api';
+import ItemApi from '../../../api/models/itemApi';
 import ShippingInfo from '../../../models/shippingInfo';
-import { StorageKeys } from '../../repository/repository';
-import ItemState from '../../state/itemState';
-import ShippingInfoState from '../../state/shippingInfoState';
-import StoreState from '../../state/storeState';
+import { setCartItems, setShippingInfo } from '../../repository/repository';
+import { StoreState } from '../../state/storeState';
 
-import { AddToCart, ADD_TO_CART } from './addToCartAction';
-import { ClearCart, CLEAR_CART } from './clearCartAction';
-import { RemoveItemFromCart, REMOVE_ITEM_FROM_CART } from './removeItemFromCart';
-import { SaveShippingInfo, SAVE_SHIPPING_INFO } from './saveShippingInfoAction';
+import {
+    AddProductToCartSuccess,
+    AddProductToCartFail,
+    ADD_PRODUCT_TO_CART_SUCCESS,
+    ADD_PRODUCT_TO_CART_FAIL,
+} from './actions/addToCartActions';
+import { ClearCartErrors, CLEAR_CART_ERRORS } from './actions/clearCartErrorsActions';
+import {
+    RemoveItemFromCartSuccess,
+    RemoveItemFromCartFail,
+    REMOVE_ITEM_FROM_CART_SUCCESS,
+    REMOVE_ITEM_FROM_CART_FAIL,
+} from './actions/removeItemFromCartActions';
+import { SaveShippingInfo, SAVE_SHIPPING_INFO } from './actions/saveShippingInfoActions';
 
-type CartActions = AddToCart | ClearCart | RemoveItemFromCart | SaveShippingInfo;
+type AddToCartActions = AddProductToCartSuccess | AddProductToCartFail;
+type RemoveItemFromCartActions = RemoveItemFromCartSuccess | RemoveItemFromCartFail;
+type CartActions = AddToCartActions | ClearCartErrors | RemoveItemFromCartActions | SaveShippingInfo;
 
-const addItemToCart: ActionCreator<ThunkAction<Promise<Action>, StoreState, void, CartActions>> =
+const addItemToCart: ActionCreator<ThunkAction<Promise<void>, StoreState, void, AddToCartActions>> =
     (productId: string, quantity: number) =>
-    async (dispatch: ThunkDispatch<StoreState, void, CartActions>, getState: () => StoreState) => {
-        const apiProduct = await apiAddItemToCart(productId);
-        localStorage.setItem(StorageKeys.CART_ITEMS_KEY, JSON.stringify(getState().cart.cartItems));
-
-        return dispatch({
-            type: ADD_TO_CART,
-            payload: ItemState.fromApiToState(apiProduct, quantity),
-        });
+    async (dispatch: ThunkDispatch<StoreState, void, AddToCartActions>, getState: () => StoreState) => {
+        try {
+            const apiProduct = await apiAddItemToCart(productId, quantity);
+            setCartItems(getState()?.cart?.cart?.cartItems ?? []);
+            dispatch({
+                type: ADD_PRODUCT_TO_CART_SUCCESS,
+                payload: ItemApi.toState(apiProduct.item),
+            });
+        } catch (error) {
+            dispatch({ type: ADD_PRODUCT_TO_CART_FAIL, payload: { errorMessage: error.message } });
+        }
     };
 
-const removeItemFromCart: ActionCreator<ThunkAction<Promise<Action>, StoreState, void, CartActions>> =
-    (id: string) => async (dispatch: ThunkDispatch<StoreState, void, CartActions>, getState: () => StoreState) => {
-        localStorage.setItem(StorageKeys.CART_ITEMS_KEY, JSON.stringify(getState().cart.cartItems));
-        return dispatch({
-            type: REMOVE_ITEM_FROM_CART,
-            payload: {
-                id,
-            },
-        });
+const removeItemFromCart: ActionCreator<ThunkAction<Promise<void>, StoreState, void, RemoveItemFromCartActions>> =
+    (id: string) =>
+    async (dispatch: ThunkDispatch<StoreState, void, RemoveItemFromCartActions>, getState: () => StoreState) => {
+        try {
+            setCartItems(getState()?.cart?.cart.cartItems ?? []);
+            dispatch({
+                type: REMOVE_ITEM_FROM_CART_SUCCESS,
+                payload: { id },
+            });
+        } catch (error) {
+            dispatch({ type: REMOVE_ITEM_FROM_CART_FAIL, payload: { errorMessage: error.message } });
+        }
     };
 
-const clearCart: ActionCreator<ThunkAction<Promise<Action>, StoreState, void, CartActions>> =
-    () => async (dispatch) => {
-        localStorage.setItem(StorageKeys.CART_ITEMS_KEY, '');
-        return dispatch({ type: CLEAR_CART });
+const clearCart: ActionCreator<ThunkAction<Promise<void>, StoreState, void, ClearCartErrors>> =
+    () => async (dispatch: ThunkDispatch<StoreState, void, ClearCartErrors>) => {
+        setCartItems([]);
+        dispatch({ type: CLEAR_CART_ERRORS });
     };
 
-const saveShippingInfo: ActionCreator<ThunkAction<Promise<Action>, StoreState, void, CartActions>> =
-    (shippingInfo: ShippingInfo) => async (dispatch) => {
-        localStorage.setItem(StorageKeys.SHIPPING_INFO_KEY, JSON.stringify(shippingInfo));
-        return dispatch({ type: SAVE_SHIPPING_INFO, payload: ShippingInfoState.fromModelToState(shippingInfo) });
+const saveShippingInfo: ActionCreator<ThunkAction<Promise<void>, StoreState, void, SaveShippingInfo>> =
+    (shippingInfo: ShippingInfo) => async (dispatch: ThunkDispatch<StoreState, void, SaveShippingInfo>) => {
+        setShippingInfo(shippingInfo);
+        dispatch({ type: SAVE_SHIPPING_INFO, payload: ShippingInfo.toState(shippingInfo) });
     };
 
 export type { CartActions };

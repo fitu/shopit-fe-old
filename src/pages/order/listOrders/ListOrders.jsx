@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
-import { clearErrors, myOrders } from '../../../store/actions/orderActions';
+import { clearErrors, myOrders } from '../../../store/actions/order/orderActions';
 import './styles/listOrders.scss';
 
 const ListOrders = () => {
