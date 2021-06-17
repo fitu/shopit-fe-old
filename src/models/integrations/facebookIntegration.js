@@ -4,4 +4,4 @@ const facebookProperties = {
     autoLoad: false,
 };
 
-export default FacebookProperties;
+export default facebookProperties;

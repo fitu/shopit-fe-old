@@ -3,6 +3,7 @@ import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import FacebookLogin from 'react-facebook-login';
 
+import facebook from '../../../resources/strings/pages/user/register/integrations/facebook';
 import Integrations from '../../../models/integrations/Integrations';
 import facebookProperties from '../../../models/integrations/facebookIntegration';
 import Loader from '../../../components/util/Loader';
@@ -46,7 +47,7 @@ const Register = ({ history }) => {
             formData.set('avatar', picture.data.url);
             dispatch(register(formData, Integrations.FACEBOOK));
         } else {
-            alert.error('something went wrong with Facebook log in');
+            alert.error(facebook.errorLoginmessage);
         }
     };
 
