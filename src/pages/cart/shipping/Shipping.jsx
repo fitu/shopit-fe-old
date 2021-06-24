@@ -19,7 +19,7 @@ const Shipping = ({ history }) => {
     const [phoneNumber, setPhoneNumber] = useState(shippingInfo.phoneNumber);
     const [country, setCountry] = useState(shippingInfo.country);
 
-    const submitHanlder = (event) => {
+    const submitHandler = (event) => {
         event.preventDefault();
 
         dispatch(
@@ -42,7 +42,7 @@ const Shipping = ({ history }) => {
                 <div className={'shipping__steps'}>
                     <CheckoutSteps shippingStep />
                 </div>
-                <form className={'shipping_form'} onSubmit={submitHanlder}>
+                <form className={'shipping_form'} onSubmit={submitHandler}>
                     <h1 className={'form__title'}>{'Shipping Info'}</h1>
                     <div className={'form__address--container'}>
                         <label htmlFor={'address_field'}>{'Address'}</label>

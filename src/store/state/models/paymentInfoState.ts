@@ -1,18 +1,7 @@
 import OrderStatus from '../../../models/orderStatus';
-import PaymentInfo from '../../../models/paymentInfo';
 
 class PaymentInfoState {
-    id: string;
-    status: OrderStatus;
-
-    constructor(id: string, status: OrderStatus) {
-        this.id = id;
-        this.status = status;
-    }
-
-    static toModel(paymentInfoState: PaymentInfoState): PaymentInfo {
-        return new PaymentInfo(paymentInfoState.id, paymentInfoState.status);
-    }
+    constructor(public id: string, public status: OrderStatus) {}
 }
 
 export default PaymentInfoState;

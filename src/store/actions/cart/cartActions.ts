@@ -4,8 +4,8 @@ import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 import { addItemToCart as apiAddItemToCart } from '../../../api/api';
 import ItemApi from '../../../api/models/itemApi';
-import ShippingInfo from '../../../models/shippingInfo';
 import { setCartItems, setShippingInfo } from '../../repository/repository';
+import ShippingInfoState from '../../state/models/shippingInfoState';
 import { StoreState } from '../../state/storeState';
 
 import {
@@ -63,9 +63,9 @@ const clearCart: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Clea
     };
 
 const saveShippingInfo: ActionCreator<ThunkAction<Promise<void>, StoreState, void, SaveShippingInfo>> =
-    (shippingInfo: ShippingInfo) => async (dispatch: ThunkDispatch<StoreState, void, SaveShippingInfo>) => {
+    (shippingInfo: ShippingInfoState) => async (dispatch: ThunkDispatch<StoreState, void, SaveShippingInfo>) => {
         setShippingInfo(shippingInfo);
-        dispatch({ type: SAVE_SHIPPING_INFO, payload: ShippingInfo.toState(shippingInfo) });
+        dispatch({ type: SAVE_SHIPPING_INFO, payload: shippingInfo });
     };
 
 export type { CartActions };
