@@ -6,21 +6,14 @@ import UserState from '../../store/state/models/userState';
 import AvatarApi from './avatarApi';
 
 class UserApi {
-    _id: string;
-    avatar: AvatarApi;
-    role: Role;
-    name: string;
-    email: string;
-    createdAt: string;
-
-    constructor(_id: string, avatar: AvatarApi, role: Role, name: string, email: string, createdAt: string) {
-        this._id = _id;
-        this.avatar = avatar;
-        this.role = role;
-        this.name = name;
-        this.email = email;
-        this.createdAt = createdAt;
-    }
+    constructor(
+        public _id: string,
+        public avatar: AvatarApi,
+        public role: Role,
+        public name: string,
+        public email: string,
+        public createdAt: string,
+    ) {}
 
     static toState(userApi: UserApi): UserState {
         return new UserState(

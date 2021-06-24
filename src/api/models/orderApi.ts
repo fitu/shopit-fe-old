@@ -9,40 +9,18 @@ import ShippingInfoApi from './shippingInfoApi';
 import UserApi from './userApi';
 
 class OrderApi {
-    _id: string;
-    orderItems: Array<ItemApi>;
-    shippingInfo: ShippingInfoApi;
-    itemsPrice: number;
-    taxPrice: number;
-    shippingPrice: number;
-    totalPrice: number;
-    paymentInfo: PaymentInfoApi;
-    paidAt: Date;
-    user: UserApi;
-
     constructor(
-        _id: string,
-        orderItems: Array<ItemApi>,
-        shippingInfo: ShippingInfoApi,
-        itemsPrice: number,
-        taxPrice: number,
-        shippingPrice: number,
-        totalPrice: number,
-        paymentInfo: PaymentInfoApi,
-        paidAt: Date,
-        user: UserApi,
-    ) {
-        this._id = _id;
-        this.orderItems = orderItems;
-        this.shippingInfo = shippingInfo;
-        this.itemsPrice = itemsPrice;
-        this.taxPrice = taxPrice;
-        this.shippingPrice = shippingPrice;
-        this.totalPrice = totalPrice;
-        this.paymentInfo = paymentInfo;
-        this.paidAt = paidAt;
-        this.user = user;
-    }
+        public _id: string,
+        public orderItems: Array<ItemApi>,
+        public shippingInfo: ShippingInfoApi,
+        public itemsPrice: number,
+        public taxPrice: number,
+        public shippingPrice: number,
+        public totalPrice: number,
+        public paymentInfo: PaymentInfoApi,
+        public paidAt: Date,
+        public user: UserApi,
+    ) {}
 
     static toState(orderApi: OrderApi): OrderState {
         return new OrderState(

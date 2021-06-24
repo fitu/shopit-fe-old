@@ -3,19 +3,13 @@
 import ReviewState from '../../store/state/models/reviewState';
 
 class ReviewApi {
-    _id: string;
-    user: string;
-    name: string;
-    rating: number;
-    comment: string;
-
-    constructor(_id: string, user: string, name: string, rating: number, comment: string) {
-        this._id = _id;
-        this.user = user;
-        this.name = name;
-        this.rating = rating;
-        this.comment = comment;
-    }
+    constructor(
+        public _id: string,
+        public user: string,
+        public name: string,
+        public rating: number,
+        public comment: string,
+    ) {}
 
     static toState(reviewApi: ReviewApi): ReviewState {
         return new ReviewState(reviewApi._id, reviewApi.user, reviewApi.name, reviewApi.rating, reviewApi.comment);
