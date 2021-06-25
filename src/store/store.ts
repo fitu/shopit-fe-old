@@ -46,6 +46,7 @@ const rootReducer = combineReducers<StoreState>({
     error: errorReducer,
 });
 
+// TODO: this shouldn't be like this undefined
 const initialState: StoreState = {
     allUsers: undefined,
     auth: undefined,

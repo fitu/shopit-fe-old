@@ -18,8 +18,9 @@ import { ProductState } from '../reducers/product/productReducer';
 import { ReviewState } from '../reducers/product/reviewReducer';
 import { ErrorState } from '../reducers/error/errorReducer';
 
+// TODO: this shouldn't be like this undefined
 interface StoreState {
-    allUsers: AllUsersState | undefined | undefined;
+    allUsers: AllUsersState | undefined;
     auth: AuthState | undefined;
     password: PasswordState | undefined;
     userDetails: UserDetailsState | undefined;
