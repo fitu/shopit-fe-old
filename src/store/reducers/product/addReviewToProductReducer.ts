@@ -5,11 +5,11 @@ import {
     GET_ALL_REVIEWS_FROM_PRODUCT_FAIL,
 } from '../../actions/product/actions/getAllReviewsFromProductActions';
 import { ProductActions } from '../../actions/product/productAction';
-import ReviewState from '../../state/models/reviewState';
+import Review from '../../state/models/Review';
 
 type AddReviewToProductState = {
     loading: boolean;
-    reviews: Array<ReviewState>;
+    reviews: Array<Review>;
     errorMessage: string;
 };
 

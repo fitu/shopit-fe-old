@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import OrderState from '../../../state/models/orderState';
+import Order from '../../../state/models/Order';
 
 const GET_MY_ORDERS_REQUEST = 'GET_MY_ORDERS_REQUEST';
 const GET_MY_ORDERS_SUCCESS = 'GET_MY_ORDERS_SUCCESS';
@@ -12,7 +12,7 @@ interface GetMyOrdersRequest extends Action {
 
 interface GetMyOrdersSuccess extends Action {
     type: typeof GET_MY_ORDERS_SUCCESS;
-    payload: Array<OrderState>;
+    payload: Array<Order>;
 }
 
 interface GetMyOrdersFail extends Action {

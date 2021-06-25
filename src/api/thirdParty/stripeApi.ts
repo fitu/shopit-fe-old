@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { BASE_URI_VERSION } from '../apiConfig';
-import { handleApiErrors } from '../apiError';
+import { parseErrors } from '../apiError';
 
 import StripeApiKeyResponse from './responses/stripeApiKeyResponse';
 
@@ -12,7 +12,7 @@ const getStripeApiKey = async (): Promise<StripeApiKeyResponse> => {
         const response = await axios.get<StripeApiKeyResponse>(GET_STRIPE_URI);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 

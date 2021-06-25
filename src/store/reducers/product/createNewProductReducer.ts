@@ -6,12 +6,12 @@ import {
     CREATE_NEW_PRODUCT_FAIL,
 } from '../../actions/product/actions/createNewProductActions';
 import { ProductActions } from '../../actions/product/productAction';
-import ProductState from '../../state/models/productState';
+import Product from '../../state/models/Product';
 
 type CreateNewProductState = {
     loading: boolean;
     success: boolean;
-    product: ProductState | undefined;
+    product: Product | undefined;
     errorMessage: string;
 };
 

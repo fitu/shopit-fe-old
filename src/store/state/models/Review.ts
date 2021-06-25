@@ -1,4 +1,5 @@
-class ReviewState {
+// TODO: add null object
+class Review {
     constructor(
         public id: string,
         public userId: string,
@@ -8,4 +9,4 @@ class ReviewState {
     ) {}
 }
 
-export default ReviewState;
+export default Review;

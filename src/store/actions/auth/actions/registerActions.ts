@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import UserState from '../../../state/models/userState';
+import User from '../../../state/models/User';
 
 const REGISTER_USER_REQUEST = 'REGISTER_USER_REQUEST';
 const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
@@ -12,7 +12,7 @@ interface RegisterRequest extends Action {
 
 interface RegisterSuccess extends Action {
     type: typeof REGISTER_USER_SUCCESS;
-    payload: UserState;
+    payload: User;
 }
 
 interface RegisterFail extends Action {

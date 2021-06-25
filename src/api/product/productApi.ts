@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
-import { handleApiErrors } from '../apiError';
+import { parseErrors } from '../apiError';
 
 import CreateNewProductPayload from './payloads/createNewProductPayload';
 import UpdateProductPayload from './payloads/updateProductPayload';
@@ -32,7 +32,7 @@ const getProducts = async (
         });
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -41,7 +41,7 @@ const getProductDetails = async (productId: string): Promise<GetProductDetailsRe
         const response = await axios.get<GetProductDetailsResponse>(`${GET_PRODUCT_DETAILS_URI}/${productId}`);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -50,7 +50,7 @@ const getAdminProducts = async (): Promise<GetAdminProductsResponse> => {
         const response = await axios.get<GetAdminProductsResponse>(GET_ADMIN_PRODUCTS_URI);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -59,7 +59,7 @@ const createNewProduct = async (payload: CreateNewProductPayload): Promise<Creat
         const response = await axios.post<CreateNewProductResponse>(`${CREATE_NEW_PRODUCT_URI}`, payload, baseHeaders);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -68,7 +68,7 @@ const deleteProduct = async (productId: string): Promise<void> => {
         const response = await axios.delete(`${DELETE_PRODUCT_URI}/${productId}`);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -81,7 +81,7 @@ const updateProduct = async (productId: string, payload: UpdateProductPayload): 
         );
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -94,7 +94,7 @@ const getProductReviews = async (productId: string): Promise<GetProductReviewsRe
         });
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 

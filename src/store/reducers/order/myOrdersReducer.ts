@@ -5,11 +5,11 @@ import {
     GET_MY_ORDERS_FAIL,
 } from '../../actions/order/actions/getMyOrdersActions';
 import { OrderActions } from '../../actions/order/orderActions';
-import OrderState from '../../state/models/orderState';
+import Order from '../../state/models/Order';
 
 type MyOrdersState = {
     loading: boolean;
-    orders: Array<OrderState>;
+    orders: Array<Order>;
     errorMessage: string;
 };
 

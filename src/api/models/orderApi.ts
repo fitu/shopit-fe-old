@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 // TODO: change this in Backend
 import OrderStatus from '../../models/orderStatus';
-import OrderState from '../../store/state/models/orderState';
+import Order from '../../store/state/models/Order';
 
 import ItemApi from './itemApi';
 import PaymentInfoApi from './paymentInfoApi';
@@ -22,8 +22,8 @@ class OrderApi {
         public user: UserApi,
     ) {}
 
-    static toState(orderApi: OrderApi): OrderState {
-        return new OrderState(
+    static toState(orderApi: OrderApi): Order {
+        return new Order(
             orderApi._id,
             orderApi.itemsPrice,
             orderApi.taxPrice,

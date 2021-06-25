@@ -1,4 +1,5 @@
-class ShippingInfoState {
+// TODO: add null object
+class ShippingInfo {
     constructor(
         public address: string,
         public city: string,
@@ -8,4 +9,4 @@ class ShippingInfoState {
     ) {}
 }
 
-export default ShippingInfoState;
+export default ShippingInfo;

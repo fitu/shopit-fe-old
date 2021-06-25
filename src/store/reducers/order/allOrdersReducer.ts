@@ -5,11 +5,11 @@ import {
     GET_ALL_ORDERS_FAIL,
 } from '../../actions/order/actions/getAllOrdersActions';
 import { OrderActions } from '../../actions/order/orderActions';
-import OrderState from '../../state/models/orderState';
+import Order from '../../state/models/Order';
 
 type AllOrdersState = {
     loading: boolean;
-    orders: Array<OrderState>;
+    orders: Array<Order>;
     totalAmount: number;
     errorMessage: string;
 };

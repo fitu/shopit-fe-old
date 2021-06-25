@@ -1,13 +1,13 @@
 import { Action } from 'redux';
 
-import ItemState from '../../../state/models/itemState';
+import Item from '../../../state/models/Item';
 
 const ADD_PRODUCT_TO_CART_SUCCESS = 'ADD_PRODUCT_TO_CART_SUCCESS';
 const ADD_PRODUCT_TO_CART_FAIL = 'ADD_PRODUCT_TO_CART_FAIL';
 
 interface AddProductToCartSuccess extends Action {
     type: typeof ADD_PRODUCT_TO_CART_SUCCESS;
-    payload: ItemState;
+    payload: Item;
 }
 
 interface AddProductToCartFail extends Action {

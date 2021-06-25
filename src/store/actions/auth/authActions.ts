@@ -14,10 +14,8 @@ import {
     updateProfile as apiUpdateProfile,
     updateUser as apiUpdateUser,
 } from '../../../api/api';
-import ApiError from '../../../api/apiError';
 import { login as apiLogin } from '../../../api/auth/authApi';
 import LoginPayload from '../../../api/auth/payloads/loginPayload';
-import Strings from '../../../resources/strings/store/auth/authStoreStrings';
 import { StoreState } from '../../state/storeState';
 
 import { ClearAuthErrors, CLEAR_AUTH_ERRORS } from './actions/clearAuthErrorsActions';
@@ -119,19 +117,21 @@ import {
     UPDATE_USER_FAIL,
 } from './actions/updateUserActions';
 import UserApi from '../../../api/models/userApi';
+import executeRequest from '../../../api/apiProxy';
+import { ADD_ERROR, AddError as AddErrorActions } from '../error/actions/addErrorActions';
 
-type LoginActions = LoginRequest | LoginSuccess | LoginFail;
-type RegisterActions = RegisterRequest | RegisterSuccess | RegisterFail;
-type LogoutActions = LogoutSuccess | LogoutFail;
-type LoadUserActions = LoadUserRequest | LoadUserSuccess | LoadUserFail;
-type UpdateProfileActions = UpdateProfileRequest | UpdateProfileSuccess | UpdateProfileFail;
-type UpdatePasswordActions = UpdatePasswordRequest | UpdatePasswordSuccess | UpdatePasswordFail;
-type ForgotPasswordActions = ForgotPasswordRequest | ForgotPasswordSuccess | ForgotPasswordFail;
-type ResetPasswordActions = ResetPasswordRequest | ResetPasswordSuccess | ResetPasswordFail;
-type GetAllUsersActions = GetAllUsersRequest | GetAllUsersSuccess | GetAllUsersFail;
-type GetUserDetailsActions = GetUserDetailsRequest | GetUserDetailsSuccess | GetUserDetailsFail;
-type UpdateUserActions = UpdateUserRequest | UpdateUserSuccess | UpdateUserFail;
-type DeleteUserActions = DeleteUserRequest | DeleteUserSuccess | DeleteUserFail;
+type LoginActions = LoginRequest | LoginSuccess | LoginFail | AddErrorActions;
+type RegisterActions = RegisterRequest | RegisterSuccess | RegisterFail | AddErrorActions;
+type LogoutActions = LogoutSuccess | LogoutFail | AddErrorActions;
+type LoadUserActions = LoadUserRequest | LoadUserSuccess | LoadUserFail | AddErrorActions;
+type UpdateProfileActions = UpdateProfileRequest | UpdateProfileSuccess | UpdateProfileFail | AddErrorActions;
+type UpdatePasswordActions = UpdatePasswordRequest | UpdatePasswordSuccess | UpdatePasswordFail | AddErrorActions;
+type ForgotPasswordActions = ForgotPasswordRequest | ForgotPasswordSuccess | ForgotPasswordFail | AddErrorActions;
+type ResetPasswordActions = ResetPasswordRequest | ResetPasswordSuccess | ResetPasswordFail | AddErrorActions;
+type GetAllUsersActions = GetAllUsersRequest | GetAllUsersSuccess | GetAllUsersFail | AddErrorActions;
+type GetUserDetailsActions = GetUserDetailsRequest | GetUserDetailsSuccess | GetUserDetailsFail | AddErrorActions;
+type UpdateUserActions = UpdateUserRequest | UpdateUserSuccess | UpdateUserFail | AddErrorActions;
+type DeleteUserActions = DeleteUserRequest | DeleteUserSuccess | DeleteUserFail | AddErrorActions;
 
 type AuthActions =
     | LoginActions
@@ -154,16 +154,14 @@ type AuthActions =
 
 const login: ActionCreator<ThunkAction<Promise<void>, StoreState, void, LoginActions>> =
     (email, password) => async (dispatch: ThunkDispatch<StoreState, void, LoginActions>) => {
+        dispatch({ type: LOGIN_REQUEST });
+
+        const payload = new LoginPayload(email, password);
         try {
-            dispatch({ type: LOGIN_REQUEST });
-            const payload = new LoginPayload(email, password);
-            const response = await apiLogin(payload);
+            const response = await executeRequest(apiLogin, payload);
             dispatch({ type: LOGIN_SUCCESS, payload: UserApi.toState(response.user) });
         } catch (error) {
-            if (error instanceof ApiError) {
-                dispatch({ type: LOGIN_FAIL, payload: { errorMessage: error.message } });
-            }
-            dispatch({ type: LOGIN_FAIL, payload: { errorMessage: Strings.serverError } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
     };
 

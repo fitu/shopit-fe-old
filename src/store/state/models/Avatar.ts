@@ -1,5 +1,6 @@
-class AvatarState {
+// TODO: add null object
+class Avatar {
     constructor(public publicId: string, public url: string) {}
 }
 
-export default AvatarState;
+export default Avatar;

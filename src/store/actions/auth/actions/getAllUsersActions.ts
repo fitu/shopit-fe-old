@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import UserState from '../../../state/models/userState';
+import User from '../../../state/models/User';
 
 const GET_ALL_USER_REQUEST = 'GET_ALL_USER_REQUEST';
 const GET_ALL_USER_SUCCESS = 'GET_ALL_USER_SUCCESS';
@@ -12,7 +12,7 @@ interface GetAllUsersRequest extends Action {
 
 interface GetAllUsersSuccess extends Action {
     type: typeof GET_ALL_USER_SUCCESS;
-    payload: Array<UserState>;
+    payload: Array<User>;
 }
 
 interface GetAllUsersFail extends Action {

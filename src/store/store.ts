@@ -8,6 +8,7 @@ import passwordReducer from './reducers/auth/passwordReducer';
 import userDetailsReducer from './reducers/auth/userDetailsReducer';
 import userReducer from './reducers/auth/userReducer';
 import cartReducer from './reducers/cart/cartReducer';
+import errorReducer from './reducers/error/errorReducer';
 import allOrdersReducer from './reducers/order/allOrdersReducer';
 import createOrderReducer from './reducers/order/createOrderReducer';
 import modifyOrderReducer from './reducers/order/modifyOrderReducer';
@@ -42,6 +43,7 @@ const rootReducer = combineReducers<StoreState>({
     productDetails: productDetailsReducer,
     product: productsReducer,
     review: reviewReducer,
+    error: errorReducer,
 });
 
 const initialState: StoreState = {
@@ -69,6 +71,7 @@ const initialState: StoreState = {
     productDetails: undefined,
     product: undefined,
     review: undefined,
+    error: undefined,
 };
 
 const middlewares = [thunk];

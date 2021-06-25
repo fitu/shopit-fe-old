@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
-import { handleApiErrors } from '../apiError';
+import { parseErrors } from '../apiError';
 
 import CreateOrderPayload from './payloads/createOrderPayload';
 import UpdateOrderPayload from './payloads/updateOrderPayload';
@@ -23,7 +23,7 @@ const createOrder = async (payload: CreateOrderPayload): Promise<CreateOrderResp
         const response = await axios.post<CreateOrderResponse>(CREATE_ORDER_URI, payload, baseHeaders);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -32,7 +32,7 @@ const getMyOrders = async (): Promise<GetMyOrdersResponse> => {
         const response = await axios.get<GetMyOrdersResponse>(GET_MY_ORDERS_URI);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -41,7 +41,7 @@ const getOrderDetails = async (orderId: string): Promise<GetOrderResponse> => {
         const response = await axios.get<GetOrderResponse>(`${GET_ORDER_DETAILS_URI}/${orderId}`);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -50,7 +50,7 @@ const getAllOrders = async (): Promise<GetAllOrdersResponse> => {
         const response = await axios.get<GetAllOrdersResponse>(GET_ALL_ORDERS_URI);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -59,7 +59,7 @@ const updateOrder = async (orderId: string, payload: UpdateOrderPayload): Promis
         const response = await axios.put<UpdateOrderResponse>(`${UPDATE_ORDER_URI}/${orderId}`, payload, baseHeaders);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -68,7 +68,7 @@ const deleteOrder = async (orderId: string): Promise<void> => {
         const response = await axios.delete(`${DELETE_ORDER_URI}/${orderId}`);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 

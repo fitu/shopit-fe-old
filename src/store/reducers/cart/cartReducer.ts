@@ -8,19 +8,19 @@ import {
 } from '../../actions/cart/actions/removeItemFromCartActions';
 import { SAVE_SHIPPING_INFO } from '../../actions/cart/actions/saveShippingInfoActions';
 import { CartActions } from '../../actions/cart/cartActions';
-import CartStateModel from '../../state/models/cartState';
-import ItemState from '../../state/models/itemState';
-import ShippingInfoState from '../../state/models/shippingInfoState';
+import Cart from '../../state/models/Cart';
+import Item from '../../state/models/Item';
+import ShippingInfo from '../../state/models/ShippingInfo';
 
 type CartState = {
-    cart: CartStateModel;
+    cart: Cart;
     errorMessage: string;
 };
 
 const initialState = {
     cart: {
         cartItems: [],
-        shippingInfo: new ShippingInfoState('', '', '', '', ''),
+        shippingInfo: new ShippingInfo('', '', '', '', ''),
     },
     errorMessage: '',
 };
@@ -35,7 +35,7 @@ const cartReducer = (state: CartState = initialState, action: CartActions): Cart
                     ...state,
                     cart: {
                         ...state.cart,
-                        cartItems: _.map(state?.cart?.cartItems, (cartItem: ItemState) =>
+                        cartItems: _.map(state?.cart?.cartItems, (cartItem: Item) =>
                             cartItem.product === isItemExists.product ? item : cartItem,
                         ),
                     },
@@ -56,7 +56,7 @@ const cartReducer = (state: CartState = initialState, action: CartActions): Cart
                     ...state.cart,
                     cartItems: _.reject(
                         state?.cart?.cartItems,
-                        (cartItem: ItemState) => cartItem.product !== action.payload,
+                        (cartItem: Item) => cartItem.product !== action.payload,
                     ),
                 },
             };
@@ -82,7 +82,7 @@ const cartReducer = (state: CartState = initialState, action: CartActions): Cart
                 ...state,
                 cart: {
                     cartItems: [],
-                    shippingInfo: new ShippingInfoState('', '', '', '', ''),
+                    shippingInfo: new ShippingInfo('', '', '', '', ''),
                 },
                 errorMessage: '',
             };

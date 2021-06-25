@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { BASE_URI_VERSION } from '../apiConfig';
-import { handleApiErrors } from '../apiError';
+import { parseErrors } from '../apiError';
 
 import AddItemToCartResponse from './responses/addItemToCartResponse';
 
@@ -16,7 +16,7 @@ const addItemToCart = async (productId: string, quantity: number): Promise<AddIt
         });
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 

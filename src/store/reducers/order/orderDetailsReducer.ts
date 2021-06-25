@@ -5,11 +5,11 @@ import {
     GET_ORDER_DETAILS_FAIL,
 } from '../../actions/order/actions/getOrderDetailsActions';
 import { OrderActions } from '../../actions/order/orderActions';
-import OrderStateModel from '../../state/models/orderState';
+import Order from '../../state/models/Order';
 
 type OrderDetailsState = {
     loading: boolean;
-    order: OrderStateModel | undefined;
+    order: Order | undefined;
     errorMessage: string;
 };
 

@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import ProductState from '../../../state/models/productState';
+import Product from '../../../state/models/Product';
 
 const CREATE_NEW_PRODUCT_REQUEST = 'CREATE_NEW_PRODUCT_REQUEST';
 const CREATE_NEW_PRODUCT_SUCCESS = 'CREATE_NEW_PRODUCT_SUCCESS';
@@ -13,7 +13,7 @@ interface CreateNewProductRequest extends Action {
 
 interface CreateNewProductSuccess extends Action {
     type: typeof CREATE_NEW_PRODUCT_SUCCESS;
-    payload: ProductState;
+    payload: Product;
 }
 
 interface CreateNewProductReset extends Action {

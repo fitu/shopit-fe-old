@@ -12,13 +12,13 @@ import {
     UPDATE_PRODUCT_FAIL,
 } from '../../actions/product/actions/updateProductActions';
 import { ProductActions } from '../../actions/product/productAction';
-import ProductState from '../../state/models/productState';
+import Product from '../../state/models/Product';
 
 type ModifyProductState = {
     loading: boolean;
     isDeleted: boolean;
     isUpdated: boolean;
-    product: ProductState | undefined;
+    product: Product | undefined;
     errorMessage: string;
 };
 

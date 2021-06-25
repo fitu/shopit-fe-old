@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 // TODO: change this in Backend
 import Category from '../../models/category';
-import ProductState from '../../store/state/models/productState';
+import Product from '../../store/state/models/Product';
 
 import ImageApi from './imageApi';
 import ReviewApi from './reviewApi';
@@ -22,8 +22,8 @@ class ProductApi {
         public createAt: Date,
     ) {}
 
-    static toState(productApi: ProductApi): ProductState {
-        return new ProductState(
+    static toState(productApi: ProductApi): Product {
+        return new Product(
             productApi._id,
             productApi.price,
             productApi.ratings,

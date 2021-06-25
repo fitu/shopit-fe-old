@@ -5,11 +5,11 @@ import {
     GET_ALL_USER_FAIL,
 } from '../../actions/auth/actions/getAllUsersActions';
 import { AuthActions } from '../../actions/auth/authActions';
-import UserState from '../../state/models/userState';
+import User from '../../state/models/User';
 
 type AllUsersState = {
     loading: boolean;
-    users: Array<UserState>;
+    users: Array<User>;
     errorMessage: string;
 };
 

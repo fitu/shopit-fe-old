@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 // TODO: change this in Backend
-import ShippingInfoState from '../../store/state/models/shippingInfoState';
+import ShippingInfo from '../../store/state/models/ShippingInfo';
 
 class ShippingInfoApi {
     constructor(
@@ -12,8 +12,8 @@ class ShippingInfoApi {
         public country: string,
     ) {}
 
-    static toState(shippingInfoApi: ShippingInfoApi): ShippingInfoState {
-        return new ShippingInfoState(
+    static toState(shippingInfoApi: ShippingInfoApi): ShippingInfo {
+        return new ShippingInfo(
             shippingInfoApi.address,
             shippingInfoApi.city,
             shippingInfoApi.phoneNumber,

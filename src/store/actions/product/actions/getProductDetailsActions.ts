@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import ProductState from '../../../state/models/productState';
+import Product from '../../../state/models/Product';
 
 const GET_PRODUCT_DETAILS_REQUEST = 'GET_PRODUCT_DETAILS_REQUEST';
 const GET_PRODUCT_DETAILS_SUCCESS = 'GET_PRODUCT_DETAILS_SUCCESS';
@@ -12,7 +12,7 @@ interface GetProductDetailsRequest extends Action {
 
 interface GetProductDetailsSuccess extends Action {
     type: typeof GET_PRODUCT_DETAILS_SUCCESS;
-    payload: ProductState;
+    payload: Product;
 }
 
 interface GetProductDetailsFail extends Action {

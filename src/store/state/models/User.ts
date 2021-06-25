@@ -1,16 +1,17 @@
 import Role from '../../../models/role';
 
-import AvatarState from './avatarState';
+import Avatar from './Avatar';
 
-class UserState {
+// TODO: add null object
+class User {
     constructor(
         public id: string,
         public role: Role,
         public name: string,
         public email: string,
-        public avatar: AvatarState,
+        public avatar: Avatar,
         public createdAt: string,
     ) {}
 }
 
-export default UserState;
+export default User;

@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import UserState from '../../../state/models/userState';
+import User from '../../../state/models/User';
 
 const GET_USER_DETAILS_REQUEST = 'GET_USER_DETAILS_REQUEST';
 const GET_USER_DETAILS_SUCCESS = 'GET_USER_DETAILS_SUCCESS';
@@ -12,7 +12,7 @@ interface GetUserDetailsRequest extends Action {
 
 interface GetUserDetailsSuccess extends Action {
     type: typeof GET_USER_DETAILS_SUCCESS;
-    payload: UserState;
+    payload: User;
 }
 
 interface GetUserDetailsFail extends Action {

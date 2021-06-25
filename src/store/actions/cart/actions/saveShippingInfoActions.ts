@@ -1,12 +1,12 @@
 import { Action } from 'redux';
 
-import ShippingInfoState from '../../../state/models/shippingInfoState';
+import ShippingInfo from '../../../state/models/ShippingInfo';
 
 const SAVE_SHIPPING_INFO = 'SAVE_SHIPPING_INFO';
 
 interface SaveShippingInfo extends Action {
     type: typeof SAVE_SHIPPING_INFO;
-    payload: ShippingInfoState;
+    payload: ShippingInfo;
 }
 
 export type { SaveShippingInfo };

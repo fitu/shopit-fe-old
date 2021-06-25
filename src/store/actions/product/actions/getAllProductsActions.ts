@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import ProductState from '../../../state/models/productState';
+import Product from '../../../state/models/Product';
 
 const GET_ALL_PRODUCTS_REQUEST = 'GET_ALL_PRODUCTS_REQUEST';
 const GET_ALL_PRODUCTS_SUCCESS = 'GET_ALL_PRODUCTS_SUCCESS';
@@ -13,7 +13,7 @@ interface GetAllProductsRequest extends Action {
 interface GetAllProductsSuccess extends Action {
     type: typeof GET_ALL_PRODUCTS_SUCCESS;
     payload: {
-        products: Array<ProductState>;
+        products: Array<Product>;
         productsCount: number;
     };
 }

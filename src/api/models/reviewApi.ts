@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 // TODO: change this in Backend
-import ReviewState from '../../store/state/models/reviewState';
+import Review from '../../store/state/models/Review';
 
 class ReviewApi {
     constructor(
@@ -11,8 +11,8 @@ class ReviewApi {
         public comment: string,
     ) {}
 
-    static toState(reviewApi: ReviewApi): ReviewState {
-        return new ReviewState(reviewApi._id, reviewApi.user, reviewApi.name, reviewApi.rating, reviewApi.comment);
+    static toState(reviewApi: ReviewApi): Review {
+        return new Review(reviewApi._id, reviewApi.user, reviewApi.name, reviewApi.rating, reviewApi.comment);
     }
 }
 

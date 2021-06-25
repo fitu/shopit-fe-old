@@ -10,12 +10,12 @@ import {
     GET_ALL_PRODUCTS_FAIL,
 } from '../../actions/product/actions/getAllProductsActions';
 import { ProductActions } from '../../actions/product/productAction';
-import ProductStateModel from '../../state/models/productState';
+import Product from '../../state/models/Product';
 
 type ProductState = {
     loading: boolean;
     productsCount: number;
-    products: Array<ProductStateModel>;
+    products: Array<Product>;
     errorMessage: string;
 };
 

@@ -16,6 +16,7 @@ import { ModifyProductState } from '../reducers/product/modifyProductReducer';
 import { ProductDetailsState } from '../reducers/product/productDetailsReducer';
 import { ProductState } from '../reducers/product/productReducer';
 import { ReviewState } from '../reducers/product/reviewReducer';
+import { ErrorState } from '../reducers/error/errorReducer';
 
 interface StoreState {
     allUsers: AllUsersState | undefined | undefined;
@@ -36,6 +37,7 @@ interface StoreState {
     productDetails: ProductDetailsState | undefined;
     product: ProductState | undefined;
     review: ReviewState | undefined;
+    error: ErrorState | undefined;
 }
 
 export type { StoreState };

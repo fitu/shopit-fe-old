@@ -5,11 +5,11 @@ import {
     GET_PRODUCT_DETAILS_FAIL,
 } from '../../actions/product/actions/getProductDetailsActions';
 import { ProductActions } from '../../actions/product/productAction';
-import ProductState from '../../state/models/productState';
+import Product from '../../state/models/Product';
 
 type ProductDetailsState = {
     loading: boolean;
-    product: ProductState | undefined;
+    product: Product | undefined;
     errorMessage: string;
 };
 

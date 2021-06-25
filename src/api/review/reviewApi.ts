@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
-import { handleApiErrors } from '../apiError';
+import { parseErrors } from '../apiError';
 
 import AddReviewToProductPayload from './payloads/addReviewToProductPayload';
 import AddReviewToProductResponse from './responses/addReviewToProductResponse';
@@ -14,7 +14,7 @@ const addReviewToProduct = async (payload: AddReviewToProductPayload): Promise<A
         const response = await axios.put<AddReviewToProductResponse>(ADD_REVIEW_TO_PRODUCT_URI, payload, baseHeaders);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -25,7 +25,7 @@ const deleteReviewFromProduct = async (reviewId: string, productId: string): Pro
         });
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 

@@ -5,11 +5,11 @@ import {
     CREATE_ORDER_FAIL,
 } from '../../actions/order/actions/createOrderActions';
 import { OrderActions } from '../../actions/order/orderActions';
-import OrderState from '../../state/models/orderState';
+import Order from '../../state/models/Order';
 
 type CreateOrderState = {
     loading: boolean;
-    order: OrderState | undefined;
+    order: Order | undefined;
     errorMessage: string;
 };
 

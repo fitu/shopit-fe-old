@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
-import { handleApiErrors } from '../apiError';
+import { parseErrors } from '../apiError';
 
 import ProcessPaymentPayload from './payloads/processPaymentPayload';
 import ProcessPaymentResponse from './responses/processPaymentResponse';
@@ -13,7 +13,7 @@ const processPayment = async (payload: ProcessPaymentPayload): Promise<ProcessPa
         const response = await axios.post<ProcessPaymentResponse>(PROCESS_PAYMENT_URI, payload, baseHeaders);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 

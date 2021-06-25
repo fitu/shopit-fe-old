@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import UserState from '../../../state/models/userState';
+import User from '../../../state/models/User';
 
 const LOGIN_REQUEST = 'LOGIN_REQUEST';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -12,7 +12,7 @@ interface LoginRequest extends Action {
 
 interface LoginSuccess extends Action {
     type: typeof LOGIN_SUCCESS;
-    payload: UserState;
+    payload: User;
 }
 
 interface LoginFail extends Action {

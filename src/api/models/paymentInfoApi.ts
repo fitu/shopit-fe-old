@@ -1,11 +1,11 @@
 import OrderStatus from '../../models/orderStatus';
-import PaymentInfoState from '../../store/state/models/paymentInfoState';
+import PaymentInfo from '../../store/state/models/PaymentInfo';
 
 class PaymentInfoApi {
     constructor(public id: string, public status: OrderStatus) {}
 
-    static toState(paymentInfoApi: PaymentInfoApi): PaymentInfoState {
-        return new PaymentInfoState(paymentInfoApi.id, paymentInfoApi.status);
+    static toState(paymentInfoApi: PaymentInfoApi): PaymentInfo {
+        return new PaymentInfo(paymentInfoApi.id, paymentInfoApi.status);
     }
 }
 

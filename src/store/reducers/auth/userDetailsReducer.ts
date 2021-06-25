@@ -5,11 +5,11 @@ import {
     GET_USER_DETAILS_FAIL,
 } from '../../actions/auth/actions/getUserDetailsActions';
 import { AuthActions } from '../../actions/auth/authActions';
-import UserState from '../../state/models/userState';
+import User from '../../state/models/User';
 
 type UserDetailsState = {
     loading: boolean;
-    user: UserState | undefined;
+    user: User | undefined;
     errorMessage: string;
 };
 

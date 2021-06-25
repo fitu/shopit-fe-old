@@ -8,12 +8,12 @@ import {
     REGISTER_USER_FAIL,
 } from '../../actions/auth/actions/registerActions';
 import { AuthActions } from '../../actions/auth/authActions';
-import UserState from '../../state/models/userState';
+import User from '../../state/models/User';
 
 type AuthState = {
     loading: boolean;
     isAuthenticated: boolean;
-    user: UserState | undefined;
+    user: User | undefined;
     errorMessage: string;
 };
 

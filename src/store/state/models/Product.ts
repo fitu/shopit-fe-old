@@ -1,9 +1,10 @@
 import Category from '../../../models/category';
 
-import ImageState from './imageState';
-import ReviewState from './reviewState';
+import Image from './Image';
+import Review from './Review';
 
-class ProductState {
+// TODO: add null object
+class Product {
     constructor(
         public id: string,
         public price: number,
@@ -11,13 +12,13 @@ class ProductState {
         public numberOfReviews: number,
         public name: string,
         public description: string,
-        public images: Array<ImageState>,
+        public images: Array<Image>,
         public category: Category,
         public seller: string,
         public stock: number,
-        public reviews: Array<ReviewState>,
+        public reviews: Array<Review>,
         public createAt: Date,
     ) {}
 }
 
-export default ProductState;
+export default Product;

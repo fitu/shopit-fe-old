@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { BASE_URI_VERSION, baseHeaders } from '../apiConfig';
-import { handleApiErrors } from '../apiError';
+import { parseErrors } from '../apiError';
 
 import ForgotPasswordPayload from './payloads/forgotPasswordPayload';
 import ResetPasswordPayload from './payloads/resetPasswordPayload';
@@ -32,7 +32,7 @@ const getCurrentUser = async (): Promise<CurrentUserResponse> => {
         const response = await axios.get<CurrentUserResponse>(LOAD_USER_URI);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -41,7 +41,7 @@ const updateProfile = async (payload: UpdateProfilePayload): Promise<UpdateProfi
         const response = await axios.put<UpdateProfileResponse>(UPDATE_PROFILE_URI, payload, baseHeaders);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -50,7 +50,7 @@ const updatePassword = async (payload: UpdatePasswordPayload): Promise<UpdatePas
         const response = await axios.put<UpdatePasswordResponse>(UPDATE_PASSWORD_URI, payload, baseHeaders);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -59,7 +59,7 @@ const forgotPassword = async (payload: ForgotPasswordPayload): Promise<ForgotPas
         const response = await axios.post<ForgotPasswordResponse>(FORGOT_PASSWORD_URI, payload, baseHeaders);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -68,7 +68,7 @@ const resetPassword = async (token: string, payload: ResetPasswordPayload): Prom
         const response = await axios.put<ResetPasswordResponse>(`${RESET_PASSWORD_URI}/${token}`, payload, baseHeaders);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -77,7 +77,7 @@ const getAllUsers = async (): Promise<AllUsersResponse> => {
         const response = await axios.get<AllUsersResponse>(GET_ALL_USERS_URI);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -86,7 +86,7 @@ const getUserDetails = async (userId: string): Promise<UserDetailsResponse> => {
         const response = await axios.get<UserDetailsResponse>(`${GET_USER_DETAILS_URI}/${userId}`);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -95,7 +95,7 @@ const updateUser = async (userId: string, payload: UpdateUserPayload): Promise<U
         const response = await axios.put<UpdateUserResponse>(`${UPDATE_USER_URI}/${userId}`, payload, baseHeaders);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 
@@ -104,7 +104,7 @@ const deleteUser = async (userId: string): Promise<void> => {
         const response = await axios.delete(`${DELETE_USER_URI}/${userId}`);
         return response.data;
     } catch (error) {
-        throw handleApiErrors(error);
+        throw parseErrors(error);
     }
 };
 

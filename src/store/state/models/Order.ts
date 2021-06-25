@@ -1,11 +1,12 @@
 import OrderStatus from '../../../models/orderStatus';
 
-import ItemState from './itemState';
-import PaymentInfoState from './paymentInfoState';
-import ShippingInfoState from './shippingInfoState';
-import UserState from './userState';
+import Item from './Item';
+import PaymentInfo from './PaymentInfo';
+import ShippingInfo from './ShippingInfo';
+import User from './User';
 
-class OrderState {
+// TODO: add null object
+class Order {
     constructor(
         public id: string,
         public itemsPrice: number,
@@ -15,12 +16,12 @@ class OrderState {
         public orderStatus: OrderStatus,
         public deliveredAt: Date,
         public createdAt: Date,
-        public items: Array<ItemState>,
-        public shippingInfo: ShippingInfoState,
-        public paymentInfo: PaymentInfoState,
+        public items: Array<Item>,
+        public shippingInfo: ShippingInfo,
+        public paymentInfo: PaymentInfo,
         public paidAt: Date,
-        public user: UserState,
+        public user: User,
     ) {}
 }
 
-export default OrderState;
+export default Order;

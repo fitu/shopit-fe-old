@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import ReviewState from '../../../state/models/reviewState';
+import Review from '../../../state/models/Review';
 
 const GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST = 'GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST';
 const GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS = 'GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS';
@@ -12,7 +12,7 @@ interface GetAllReviewsFromProductRequest extends Action {
 
 interface GetAllReviewsFromProductSuccess extends Action {
     type: typeof GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS;
-    payload: Array<ReviewState>;
+    payload: Array<Review>;
 }
 
 interface GetAllReviewsFromProductFail extends Action {

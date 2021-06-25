@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import OrderState from '../../../state/models/orderState';
+import Order from '../../../state/models/Order';
 
 const GET_ALL_ORDERS_REQUEST = 'GET_ALL_ORDERS_REQUEST';
 const GET_ALL_ORDERS_SUCCESS = 'GET_ALL_ORDERS_SUCCESS';
@@ -13,7 +13,7 @@ interface GetAllOrdersRequest extends Action {
 interface GetAllOrdersSuccess extends Action {
     type: typeof GET_ALL_ORDERS_SUCCESS;
     payload: {
-        orders: Array<OrderState>;
+        orders: Array<Order>;
         totalAmount: number;
     };
 }

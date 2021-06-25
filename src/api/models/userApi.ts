@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 // TODO: change this in Backend
 import Role from '../../models/role';
-import UserState from '../../store/state/models/userState';
+import User from '../../store/state/models/User';
 
 import AvatarApi from './avatarApi';
 
@@ -15,8 +15,8 @@ class UserApi {
         public createdAt: string,
     ) {}
 
-    static toState(userApi: UserApi): UserState {
-        return new UserState(
+    static toState(userApi: UserApi): User {
+        return new User(
             userApi._id,
             userApi.role,
             userApi.name,

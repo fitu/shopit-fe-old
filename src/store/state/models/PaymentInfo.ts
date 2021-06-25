@@ -1,7 +1,8 @@
 import OrderStatus from '../../../models/orderStatus';
 
-class PaymentInfoState {
+// TODO: add null object
+class PaymentInfo {
     constructor(public id: string, public status: OrderStatus) {}
 }
 
-export default PaymentInfoState;
+export default PaymentInfo;
