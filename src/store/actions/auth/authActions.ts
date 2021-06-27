@@ -21,10 +21,8 @@ import { StoreState } from '../../state/storeState';
 import {
     DeleteUserRequest,
     DeleteUserSuccess,
-    DeleteUserReset,
     DELETE_USER_REQUEST,
     DELETE_USER_SUCCESS,
-    DELETE_USER_RESET,
 } from './actions/deleteUserActions';
 import {
     ForgotPasswordRequest,
@@ -62,26 +60,20 @@ import {
 import {
     UpdatePasswordRequest,
     UpdatePasswordSuccess,
-    UpdatePasswordReset,
     UPDATE_PASSWORD_REQUEST,
     UPDATE_PASSWORD_SUCCESS,
-    UPDATE_PASSWORD_RESET,
 } from './actions/updatePasswordActions';
 import {
     UpdateProfileRequest,
     UpdateProfileSuccess,
-    UpdateProfileReset,
     UPDATE_PROFILE_REQUEST,
     UPDATE_PROFILE_SUCCESS,
-    UPDATE_PROFILE_RESET,
 } from './actions/updateProfileActions';
 import {
     UpdateUserRequest,
     UpdateUserSuccess,
-    UpdateUserReset,
     UPDATE_USER_REQUEST,
     UPDATE_USER_SUCCESS,
-    UPDATE_USER_RESET,
 } from './actions/updateUserActions';
 import UserApi from '../../../api/models/userApi';
 import executeRequest from '../../../api/apiProxy';
@@ -112,11 +104,7 @@ type AuthActions =
     | GetAllUsersActions
     | GetUserDetailsActions
     | UpdateUserActions
-    | DeleteUserActions
-    | UpdateUserReset
-    | UpdateProfileReset
-    | DeleteUserReset
-    | UpdatePasswordReset;
+    | DeleteUserActions;
 
 const login: ActionCreator<ThunkAction<Promise<void>, StoreState, void, LoginActions>> =
     (email, password) => async (dispatch: ThunkDispatch<StoreState, void, LoginActions>) => {
@@ -251,26 +239,6 @@ const deleteUser: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Del
         }
     };
 
-const updateUserReset: ActionCreator<ThunkAction<Promise<void>, StoreState, void, UpdateUserReset>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, UpdateUserReset>) => {
-        dispatch({ type: UPDATE_USER_RESET });
-    };
-
-const updateProfileReset: ActionCreator<ThunkAction<Promise<void>, StoreState, void, UpdateProfileReset>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, UpdateProfileReset>) => {
-        dispatch({ type: UPDATE_PROFILE_RESET });
-    };
-
-const deleteUserReset: ActionCreator<ThunkAction<Promise<void>, StoreState, void, DeleteUserReset>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, DeleteUserReset>) => {
-        dispatch({ type: DELETE_USER_RESET });
-    };
-
-const updatePasswordReset: ActionCreator<ThunkAction<Promise<void>, StoreState, void, UpdatePasswordReset>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, UpdatePasswordReset>) => {
-        dispatch({ type: UPDATE_PASSWORD_RESET });
-    };
-
 export type { AuthActions };
 export {
     login,
@@ -285,8 +253,4 @@ export {
     getUserDetails,
     updateUser,
     deleteUser,
-    updateUserReset,
-    updateProfileReset,
-    deleteUserReset,
-    updatePasswordReset,
 };

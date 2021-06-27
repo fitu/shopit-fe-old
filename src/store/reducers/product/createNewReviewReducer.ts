@@ -1,7 +1,6 @@
 import {
     CREATE_NEW_REVIEW_REQUEST,
     CREATE_NEW_REVIEW_SUCCESS,
-    CREATE_NEW_REVIEW_RESET,
 } from '../../actions/product/actions/createNewReviewActions';
 import { ProductActions } from '../../actions/product/productAction';
 
@@ -31,12 +30,6 @@ const createNewReviewReducer = (
                 ...state,
                 loading: false,
                 success: true,
-            };
-        }
-        case CREATE_NEW_REVIEW_RESET: {
-            return {
-                ...state,
-                success: false,
             };
         }
         default: {

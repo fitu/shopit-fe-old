@@ -18,34 +18,26 @@ import { StoreState } from '../../state/storeState';
 import {
     CreateNewProductRequest,
     CreateNewProductSuccess,
-    CreateNewProductReset,
     CREATE_NEW_PRODUCT_REQUEST,
     CREATE_NEW_PRODUCT_SUCCESS,
-    CREATE_NEW_PRODUCT_RESET,
 } from './actions/createNewProductActions';
 import {
     CreateNewReviewRequest,
     CreateNewReviewSuccess,
-    CreateNewReviewReset,
     CREATE_NEW_REVIEW_REQUEST,
     CREATE_NEW_REVIEW_SUCCESS,
-    CREATE_NEW_REVIEW_RESET,
 } from './actions/createNewReviewActions';
 import {
     DeleteProductRequest,
     DeleteProductSuccess,
-    DeleteProductReset,
     DELETE_PRODUCT_REQUEST,
     DELETE_PRODUCT_SUCCESS,
-    DELETE_PRODUCT_RESET,
 } from './actions/deleteProductActions';
 import {
     DeleteReviewFromProductRequest,
     DeleteReviewFromProductSuccess,
-    DeleteReviewFromProductReset,
     DELETE_REVIEW_FROM_PRODUCT_REQUEST,
     DELETE_REVIEW_FROM_PRODUCT_SUCCESS,
-    DELETE_REVIEW_FROM_PRODUCT_RESET,
 } from './actions/deleteReviewFromProductActions';
 import {
     GetAdminProductsRequest,
@@ -74,10 +66,8 @@ import {
 import {
     UpdateProductRequest,
     UpdateProductSuccess,
-    UpdateProductReset,
     UPDATE_PRODUCT_REQUEST,
     UPDATE_PRODUCT_SUCCESS,
-    UPDATE_PRODUCT_RESET,
 } from './actions/updateProductActions';
 import { ADD_ERROR, AddError as AddErrorActions } from '../error/actions/addErrorActions';
 
@@ -107,12 +97,7 @@ type ProductActions =
     | UpdateProductActions
     | DeleteProductActions
     | GetAllReviewsFromProductActions
-    | DeleteReviewFromProductActions
-    | CreateNewReviewReset
-    | UpdateProductReset
-    | CreateNewProductReset
-    | DeleteProductReset
-    | DeleteReviewFromProductReset;
+    | DeleteReviewFromProductActions;
 
 const INITIAL_PAGE = 1;
 
@@ -274,31 +259,6 @@ const deleteReview: ActionCreator<ThunkAction<Promise<void>, StoreState, void, D
         }
     };
 
-const updateProductReset: ActionCreator<ThunkAction<Promise<void>, StoreState, void, UpdateProductReset>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, UpdateProductReset>) => {
-        dispatch({ type: UPDATE_PRODUCT_RESET });
-    };
-
-const deleteReviewReset: ActionCreator<ThunkAction<Promise<void>, StoreState, void, DeleteReviewFromProductReset>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, DeleteReviewFromProductReset>) => {
-        dispatch({ type: DELETE_REVIEW_FROM_PRODUCT_RESET });
-    };
-
-const deleteProductReset: ActionCreator<ThunkAction<Promise<void>, StoreState, void, DeleteProductReset>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, DeleteProductReset>) => {
-        dispatch({ type: DELETE_PRODUCT_RESET });
-    };
-
-const newProductReset: ActionCreator<ThunkAction<Promise<void>, StoreState, void, CreateNewProductReset>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, CreateNewProductReset>) => {
-        dispatch({ type: CREATE_NEW_PRODUCT_RESET });
-    };
-
-const newReviewReset: ActionCreator<ThunkAction<Promise<void>, StoreState, void, CreateNewReviewReset>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, CreateNewReviewReset>) => {
-        dispatch({ type: CREATE_NEW_REVIEW_RESET });
-    };
-
 export type { ProductActions };
 export {
     getProducts,
@@ -310,9 +270,4 @@ export {
     updateProduct,
     getProductReviews,
     deleteReview,
-    updateProductReset,
-    deleteReviewReset,
-    deleteProductReset,
-    newProductReset,
-    newReviewReset,
 };

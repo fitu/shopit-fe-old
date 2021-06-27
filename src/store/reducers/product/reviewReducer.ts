@@ -1,7 +1,6 @@
 import {
     DELETE_REVIEW_FROM_PRODUCT_REQUEST,
     DELETE_REVIEW_FROM_PRODUCT_SUCCESS,
-    DELETE_REVIEW_FROM_PRODUCT_RESET,
 } from '../../actions/product/actions/deleteReviewFromProductActions';
 import { ProductActions } from '../../actions/product/productAction';
 
@@ -28,13 +27,6 @@ const reviewReducer = (state: ReviewState | undefined = INITIAL_STATE, action: P
                 ...state,
                 loading: false,
                 isDeleted: true,
-            };
-        }
-        case DELETE_REVIEW_FROM_PRODUCT_RESET: {
-            return {
-                ...state,
-                loading: false,
-                isDeleted: false,
             };
         }
         default: {

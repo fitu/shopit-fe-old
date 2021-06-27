@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MetaData from '../../../../components/util/MetaData';
 import Category from '../../../../models/category';
 import { Route } from '../../../../router/route';
-import { newProduct, newProductReset } from '../../../../store/actions/product/productAction';
+import { newProduct } from '../../../../store/actions/product/productAction';
 import Sidebar from '../../sidebar/Sidebar';
 import './styles/newProduct.scss';
 

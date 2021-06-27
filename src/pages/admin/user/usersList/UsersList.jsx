@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Loader from '../../../../components/util/Loader';
 import MetaData from '../../../../components/util/MetaData';
 import { Route } from '../../../../router/route';
-import { deleteUser, deleteUserReset, getAllUsers } from '../../../../store/actions/auth/authActions';
+import { deleteUser, getAllUsers } from '../../../../store/actions/auth/authActions';
 import Sidebar from '../../sidebar/Sidebar';
 import './styles/usersList.scss';
 

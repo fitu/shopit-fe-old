@@ -1,23 +1,7 @@
-import {
-    DELETE_USER_REQUEST,
-    DELETE_USER_SUCCESS,
-    DELETE_USER_RESET,
-} from '../../actions/auth/actions/deleteUserActions';
-import {
-    UPDATE_PASSWORD_REQUEST,
-    UPDATE_PASSWORD_SUCCESS,
-    UPDATE_PASSWORD_RESET,
-} from '../../actions/auth/actions/updatePasswordActions';
-import {
-    UPDATE_PROFILE_REQUEST,
-    UPDATE_PROFILE_SUCCESS,
-    UPDATE_PROFILE_RESET,
-} from '../../actions/auth/actions/updateProfileActions';
-import {
-    UPDATE_USER_REQUEST,
-    UPDATE_USER_SUCCESS,
-    UPDATE_USER_RESET,
-} from '../../actions/auth/actions/updateUserActions';
+import { DELETE_USER_REQUEST, DELETE_USER_SUCCESS } from '../../actions/auth/actions/deleteUserActions';
+import { UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS } from '../../actions/auth/actions/updatePasswordActions';
+import { UPDATE_PROFILE_REQUEST, UPDATE_PROFILE_SUCCESS } from '../../actions/auth/actions/updateProfileActions';
+import { UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS } from '../../actions/auth/actions/updateUserActions';
 import { AuthActions } from '../../actions/auth/authActions';
 
 type UserState = {
@@ -57,20 +41,6 @@ const userReducer = (state: UserState | undefined = INITIAL_STATE, action: AuthA
                 ...state,
                 loading: false,
                 isDeleted: true,
-            };
-        }
-        case UPDATE_PROFILE_RESET:
-        case UPDATE_PASSWORD_RESET:
-        case UPDATE_USER_RESET: {
-            return {
-                ...state,
-                isUpdated: false,
-            };
-        }
-        case DELETE_USER_RESET: {
-            return {
-                ...state,
-                isDeleted: false,
             };
         }
         default: {

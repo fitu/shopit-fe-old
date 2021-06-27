@@ -1,13 +1,5 @@
-import {
-    DELETE_PRODUCT_REQUEST,
-    DELETE_PRODUCT_SUCCESS,
-    DELETE_PRODUCT_RESET,
-} from '../../actions/product/actions/deleteProductActions';
-import {
-    UPDATE_PRODUCT_REQUEST,
-    UPDATE_PRODUCT_SUCCESS,
-    UPDATE_PRODUCT_RESET,
-} from '../../actions/product/actions/updateProductActions';
+import { DELETE_PRODUCT_REQUEST, DELETE_PRODUCT_SUCCESS } from '../../actions/product/actions/deleteProductActions';
+import { UPDATE_PRODUCT_REQUEST, UPDATE_PRODUCT_SUCCESS } from '../../actions/product/actions/updateProductActions';
 import { ProductActions } from '../../actions/product/productAction';
 import Product from '../../state/models/Product';
 
@@ -49,18 +41,6 @@ const modifyProductReducer = (
                 ...state,
                 loading: false,
                 isUpdated: true,
-            };
-        }
-        case DELETE_PRODUCT_RESET: {
-            return {
-                ...state,
-                isDeleted: false,
-            };
-        }
-        case UPDATE_PRODUCT_RESET: {
-            return {
-                ...state,
-                isUpdated: false,
             };
         }
         default: {

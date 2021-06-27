@@ -4,7 +4,7 @@ import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MetaData from '../../../components/util/MetaData';
-import { deleteReview, deleteReviewReset, getProductReviews } from '../../../store/actions/product/productAction';
+import { deleteReview, getProductReviews } from '../../../store/actions/product/productAction';
 import Sidebar from '../sidebar/Sidebar';
 import './styles/productReviews.scss';
 

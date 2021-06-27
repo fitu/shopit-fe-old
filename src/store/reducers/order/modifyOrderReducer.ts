@@ -1,13 +1,5 @@
-import {
-    DELETE_ORDER_REQUEST,
-    DELETE_ORDER_SUCCESS,
-    DELETE_ORDER_RESET,
-} from '../../actions/order/actions/deleteOrderActions';
-import {
-    UPDATE_ORDER_REQUEST,
-    UPDATE_ORDER_SUCCESS,
-    UPDATE_ORDER_RESET,
-} from '../../actions/order/actions/updateOrderActions';
+import { DELETE_ORDER_REQUEST, DELETE_ORDER_SUCCESS } from '../../actions/order/actions/deleteOrderActions';
+import { UPDATE_ORDER_REQUEST, UPDATE_ORDER_SUCCESS } from '../../actions/order/actions/updateOrderActions';
 import { OrderActions } from '../../actions/order/orderActions';
 
 type ModifyOrderState = {
@@ -46,18 +38,6 @@ const modifyOrderReducer = (
                 ...state,
                 loading: false,
                 isDeleted: true,
-            };
-        }
-        case DELETE_ORDER_RESET: {
-            return {
-                ...state,
-                isDeleted: false,
-            };
-        }
-        case UPDATE_ORDER_RESET: {
-            return {
-                ...state,
-                isUpdated: false,
             };
         }
         default: {

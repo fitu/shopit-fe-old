@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Loader from '../../../../components/util/Loader';
 import MetaData from '../../../../components/util/MetaData';
 import { Route } from '../../../../router/route';
-import { deleteOrder, deleteOrderReset, getAllOrders } from '../../../../store/actions/order/orderActions';
+import { deleteOrder, getAllOrders } from '../../../../store/actions/order/orderActions';
 import Sidebar from '../../sidebar/Sidebar';
 import './styles/orderList.scss';
 

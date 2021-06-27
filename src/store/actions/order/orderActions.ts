@@ -20,10 +20,8 @@ import {
 import {
     DeleteOrderRequest,
     DeleteOrderSuccess,
-    DeleteOrderReset,
     DELETE_ORDER_REQUEST,
     DELETE_ORDER_SUCCESS,
-    DELETE_ORDER_RESET,
 } from './actions/deleteOrderActions';
 import {
     GetAllOrdersRequest,
@@ -46,10 +44,8 @@ import {
 import {
     UpdateOrderRequest,
     UpdateOrderSuccess,
-    UpdateOrderReset,
     UPDATE_ORDER_REQUEST,
     UPDATE_ORDER_SUCCESS,
-    UPDATE_ORDER_RESET,
 } from './actions/updateOrderActions';
 import { ADD_ERROR, AddError as AddErrorActions } from '../error/actions/addErrorActions';
 
@@ -66,9 +62,7 @@ type OrderActions =
     | GetOrderDetailsActions
     | GetAllOrdersActions
     | UpdateOrderActions
-    | DeleteOrderActions
-    | UpdateOrderReset
-    | DeleteOrderReset;
+    | DeleteOrderActions;
 
 const createOrder: ActionCreator<ThunkAction<Promise<void>, StoreState, void, CreateOrderActions>> =
     (order) => async (dispatch: ThunkDispatch<StoreState, void, CreateOrderActions>) => {
@@ -155,23 +149,5 @@ const deleteOrder: ActionCreator<ThunkAction<Promise<void>, StoreState, void, De
         }
     };
 
-const updateOrderReset: ActionCreator<ThunkAction<Promise<void>, StoreState, void, UpdateOrderReset>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, UpdateOrderReset>) => {
-        dispatch({ type: UPDATE_ORDER_RESET });
-    };
-const deleteOrderReset: ActionCreator<ThunkAction<Promise<void>, StoreState, void, DeleteOrderReset>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, DeleteOrderReset>) => {
-        dispatch({ type: DELETE_ORDER_RESET });
-    };
-
 export type { OrderActions };
-export {
-    createOrder,
-    myOrders,
-    getOrderDetails,
-    getAllOrders,
-    updateOrder,
-    deleteOrder,
-    updateOrderReset,
-    deleteOrderReset,
-};
+export { createOrder, myOrders, getOrderDetails, getAllOrders, updateOrder, deleteOrder };
