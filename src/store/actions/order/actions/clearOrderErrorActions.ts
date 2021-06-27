@@ -1,8 +1,8 @@
-import { Action } from 'redux';
+import { BaseAction } from '../../BaseAction';
 
 const CLEAR_ORDER_ERRORS = 'CLEAR_ORDER_ERRORS';
 
-interface ClearOrderErrors extends Action {
+interface ClearOrderErrors extends BaseAction {
     type: typeof CLEAR_ORDER_ERRORS;
 }
 

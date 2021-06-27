@@ -1,4 +1,4 @@
-import { Action } from 'redux';
+import { BaseAction } from '../../BaseAction';
 
 import Product from '../../../state/models/Product';
 
@@ -7,20 +7,20 @@ const CREATE_NEW_PRODUCT_SUCCESS = 'CREATE_NEW_PRODUCT_SUCCESS';
 const CREATE_NEW_PRODUCT_RESET = 'CREATE_NEW_PRODUCT_RESET';
 const CREATE_NEW_PRODUCT_FAIL = 'CREATE_NEW_PRODUCT_FAIL';
 
-interface CreateNewProductRequest extends Action {
+interface CreateNewProductRequest extends BaseAction {
     type: typeof CREATE_NEW_PRODUCT_REQUEST;
 }
 
-interface CreateNewProductSuccess extends Action {
+interface CreateNewProductSuccess extends BaseAction {
     type: typeof CREATE_NEW_PRODUCT_SUCCESS;
     payload: Product;
 }
 
-interface CreateNewProductReset extends Action {
+interface CreateNewProductReset extends BaseAction {
     type: typeof CREATE_NEW_PRODUCT_RESET;
 }
 
-interface CreateNewProductFail extends Action {
+interface CreateNewProductFail extends BaseAction {
     type: typeof CREATE_NEW_PRODUCT_FAIL;
     payload: {
         errorMessage: string;

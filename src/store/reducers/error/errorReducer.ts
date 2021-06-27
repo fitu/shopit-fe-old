@@ -1,28 +1,28 @@
 import _ from 'lodash';
 
 import { ADD_ERROR } from '../../actions/error/actions/addErrorActions';
-import { REMOVE_ERROR } from '../../actions/error/actions/removeErrorActions';
+import { CLEAR_ERROR } from '../../actions/error/actions/clearErrorActions';
 import { ErrorActions } from '../../actions/error/errorActions';
 
 type ErrorState = {
     error: string;
 };
 
-const initialState = {
+const INITIAL_STATE = {
     error: '',
 };
 
-const errorReducer = (state: ErrorState = initialState, action: ErrorActions): ErrorState => {
+const errorReducer = (state: ErrorState = INITIAL_STATE, action: ErrorActions): ErrorState => {
+    const { type, payload, error } = action;
+
     switch (action.type) {
         case ADD_ERROR: {
             return {
                 error: action.payload.error,
             };
         }
-        case REMOVE_ERROR: {
-            return {
-                error: '',
-            };
+        case CLEAR_ERROR: {
+            return INITIAL_STATE;
         }
         default: {
             return state;

@@ -1,4 +1,4 @@
-import { Action } from 'redux';
+import { BaseAction } from '../../BaseAction';
 
 import Review from '../../../state/models/Review';
 
@@ -6,16 +6,16 @@ const GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST = 'GET_ALL_REVIEWS_FROM_PRODUCT_REQUE
 const GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS = 'GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS';
 const GET_ALL_REVIEWS_FROM_PRODUCT_FAIL = 'GET_ALL_REVIEWS_FROM_PRODUCT_FAIL';
 
-interface GetAllReviewsFromProductRequest extends Action {
+interface GetAllReviewsFromProductRequest extends BaseAction {
     type: typeof GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST;
 }
 
-interface GetAllReviewsFromProductSuccess extends Action {
+interface GetAllReviewsFromProductSuccess extends BaseAction {
     type: typeof GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS;
     payload: Array<Review>;
 }
 
-interface GetAllReviewsFromProductFail extends Action {
+interface GetAllReviewsFromProductFail extends BaseAction {
     type: typeof GET_ALL_REVIEWS_FROM_PRODUCT_FAIL;
     payload: {
         errorMessage: string;

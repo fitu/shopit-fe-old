@@ -1,18 +1,18 @@
-import { Action } from 'redux';
+import { BaseAction } from '../../BaseAction';
 
 const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
 const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
 const RESET_PASSWORD_FAIL = 'RESET_PASSWORD_FAIL';
 
-interface ResetPasswordRequest extends Action {
+interface ResetPasswordRequest extends BaseAction {
     type: typeof RESET_PASSWORD_REQUEST;
 }
 
-interface ResetPasswordSuccess extends Action {
+interface ResetPasswordSuccess extends BaseAction {
     type: typeof RESET_PASSWORD_SUCCESS;
 }
 
-interface ResetPasswordFail extends Action {
+interface ResetPasswordFail extends BaseAction {
     type: typeof RESET_PASSWORD_FAIL;
     payload: {
         errorMessage: string;

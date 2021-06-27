@@ -1,8 +1,8 @@
-import { Action } from 'redux';
+import { BaseAction } from '../../BaseAction';
 
 const CLEAR_CART_ERRORS = 'CLEAR_CART_ERRORS';
 
-interface ClearCartErrors extends Action {
+interface ClearCartErrors extends BaseAction {
     type: typeof CLEAR_CART_ERRORS;
 }
 

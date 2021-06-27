@@ -1,13 +1,13 @@
-import { Action } from 'redux';
+import { BaseAction } from '../../BaseAction';
 
 const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'LOGOUT_FAIL';
 
-interface LogoutSuccess extends Action {
+interface LogoutSuccess extends BaseAction {
     type: typeof LOGOUT_SUCCESS;
 }
 
-interface LogoutFail extends Action {
+interface LogoutFail extends BaseAction {
     type: typeof LOGOUT_FAIL;
     payload: {
         errorMessage: string;

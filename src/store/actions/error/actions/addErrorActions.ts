@@ -1,8 +1,8 @@
-import { Action } from 'redux';
+import { BaseAction } from '../../BaseAction';
 
 const ADD_ERROR = 'ADD_ERROR';
 
-interface AddError extends Action {
+interface AddError extends BaseAction {
     type: typeof ADD_ERROR;
     payload: {
         error: string;
