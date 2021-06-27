@@ -8,15 +8,18 @@ import { setCartItems, setShippingInfo } from '../../../storage/storage';
 import ShippingInfo from '../../state/models/ShippingInfo';
 import { StoreState } from '../../state/storeState';
 
-import { AddProductToCartSuccess, ADD_PRODUCT_TO_CART_SUCCESS } from './actions/addToCartActions';
-import { RemoveItemFromCartSuccess, REMOVE_ITEM_FROM_CART_SUCCESS } from './actions/removeItemFromCartActions';
-import { SaveShippingInfo, SAVE_SHIPPING_INFO } from './actions/saveShippingInfoActions';
-import { ADD_ERROR, AddError as AddErrorActions } from '../error/actions/addErrorActions';
+// TODO: check if this is REQUEST_*_FINISHED
+import { RequestAddProductToCartFinished, REQUEST_ADD_PRODUCT_TO_CART_FINISHED } from './actions/addToCartActions';
+import {
+    RequestRemoveItemFromCartFinished,
+    REQUEST_REMOVE_ITEM_FROM_CART_FINISHED,
+} from './actions/removeItemFromCartActions';
+import { RequestSaveShippingInfo, REQUEST_SAVE_SHIPPING_INFO_FINISHED } from './actions/saveShippingInfoActions';
 
-type AddToCartActions = AddProductToCartSuccess | AddErrorActions;
-type RemoveItemFromCartActions = RemoveItemFromCartSuccess | AddErrorActions;
+type AddToCartActions = RequestAddProductToCartFinished;
+type RemoveItemFromCartActions = RequestRemoveItemFromCartFinished;
 
-type CartActions = AddToCartActions | RemoveItemFromCartActions | SaveShippingInfo;
+type CartActions = AddToCartActions | RemoveItemFromCartActions | RequestSaveShippingInfo;
 
 const addItemToCart: ActionCreator<ThunkAction<Promise<void>, StoreState, void, AddToCartActions>> =
     (productId: string, quantity: number) =>
@@ -25,11 +28,15 @@ const addItemToCart: ActionCreator<ThunkAction<Promise<void>, StoreState, void, 
             const apiProduct = await apiAddItemToCart(productId, quantity);
             setCartItems(getState()?.cart?.cart?.cartItems ?? []);
             dispatch({
-                type: ADD_PRODUCT_TO_CART_SUCCESS,
+                type: REQUEST_ADD_PRODUCT_TO_CART_FINISHED,
                 payload: ItemApi.toState(apiProduct.item),
             });
         } catch (error) {
-            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
+            dispatch({
+                type: REQUEST_ADD_PRODUCT_TO_CART_FINISHED,
+                error: { message: error.message },
+                isError: true,
+            });
         }
     };
 
@@ -39,18 +46,22 @@ const removeItemFromCart: ActionCreator<ThunkAction<Promise<void>, StoreState, v
         try {
             setCartItems(getState()?.cart?.cart.cartItems ?? []);
             dispatch({
-                type: REMOVE_ITEM_FROM_CART_SUCCESS,
+                type: REQUEST_REMOVE_ITEM_FROM_CART_FINISHED,
                 payload: { id },
             });
         } catch (error) {
-            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
+            dispatch({
+                type: REQUEST_REMOVE_ITEM_FROM_CART_FINISHED,
+                error: { message: error.message },
+                isError: true,
+            });
         }
     };
 
-const saveShippingInfo: ActionCreator<ThunkAction<Promise<void>, StoreState, void, SaveShippingInfo>> =
-    (shippingInfo: ShippingInfo) => async (dispatch: ThunkDispatch<StoreState, void, SaveShippingInfo>) => {
+const saveShippingInfo: ActionCreator<ThunkAction<Promise<void>, StoreState, void, RequestSaveShippingInfo>> =
+    (shippingInfo: ShippingInfo) => async (dispatch: ThunkDispatch<StoreState, void, RequestSaveShippingInfo>) => {
         setShippingInfo(shippingInfo);
-        dispatch({ type: SAVE_SHIPPING_INFO, payload: shippingInfo });
+        dispatch({ type: REQUEST_SAVE_SHIPPING_INFO_FINISHED, payload: shippingInfo });
     };
 
 export type { CartActions };

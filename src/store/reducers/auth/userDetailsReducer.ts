@@ -1,4 +1,7 @@
-import { GET_USER_DETAILS_REQUEST, GET_USER_DETAILS_SUCCESS } from '../../actions/auth/actions/getUserDetailsActions';
+import {
+    REQUEST_GET_USER_DETAILS,
+    REQUEST_GET_USER_DETAILS_FINISHED,
+} from '../../actions/auth/actions/getUserDetailsActions';
 import { AuthActions } from '../../actions/auth/authActions';
 import User from '../../state/models/User';
 
@@ -16,14 +19,19 @@ const userDetailsReducer = (
     state: UserDetailsState | undefined = INITIAL_STATE,
     action: AuthActions,
 ): UserDetailsState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case GET_USER_DETAILS_REQUEST: {
+        case REQUEST_GET_USER_DETAILS: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case GET_USER_DETAILS_SUCCESS: {
+        case REQUEST_GET_USER_DETAILS_FINISHED: {
             return {
                 ...state,
                 loading: false,

@@ -2,17 +2,17 @@ import { BaseAction } from '../../BaseAction';
 
 import Order from '../../../state/models/Order';
 
-const GET_MY_ORDERS_REQUEST = 'GET_MY_ORDERS_REQUEST';
-const GET_MY_ORDERS_SUCCESS = 'GET_MY_ORDERS_SUCCESS';
+const REQUEST_GET_MY_ORDERS = 'REQUEST_GET_MY_ORDERS';
+const REQUEST_GET_MY_ORDERS_FINISHED = 'REQUEST_GET_MY_ORDERS_FINISHED';
 
-interface GetMyOrdersRequest extends BaseAction {
-    type: typeof GET_MY_ORDERS_REQUEST;
+interface RequestGetMyOrders extends BaseAction {
+    type: typeof REQUEST_GET_MY_ORDERS;
 }
 
-interface GetMyOrdersSuccess extends BaseAction {
-    type: typeof GET_MY_ORDERS_SUCCESS;
-    payload: Array<Order>;
+interface RequestGetMyOrdersFinished extends BaseAction {
+    type: typeof REQUEST_GET_MY_ORDERS_FINISHED;
+    payload?: Array<Order>;
 }
 
-export type { GetMyOrdersRequest, GetMyOrdersSuccess };
-export { GET_MY_ORDERS_REQUEST, GET_MY_ORDERS_SUCCESS };
+export type { RequestGetMyOrders, RequestGetMyOrdersFinished };
+export { REQUEST_GET_MY_ORDERS, REQUEST_GET_MY_ORDERS_FINISHED };

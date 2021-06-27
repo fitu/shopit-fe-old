@@ -1,10 +1,10 @@
 import { BaseAction } from '../../BaseAction';
 
-const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+const REQUEST_LOGOUT_FINISHED = 'REQUEST_LOGOUT_FINISHED';
 
-interface LogoutSuccess extends BaseAction {
-    type: typeof LOGOUT_SUCCESS;
+interface RequestLogoutFinished extends BaseAction {
+    type: typeof REQUEST_LOGOUT_FINISHED;
 }
 
-export type { LogoutSuccess };
-export { LOGOUT_SUCCESS };
+export type { RequestLogoutFinished };
+export { REQUEST_LOGOUT_FINISHED };

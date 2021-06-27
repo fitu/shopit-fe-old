@@ -2,17 +2,17 @@ import { BaseAction } from '../../BaseAction';
 
 import Product from '../../../state/models/Product';
 
-const GET_ADMIN_PRODUCTS_REQUEST = 'GET_ADMIN_PRODUCTS_REQUEST';
-const GET_ADMIN_PRODUCTS_SUCCESS = 'GET_ADMIN_PRODUCTS_SUCCESS';
+const REQUEST_GET_ADMIN_PRODUCTS = 'REQUEST_GET_ADMIN_PRODUCTS';
+const REQUEST_GET_ADMIN_PRODUCTS_FINISHED = 'REQUEST_GET_ADMIN_PRODUCTS_FINISHED';
 
-interface GetAdminProductsRequest extends BaseAction {
-    type: typeof GET_ADMIN_PRODUCTS_REQUEST;
+interface RequestGetAdminProducts extends BaseAction {
+    type: typeof REQUEST_GET_ADMIN_PRODUCTS;
 }
 
-interface GetAdminProductsSuccess extends BaseAction {
-    type: typeof GET_ADMIN_PRODUCTS_SUCCESS;
-    payload: Array<Product>;
+interface RequestGetAdminProductsFinished extends BaseAction {
+    type: typeof REQUEST_GET_ADMIN_PRODUCTS_FINISHED;
+    payload?: Array<Product>;
 }
 
-export type { GetAdminProductsRequest, GetAdminProductsSuccess };
-export { GET_ADMIN_PRODUCTS_REQUEST, GET_ADMIN_PRODUCTS_SUCCESS };
+export type { RequestGetAdminProducts, RequestGetAdminProductsFinished };
+export { REQUEST_GET_ADMIN_PRODUCTS, REQUEST_GET_ADMIN_PRODUCTS_FINISHED };

@@ -2,17 +2,17 @@ import { BaseAction } from '../../BaseAction';
 
 import User from '../../../state/models/User';
 
-const LOGIN_REQUEST = 'LOGIN_REQUEST';
-const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+const REQUEST_LOGIN = 'REQUEST_LOGIN';
+const REQUEST_LOGIN_FINISHED = 'REQUEST_LOGIN_FINISHED';
 
-interface LoginRequest extends BaseAction {
-    type: typeof LOGIN_REQUEST;
+interface RequestLogin extends BaseAction {
+    type: typeof REQUEST_LOGIN;
 }
 
-interface LoginSuccess extends BaseAction {
-    type: typeof LOGIN_SUCCESS;
-    payload: User;
+interface RequestLoginFinished extends BaseAction {
+    type: typeof REQUEST_LOGIN_FINISHED;
+    payload?: User;
 }
 
-export type { LoginRequest, LoginSuccess };
-export { LOGIN_REQUEST, LOGIN_SUCCESS };
+export type { RequestLogin, RequestLoginFinished };
+export { REQUEST_LOGIN, REQUEST_LOGIN_FINISHED };

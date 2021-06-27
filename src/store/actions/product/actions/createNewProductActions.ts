@@ -2,17 +2,17 @@ import { BaseAction } from '../../BaseAction';
 
 import Product from '../../../state/models/Product';
 
-const CREATE_NEW_PRODUCT_REQUEST = 'CREATE_NEW_PRODUCT_REQUEST';
-const CREATE_NEW_PRODUCT_SUCCESS = 'CREATE_NEW_PRODUCT_SUCCESS';
+const REQUEST_CREATE_NEW_PRODUCT = 'REQUEST_CREATE_NEW_PRODUCT';
+const REQUEST_CREATE_NEW_PRODUCT_FINISHED = 'REQUEST_CREATE_NEW_PRODUCT_FINISHED';
 
-interface CreateNewProductRequest extends BaseAction {
-    type: typeof CREATE_NEW_PRODUCT_REQUEST;
+interface RequestCreateNewProduct extends BaseAction {
+    type: typeof REQUEST_CREATE_NEW_PRODUCT;
 }
 
-interface CreateNewProductSuccess extends BaseAction {
-    type: typeof CREATE_NEW_PRODUCT_SUCCESS;
-    payload: Product;
+interface RequestCreateNewProductFinished extends BaseAction {
+    type: typeof REQUEST_CREATE_NEW_PRODUCT_FINISHED;
+    payload?: Product;
 }
 
-export type { CreateNewProductRequest, CreateNewProductSuccess };
-export { CREATE_NEW_PRODUCT_REQUEST, CREATE_NEW_PRODUCT_SUCCESS };
+export type { RequestCreateNewProduct, RequestCreateNewProductFinished };
+export { REQUEST_CREATE_NEW_PRODUCT, REQUEST_CREATE_NEW_PRODUCT_FINISHED };

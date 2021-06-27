@@ -1,15 +1,15 @@
 import { BaseAction } from '../../BaseAction';
 
-const UPDATE_PROFILE_REQUEST = 'UPDATE_PROFILE_REQUEST';
-const UPDATE_PROFILE_SUCCESS = 'UPDATE_PROFILE_SUCCESS';
+const REQUEST_UPDATE_PROFILE = 'REQUEST_UPDATE_PROFILE';
+const REQUEST_UPDATE_PROFILE_FINISHED = 'REQUEST_UPDATE_PROFILE_FINISHED';
 
-interface UpdateProfileRequest extends BaseAction {
-    type: typeof UPDATE_PROFILE_REQUEST;
+interface RequestUpdateProfile extends BaseAction {
+    type: typeof REQUEST_UPDATE_PROFILE;
 }
 
-interface UpdateProfileSuccess extends BaseAction {
-    type: typeof UPDATE_PROFILE_SUCCESS;
+interface RequestUpdateProfileFinished extends BaseAction {
+    type: typeof REQUEST_UPDATE_PROFILE_FINISHED;
 }
 
-export type { UpdateProfileRequest, UpdateProfileSuccess };
-export { UPDATE_PROFILE_REQUEST, UPDATE_PROFILE_SUCCESS };
+export type { RequestUpdateProfile, RequestUpdateProfileFinished };
+export { REQUEST_UPDATE_PROFILE, REQUEST_UPDATE_PROFILE_FINISHED };

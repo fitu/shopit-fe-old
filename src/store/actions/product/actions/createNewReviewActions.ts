@@ -1,15 +1,15 @@
 import { BaseAction } from '../../BaseAction';
 
-const CREATE_NEW_REVIEW_REQUEST = 'CREATE_NEW_REVIEW_REQUEST';
-const CREATE_NEW_REVIEW_SUCCESS = 'CREATE_NEW_REVIEW_SUCCESS';
+const REQUEST_CREATE_NEW_REVIEW = 'REQUEST_CREATE_NEW_REVIEW';
+const REQUEST_CREATE_NEW_REVIEW_FINISHED = 'REQUEST_CREATE_NEW_REVIEW_FINISHED';
 
-interface CreateNewReviewRequest extends BaseAction {
-    type: typeof CREATE_NEW_REVIEW_REQUEST;
+interface RequestCreateNewReview extends BaseAction {
+    type: typeof REQUEST_CREATE_NEW_REVIEW;
 }
 
-interface CreateNewReviewSuccess extends BaseAction {
-    type: typeof CREATE_NEW_REVIEW_SUCCESS;
+interface RequestCreateNewReviewFinished extends BaseAction {
+    type: typeof REQUEST_CREATE_NEW_REVIEW_FINISHED;
 }
 
-export type { CreateNewReviewRequest, CreateNewReviewSuccess };
-export { CREATE_NEW_REVIEW_REQUEST, CREATE_NEW_REVIEW_SUCCESS };
+export type { RequestCreateNewReview, RequestCreateNewReviewFinished };
+export { REQUEST_CREATE_NEW_REVIEW, REQUEST_CREATE_NEW_REVIEW_FINISHED };

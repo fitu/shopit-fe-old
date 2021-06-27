@@ -2,17 +2,17 @@ import { BaseAction } from '../../BaseAction';
 
 import Product from '../../../state/models/Product';
 
-const GET_PRODUCT_DETAILS_REQUEST = 'GET_PRODUCT_DETAILS_REQUEST';
-const GET_PRODUCT_DETAILS_SUCCESS = 'GET_PRODUCT_DETAILS_SUCCESS';
+const REQUEST_GET_PRODUCT_DETAILS = 'REQUEST_GET_PRODUCT_DETAILS';
+const REQUEST_GET_PRODUCT_DETAILS_FINISHED = 'REQUEST_GET_PRODUCT_DETAILS_FINISHED';
 
-interface GetProductDetailsRequest extends BaseAction {
-    type: typeof GET_PRODUCT_DETAILS_REQUEST;
+interface RequestGetProductDetails extends BaseAction {
+    type: typeof REQUEST_GET_PRODUCT_DETAILS;
 }
 
-interface GetProductDetailsSuccess extends BaseAction {
-    type: typeof GET_PRODUCT_DETAILS_SUCCESS;
-    payload: Product;
+interface RequestGetProductDetailsFinished extends BaseAction {
+    type: typeof REQUEST_GET_PRODUCT_DETAILS_FINISHED;
+    payload?: Product;
 }
 
-export type { GetProductDetailsRequest, GetProductDetailsSuccess };
-export { GET_PRODUCT_DETAILS_REQUEST, GET_PRODUCT_DETAILS_SUCCESS };
+export type { RequestGetProductDetails, RequestGetProductDetailsFinished };
+export { REQUEST_GET_PRODUCT_DETAILS, REQUEST_GET_PRODUCT_DETAILS_FINISHED };

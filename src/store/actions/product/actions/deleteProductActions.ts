@@ -1,15 +1,15 @@
 import { BaseAction } from '../../BaseAction';
 
-const DELETE_PRODUCT_REQUEST = 'DELETE_PRODUCT_REQUEST';
-const DELETE_PRODUCT_SUCCESS = 'DELETE_PRODUCT_SUCCESS';
+const REQUEST_DELETE_PRODUCT = 'REQUEST_DELETE_PRODUCT';
+const REQUEST_DELETE_PRODUCT_FINISHED = 'REQUEST_DELETE_PRODUCT_FINISHED';
 
-interface DeleteProductRequest extends BaseAction {
-    type: typeof DELETE_PRODUCT_REQUEST;
+interface RequestDeleteProduct extends BaseAction {
+    type: typeof REQUEST_DELETE_PRODUCT;
 }
 
-interface DeleteProductSuccess extends BaseAction {
-    type: typeof DELETE_PRODUCT_SUCCESS;
+interface RequestDeleteProductFinished extends BaseAction {
+    type: typeof REQUEST_DELETE_PRODUCT_FINISHED;
 }
 
-export type { DeleteProductRequest, DeleteProductSuccess };
-export { DELETE_PRODUCT_REQUEST, DELETE_PRODUCT_SUCCESS };
+export type { RequestDeleteProduct, RequestDeleteProductFinished };
+export { REQUEST_DELETE_PRODUCT, REQUEST_DELETE_PRODUCT_FINISHED };

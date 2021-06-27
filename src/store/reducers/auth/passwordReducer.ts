@@ -1,5 +1,11 @@
-import { FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS } from '../../actions/auth/actions/forgotPasswordActions';
-import { RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS } from '../../actions/auth/actions/resetPasswordActions';
+import {
+    REQUEST_FORGOT_PASSWORD,
+    REQUEST_FORGOT_PASSWORD_FINISHED,
+} from '../../actions/auth/actions/forgotPasswordActions';
+import {
+    REQUEST_RESET_PASSWORD,
+    REQUEST_RESET_PASSWORD_FINISHED,
+} from '../../actions/auth/actions/resetPasswordActions';
 import { AuthActions } from '../../actions/auth/authActions';
 
 type PasswordState = {
@@ -15,21 +21,26 @@ const INITIAL_STATE = {
 };
 
 const passwordReducer = (state: PasswordState | undefined = INITIAL_STATE, action: AuthActions): PasswordState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case FORGOT_PASSWORD_REQUEST:
-        case RESET_PASSWORD_REQUEST: {
+        case REQUEST_FORGOT_PASSWORD:
+        case REQUEST_RESET_PASSWORD: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case FORGOT_PASSWORD_SUCCESS: {
+        case REQUEST_FORGOT_PASSWORD_FINISHED: {
             return {
                 ...state,
                 loading: false,
             };
         }
-        case RESET_PASSWORD_SUCCESS: {
+        case REQUEST_RESET_PASSWORD_FINISHED: {
             return {
                 ...state,
                 success: true,

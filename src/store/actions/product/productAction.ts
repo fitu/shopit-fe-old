@@ -16,77 +16,72 @@ import ProductApi from '../../../api/models/productApi';
 import ReviewApi from '../../../api/models/reviewApi';
 import { StoreState } from '../../state/storeState';
 import {
-    CreateNewProductRequest,
-    CreateNewProductSuccess,
-    CREATE_NEW_PRODUCT_REQUEST,
-    CREATE_NEW_PRODUCT_SUCCESS,
+    RequestCreateNewProduct,
+    RequestCreateNewProductFinished,
+    REQUEST_CREATE_NEW_PRODUCT,
+    REQUEST_CREATE_NEW_PRODUCT_FINISHED,
 } from './actions/createNewProductActions';
 import {
-    CreateNewReviewRequest,
-    CreateNewReviewSuccess,
-    CREATE_NEW_REVIEW_REQUEST,
-    CREATE_NEW_REVIEW_SUCCESS,
+    RequestCreateNewReview,
+    RequestCreateNewReviewFinished,
+    REQUEST_CREATE_NEW_REVIEW,
+    REQUEST_CREATE_NEW_REVIEW_FINISHED,
 } from './actions/createNewReviewActions';
 import {
-    DeleteProductRequest,
-    DeleteProductSuccess,
-    DELETE_PRODUCT_REQUEST,
-    DELETE_PRODUCT_SUCCESS,
+    RequestDeleteProduct,
+    RequestDeleteProductFinished,
+    REQUEST_DELETE_PRODUCT,
+    REQUEST_DELETE_PRODUCT_FINISHED,
 } from './actions/deleteProductActions';
 import {
-    DeleteReviewFromProductRequest,
-    DeleteReviewFromProductSuccess,
-    DELETE_REVIEW_FROM_PRODUCT_REQUEST,
-    DELETE_REVIEW_FROM_PRODUCT_SUCCESS,
+    RequestDeleteReviewFromProduct,
+    RequestDeleteReviewFromProductFinished,
+    REQUEST_DELETE_REVIEW_FROM_PRODUCT,
+    REQUEST_DELETE_REVIEW_FROM_PRODUCT_FINISHED,
 } from './actions/deleteReviewFromProductActions';
 import {
-    GetAdminProductsRequest,
-    GetAdminProductsSuccess,
-    GET_ADMIN_PRODUCTS_REQUEST,
-    GET_ADMIN_PRODUCTS_SUCCESS,
+    RequestGetAdminProducts,
+    RequestGetAdminProductsFinished,
+    REQUEST_GET_ADMIN_PRODUCTS,
+    REQUEST_GET_ADMIN_PRODUCTS_FINISHED,
 } from './actions/getAdminProductsActions';
 import {
-    GetAllProductsRequest,
-    GetAllProductsSuccess,
-    GET_ALL_PRODUCTS_REQUEST,
-    GET_ALL_PRODUCTS_SUCCESS,
+    RequestGetAllProducts,
+    RequestGetAllProductsFinished,
+    REQUEST_GET_ALL_PRODUCTS,
+    REQUEST_GET_ALL_PRODUCTS_FINISHED,
 } from './actions/getAllProductsActions';
 import {
-    GetAllReviewsFromProductRequest,
-    GetAllReviewsFromProductSuccess,
-    GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST,
-    GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS,
+    RequestGetAllReviewsFromProduct,
+    RequestGetAllReviewsFromProductFinished,
+    REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT,
+    REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT_FINISHED,
 } from './actions/getAllReviewsFromProductActions';
 import {
-    GetProductDetailsRequest,
-    GetProductDetailsSuccess,
-    GET_PRODUCT_DETAILS_REQUEST,
-    GET_PRODUCT_DETAILS_SUCCESS,
+    RequestGetProductDetails,
+    RequestGetProductDetailsFinished,
+    REQUEST_GET_PRODUCT_DETAILS,
+    REQUEST_GET_PRODUCT_DETAILS_FINISHED,
 } from './actions/getProductDetailsActions';
 import {
-    UpdateProductRequest,
-    UpdateProductSuccess,
-    UPDATE_PRODUCT_REQUEST,
-    UPDATE_PRODUCT_SUCCESS,
+    RequestUpdateProduct,
+    RequestUpdateProductFinished,
+    REQUEST_UPDATE_PRODUCT,
+    REQUEST_UPDATE_PRODUCT_FINISHED,
 } from './actions/updateProductActions';
-import { ADD_ERROR, AddError as AddErrorActions } from '../error/actions/addErrorActions';
 
-type GetProductsActions = GetAllProductsRequest | GetAllProductsSuccess | AddErrorActions;
-type GetProductDetailsActions = GetProductDetailsRequest | GetProductDetailsSuccess | AddErrorActions;
-type CreateNewReviewActions = CreateNewReviewRequest | CreateNewReviewSuccess | AddErrorActions;
-type GetAdminProductsActions = GetAdminProductsRequest | GetAdminProductsSuccess | AddErrorActions;
-type CreateNewProductActions = CreateNewProductRequest | CreateNewProductSuccess | AddErrorActions;
-type UpdateProductActions = UpdateProductRequest | UpdateProductSuccess | AddErrorActions;
-type DeleteProductActions = DeleteProductRequest | DeleteProductSuccess | AddErrorActions;
-type GetAllReviewsFromProductActions =
-    | GetAllReviewsFromProductRequest
-    | GetAllReviewsFromProductSuccess
-    | AddErrorActions;
+type GetProductsActions = RequestGetAllProducts | RequestGetAllProductsFinished;
+type GetProductDetailsActions = RequestGetProductDetails | RequestGetProductDetailsFinished;
+type CreateNewReviewActions = RequestCreateNewReview | RequestCreateNewReviewFinished;
+type GetAdminProductsActions = RequestGetAdminProducts | RequestGetAdminProductsFinished;
+type CreateNewProductActions = RequestCreateNewProduct | RequestCreateNewProductFinished;
+type UpdateProductActions = RequestUpdateProduct | RequestUpdateProductFinished;
+type DeleteProductActions = RequestDeleteProduct | RequestDeleteProductFinished;
+type GetAllReviewsFromProductActions = RequestGetAllReviewsFromProduct | RequestGetAllReviewsFromProductFinished;
 type DeleteReviewFromProductActions =
-    | DeleteReviewFromProductRequest
-    | DeleteReviewFromProductSuccess
-    | DeleteReviewFromProductRequest
-    | AddErrorActions;
+    | RequestDeleteReviewFromProduct
+    | RequestDeleteReviewFromProductFinished
+    | RequestDeleteReviewFromProduct;
 
 type ProductActions =
     | GetProductsActions
@@ -108,11 +103,11 @@ const getProducts: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Ge
 ) => {
     return async (dispatch: ThunkDispatch<StoreState, void, GetProductsActions>) => {
         try {
-            dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
+            dispatch({ type: REQUEST_GET_ALL_PRODUCTS });
             const [minPrice, maxPrice] = price;
             const response = await apiGetProducts(keyword, currentPage, minPrice, maxPrice);
             dispatch({
-                type: GET_ALL_PRODUCTS_SUCCESS,
+                type: REQUEST_GET_ALL_PRODUCTS_FINISHED,
                 payload: {
                     products: response.products.map((product) => ProductApi.toState(product)),
                     productsCount: response.productsCount,
@@ -120,8 +115,9 @@ const getProducts: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Ge
             });
         } catch (error) {
             dispatch({
-                type: ADD_ERROR,
-                payload: { error: error.message },
+                type: REQUEST_GET_ALL_PRODUCTS_FINISHED,
+                error: { message: error.message },
+                isError: true,
             });
         }
     };
@@ -130,16 +126,17 @@ const getProducts: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Ge
 const getProductDetails: ActionCreator<ThunkAction<Promise<void>, StoreState, void, GetProductDetailsActions>> =
     (productId: string) => async (dispatch: ThunkDispatch<StoreState, void, GetProductDetailsActions>) => {
         try {
-            dispatch({ type: GET_PRODUCT_DETAILS_REQUEST });
+            dispatch({ type: REQUEST_GET_PRODUCT_DETAILS });
             const response = await apiGetProductDetails(productId);
             dispatch({
-                type: GET_PRODUCT_DETAILS_SUCCESS,
+                type: REQUEST_GET_PRODUCT_DETAILS_FINISHED,
                 payload: ProductApi.toState(response.product),
             });
         } catch (error) {
             dispatch({
-                type: ADD_ERROR,
-                payload: { error: error.message },
+                type: REQUEST_GET_PRODUCT_DETAILS_FINISHED,
+                error: { message: error.message },
+                isError: true,
             });
         }
     };
@@ -147,15 +144,16 @@ const getProductDetails: ActionCreator<ThunkAction<Promise<void>, StoreState, vo
 const newReview: ActionCreator<ThunkAction<Promise<void>, StoreState, void, CreateNewReviewActions>> =
     (reviewData) => async (dispatch: ThunkDispatch<StoreState, void, CreateNewReviewActions>) => {
         try {
-            dispatch({ type: CREATE_NEW_REVIEW_REQUEST });
+            dispatch({ type: REQUEST_CREATE_NEW_REVIEW });
             await apiAddReviewToProduct(reviewData);
             dispatch({
-                type: CREATE_NEW_REVIEW_SUCCESS,
+                type: REQUEST_CREATE_NEW_REVIEW_FINISHED,
             });
         } catch (error) {
             dispatch({
-                type: ADD_ERROR,
-                payload: { error: error.message },
+                type: REQUEST_CREATE_NEW_REVIEW_FINISHED,
+                error: { message: error.message },
+                isError: true,
             });
         }
     };
@@ -163,16 +161,17 @@ const newReview: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Crea
 const getAdminProducts: ActionCreator<ThunkAction<Promise<void>, StoreState, void, GetAdminProductsActions>> =
     () => async (dispatch: ThunkDispatch<StoreState, void, GetAdminProductsActions>) => {
         try {
-            dispatch({ type: GET_ADMIN_PRODUCTS_REQUEST });
+            dispatch({ type: REQUEST_GET_ADMIN_PRODUCTS });
             const response = await apiGetAdminProducts();
             dispatch({
-                type: GET_ADMIN_PRODUCTS_SUCCESS,
+                type: REQUEST_GET_ADMIN_PRODUCTS_FINISHED,
                 payload: response.products.map((product) => ProductApi.toState(product)),
             });
         } catch (error) {
             dispatch({
-                type: ADD_ERROR,
-                payload: { error: error.message },
+                type: REQUEST_GET_ADMIN_PRODUCTS_FINISHED,
+                error: { message: error.message },
+                isError: true,
             });
         }
     };
@@ -180,16 +179,17 @@ const getAdminProducts: ActionCreator<ThunkAction<Promise<void>, StoreState, voi
 const newProduct: ActionCreator<ThunkAction<Promise<void>, StoreState, void, CreateNewProductActions>> =
     (productData) => async (dispatch: ThunkDispatch<StoreState, void, CreateNewProductActions>) => {
         try {
-            dispatch({ type: CREATE_NEW_PRODUCT_REQUEST });
+            dispatch({ type: REQUEST_CREATE_NEW_PRODUCT });
             const response = await apiCreateNewProduct(productData);
             dispatch({
-                type: CREATE_NEW_PRODUCT_SUCCESS,
+                type: REQUEST_CREATE_NEW_PRODUCT_FINISHED,
                 payload: ProductApi.toState(response.product),
             });
         } catch (error) {
             dispatch({
-                type: ADD_ERROR,
-                payload: { error: error.message },
+                type: REQUEST_CREATE_NEW_PRODUCT_FINISHED,
+                error: { message: error.message },
+                isError: true,
             });
         }
     };
@@ -197,15 +197,16 @@ const newProduct: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Cre
 const deleteProduct: ActionCreator<ThunkAction<Promise<void>, StoreState, void, DeleteProductActions>> =
     (productId: string) => async (dispatch: ThunkDispatch<StoreState, void, DeleteProductActions>) => {
         try {
-            dispatch({ type: DELETE_PRODUCT_REQUEST });
+            dispatch({ type: REQUEST_DELETE_PRODUCT });
             await apiDeleteProduct(productId);
             dispatch({
-                type: DELETE_PRODUCT_SUCCESS,
+                type: REQUEST_DELETE_PRODUCT_FINISHED,
             });
         } catch (error) {
             dispatch({
-                type: ADD_ERROR,
-                payload: { error: error.message },
+                type: REQUEST_DELETE_PRODUCT_FINISHED,
+                error: { message: error.message },
+                isError: true,
             });
         }
     };
@@ -213,15 +214,16 @@ const deleteProduct: ActionCreator<ThunkAction<Promise<void>, StoreState, void, 
 const updateProduct: ActionCreator<ThunkAction<Promise<void>, StoreState, void, UpdateProductActions>> =
     (productId: string, productData) => async (dispatch: ThunkDispatch<StoreState, void, UpdateProductActions>) => {
         try {
-            dispatch({ type: UPDATE_PRODUCT_REQUEST });
+            dispatch({ type: REQUEST_UPDATE_PRODUCT });
             await apiUpdateProduct(productId, productData);
             dispatch({
-                type: UPDATE_PRODUCT_SUCCESS,
+                type: REQUEST_UPDATE_PRODUCT_FINISHED,
             });
         } catch (error) {
             dispatch({
-                type: ADD_ERROR,
-                payload: { error: error.message },
+                type: REQUEST_UPDATE_PRODUCT_FINISHED,
+                error: { message: error.message },
+                isError: true,
             });
         }
     };
@@ -229,16 +231,17 @@ const updateProduct: ActionCreator<ThunkAction<Promise<void>, StoreState, void, 
 const getProductReviews: ActionCreator<ThunkAction<Promise<void>, StoreState, void, GetAllReviewsFromProductActions>> =
     (productId: string) => async (dispatch: ThunkDispatch<StoreState, void, GetAllReviewsFromProductActions>) => {
         try {
-            dispatch({ type: GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST });
+            dispatch({ type: REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT });
             const response = await apiGetProductReviews(productId);
             dispatch({
-                type: GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS,
+                type: REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT_FINISHED,
                 payload: response.reviews.map((review) => ReviewApi.toState(review)),
             });
         } catch (error) {
             dispatch({
-                type: ADD_ERROR,
-                payload: { error: error.message },
+                type: REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT_FINISHED,
+                error: { message: error.message },
+                isError: true,
             });
         }
     };
@@ -246,15 +249,16 @@ const getProductReviews: ActionCreator<ThunkAction<Promise<void>, StoreState, vo
 const deleteReview: ActionCreator<ThunkAction<Promise<void>, StoreState, void, DeleteReviewFromProductActions>> =
     (reviewId, productId) => async (dispatch: ThunkDispatch<StoreState, void, DeleteReviewFromProductActions>) => {
         try {
-            dispatch({ type: DELETE_REVIEW_FROM_PRODUCT_REQUEST });
+            dispatch({ type: REQUEST_DELETE_REVIEW_FROM_PRODUCT });
             await apiDeleteReviewFromProduct(reviewId, productId);
             dispatch({
-                type: DELETE_REVIEW_FROM_PRODUCT_SUCCESS,
+                type: REQUEST_DELETE_REVIEW_FROM_PRODUCT_FINISHED,
             });
         } catch (error) {
             dispatch({
-                type: ADD_ERROR,
-                payload: { error: error.message },
+                type: REQUEST_DELETE_REVIEW_FROM_PRODUCT_FINISHED,
+                error: { message: error.message },
+                isError: true,
             });
         }
     };

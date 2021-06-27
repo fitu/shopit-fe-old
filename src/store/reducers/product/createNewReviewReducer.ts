@@ -1,6 +1,6 @@
 import {
-    CREATE_NEW_REVIEW_REQUEST,
-    CREATE_NEW_REVIEW_SUCCESS,
+    REQUEST_CREATE_NEW_REVIEW,
+    REQUEST_CREATE_NEW_REVIEW_FINISHED,
 } from '../../actions/product/actions/createNewReviewActions';
 import { ProductActions } from '../../actions/product/productAction';
 
@@ -18,14 +18,19 @@ const createNewReviewReducer = (
     state: CreateNewReviewState | undefined = INITIAL_STATE,
     action: ProductActions,
 ): CreateNewReviewState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case CREATE_NEW_REVIEW_REQUEST: {
+        case REQUEST_CREATE_NEW_REVIEW: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case CREATE_NEW_REVIEW_SUCCESS: {
+        case REQUEST_CREATE_NEW_REVIEW_FINISHED: {
             return {
                 ...state,
                 loading: false,

@@ -12,49 +12,48 @@ import {
 import OrderApi from '../../../api/models/orderApi';
 import { StoreState } from '../../state/storeState';
 import {
-    CreateOrderRequest,
-    CreateOrderSuccess,
-    CREATE_ORDER_REQUEST,
-    CREATE_ORDER_SUCCESS,
+    RequestCreateOrder,
+    RequestCreateOrderFinished,
+    REQUEST_CREATE_ORDER,
+    REQUEST_CREATE_ORDER_FINISHED,
 } from './actions/createOrderActions';
 import {
-    DeleteOrderRequest,
-    DeleteOrderSuccess,
-    DELETE_ORDER_REQUEST,
-    DELETE_ORDER_SUCCESS,
+    RequestDeleteOrder,
+    RequestDeleteOrderFinished,
+    REQUEST_DELETE_ORDER,
+    REQUEST_DELETE_ORDER_FINISHED,
 } from './actions/deleteOrderActions';
 import {
-    GetAllOrdersRequest,
-    GetAllOrdersSuccess,
-    GET_ALL_ORDERS_REQUEST,
-    GET_ALL_ORDERS_SUCCESS,
+    RequestGetAllOrders,
+    RequestGetAllOrdersFinished,
+    REQUEST_GET_ALL_ORDERS,
+    REQUEST_GET_ALL_ORDERS_FINISHED,
 } from './actions/getAllOrdersActions';
 import {
-    GetMyOrdersRequest,
-    GetMyOrdersSuccess,
-    GET_MY_ORDERS_REQUEST,
-    GET_MY_ORDERS_SUCCESS,
+    RequestGetMyOrders,
+    RequestGetMyOrdersFinished,
+    REQUEST_GET_MY_ORDERS,
+    REQUEST_GET_MY_ORDERS_FINISHED,
 } from './actions/getMyOrdersActions';
 import {
-    GetOrderDetailsRequest,
-    GetOrderDetailsSuccess,
-    GET_ORDER_DETAILS_REQUEST,
-    GET_ORDER_DETAILS_SUCCESS,
+    RequestGetOrderDetails,
+    RequestGetOrderDetailsFinished,
+    REQUEST_GET_ORDER_DETAILS,
+    REQUEST_GET_ORDER_DETAILS_FINISHED,
 } from './actions/getOrderDetailsActions';
 import {
-    UpdateOrderRequest,
-    UpdateOrderSuccess,
-    UPDATE_ORDER_REQUEST,
-    UPDATE_ORDER_SUCCESS,
+    RequestUpdateOrder,
+    RequestUpdateOrderFinished,
+    REQUEST_UPDATE_ORDER,
+    REQUEST_UPDATE_ORDER_FINISHED,
 } from './actions/updateOrderActions';
-import { ADD_ERROR, AddError as AddErrorActions } from '../error/actions/addErrorActions';
 
-type CreateOrderActions = CreateOrderRequest | CreateOrderSuccess | AddErrorActions;
-type GetMyOrdersActions = GetMyOrdersRequest | GetMyOrdersSuccess | AddErrorActions;
-type GetOrderDetailsActions = GetOrderDetailsRequest | GetOrderDetailsSuccess | AddErrorActions;
-type GetAllOrdersActions = GetAllOrdersRequest | GetAllOrdersSuccess | AddErrorActions;
-type UpdateOrderActions = UpdateOrderRequest | UpdateOrderSuccess | AddErrorActions;
-type DeleteOrderActions = DeleteOrderRequest | DeleteOrderSuccess | AddErrorActions;
+type CreateOrderActions = RequestCreateOrder | RequestCreateOrderFinished;
+type GetMyOrdersActions = RequestGetMyOrders | RequestGetMyOrdersFinished;
+type GetOrderDetailsActions = RequestGetOrderDetails | RequestGetOrderDetailsFinished;
+type GetAllOrdersActions = RequestGetAllOrders | RequestGetAllOrdersFinished;
+type UpdateOrderActions = RequestUpdateOrder | RequestUpdateOrderFinished;
+type DeleteOrderActions = RequestDeleteOrder | RequestDeleteOrderFinished;
 
 type OrderActions =
     | CreateOrderActions
@@ -67,68 +66,72 @@ type OrderActions =
 const createOrder: ActionCreator<ThunkAction<Promise<void>, StoreState, void, CreateOrderActions>> =
     (order) => async (dispatch: ThunkDispatch<StoreState, void, CreateOrderActions>) => {
         try {
-            dispatch({ type: CREATE_ORDER_REQUEST });
+            dispatch({ type: REQUEST_CREATE_ORDER });
             const response = await apiCreateOrder(order);
             dispatch({
-                type: CREATE_ORDER_SUCCESS,
+                type: REQUEST_CREATE_ORDER_FINISHED,
                 payload: OrderApi.toState(response.order),
             });
         } catch (error) {
-            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
+            dispatch({ type: REQUEST_CREATE_ORDER_FINISHED, error: { message: error.message }, isError: true });
         }
     };
 
 const myOrders: ActionCreator<ThunkAction<Promise<void>, StoreState, void, GetMyOrdersActions>> =
     () => async (dispatch: ThunkDispatch<StoreState, void, GetMyOrdersActions>) => {
         try {
-            dispatch({ type: GET_MY_ORDERS_REQUEST });
+            dispatch({ type: REQUEST_GET_MY_ORDERS });
             const response = await apiGetMyOrders();
-            dispatch({ type: GET_MY_ORDERS_SUCCESS, payload: response.orders.map((order) => OrderApi.toState(order)) });
+            dispatch({
+                type: REQUEST_GET_MY_ORDERS_FINISHED,
+                payload: response.orders.map((order) => OrderApi.toState(order)),
+            });
         } catch (error) {
-            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
+            dispatch({ type: REQUEST_GET_MY_ORDERS_FINISHED, error: { message: error.message }, isError: true });
         }
     };
 
 const getOrderDetails: ActionCreator<ThunkAction<Promise<void>, StoreState, void, GetOrderDetailsActions>> =
     (id) => async (dispatch: ThunkDispatch<StoreState, void, GetOrderDetailsActions>) => {
         try {
-            dispatch({ type: GET_ORDER_DETAILS_REQUEST });
+            dispatch({ type: REQUEST_GET_ORDER_DETAILS });
             const response = await apiGetOrderDetails(id);
-            dispatch({ type: GET_ORDER_DETAILS_SUCCESS, payload: OrderApi.toState(response.order) });
+            dispatch({ type: REQUEST_GET_ORDER_DETAILS_FINISHED, payload: OrderApi.toState(response.order) });
         } catch (error) {
-            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
+            dispatch({ type: REQUEST_GET_ORDER_DETAILS_FINISHED, error: { message: error.message }, isError: true });
         }
     };
 
 const getAllOrders: ActionCreator<ThunkAction<Promise<void>, StoreState, void, GetAllOrdersActions>> =
     () => async (dispatch: ThunkDispatch<StoreState, void, GetAllOrdersActions>) => {
         try {
-            dispatch({ type: GET_ALL_ORDERS_REQUEST });
+            dispatch({ type: REQUEST_GET_ALL_ORDERS });
             const response = await apiGetAllOrders();
             dispatch({
-                type: GET_ALL_ORDERS_SUCCESS,
+                type: REQUEST_GET_ALL_ORDERS_FINISHED,
                 payload: {
                     orders: response.orders.map((order) => OrderApi.toState(order)),
                     totalAmount: response.totalAmount,
                 },
             });
         } catch (error) {
-            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
+            dispatch({ type: REQUEST_GET_ALL_ORDERS_FINISHED, error: { message: error.message }, isError: true });
         }
     };
 
 const updateOrder: ActionCreator<ThunkAction<Promise<void>, StoreState, void, UpdateOrderActions>> =
     (id, orderData) => async (dispatch: ThunkDispatch<StoreState, void, UpdateOrderActions>) => {
         try {
-            dispatch({ type: UPDATE_ORDER_REQUEST });
+            dispatch({ type: REQUEST_UPDATE_ORDER });
             await apiUpdateOrder(id, orderData);
             dispatch({
-                type: UPDATE_ORDER_SUCCESS,
+                type: REQUEST_UPDATE_ORDER_FINISHED,
             });
         } catch (error) {
             dispatch({
-                type: ADD_ERROR,
-                payload: { error: error.message },
+                type: REQUEST_UPDATE_ORDER_FINISHED,
+                error: { message: error.message },
+                isError: true,
             });
         }
     };
@@ -136,15 +139,16 @@ const updateOrder: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Up
 const deleteOrder: ActionCreator<ThunkAction<Promise<void>, StoreState, void, DeleteOrderActions>> =
     (id) => async (dispatch: ThunkDispatch<StoreState, void, DeleteOrderActions>) => {
         try {
-            dispatch({ type: DELETE_ORDER_REQUEST });
+            dispatch({ type: REQUEST_DELETE_ORDER });
             await apiDeleteOrder(id);
             dispatch({
-                type: DELETE_ORDER_SUCCESS,
+                type: REQUEST_DELETE_ORDER_FINISHED,
             });
         } catch (error) {
             dispatch({
-                type: ADD_ERROR,
-                payload: { error: error.message },
+                type: REQUEST_DELETE_ORDER_FINISHED,
+                error: { message: error.message },
+                isError: true,
             });
         }
     };

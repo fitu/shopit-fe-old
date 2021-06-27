@@ -2,12 +2,12 @@ import { BaseAction } from '../../BaseAction';
 
 import ShippingInfo from '../../../state/models/ShippingInfo';
 
-const SAVE_SHIPPING_INFO = 'SAVE_SHIPPING_INFO';
+const REQUEST_SAVE_SHIPPING_INFO_FINISHED = 'REQUEST_SAVE_SHIPPING_INFO_FINISHED';
 
-interface SaveShippingInfo extends BaseAction {
-    type: typeof SAVE_SHIPPING_INFO;
+interface RequestSaveShippingInfo extends BaseAction {
+    type: typeof REQUEST_SAVE_SHIPPING_INFO_FINISHED;
     payload: ShippingInfo;
 }
 
-export type { SaveShippingInfo };
-export { SAVE_SHIPPING_INFO };
+export type { RequestSaveShippingInfo };
+export { REQUEST_SAVE_SHIPPING_INFO_FINISHED };

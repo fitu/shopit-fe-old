@@ -2,17 +2,17 @@ import { BaseAction } from '../../BaseAction';
 
 import User from '../../../state/models/User';
 
-const GET_USER_DETAILS_REQUEST = 'GET_USER_DETAILS_REQUEST';
-const GET_USER_DETAILS_SUCCESS = 'GET_USER_DETAILS_SUCCESS';
+const REQUEST_GET_USER_DETAILS = 'REQUEST_GET_USER_DETAILS';
+const REQUEST_GET_USER_DETAILS_FINISHED = 'REQUEST_GET_USER_DETAILS_FINISHED';
 
-interface GetUserDetailsRequest extends BaseAction {
-    type: typeof GET_USER_DETAILS_REQUEST;
+interface RequestGetUserDetails extends BaseAction {
+    type: typeof REQUEST_GET_USER_DETAILS;
 }
 
-interface GetUserDetailsSuccess extends BaseAction {
-    type: typeof GET_USER_DETAILS_SUCCESS;
-    payload: User;
+interface RequestGetUserDetailsFinished extends BaseAction {
+    type: typeof REQUEST_GET_USER_DETAILS_FINISHED;
+    payload?: User;
 }
 
-export type { GetUserDetailsRequest, GetUserDetailsSuccess };
-export { GET_USER_DETAILS_REQUEST, GET_USER_DETAILS_SUCCESS };
+export type { RequestGetUserDetails, RequestGetUserDetailsFinished };
+export { REQUEST_GET_USER_DETAILS, REQUEST_GET_USER_DETAILS_FINISHED };

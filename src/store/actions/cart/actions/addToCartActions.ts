@@ -2,12 +2,12 @@ import { BaseAction } from '../../BaseAction';
 
 import Item from '../../../state/models/Item';
 
-const ADD_PRODUCT_TO_CART_SUCCESS = 'ADD_PRODUCT_TO_CART_SUCCESS';
+const REQUEST_ADD_PRODUCT_TO_CART_FINISHED = 'REQUEST_ADD_PRODUCT_TO_CART_FINISHED';
 
-interface AddProductToCartSuccess extends BaseAction {
-    type: typeof ADD_PRODUCT_TO_CART_SUCCESS;
-    payload: Item;
+interface RequestAddProductToCartFinished extends BaseAction {
+    type: typeof REQUEST_ADD_PRODUCT_TO_CART_FINISHED;
+    payload?: Item;
 }
 
-export type { AddProductToCartSuccess };
-export { ADD_PRODUCT_TO_CART_SUCCESS };
+export type { RequestAddProductToCartFinished };
+export { REQUEST_ADD_PRODUCT_TO_CART_FINISHED };

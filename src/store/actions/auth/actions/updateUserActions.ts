@@ -1,15 +1,15 @@
 import { BaseAction } from '../../BaseAction';
 
-const UPDATE_USER_REQUEST = 'UPDATE_USER_REQUEST';
-const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+const REQUEST_UPDATE_USER = 'REQUEST_UPDATE_USER';
+const REQUEST_UPDATE_USER_FINISHED = 'REQUEST_UPDATE_USER_FINISHED';
 
-interface UpdateUserRequest extends BaseAction {
-    type: typeof UPDATE_USER_REQUEST;
+interface RequestUpdateUser extends BaseAction {
+    type: typeof REQUEST_UPDATE_USER;
 }
 
-interface UpdateUserSuccess extends BaseAction {
-    type: typeof UPDATE_USER_SUCCESS;
+interface RequestUpdateUserFinished extends BaseAction {
+    type: typeof REQUEST_UPDATE_USER_FINISHED;
 }
 
-export type { UpdateUserRequest, UpdateUserSuccess };
-export { UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS };
+export type { RequestUpdateUser, RequestUpdateUserFinished };
+export { REQUEST_UPDATE_USER, REQUEST_UPDATE_USER_FINISHED };

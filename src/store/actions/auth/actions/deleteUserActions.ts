@@ -1,15 +1,15 @@
 import { BaseAction } from '../../BaseAction';
 
-const DELETE_USER_REQUEST = 'DELETE_USER_REQUEST';
-const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
+const REQUEST_DELETE_USER = 'REQUEST_DELETE_USER';
+const REQUEST_DELETE_USER_FINISHED = 'REQUEST_DELETE_USER_FINISHED';
 
-interface DeleteUserRequest extends BaseAction {
-    type: typeof DELETE_USER_REQUEST;
+interface RequestDeleteUser extends BaseAction {
+    type: typeof REQUEST_DELETE_USER;
 }
 
-interface DeleteUserSuccess extends BaseAction {
-    type: typeof DELETE_USER_SUCCESS;
+interface RequestDeleteUserFinished extends BaseAction {
+    type: typeof REQUEST_DELETE_USER_FINISHED;
 }
 
-export type { DeleteUserRequest, DeleteUserSuccess };
-export { DELETE_USER_REQUEST, DELETE_USER_SUCCESS };
+export type { RequestDeleteUser, RequestDeleteUserFinished };
+export { REQUEST_DELETE_USER, REQUEST_DELETE_USER_FINISHED };

@@ -1,15 +1,15 @@
 import { BaseAction } from '../../BaseAction';
 
-const FORGOT_PASSWORD_REQUEST = 'FORGOT_PASSWORD_REQUEST';
-const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
+const REQUEST_FORGOT_PASSWORD = 'REQUEST_FORGOT_PASSWORD';
+const REQUEST_FORGOT_PASSWORD_FINISHED = 'REQUEST_FORGOT_PASSWORD_FINISHED';
 
-interface ForgotPasswordRequest extends BaseAction {
-    type: typeof FORGOT_PASSWORD_REQUEST;
+interface RequestForgotPassword extends BaseAction {
+    type: typeof REQUEST_FORGOT_PASSWORD;
 }
 
-interface ForgotPasswordSuccess extends BaseAction {
-    type: typeof FORGOT_PASSWORD_SUCCESS;
+interface RequestForgotPasswordFinished extends BaseAction {
+    type: typeof REQUEST_FORGOT_PASSWORD_FINISHED;
 }
 
-export type { ForgotPasswordRequest, ForgotPasswordSuccess };
-export { FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS };
+export type { RequestForgotPassword, RequestForgotPasswordFinished };
+export { REQUEST_FORGOT_PASSWORD, REQUEST_FORGOT_PASSWORD_FINISHED };

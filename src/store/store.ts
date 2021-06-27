@@ -23,6 +23,7 @@ import productsReducer from './reducers/product/productReducer';
 import reviewReducer from './reducers/product/reviewReducer';
 import { getCartItems, getShippingInfo } from '../storage/storage';
 import { StoreState } from './state/storeState';
+import loadingReducer from './reducers/loading/loadingReducer';
 
 const rootReducer = combineReducers<StoreState>({
     allUsers: allUsersReducer,
@@ -44,6 +45,7 @@ const rootReducer = combineReducers<StoreState>({
     product: productsReducer,
     review: reviewReducer,
     error: errorReducer,
+    loading: loadingReducer,
 });
 
 // TODO: this shouldn't be like this undefined
@@ -72,6 +74,7 @@ const initialState: StoreState = {
     product: undefined,
     review: undefined,
     error: undefined,
+    loading: undefined,
 };
 
 const middlewares = [thunk];

@@ -1,10 +1,10 @@
-import { GET_MY_ORDERS_REQUEST, GET_MY_ORDERS_SUCCESS } from '../../actions/order/actions/getMyOrdersActions';
+import { REQUEST_GET_MY_ORDERS, REQUEST_GET_MY_ORDERS_FINISHED } from '../../actions/order/actions/getMyOrdersActions';
 import { OrderActions } from '../../actions/order/orderActions';
 import Order from '../../state/models/Order';
 
 type MyOrdersState = {
     loading: boolean;
-    orders: Array<Order>;
+    orders?: Array<Order>;
 };
 
 const INITIAL_STATE = {
@@ -13,14 +13,19 @@ const INITIAL_STATE = {
 };
 
 const myOrdersReducer = (state: MyOrdersState | undefined = INITIAL_STATE, action: OrderActions): MyOrdersState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case GET_MY_ORDERS_REQUEST: {
+        case REQUEST_GET_MY_ORDERS: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case GET_MY_ORDERS_SUCCESS: {
+        case REQUEST_GET_MY_ORDERS_FINISHED: {
             return {
                 ...state,
                 loading: false,

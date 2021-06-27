@@ -1,7 +1,7 @@
-import { LOAD_USER_REQUEST, LOAD_USER_SUCCESS } from '../../actions/auth/actions/loadUserActions';
-import { LOGIN_REQUEST, LOGIN_SUCCESS } from '../../actions/auth/actions/loginActions';
-import { LOGOUT_SUCCESS } from '../../actions/auth/actions/logoutActions';
-import { REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS } from '../../actions/auth/actions/registerActions';
+import { REQUEST_LOAD_USER, REQUEST_LOAD_USER_FINISHED } from '../../actions/auth/actions/loadUserActions';
+import { REQUEST_LOGIN, REQUEST_LOGIN_FINISHED } from '../../actions/auth/actions/loginActions';
+import { REQUEST_LOGOUT_FINISHED } from '../../actions/auth/actions/logoutActions';
+import { REQUEST_REGISTER_USER, REQUEST_REGISTER_USER_FINISHED } from '../../actions/auth/actions/registerActions';
 import { AuthActions } from '../../actions/auth/authActions';
 import User from '../../state/models/User';
 
@@ -18,19 +18,24 @@ const INITIAL_STATE = {
 };
 
 const authReducer = (state: AuthState | undefined = INITIAL_STATE, action: AuthActions): AuthState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case LOGIN_REQUEST:
-        case REGISTER_USER_REQUEST:
-        case LOAD_USER_REQUEST: {
+        case REQUEST_LOGIN:
+        case REQUEST_REGISTER_USER:
+        case REQUEST_LOAD_USER: {
             return {
                 ...state,
                 loading: true,
                 isAuthenticated: false,
             };
         }
-        case LOGIN_SUCCESS:
-        case REGISTER_USER_SUCCESS:
-        case LOAD_USER_SUCCESS: {
+        case REQUEST_LOGIN_FINISHED:
+        case REQUEST_REGISTER_USER_FINISHED:
+        case REQUEST_LOAD_USER_FINISHED: {
             return {
                 ...state,
                 loading: false,
@@ -38,7 +43,7 @@ const authReducer = (state: AuthState | undefined = INITIAL_STATE, action: AuthA
                 user: action.payload,
             };
         }
-        case LOGOUT_SUCCESS: {
+        case REQUEST_LOGOUT_FINISHED: {
             return {
                 ...state,
                 loading: false,

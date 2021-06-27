@@ -17,6 +17,7 @@ import { ProductDetailsState } from '../reducers/product/productDetailsReducer';
 import { ProductState } from '../reducers/product/productReducer';
 import { ReviewState } from '../reducers/product/reviewReducer';
 import { ErrorState } from '../reducers/error/errorReducer';
+import { LoadingState } from '../reducers/loading/loadingReducer';
 
 // TODO: this shouldn't be like this undefined
 interface StoreState {
@@ -39,6 +40,7 @@ interface StoreState {
     product: ProductState | undefined;
     review: ReviewState | undefined;
     error: ErrorState | undefined;
+    loading: LoadingState | undefined;
 }
 
 export type { StoreState };

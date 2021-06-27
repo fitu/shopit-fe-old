@@ -1,13 +1,13 @@
 import {
-    GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST,
-    GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS,
+    REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT,
+    REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT_FINISHED,
 } from '../../actions/product/actions/getAllReviewsFromProductActions';
 import { ProductActions } from '../../actions/product/productAction';
 import Review from '../../state/models/Review';
 
 type AddReviewToProductState = {
     loading: boolean;
-    reviews: Array<Review>;
+    reviews?: Array<Review>;
 };
 
 const INITIAL_STATE = {
@@ -19,14 +19,19 @@ const productReviewsReducer = (
     state: AddReviewToProductState | undefined = INITIAL_STATE,
     action: ProductActions,
 ): AddReviewToProductState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST: {
+        case REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS: {
+        case REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT_FINISHED: {
             return {
                 ...state,
                 loading: false,

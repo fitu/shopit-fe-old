@@ -1,5 +1,11 @@
-import { DELETE_PRODUCT_REQUEST, DELETE_PRODUCT_SUCCESS } from '../../actions/product/actions/deleteProductActions';
-import { UPDATE_PRODUCT_REQUEST, UPDATE_PRODUCT_SUCCESS } from '../../actions/product/actions/updateProductActions';
+import {
+    REQUEST_DELETE_PRODUCT,
+    REQUEST_DELETE_PRODUCT_FINISHED,
+} from '../../actions/product/actions/deleteProductActions';
+import {
+    REQUEST_UPDATE_PRODUCT,
+    REQUEST_UPDATE_PRODUCT_FINISHED,
+} from '../../actions/product/actions/updateProductActions';
 import { ProductActions } from '../../actions/product/productAction';
 import Product from '../../state/models/Product';
 
@@ -21,22 +27,27 @@ const modifyProductReducer = (
     state: ModifyProductState | undefined = INITIAL_STATE,
     action: ProductActions,
 ): ModifyProductState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case DELETE_PRODUCT_REQUEST:
-        case UPDATE_PRODUCT_REQUEST: {
+        case REQUEST_DELETE_PRODUCT:
+        case REQUEST_UPDATE_PRODUCT: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case DELETE_PRODUCT_SUCCESS: {
+        case REQUEST_DELETE_PRODUCT_FINISHED: {
             return {
                 ...state,
                 loading: false,
                 isDeleted: true,
             };
         }
-        case UPDATE_PRODUCT_SUCCESS: {
+        case REQUEST_UPDATE_PRODUCT_FINISHED: {
             return {
                 ...state,
                 loading: false,

@@ -1,10 +1,10 @@
-import { GET_ALL_USER_REQUEST, GET_ALL_USER_SUCCESS } from '../../actions/auth/actions/getAllUsersActions';
+import { REQUEST_GET_ALL_USER, REQUEST_GET_ALL_USER_FINISHED } from '../../actions/auth/actions/getAllUsersActions';
 import { AuthActions } from '../../actions/auth/authActions';
 import User from '../../state/models/User';
 
 type AllUsersState = {
     loading: boolean;
-    users: Array<User>;
+    users?: Array<User>;
 };
 
 const INITIAL_STATE = {
@@ -13,14 +13,19 @@ const INITIAL_STATE = {
 };
 
 const allUsersReducer = (state: AllUsersState | undefined = INITIAL_STATE, action: AuthActions): AllUsersState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case GET_ALL_USER_REQUEST: {
+        case REQUEST_GET_ALL_USER: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case GET_ALL_USER_SUCCESS: {
+        case REQUEST_GET_ALL_USER_FINISHED: {
             return {
                 ...state,
                 loading: false,

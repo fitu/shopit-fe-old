@@ -2,20 +2,20 @@ import { BaseAction } from '../../BaseAction';
 
 import Product from '../../../state/models/Product';
 
-const GET_ALL_PRODUCTS_REQUEST = 'GET_ALL_PRODUCTS_REQUEST';
-const GET_ALL_PRODUCTS_SUCCESS = 'GET_ALL_PRODUCTS_SUCCESS';
+const REQUEST_GET_ALL_PRODUCTS = 'REQUEST_GET_ALL_PRODUCTS';
+const REQUEST_GET_ALL_PRODUCTS_FINISHED = 'REQUEST_GET_ALL_PRODUCTS_FINISHED';
 
-interface GetAllProductsRequest extends BaseAction {
-    type: typeof GET_ALL_PRODUCTS_REQUEST;
+interface RequestGetAllProducts extends BaseAction {
+    type: typeof REQUEST_GET_ALL_PRODUCTS;
 }
 
-interface GetAllProductsSuccess extends BaseAction {
-    type: typeof GET_ALL_PRODUCTS_SUCCESS;
-    payload: {
+interface RequestGetAllProductsFinished extends BaseAction {
+    type: typeof REQUEST_GET_ALL_PRODUCTS_FINISHED;
+    payload?: {
         products: Array<Product>;
         productsCount: number;
     };
 }
 
-export type { GetAllProductsRequest, GetAllProductsSuccess };
-export { GET_ALL_PRODUCTS_REQUEST, GET_ALL_PRODUCTS_SUCCESS };
+export type { RequestGetAllProducts, RequestGetAllProductsFinished };
+export { REQUEST_GET_ALL_PRODUCTS, REQUEST_GET_ALL_PRODUCTS_FINISHED };

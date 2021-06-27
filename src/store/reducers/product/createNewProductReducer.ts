@@ -1,6 +1,6 @@
 import {
-    CREATE_NEW_PRODUCT_REQUEST,
-    CREATE_NEW_PRODUCT_SUCCESS,
+    REQUEST_CREATE_NEW_PRODUCT,
+    REQUEST_CREATE_NEW_PRODUCT_FINISHED,
 } from '../../actions/product/actions/createNewProductActions';
 import { ProductActions } from '../../actions/product/productAction';
 import Product from '../../state/models/Product';
@@ -21,14 +21,19 @@ const createNewProductReducer = (
     state: CreateNewProductState | undefined = INITIAL_STATE,
     action: ProductActions,
 ): CreateNewProductState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case CREATE_NEW_PRODUCT_REQUEST: {
+        case REQUEST_CREATE_NEW_PRODUCT: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case CREATE_NEW_PRODUCT_SUCCESS: {
+        case REQUEST_CREATE_NEW_PRODUCT_FINISHED: {
             return {
                 ...state,
                 loading: false,

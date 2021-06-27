@@ -1,10 +1,10 @@
 import {
-    GET_ADMIN_PRODUCTS_REQUEST,
-    GET_ADMIN_PRODUCTS_SUCCESS,
+    REQUEST_GET_ADMIN_PRODUCTS,
+    REQUEST_GET_ADMIN_PRODUCTS_FINISHED,
 } from '../../actions/product/actions/getAdminProductsActions';
 import {
-    GET_ALL_PRODUCTS_REQUEST,
-    GET_ALL_PRODUCTS_SUCCESS,
+    REQUEST_GET_ALL_PRODUCTS,
+    REQUEST_GET_ALL_PRODUCTS_FINISHED,
 } from '../../actions/product/actions/getAllProductsActions';
 import { ProductActions } from '../../actions/product/productAction';
 import Product from '../../state/models/Product';
@@ -12,7 +12,7 @@ import Product from '../../state/models/Product';
 type ProductState = {
     loading: boolean;
     productsCount: number;
-    products: Array<Product>;
+    products?: Array<Product>;
 };
 
 const INITIAL_STATE = {
@@ -22,24 +22,29 @@ const INITIAL_STATE = {
 };
 
 const productsReducer = (state: ProductState | undefined = INITIAL_STATE, action: ProductActions): ProductState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case GET_ALL_PRODUCTS_REQUEST:
-        case GET_ADMIN_PRODUCTS_REQUEST: {
+        case REQUEST_GET_ALL_PRODUCTS:
+        case REQUEST_GET_ADMIN_PRODUCTS: {
             return {
                 ...state,
                 loading: true,
                 products: [],
             };
         }
-        case GET_ALL_PRODUCTS_SUCCESS: {
+        case REQUEST_GET_ALL_PRODUCTS_FINISHED: {
             return {
                 ...state,
                 loading: false,
-                products: action.payload.products,
-                productsCount: action.payload.productsCount,
+                products: action.payload?.products,
+                productsCount: action.payload?.productsCount ?? 0,
             };
         }
-        case GET_ADMIN_PRODUCTS_SUCCESS: {
+        case REQUEST_GET_ADMIN_PRODUCTS_FINISHED: {
             return {
                 ...state,
                 loading: false,

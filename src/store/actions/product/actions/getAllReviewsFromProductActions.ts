@@ -2,17 +2,17 @@ import { BaseAction } from '../../BaseAction';
 
 import Review from '../../../state/models/Review';
 
-const GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST = 'GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST';
-const GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS = 'GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS';
+const REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT = 'REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT';
+const REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT_FINISHED = 'REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT_FINISHED';
 
-interface GetAllReviewsFromProductRequest extends BaseAction {
-    type: typeof GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST;
+interface RequestGetAllReviewsFromProduct extends BaseAction {
+    type: typeof REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT;
 }
 
-interface GetAllReviewsFromProductSuccess extends BaseAction {
-    type: typeof GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS;
-    payload: Array<Review>;
+interface RequestGetAllReviewsFromProductFinished extends BaseAction {
+    type: typeof REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT_FINISHED;
+    payload?: Array<Review>;
 }
 
-export type { GetAllReviewsFromProductRequest, GetAllReviewsFromProductSuccess };
-export { GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST, GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS };
+export type { RequestGetAllReviewsFromProduct, RequestGetAllReviewsFromProductFinished };
+export { REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT, REQUEST_GET_ALL_REVIEWS_FROM_PRODUCT_FINISHED };

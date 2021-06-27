@@ -1,7 +1,13 @@
-import { DELETE_USER_REQUEST, DELETE_USER_SUCCESS } from '../../actions/auth/actions/deleteUserActions';
-import { UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS } from '../../actions/auth/actions/updatePasswordActions';
-import { UPDATE_PROFILE_REQUEST, UPDATE_PROFILE_SUCCESS } from '../../actions/auth/actions/updateProfileActions';
-import { UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS } from '../../actions/auth/actions/updateUserActions';
+import { REQUEST_DELETE_USER, REQUEST_DELETE_USER_FINISHED } from '../../actions/auth/actions/deleteUserActions';
+import {
+    REQUEST_UPDATE_PASSWORD,
+    REQUEST_UPDATE_PASSWORD_FINISHED,
+} from '../../actions/auth/actions/updatePasswordActions';
+import {
+    REQUEST_UPDATE_PROFILE,
+    REQUEST_UPDATE_PROFILE_FINISHED,
+} from '../../actions/auth/actions/updateProfileActions';
+import { REQUEST_UPDATE_USER, REQUEST_UPDATE_USER_FINISHED } from '../../actions/auth/actions/updateUserActions';
 import { AuthActions } from '../../actions/auth/authActions';
 
 type UserState = {
@@ -17,26 +23,31 @@ const INITIAL_STATE = {
 };
 
 const userReducer = (state: UserState | undefined = INITIAL_STATE, action: AuthActions): UserState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case UPDATE_PROFILE_REQUEST:
-        case UPDATE_PASSWORD_REQUEST:
-        case UPDATE_USER_REQUEST:
-        case DELETE_USER_REQUEST: {
+        case REQUEST_UPDATE_PROFILE:
+        case REQUEST_UPDATE_PASSWORD:
+        case REQUEST_UPDATE_USER:
+        case REQUEST_DELETE_USER: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case UPDATE_PROFILE_SUCCESS:
-        case UPDATE_PASSWORD_SUCCESS:
-        case UPDATE_USER_SUCCESS: {
+        case REQUEST_UPDATE_PROFILE_FINISHED:
+        case REQUEST_UPDATE_PASSWORD_FINISHED:
+        case REQUEST_UPDATE_USER_FINISHED: {
             return {
                 ...state,
                 loading: false,
                 isUpdated: true,
             };
         }
-        case DELETE_USER_SUCCESS: {
+        case REQUEST_DELETE_USER_FINISHED: {
             return {
                 ...state,
                 loading: false,

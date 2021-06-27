@@ -1,6 +1,6 @@
 import {
-    GET_PRODUCT_DETAILS_REQUEST,
-    GET_PRODUCT_DETAILS_SUCCESS,
+    REQUEST_GET_PRODUCT_DETAILS,
+    REQUEST_GET_PRODUCT_DETAILS_FINISHED,
 } from '../../actions/product/actions/getProductDetailsActions';
 import { ProductActions } from '../../actions/product/productAction';
 import Product from '../../state/models/Product';
@@ -19,14 +19,19 @@ const productDetailsReducer = (
     state: ProductDetailsState | undefined = INITIAL_STATE,
     action: ProductActions,
 ): ProductDetailsState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case GET_PRODUCT_DETAILS_REQUEST: {
+        case REQUEST_GET_PRODUCT_DETAILS: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case GET_PRODUCT_DETAILS_SUCCESS: {
+        case REQUEST_GET_PRODUCT_DETAILS_FINISHED: {
             return {
                 ...state,
                 loading: false,

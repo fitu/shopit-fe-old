@@ -2,17 +2,17 @@ import { BaseAction } from '../../BaseAction';
 
 import User from '../../../state/models/User';
 
-const GET_ALL_USER_REQUEST = 'GET_ALL_USER_REQUEST';
-const GET_ALL_USER_SUCCESS = 'GET_ALL_USER_SUCCESS';
+const REQUEST_GET_ALL_USER = 'REQUEST_GET_ALL_USER';
+const REQUEST_GET_ALL_USER_FINISHED = 'REQUEST_GET_ALL_USER_FINISHED';
 
-interface GetAllUsersRequest extends BaseAction {
-    type: typeof GET_ALL_USER_REQUEST;
+interface RequestGetAllUsers extends BaseAction {
+    type: typeof REQUEST_GET_ALL_USER;
 }
 
-interface GetAllUsersSuccess extends BaseAction {
-    type: typeof GET_ALL_USER_SUCCESS;
-    payload: Array<User>;
+interface RequestGetAllUsersFinished extends BaseAction {
+    type: typeof REQUEST_GET_ALL_USER_FINISHED;
+    payload?: Array<User>;
 }
 
-export type { GetAllUsersRequest, GetAllUsersSuccess };
-export { GET_ALL_USER_REQUEST, GET_ALL_USER_SUCCESS };
+export type { RequestGetAllUsers, RequestGetAllUsersFinished };
+export { REQUEST_GET_ALL_USER, REQUEST_GET_ALL_USER_FINISHED };

@@ -1,6 +1,6 @@
 import {
-    DELETE_REVIEW_FROM_PRODUCT_REQUEST,
-    DELETE_REVIEW_FROM_PRODUCT_SUCCESS,
+    REQUEST_DELETE_REVIEW_FROM_PRODUCT,
+    REQUEST_DELETE_REVIEW_FROM_PRODUCT_FINISHED,
 } from '../../actions/product/actions/deleteReviewFromProductActions';
 import { ProductActions } from '../../actions/product/productAction';
 
@@ -15,14 +15,19 @@ const INITIAL_STATE = {
 };
 
 const reviewReducer = (state: ReviewState | undefined = INITIAL_STATE, action: ProductActions): ReviewState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case DELETE_REVIEW_FROM_PRODUCT_REQUEST: {
+        case REQUEST_DELETE_REVIEW_FROM_PRODUCT: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case DELETE_REVIEW_FROM_PRODUCT_SUCCESS: {
+        case REQUEST_DELETE_REVIEW_FROM_PRODUCT_FINISHED: {
             return {
                 ...state,
                 loading: false,

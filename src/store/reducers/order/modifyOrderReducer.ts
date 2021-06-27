@@ -1,5 +1,5 @@
-import { DELETE_ORDER_REQUEST, DELETE_ORDER_SUCCESS } from '../../actions/order/actions/deleteOrderActions';
-import { UPDATE_ORDER_REQUEST, UPDATE_ORDER_SUCCESS } from '../../actions/order/actions/updateOrderActions';
+import { REQUEST_DELETE_ORDER, REQUEST_DELETE_ORDER_FINISHED } from '../../actions/order/actions/deleteOrderActions';
+import { REQUEST_UPDATE_ORDER, REQUEST_UPDATE_ORDER_FINISHED } from '../../actions/order/actions/updateOrderActions';
 import { OrderActions } from '../../actions/order/orderActions';
 
 type ModifyOrderState = {
@@ -18,22 +18,27 @@ const modifyOrderReducer = (
     state: ModifyOrderState | undefined = INITIAL_STATE,
     action: OrderActions,
 ): ModifyOrderState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case UPDATE_ORDER_REQUEST:
-        case DELETE_ORDER_REQUEST: {
+        case REQUEST_UPDATE_ORDER:
+        case REQUEST_DELETE_ORDER: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case UPDATE_ORDER_SUCCESS: {
+        case REQUEST_UPDATE_ORDER_FINISHED: {
             return {
                 ...state,
                 loading: false,
                 isUpdated: true,
             };
         }
-        case DELETE_ORDER_SUCCESS: {
+        case REQUEST_DELETE_ORDER_FINISHED: {
             return {
                 ...state,
                 loading: false,

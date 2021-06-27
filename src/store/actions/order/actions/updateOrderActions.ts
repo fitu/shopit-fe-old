@@ -1,15 +1,15 @@
 import { BaseAction } from '../../BaseAction';
 
-const UPDATE_ORDER_REQUEST = 'UPDATE_ORDER_REQUEST';
-const UPDATE_ORDER_SUCCESS = 'UPDATE_ORDER_SUCCESS';
+const REQUEST_UPDATE_ORDER = 'REQUEST_UPDATE_ORDER';
+const REQUEST_UPDATE_ORDER_FINISHED = 'REQUEST_UPDATE_ORDER_FINISHED';
 
-interface UpdateOrderRequest extends BaseAction {
-    type: typeof UPDATE_ORDER_REQUEST;
+interface RequestUpdateOrder extends BaseAction {
+    type: typeof REQUEST_UPDATE_ORDER;
 }
 
-interface UpdateOrderSuccess extends BaseAction {
-    type: typeof UPDATE_ORDER_SUCCESS;
+interface RequestUpdateOrderFinished extends BaseAction {
+    type: typeof REQUEST_UPDATE_ORDER_FINISHED;
 }
 
-export type { UpdateOrderRequest, UpdateOrderSuccess };
-export { UPDATE_ORDER_REQUEST, UPDATE_ORDER_SUCCESS };
+export type { RequestUpdateOrder, RequestUpdateOrderFinished };
+export { REQUEST_UPDATE_ORDER, REQUEST_UPDATE_ORDER_FINISHED };

@@ -1,4 +1,4 @@
-import { CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS } from '../../actions/order/actions/createOrderActions';
+import { REQUEST_CREATE_ORDER, REQUEST_CREATE_ORDER_FINISHED } from '../../actions/order/actions/createOrderActions';
 import { OrderActions } from '../../actions/order/orderActions';
 import Order from '../../state/models/Order';
 
@@ -16,14 +16,19 @@ const createOrderReducer = (
     state: CreateOrderState | undefined = INITIAL_STATE,
     action: OrderActions,
 ): CreateOrderState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case CREATE_ORDER_REQUEST: {
+        case REQUEST_CREATE_ORDER: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case CREATE_ORDER_SUCCESS: {
+        case REQUEST_CREATE_ORDER_FINISHED: {
             return {
                 ...state,
                 loading: false,

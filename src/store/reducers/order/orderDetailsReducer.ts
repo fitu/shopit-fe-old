@@ -1,6 +1,6 @@
 import {
-    GET_ORDER_DETAILS_REQUEST,
-    GET_ORDER_DETAILS_SUCCESS,
+    REQUEST_GET_ORDER_DETAILS,
+    REQUEST_GET_ORDER_DETAILS_FINISHED,
 } from '../../actions/order/actions/getOrderDetailsActions';
 import { OrderActions } from '../../actions/order/orderActions';
 import Order from '../../state/models/Order';
@@ -19,14 +19,19 @@ const orderDetailsReducer = (
     state: OrderDetailsState | undefined = INITIAL_STATE,
     action: OrderActions,
 ): OrderDetailsState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case GET_ORDER_DETAILS_REQUEST: {
+        case REQUEST_GET_ORDER_DETAILS: {
             return {
                 ...state,
                 loading: true,
             };
         }
-        case GET_ORDER_DETAILS_SUCCESS: {
+        case REQUEST_GET_ORDER_DETAILS_FINISHED: {
             return {
                 ...state,
                 loading: false,

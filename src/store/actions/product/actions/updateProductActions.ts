@@ -1,15 +1,15 @@
 import { BaseAction } from '../../BaseAction';
 
-const UPDATE_PRODUCT_REQUEST = 'UPDATE_PRODUCT_REQUEST';
-const UPDATE_PRODUCT_SUCCESS = 'UPDATE_PRODUCT_SUCCESS';
+const REQUEST_UPDATE_PRODUCT = 'REQUEST_UPDATE_PRODUCT';
+const REQUEST_UPDATE_PRODUCT_FINISHED = 'REQUEST_UPDATE_PRODUCT_FINISHED';
 
-interface UpdateProductRequest extends BaseAction {
-    type: typeof UPDATE_PRODUCT_REQUEST;
+interface RequestUpdateProduct extends BaseAction {
+    type: typeof REQUEST_UPDATE_PRODUCT;
 }
 
-interface UpdateProductSuccess extends BaseAction {
-    type: typeof UPDATE_PRODUCT_SUCCESS;
+interface RequestUpdateProductFinished extends BaseAction {
+    type: typeof REQUEST_UPDATE_PRODUCT_FINISHED;
 }
 
-export type { UpdateProductRequest, UpdateProductSuccess };
-export { UPDATE_PRODUCT_REQUEST, UPDATE_PRODUCT_SUCCESS };
+export type { RequestUpdateProduct, RequestUpdateProductFinished };
+export { REQUEST_UPDATE_PRODUCT, REQUEST_UPDATE_PRODUCT_FINISHED };

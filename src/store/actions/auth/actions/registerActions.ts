@@ -2,17 +2,17 @@ import { BaseAction } from '../../BaseAction';
 
 import User from '../../../state/models/User';
 
-const REGISTER_USER_REQUEST = 'REGISTER_USER_REQUEST';
-const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
+const REQUEST_REGISTER_USER = 'REQUEST_REGISTER_USER';
+const REQUEST_REGISTER_USER_FINISHED = 'REQUEST_REGISTER_USER_FINISHED';
 
-interface RegisterRequest extends BaseAction {
-    type: typeof REGISTER_USER_REQUEST;
+interface RequestRegister extends BaseAction {
+    type: typeof REQUEST_REGISTER_USER;
 }
 
-interface RegisterSuccess extends BaseAction {
-    type: typeof REGISTER_USER_SUCCESS;
-    payload: User;
+interface RequestRegisterFinished extends BaseAction {
+    type: typeof REQUEST_REGISTER_USER_FINISHED;
+    payload?: User;
 }
 
-export type { RegisterRequest, RegisterSuccess };
-export { REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS };
+export type { RequestRegister, RequestRegisterFinished };
+export { REQUEST_REGISTER_USER, REQUEST_REGISTER_USER_FINISHED };

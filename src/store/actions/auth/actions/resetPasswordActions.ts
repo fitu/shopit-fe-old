@@ -1,15 +1,15 @@
 import { BaseAction } from '../../BaseAction';
 
-const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
-const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
+const REQUEST_RESET_PASSWORD = 'REQUEST_RESET_PASSWORD';
+const REQUEST_RESET_PASSWORD_FINISHED = 'REQUEST_RESET_PASSWORD_FINISHED';
 
-interface ResetPasswordRequest extends BaseAction {
-    type: typeof RESET_PASSWORD_REQUEST;
+interface RequestResetPassword extends BaseAction {
+    type: typeof REQUEST_RESET_PASSWORD;
 }
 
-interface ResetPasswordSuccess extends BaseAction {
-    type: typeof RESET_PASSWORD_SUCCESS;
+interface RequestResetPasswordFinished extends BaseAction {
+    type: typeof REQUEST_RESET_PASSWORD_FINISHED;
 }
 
-export type { ResetPasswordRequest, ResetPasswordSuccess };
-export { RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS };
+export type { RequestResetPassword, RequestResetPasswordFinished };
+export { REQUEST_RESET_PASSWORD, REQUEST_RESET_PASSWORD_FINISHED };

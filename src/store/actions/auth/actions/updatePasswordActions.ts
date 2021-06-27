@@ -1,15 +1,15 @@
 import { BaseAction } from '../../BaseAction';
 
-const UPDATE_PASSWORD_REQUEST = 'UPDATE_PASSWORD_REQUEST';
-const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS';
+const REQUEST_UPDATE_PASSWORD = 'REQUEST_UPDATE_PASSWORD';
+const REQUEST_UPDATE_PASSWORD_FINISHED = 'REQUEST_UPDATE_PASSWORD_FINISHED';
 
-interface UpdatePasswordRequest extends BaseAction {
-    type: typeof UPDATE_PASSWORD_REQUEST;
+interface RequestUpdatePassword extends BaseAction {
+    type: typeof REQUEST_UPDATE_PASSWORD;
 }
 
-interface UpdatePasswordSuccess extends BaseAction {
-    type: typeof UPDATE_PASSWORD_SUCCESS;
+interface RequestUpdatePasswordFinished extends BaseAction {
+    type: typeof REQUEST_UPDATE_PASSWORD_FINISHED;
 }
 
-export type { UpdatePasswordRequest, UpdatePasswordSuccess };
-export { UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS };
+export type { RequestUpdatePassword, RequestUpdatePasswordFinished };
+export { REQUEST_UPDATE_PASSWORD, REQUEST_UPDATE_PASSWORD_FINISHED };

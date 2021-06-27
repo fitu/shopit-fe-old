@@ -1,8 +1,8 @@
 import _ from 'lodash';
 
-import { ADD_PRODUCT_TO_CART_SUCCESS } from '../../actions/cart/actions/addToCartActions';
-import { REMOVE_ITEM_FROM_CART_SUCCESS } from '../../actions/cart/actions/removeItemFromCartActions';
-import { SAVE_SHIPPING_INFO } from '../../actions/cart/actions/saveShippingInfoActions';
+import { REQUEST_ADD_PRODUCT_TO_CART_FINISHED } from '../../actions/cart/actions/addToCartActions';
+import { REQUEST_REMOVE_ITEM_FROM_CART_FINISHED } from '../../actions/cart/actions/removeItemFromCartActions';
+import { REQUEST_SAVE_SHIPPING_INFO_FINISHED } from '../../actions/cart/actions/saveShippingInfoActions';
 import { CartActions } from '../../actions/cart/cartActions';
 import Cart from '../../state/models/Cart';
 import Item from '../../state/models/Item';
@@ -20,10 +20,15 @@ const INITIAL_STATE = {
 };
 
 const cartReducer = (state: CartState = INITIAL_STATE, action: CartActions): CartState => {
+    if (action.isError) {
+        return state;
+    }
+    Object.freeze(state);
+
     switch (action.type) {
-        case ADD_PRODUCT_TO_CART_SUCCESS: {
-            const item = action.payload;
-            const isItemExists = _.find(state?.cart?.cartItems, ['product', item.product.id]);
+        case REQUEST_ADD_PRODUCT_TO_CART_FINISHED: {
+            const item = action.payload!!;
+            const isItemExists = _.find(state?.cart?.cartItems, ['product', item?.product.id]);
             if (isItemExists) {
                 return {
                     ...state,
@@ -43,7 +48,7 @@ const cartReducer = (state: CartState = INITIAL_STATE, action: CartActions): Car
                 },
             };
         }
-        case REMOVE_ITEM_FROM_CART_SUCCESS: {
+        case REQUEST_REMOVE_ITEM_FROM_CART_FINISHED: {
             return {
                 ...state,
                 cart: {
@@ -55,7 +60,7 @@ const cartReducer = (state: CartState = INITIAL_STATE, action: CartActions): Car
                 },
             };
         }
-        case SAVE_SHIPPING_INFO: {
+        case REQUEST_SAVE_SHIPPING_INFO_FINISHED: {
             return {
                 ...state,
                 cart: {
