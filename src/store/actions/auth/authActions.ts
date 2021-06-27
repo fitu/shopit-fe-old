@@ -18,120 +18,87 @@ import { login as apiLogin } from '../../../api/auth/authApi';
 import LoginPayload from '../../../api/auth/payloads/loginPayload';
 import { StoreState } from '../../state/storeState';
 
-import { ClearAuthErrors, CLEAR_AUTH_ERRORS } from './actions/clearAuthErrorsActions';
 import {
     DeleteUserRequest,
     DeleteUserSuccess,
     DeleteUserReset,
-    DeleteUserFail,
     DELETE_USER_REQUEST,
     DELETE_USER_SUCCESS,
     DELETE_USER_RESET,
-    DELETE_USER_FAIL,
 } from './actions/deleteUserActions';
 import {
     ForgotPasswordRequest,
     ForgotPasswordSuccess,
-    ForgotPasswordFail,
     FORGOT_PASSWORD_REQUEST,
     FORGOT_PASSWORD_SUCCESS,
-    FORGOT_PASSWORD_FAIL,
 } from './actions/forgotPasswordActions';
 import {
     GetAllUsersRequest,
     GetAllUsersSuccess,
-    GetAllUsersFail,
     GET_ALL_USER_REQUEST,
     GET_ALL_USER_SUCCESS,
-    GET_ALL_USER_FAIL,
 } from './actions/getAllUsersActions';
 import {
     GetUserDetailsRequest,
     GetUserDetailsSuccess,
-    GetUserDetailsFail,
     GET_USER_DETAILS_REQUEST,
     GET_USER_DETAILS_SUCCESS,
-    GET_USER_DETAILS_FAIL,
 } from './actions/getUserDetailsActions';
-import {
-    LoadUserRequest,
-    LoadUserSuccess,
-    LoadUserFail,
-    LOAD_USER_REQUEST,
-    LOAD_USER_SUCCESS,
-    LOAD_USER_FAIL,
-} from './actions/loadUserActions';
-import {
-    LoginRequest,
-    LoginSuccess,
-    LoginFail,
-    LOGIN_REQUEST,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-} from './actions/loginActions';
-import { LogoutSuccess, LogoutFail, LOGOUT_SUCCESS, LOGOUT_FAIL } from './actions/logoutActions';
+import { LoadUserRequest, LoadUserSuccess, LOAD_USER_REQUEST, LOAD_USER_SUCCESS } from './actions/loadUserActions';
+import { LoginRequest, LoginSuccess, LOGIN_REQUEST, LOGIN_SUCCESS } from './actions/loginActions';
+import { LogoutSuccess, LOGOUT_SUCCESS } from './actions/logoutActions';
 import {
     RegisterRequest,
     RegisterSuccess,
-    RegisterFail,
     REGISTER_USER_REQUEST,
     REGISTER_USER_SUCCESS,
-    REGISTER_USER_FAIL,
 } from './actions/registerActions';
 import {
     ResetPasswordRequest,
     ResetPasswordSuccess,
-    ResetPasswordFail,
     RESET_PASSWORD_REQUEST,
     RESET_PASSWORD_SUCCESS,
-    RESET_PASSWORD_FAIL,
 } from './actions/resetPasswordActions';
 import {
     UpdatePasswordRequest,
     UpdatePasswordSuccess,
     UpdatePasswordReset,
-    UpdatePasswordFail,
     UPDATE_PASSWORD_REQUEST,
     UPDATE_PASSWORD_SUCCESS,
     UPDATE_PASSWORD_RESET,
-    UPDATE_PASSWORD_FAIL,
 } from './actions/updatePasswordActions';
 import {
     UpdateProfileRequest,
     UpdateProfileSuccess,
     UpdateProfileReset,
-    UpdateProfileFail,
     UPDATE_PROFILE_REQUEST,
     UPDATE_PROFILE_SUCCESS,
     UPDATE_PROFILE_RESET,
-    UPDATE_PROFILE_FAIL,
 } from './actions/updateProfileActions';
 import {
     UpdateUserRequest,
     UpdateUserSuccess,
     UpdateUserReset,
-    UpdateUserFail,
     UPDATE_USER_REQUEST,
     UPDATE_USER_SUCCESS,
     UPDATE_USER_RESET,
-    UPDATE_USER_FAIL,
 } from './actions/updateUserActions';
 import UserApi from '../../../api/models/userApi';
 import executeRequest from '../../../api/apiProxy';
 import { ADD_ERROR, AddError as AddErrorActions } from '../error/actions/addErrorActions';
 
-type LoginActions = LoginRequest | LoginSuccess | LoginFail | AddErrorActions;
-type RegisterActions = RegisterRequest | RegisterSuccess | RegisterFail | AddErrorActions;
-type LogoutActions = LogoutSuccess | LogoutFail | AddErrorActions;
-type LoadUserActions = LoadUserRequest | LoadUserSuccess | LoadUserFail | AddErrorActions;
-type UpdateProfileActions = UpdateProfileRequest | UpdateProfileSuccess | UpdateProfileFail | AddErrorActions;
-type UpdatePasswordActions = UpdatePasswordRequest | UpdatePasswordSuccess | UpdatePasswordFail | AddErrorActions;
-type ForgotPasswordActions = ForgotPasswordRequest | ForgotPasswordSuccess | ForgotPasswordFail | AddErrorActions;
-type ResetPasswordActions = ResetPasswordRequest | ResetPasswordSuccess | ResetPasswordFail | AddErrorActions;
-type GetAllUsersActions = GetAllUsersRequest | GetAllUsersSuccess | GetAllUsersFail | AddErrorActions;
-type GetUserDetailsActions = GetUserDetailsRequest | GetUserDetailsSuccess | GetUserDetailsFail | AddErrorActions;
-type UpdateUserActions = UpdateUserRequest | UpdateUserSuccess | UpdateUserFail | AddErrorActions;
-type DeleteUserActions = DeleteUserRequest | DeleteUserSuccess | DeleteUserFail | AddErrorActions;
+type LoginActions = LoginRequest | LoginSuccess | AddErrorActions;
+type RegisterActions = RegisterRequest | RegisterSuccess | AddErrorActions;
+type LogoutActions = LogoutSuccess | AddErrorActions;
+type LoadUserActions = LoadUserRequest | LoadUserSuccess | AddErrorActions;
+type UpdateProfileActions = UpdateProfileRequest | UpdateProfileSuccess | AddErrorActions;
+type UpdatePasswordActions = UpdatePasswordRequest | UpdatePasswordSuccess | AddErrorActions;
+type ForgotPasswordActions = ForgotPasswordRequest | ForgotPasswordSuccess | AddErrorActions;
+type ResetPasswordActions = ResetPasswordRequest | ResetPasswordSuccess | AddErrorActions;
+type GetAllUsersActions = GetAllUsersRequest | GetAllUsersSuccess | AddErrorActions;
+type GetUserDetailsActions = GetUserDetailsRequest | GetUserDetailsSuccess | AddErrorActions;
+type UpdateUserActions = UpdateUserRequest | UpdateUserSuccess | AddErrorActions;
+type DeleteUserActions = DeleteUserRequest | DeleteUserSuccess | AddErrorActions;
 
 type AuthActions =
     | LoginActions
@@ -146,7 +113,6 @@ type AuthActions =
     | GetUserDetailsActions
     | UpdateUserActions
     | DeleteUserActions
-    | ClearAuthErrors
     | UpdateUserReset
     | UpdateProfileReset
     | DeleteUserReset
@@ -172,7 +138,7 @@ const register: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Regis
             const response = await apiRegister(userData);
             dispatch({ type: REGISTER_USER_SUCCESS, payload: UserApi.toState(response.user) });
         } catch (error) {
-            dispatch({ type: REGISTER_USER_FAIL, payload: { errorMessage: error.message } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
     };
 
@@ -182,7 +148,7 @@ const logout: ActionCreator<ThunkAction<Promise<void>, StoreState, void, LogoutA
             await apiLogout();
             dispatch({ type: LOGOUT_SUCCESS });
         } catch (error) {
-            dispatch({ type: LOGOUT_FAIL, payload: { errorMessage: error.message } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
     };
 
@@ -193,7 +159,7 @@ const loadUser: ActionCreator<ThunkAction<Promise<void>, StoreState, void, LoadU
             const response = await apiGetCurrentUser();
             dispatch({ type: LOAD_USER_SUCCESS, payload: UserApi.toState(response.user) });
         } catch (error) {
-            dispatch({ type: LOAD_USER_FAIL, payload: { errorMessage: error.message } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
     };
 
@@ -204,7 +170,7 @@ const updateProfile: ActionCreator<ThunkAction<Promise<void>, StoreState, void, 
             await apiUpdateProfile(userData);
             dispatch({ type: UPDATE_PROFILE_SUCCESS });
         } catch (error) {
-            dispatch({ type: UPDATE_PROFILE_FAIL, payload: { errorMessage: error.message } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
     };
 
@@ -215,7 +181,7 @@ const updatePassword: ActionCreator<ThunkAction<Promise<void>, StoreState, void,
             await apiUpdatePassword(passwords);
             dispatch({ type: UPDATE_PASSWORD_SUCCESS });
         } catch (error) {
-            dispatch({ type: UPDATE_PASSWORD_FAIL, payload: { errorMessage: error.message } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
     };
 
@@ -226,7 +192,7 @@ const forgotPassword: ActionCreator<ThunkAction<Promise<void>, StoreState, void,
             const response = await apiForgotPassword(email);
             dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: response.message });
         } catch (error) {
-            dispatch({ type: FORGOT_PASSWORD_FAIL, payload: { errorMessage: error.message } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
     };
 
@@ -237,7 +203,7 @@ const resetPassword: ActionCreator<ThunkAction<Promise<void>, StoreState, void, 
             await apiResetPassword(token, passwords);
             dispatch({ type: RESET_PASSWORD_SUCCESS });
         } catch (error) {
-            dispatch({ type: RESET_PASSWORD_FAIL, payload: { errorMessage: error.message } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
     };
 
@@ -248,7 +214,7 @@ const getAllUsers: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Ge
             const response = await apiGetAllUsers();
             dispatch({ type: GET_ALL_USER_SUCCESS, payload: response.users.map((user) => UserApi.toState(user)) });
         } catch (error) {
-            dispatch({ type: GET_ALL_USER_FAIL, payload: { errorMessage: error.message } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
     };
 
@@ -259,7 +225,7 @@ const getUserDetails: ActionCreator<ThunkAction<Promise<void>, StoreState, void,
             const response = await apiGetUserDetails(id);
             dispatch({ type: GET_USER_DETAILS_SUCCESS, payload: UserApi.toState(response.user) });
         } catch (error) {
-            dispatch({ type: GET_USER_DETAILS_FAIL, payload: { errorMessage: error.message } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
     };
 
@@ -270,7 +236,7 @@ const updateUser: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Upd
             await apiUpdateUser(id, userData);
             dispatch({ type: UPDATE_USER_SUCCESS });
         } catch (error) {
-            dispatch({ type: UPDATE_USER_FAIL, payload: { errorMessage: error.message } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
     };
 
@@ -281,13 +247,8 @@ const deleteUser: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Del
             await apiDeleteUser(id);
             dispatch({ type: DELETE_USER_SUCCESS });
         } catch (error) {
-            dispatch({ type: DELETE_USER_FAIL, payload: { errorMessage: error.message } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
-    };
-
-const clearErrors: ActionCreator<ThunkAction<Promise<void>, StoreState, void, ClearAuthErrors>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, ClearAuthErrors>) => {
-        dispatch({ type: CLEAR_AUTH_ERRORS });
     };
 
 const updateUserReset: ActionCreator<ThunkAction<Promise<void>, StoreState, void, UpdateUserReset>> =
@@ -324,7 +285,6 @@ export {
     getUserDetails,
     updateUser,
     deleteUser,
-    clearErrors,
     updateUserReset,
     updateProfileReset,
     deleteUserReset,

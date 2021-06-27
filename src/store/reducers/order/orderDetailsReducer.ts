@@ -1,8 +1,6 @@
-import { CLEAR_ORDER_ERRORS } from '../../actions/order/actions/clearOrderErrorActions';
 import {
     GET_ORDER_DETAILS_REQUEST,
     GET_ORDER_DETAILS_SUCCESS,
-    GET_ORDER_DETAILS_FAIL,
 } from '../../actions/order/actions/getOrderDetailsActions';
 import { OrderActions } from '../../actions/order/orderActions';
 import Order from '../../state/models/Order';
@@ -10,17 +8,15 @@ import Order from '../../state/models/Order';
 type OrderDetailsState = {
     loading: boolean;
     order: Order | undefined;
-    errorMessage: string;
 };
 
-const initialState = {
+const INITIAL_STATE = {
     loading: false,
     order: undefined,
-    errorMessage: '',
 };
 
 const orderDetailsReducer = (
-    state: OrderDetailsState | undefined = initialState,
+    state: OrderDetailsState | undefined = INITIAL_STATE,
     action: OrderActions,
 ): OrderDetailsState => {
     switch (action.type) {
@@ -35,19 +31,6 @@ const orderDetailsReducer = (
                 ...state,
                 loading: false,
                 order: action.payload,
-            };
-        }
-        case GET_ORDER_DETAILS_FAIL: {
-            return {
-                ...state,
-                loading: false,
-                errorMessage: action.payload.errorMessage,
-            };
-        }
-        case CLEAR_ORDER_ERRORS: {
-            return {
-                ...state,
-                errorMessage: '',
             };
         }
         default: {

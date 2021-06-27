@@ -15,106 +15,88 @@ import {
 import ProductApi from '../../../api/models/productApi';
 import ReviewApi from '../../../api/models/reviewApi';
 import { StoreState } from '../../state/storeState';
-import { ClearProductErrors, CLEAR_PRODUCT_ERRORS } from './actions/clearProductErrorsActions';
 import {
     CreateNewProductRequest,
     CreateNewProductSuccess,
     CreateNewProductReset,
-    CreateNewProductFail,
     CREATE_NEW_PRODUCT_REQUEST,
     CREATE_NEW_PRODUCT_SUCCESS,
     CREATE_NEW_PRODUCT_RESET,
-    CREATE_NEW_PRODUCT_FAIL,
 } from './actions/createNewProductActions';
 import {
     CreateNewReviewRequest,
     CreateNewReviewSuccess,
     CreateNewReviewReset,
-    CreateNewReviewFail,
     CREATE_NEW_REVIEW_REQUEST,
     CREATE_NEW_REVIEW_SUCCESS,
     CREATE_NEW_REVIEW_RESET,
-    CREATE_NEW_REVIEW_FAIL,
 } from './actions/createNewReviewActions';
 import {
     DeleteProductRequest,
     DeleteProductSuccess,
     DeleteProductReset,
-    DeleteProductFail,
     DELETE_PRODUCT_REQUEST,
     DELETE_PRODUCT_SUCCESS,
     DELETE_PRODUCT_RESET,
-    DELETE_PRODUCT_FAIL,
 } from './actions/deleteProductActions';
 import {
     DeleteReviewFromProductRequest,
     DeleteReviewFromProductSuccess,
     DeleteReviewFromProductReset,
-    DeleteReviewFromProductFail,
     DELETE_REVIEW_FROM_PRODUCT_REQUEST,
     DELETE_REVIEW_FROM_PRODUCT_SUCCESS,
     DELETE_REVIEW_FROM_PRODUCT_RESET,
-    DELETE_REVIEW_FROM_PRODUCT_FAIL,
 } from './actions/deleteReviewFromProductActions';
 import {
     GetAdminProductsRequest,
     GetAdminProductsSuccess,
-    GetAdminProductsFail,
     GET_ADMIN_PRODUCTS_REQUEST,
     GET_ADMIN_PRODUCTS_SUCCESS,
-    GET_ADMIN_PRODUCTS_FAIL,
 } from './actions/getAdminProductsActions';
 import {
     GetAllProductsRequest,
     GetAllProductsSuccess,
-    GetAllProductsFail,
     GET_ALL_PRODUCTS_REQUEST,
     GET_ALL_PRODUCTS_SUCCESS,
-    GET_ALL_PRODUCTS_FAIL,
 } from './actions/getAllProductsActions';
 import {
     GetAllReviewsFromProductRequest,
     GetAllReviewsFromProductSuccess,
-    GetAllReviewsFromProductFail,
     GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST,
     GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS,
-    GET_ALL_REVIEWS_FROM_PRODUCT_FAIL,
 } from './actions/getAllReviewsFromProductActions';
 import {
     GetProductDetailsRequest,
     GetProductDetailsSuccess,
-    GetProductDetailsFail,
     GET_PRODUCT_DETAILS_REQUEST,
     GET_PRODUCT_DETAILS_SUCCESS,
-    GET_PRODUCT_DETAILS_FAIL,
 } from './actions/getProductDetailsActions';
 import {
     UpdateProductRequest,
     UpdateProductSuccess,
     UpdateProductReset,
-    UpdateProductFail,
     UPDATE_PRODUCT_REQUEST,
     UPDATE_PRODUCT_SUCCESS,
     UPDATE_PRODUCT_RESET,
-    UPDATE_PRODUCT_FAIL,
 } from './actions/updateProductActions';
+import { ADD_ERROR, AddError as AddErrorActions } from '../error/actions/addErrorActions';
 
-type GetProductsActions = GetAllProductsRequest | GetAllProductsSuccess | GetAllProductsFail;
-type GetProductDetailsActions = GetProductDetailsRequest | GetProductDetailsSuccess | GetProductDetailsFail;
-type CreateNewReviewActions = CreateNewReviewRequest | CreateNewReviewSuccess | CreateNewReviewFail;
-type GetAdminProductsActions = GetAdminProductsRequest | GetAdminProductsSuccess | GetAdminProductsFail;
-type CreateNewProductActions = CreateNewProductRequest | CreateNewProductSuccess | CreateNewProductFail;
-type UpdateProductActions = UpdateProductRequest | UpdateProductSuccess | UpdateProductFail;
-type DeleteProductActions = DeleteProductRequest | DeleteProductSuccess | DeleteProductFail;
+type GetProductsActions = GetAllProductsRequest | GetAllProductsSuccess | AddErrorActions;
+type GetProductDetailsActions = GetProductDetailsRequest | GetProductDetailsSuccess | AddErrorActions;
+type CreateNewReviewActions = CreateNewReviewRequest | CreateNewReviewSuccess | AddErrorActions;
+type GetAdminProductsActions = GetAdminProductsRequest | GetAdminProductsSuccess | AddErrorActions;
+type CreateNewProductActions = CreateNewProductRequest | CreateNewProductSuccess | AddErrorActions;
+type UpdateProductActions = UpdateProductRequest | UpdateProductSuccess | AddErrorActions;
+type DeleteProductActions = DeleteProductRequest | DeleteProductSuccess | AddErrorActions;
 type GetAllReviewsFromProductActions =
     | GetAllReviewsFromProductRequest
     | GetAllReviewsFromProductSuccess
-    | GetAllReviewsFromProductFail;
+    | AddErrorActions;
 type DeleteReviewFromProductActions =
     | DeleteReviewFromProductRequest
     | DeleteReviewFromProductSuccess
     | DeleteReviewFromProductRequest
-    | DeleteReviewFromProductFail;
+    | AddErrorActions;
 
 type ProductActions =
     | GetProductsActions
@@ -130,8 +112,7 @@ type ProductActions =
     | UpdateProductReset
     | CreateNewProductReset
     | DeleteProductReset
-    | DeleteReviewFromProductReset
-    | ClearProductErrors;
+    | DeleteReviewFromProductReset;
 
 const INITIAL_PAGE = 1;
 
@@ -154,8 +135,8 @@ const getProducts: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Ge
             });
         } catch (error) {
             dispatch({
-                type: GET_ALL_PRODUCTS_FAIL,
-                payload: { errorMessage: error.message },
+                type: ADD_ERROR,
+                payload: { error: error.message },
             });
         }
     };
@@ -172,8 +153,8 @@ const getProductDetails: ActionCreator<ThunkAction<Promise<void>, StoreState, vo
             });
         } catch (error) {
             dispatch({
-                type: GET_PRODUCT_DETAILS_FAIL,
-                payload: { errorMessage: error.message },
+                type: ADD_ERROR,
+                payload: { error: error.message },
             });
         }
     };
@@ -188,8 +169,8 @@ const newReview: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Crea
             });
         } catch (error) {
             dispatch({
-                type: CREATE_NEW_REVIEW_FAIL,
-                payload: { errorMessage: error.message },
+                type: ADD_ERROR,
+                payload: { error: error.message },
             });
         }
     };
@@ -205,8 +186,8 @@ const getAdminProducts: ActionCreator<ThunkAction<Promise<void>, StoreState, voi
             });
         } catch (error) {
             dispatch({
-                type: GET_ADMIN_PRODUCTS_FAIL,
-                payload: { errorMessage: error.message },
+                type: ADD_ERROR,
+                payload: { error: error.message },
             });
         }
     };
@@ -222,8 +203,8 @@ const newProduct: ActionCreator<ThunkAction<Promise<void>, StoreState, void, Cre
             });
         } catch (error) {
             dispatch({
-                type: CREATE_NEW_PRODUCT_FAIL,
-                payload: { errorMessage: error.message },
+                type: ADD_ERROR,
+                payload: { error: error.message },
             });
         }
     };
@@ -238,8 +219,8 @@ const deleteProduct: ActionCreator<ThunkAction<Promise<void>, StoreState, void, 
             });
         } catch (error) {
             dispatch({
-                type: DELETE_PRODUCT_FAIL,
-                payload: { errorMessage: error.message },
+                type: ADD_ERROR,
+                payload: { error: error.message },
             });
         }
     };
@@ -254,8 +235,8 @@ const updateProduct: ActionCreator<ThunkAction<Promise<void>, StoreState, void, 
             });
         } catch (error) {
             dispatch({
-                type: UPDATE_PRODUCT_FAIL,
-                payload: { errorMessage: error.message },
+                type: ADD_ERROR,
+                payload: { error: error.message },
             });
         }
     };
@@ -271,8 +252,8 @@ const getProductReviews: ActionCreator<ThunkAction<Promise<void>, StoreState, vo
             });
         } catch (error) {
             dispatch({
-                type: GET_ALL_REVIEWS_FROM_PRODUCT_FAIL,
-                payload: { errorMessage: error.message },
+                type: ADD_ERROR,
+                payload: { error: error.message },
             });
         }
     };
@@ -287,8 +268,8 @@ const deleteReview: ActionCreator<ThunkAction<Promise<void>, StoreState, void, D
             });
         } catch (error) {
             dispatch({
-                type: DELETE_REVIEW_FROM_PRODUCT_FAIL,
-                payload: { errorMessage: error.message },
+                type: ADD_ERROR,
+                payload: { error: error.message },
             });
         }
     };
@@ -318,11 +299,6 @@ const newReviewReset: ActionCreator<ThunkAction<Promise<void>, StoreState, void,
         dispatch({ type: CREATE_NEW_REVIEW_RESET });
     };
 
-const clearErrors: ActionCreator<ThunkAction<Promise<void>, StoreState, void, ClearProductErrors>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, ClearProductErrors>) => {
-        dispatch({ type: CLEAR_PRODUCT_ERRORS });
-    };
-
 export type { ProductActions };
 export {
     getProducts,
@@ -339,5 +315,4 @@ export {
     deleteProductReset,
     newProductReset,
     newReviewReset,
-    clearErrors,
 };

@@ -5,12 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MetaData from '../../../../components/util/MetaData';
 import Category from '../../../../models/category';
 import { Route } from '../../../../router/route';
-import {
-    clearErrors,
-    getProductDetails,
-    updateProduct,
-    updateProductReset,
-} from '../../../../store/actions/product/productAction';
+import { getProductDetails, updateProduct, updateProductReset } from '../../../../store/actions/product/productAction';
 import Sidebar from '../../sidebar/Sidebar';
 import './styles/updateProduct.scss';
 

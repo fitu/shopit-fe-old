@@ -1,25 +1,21 @@
-import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
 import {
     DELETE_REVIEW_FROM_PRODUCT_REQUEST,
     DELETE_REVIEW_FROM_PRODUCT_SUCCESS,
     DELETE_REVIEW_FROM_PRODUCT_RESET,
-    DELETE_REVIEW_FROM_PRODUCT_FAIL,
 } from '../../actions/product/actions/deleteReviewFromProductActions';
 import { ProductActions } from '../../actions/product/productAction';
 
 type ReviewState = {
     loading: boolean;
     isDeleted: boolean;
-    errorMessage: string;
 };
 
-const initialState = {
+const INITIAL_STATE = {
     loading: false,
     isDeleted: false,
-    errorMessage: '',
 };
 
-const reviewReducer = (state: ReviewState | undefined = initialState, action: ProductActions): ReviewState => {
+const reviewReducer = (state: ReviewState | undefined = INITIAL_STATE, action: ProductActions): ReviewState => {
     switch (action.type) {
         case DELETE_REVIEW_FROM_PRODUCT_REQUEST: {
             return {
@@ -34,24 +30,11 @@ const reviewReducer = (state: ReviewState | undefined = initialState, action: Pr
                 isDeleted: true,
             };
         }
-        case DELETE_REVIEW_FROM_PRODUCT_FAIL: {
-            return {
-                ...state,
-                loading: false,
-                errorMessage: action.payload.errorMessage,
-            };
-        }
         case DELETE_REVIEW_FROM_PRODUCT_RESET: {
             return {
                 ...state,
                 loading: false,
                 isDeleted: false,
-            };
-        }
-        case CLEAR_PRODUCT_ERRORS: {
-            return {
-                ...state,
-                errorMessage: '',
             };
         }
         default: {

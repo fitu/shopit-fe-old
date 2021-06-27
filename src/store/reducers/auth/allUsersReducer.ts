@@ -1,25 +1,18 @@
-import { CLEAR_AUTH_ERRORS } from '../../actions/auth/actions/clearAuthErrorsActions';
-import {
-    GET_ALL_USER_REQUEST,
-    GET_ALL_USER_SUCCESS,
-    GET_ALL_USER_FAIL,
-} from '../../actions/auth/actions/getAllUsersActions';
+import { GET_ALL_USER_REQUEST, GET_ALL_USER_SUCCESS } from '../../actions/auth/actions/getAllUsersActions';
 import { AuthActions } from '../../actions/auth/authActions';
 import User from '../../state/models/User';
 
 type AllUsersState = {
     loading: boolean;
     users: Array<User>;
-    errorMessage: string;
 };
 
-const initialState = {
+const INITIAL_STATE = {
     loading: false,
     users: [],
-    errorMessage: '',
 };
 
-const allUsersReducer = (state: AllUsersState | undefined = initialState, action: AuthActions): AllUsersState => {
+const allUsersReducer = (state: AllUsersState | undefined = INITIAL_STATE, action: AuthActions): AllUsersState => {
     switch (action.type) {
         case GET_ALL_USER_REQUEST: {
             return {
@@ -32,19 +25,6 @@ const allUsersReducer = (state: AllUsersState | undefined = initialState, action
                 ...state,
                 loading: false,
                 users: action.payload,
-            };
-        }
-        case GET_ALL_USER_FAIL: {
-            return {
-                ...state,
-                loading: false,
-                errorMessage: action.payload.errorMessage,
-            };
-        }
-        case CLEAR_AUTH_ERRORS: {
-            return {
-                ...state,
-                errorMessage: '',
             };
         }
         default: {

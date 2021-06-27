@@ -21,7 +21,7 @@ import modifyProductReducer from './reducers/product/modifyProductReducer';
 import productDetailsReducer from './reducers/product/productDetailsReducer';
 import productsReducer from './reducers/product/productReducer';
 import reviewReducer from './reducers/product/reviewReducer';
-import { getCartItems, getShippingInfo } from './repository/repository';
+import { getCartItems, getShippingInfo } from '../storage/storage';
 import { StoreState } from './state/storeState';
 
 const rootReducer = combineReducers<StoreState>({
@@ -58,7 +58,6 @@ const initialState: StoreState = {
             cartItems: getCartItems(),
             shippingInfo: getShippingInfo(),
         },
-        errorMessage: '',
     },
     allOrders: undefined,
     createOrder: undefined,

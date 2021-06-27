@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
-import { setOrderInfo } from '../../../store/repository/repository';
+import { setOrderInfo } from '../../../storage/storage';
 import CheckoutSteps from '../components/CheckoutSteps';
 import './styles/confirmOrder.scss';
 

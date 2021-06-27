@@ -13,8 +13,6 @@ const INITIAL_STATE = {
 };
 
 const errorReducer = (state: ErrorState = INITIAL_STATE, action: ErrorActions): ErrorState => {
-    const { type, payload, error } = action;
-
     switch (action.type) {
         case ADD_ERROR: {
             return {

@@ -4,28 +4,19 @@ import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 import { addItemToCart as apiAddItemToCart } from '../../../api/api';
 import ItemApi from '../../../api/models/itemApi';
-import { setCartItems, setShippingInfo } from '../../repository/repository';
+import { setCartItems, setShippingInfo } from '../../../storage/storage';
 import ShippingInfo from '../../state/models/ShippingInfo';
 import { StoreState } from '../../state/storeState';
 
-import {
-    AddProductToCartSuccess,
-    AddProductToCartFail,
-    ADD_PRODUCT_TO_CART_SUCCESS,
-    ADD_PRODUCT_TO_CART_FAIL,
-} from './actions/addToCartActions';
-import { ClearCartErrors, CLEAR_CART_ERRORS } from './actions/clearCartErrorsActions';
-import {
-    RemoveItemFromCartSuccess,
-    RemoveItemFromCartFail,
-    REMOVE_ITEM_FROM_CART_SUCCESS,
-    REMOVE_ITEM_FROM_CART_FAIL,
-} from './actions/removeItemFromCartActions';
+import { AddProductToCartSuccess, ADD_PRODUCT_TO_CART_SUCCESS } from './actions/addToCartActions';
+import { RemoveItemFromCartSuccess, REMOVE_ITEM_FROM_CART_SUCCESS } from './actions/removeItemFromCartActions';
 import { SaveShippingInfo, SAVE_SHIPPING_INFO } from './actions/saveShippingInfoActions';
+import { ADD_ERROR, AddError as AddErrorActions } from '../error/actions/addErrorActions';
 
-type AddToCartActions = AddProductToCartSuccess | AddProductToCartFail;
-type RemoveItemFromCartActions = RemoveItemFromCartSuccess | RemoveItemFromCartFail;
-type CartActions = AddToCartActions | ClearCartErrors | RemoveItemFromCartActions | SaveShippingInfo;
+type AddToCartActions = AddProductToCartSuccess | AddErrorActions;
+type RemoveItemFromCartActions = RemoveItemFromCartSuccess | AddErrorActions;
+
+type CartActions = AddToCartActions | RemoveItemFromCartActions | SaveShippingInfo;
 
 const addItemToCart: ActionCreator<ThunkAction<Promise<void>, StoreState, void, AddToCartActions>> =
     (productId: string, quantity: number) =>
@@ -38,7 +29,7 @@ const addItemToCart: ActionCreator<ThunkAction<Promise<void>, StoreState, void, 
                 payload: ItemApi.toState(apiProduct.item),
             });
         } catch (error) {
-            dispatch({ type: ADD_PRODUCT_TO_CART_FAIL, payload: { errorMessage: error.message } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
     };
 
@@ -52,14 +43,8 @@ const removeItemFromCart: ActionCreator<ThunkAction<Promise<void>, StoreState, v
                 payload: { id },
             });
         } catch (error) {
-            dispatch({ type: REMOVE_ITEM_FROM_CART_FAIL, payload: { errorMessage: error.message } });
+            dispatch({ type: ADD_ERROR, payload: { error: error.message } });
         }
-    };
-
-const clearCart: ActionCreator<ThunkAction<Promise<void>, StoreState, void, ClearCartErrors>> =
-    () => async (dispatch: ThunkDispatch<StoreState, void, ClearCartErrors>) => {
-        setCartItems([]);
-        dispatch({ type: CLEAR_CART_ERRORS });
     };
 
 const saveShippingInfo: ActionCreator<ThunkAction<Promise<void>, StoreState, void, SaveShippingInfo>> =
@@ -69,4 +54,4 @@ const saveShippingInfo: ActionCreator<ThunkAction<Promise<void>, StoreState, voi
     };
 
 export type { CartActions };
-export { addItemToCart, removeItemFromCart, saveShippingInfo, clearCart };
+export { addItemToCart, removeItemFromCart, saveShippingInfo };

@@ -1,12 +1,7 @@
-import { CLEAR_AUTH_ERRORS } from '../../actions/auth/actions/clearAuthErrorsActions';
-import { LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAIL } from '../../actions/auth/actions/loadUserActions';
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAIL } from '../../actions/auth/actions/loginActions';
-import { LOGOUT_SUCCESS, LOGOUT_FAIL } from '../../actions/auth/actions/logoutActions';
-import {
-    REGISTER_USER_REQUEST,
-    REGISTER_USER_SUCCESS,
-    REGISTER_USER_FAIL,
-} from '../../actions/auth/actions/registerActions';
+import { LOAD_USER_REQUEST, LOAD_USER_SUCCESS } from '../../actions/auth/actions/loadUserActions';
+import { LOGIN_REQUEST, LOGIN_SUCCESS } from '../../actions/auth/actions/loginActions';
+import { LOGOUT_SUCCESS } from '../../actions/auth/actions/logoutActions';
+import { REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS } from '../../actions/auth/actions/registerActions';
 import { AuthActions } from '../../actions/auth/authActions';
 import User from '../../state/models/User';
 
@@ -14,17 +9,15 @@ type AuthState = {
     loading: boolean;
     isAuthenticated: boolean;
     user: User | undefined;
-    errorMessage: string;
 };
 
-const initialState = {
+const INITIAL_STATE = {
     loading: false,
     isAuthenticated: false,
     user: undefined,
-    errorMessage: '',
 };
 
-const authReducer = (state: AuthState | undefined = initialState, action: AuthActions): AuthState => {
+const authReducer = (state: AuthState | undefined = INITIAL_STATE, action: AuthActions): AuthState => {
     switch (action.type) {
         case LOGIN_REQUEST:
         case REGISTER_USER_REQUEST:
@@ -51,29 +44,6 @@ const authReducer = (state: AuthState | undefined = initialState, action: AuthAc
                 loading: false,
                 isAuthenticated: false,
                 user: undefined,
-            };
-        }
-        case LOGOUT_FAIL: {
-            return {
-                ...state,
-                errorMessage: action.payload.errorMessage,
-            };
-        }
-        case LOGIN_FAIL:
-        case REGISTER_USER_FAIL:
-        case LOAD_USER_FAIL: {
-            return {
-                ...state,
-                loading: false,
-                isAuthenticated: false,
-                user: undefined,
-                errorMessage: action.payload.errorMessage,
-            };
-        }
-        case CLEAR_AUTH_ERRORS: {
-            return {
-                ...state,
-                errorMessage: '',
             };
         }
         default: {

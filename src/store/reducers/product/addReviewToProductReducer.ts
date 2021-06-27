@@ -1,8 +1,6 @@
-import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
 import {
     GET_ALL_REVIEWS_FROM_PRODUCT_REQUEST,
     GET_ALL_REVIEWS_FROM_PRODUCT_SUCCESS,
-    GET_ALL_REVIEWS_FROM_PRODUCT_FAIL,
 } from '../../actions/product/actions/getAllReviewsFromProductActions';
 import { ProductActions } from '../../actions/product/productAction';
 import Review from '../../state/models/Review';
@@ -10,17 +8,15 @@ import Review from '../../state/models/Review';
 type AddReviewToProductState = {
     loading: boolean;
     reviews: Array<Review>;
-    errorMessage: string;
 };
 
-const initialState = {
+const INITIAL_STATE = {
     loading: false,
     reviews: [],
-    errorMessage: '',
 };
 
 const productReviewsReducer = (
-    state: AddReviewToProductState | undefined = initialState,
+    state: AddReviewToProductState | undefined = INITIAL_STATE,
     action: ProductActions,
 ): AddReviewToProductState => {
     switch (action.type) {
@@ -35,19 +31,6 @@ const productReviewsReducer = (
                 ...state,
                 loading: false,
                 reviews: action.payload,
-            };
-        }
-        case GET_ALL_REVIEWS_FROM_PRODUCT_FAIL: {
-            return {
-                ...state,
-                loading: false,
-                errorMessage: action.payload.errorMessage,
-            };
-        }
-        case CLEAR_PRODUCT_ERRORS: {
-            return {
-                ...state,
-                errorMessage: '',
             };
         }
         default: {

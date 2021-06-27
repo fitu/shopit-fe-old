@@ -1,9 +1,4 @@
-import { CLEAR_ORDER_ERRORS } from '../../actions/order/actions/clearOrderErrorActions';
-import {
-    GET_ALL_ORDERS_REQUEST,
-    GET_ALL_ORDERS_SUCCESS,
-    GET_ALL_ORDERS_FAIL,
-} from '../../actions/order/actions/getAllOrdersActions';
+import { GET_ALL_ORDERS_REQUEST, GET_ALL_ORDERS_SUCCESS } from '../../actions/order/actions/getAllOrdersActions';
 import { OrderActions } from '../../actions/order/orderActions';
 import Order from '../../state/models/Order';
 
@@ -11,17 +6,15 @@ type AllOrdersState = {
     loading: boolean;
     orders: Array<Order>;
     totalAmount: number;
-    errorMessage: string;
 };
 
-const initialState = {
+const INITIAL_STATE = {
     loading: false,
     orders: [],
     totalAmount: 0,
-    errorMessage: '',
 };
 
-const allOrdersReducer = (state: AllOrdersState | undefined = initialState, action: OrderActions): AllOrdersState => {
+const allOrdersReducer = (state: AllOrdersState | undefined = INITIAL_STATE, action: OrderActions): AllOrdersState => {
     switch (action.type) {
         case GET_ALL_ORDERS_REQUEST: {
             return {
@@ -35,19 +28,6 @@ const allOrdersReducer = (state: AllOrdersState | undefined = initialState, acti
                 loading: false,
                 orders: action.payload.orders,
                 totalAmount: action.payload.totalAmount,
-            };
-        }
-        case GET_ALL_ORDERS_FAIL: {
-            return {
-                ...state,
-                loading: false,
-                errorMessage: action.payload.errorMessage,
-            };
-        }
-        case CLEAR_ORDER_ERRORS: {
-            return {
-                ...state,
-                errorMessage: '',
             };
         }
         default: {

@@ -1,15 +1,12 @@
-import { CLEAR_ORDER_ERRORS } from '../../actions/order/actions/clearOrderErrorActions';
 import {
     DELETE_ORDER_REQUEST,
     DELETE_ORDER_SUCCESS,
     DELETE_ORDER_RESET,
-    DELETE_ORDER_FAIL,
 } from '../../actions/order/actions/deleteOrderActions';
 import {
     UPDATE_ORDER_REQUEST,
     UPDATE_ORDER_SUCCESS,
     UPDATE_ORDER_RESET,
-    UPDATE_ORDER_FAIL,
 } from '../../actions/order/actions/updateOrderActions';
 import { OrderActions } from '../../actions/order/orderActions';
 
@@ -17,18 +14,16 @@ type ModifyOrderState = {
     loading: boolean;
     isUpdated: boolean;
     isDeleted: boolean;
-    errorMessage: string;
 };
 
-const initialState = {
+const INITIAL_STATE = {
     loading: false,
     isUpdated: false,
     isDeleted: false,
-    errorMessage: '',
 };
 
 const modifyOrderReducer = (
-    state: ModifyOrderState | undefined = initialState,
+    state: ModifyOrderState | undefined = INITIAL_STATE,
     action: OrderActions,
 ): ModifyOrderState => {
     switch (action.type) {
@@ -53,14 +48,6 @@ const modifyOrderReducer = (
                 isDeleted: true,
             };
         }
-        case UPDATE_ORDER_FAIL:
-        case DELETE_ORDER_FAIL: {
-            return {
-                ...state,
-                loading: false,
-                errorMessage: action.payload.errorMessage,
-            };
-        }
         case DELETE_ORDER_RESET: {
             return {
                 ...state,
@@ -71,12 +58,6 @@ const modifyOrderReducer = (
             return {
                 ...state,
                 isUpdated: false,
-            };
-        }
-        case CLEAR_ORDER_ERRORS: {
-            return {
-                ...state,
-                errorMessage: '',
             };
         }
         default: {

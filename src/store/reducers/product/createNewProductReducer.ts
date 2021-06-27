@@ -1,9 +1,7 @@
-import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
 import {
     CREATE_NEW_PRODUCT_REQUEST,
     CREATE_NEW_PRODUCT_SUCCESS,
     CREATE_NEW_PRODUCT_RESET,
-    CREATE_NEW_PRODUCT_FAIL,
 } from '../../actions/product/actions/createNewProductActions';
 import { ProductActions } from '../../actions/product/productAction';
 import Product from '../../state/models/Product';
@@ -12,18 +10,16 @@ type CreateNewProductState = {
     loading: boolean;
     success: boolean;
     product: Product | undefined;
-    errorMessage: string;
 };
 
-const initialState = {
+const INITIAL_STATE = {
     loading: false,
     success: false,
     product: undefined,
-    errorMessage: '',
 };
 
 const createNewProductReducer = (
-    state: CreateNewProductState | undefined = initialState,
+    state: CreateNewProductState | undefined = INITIAL_STATE,
     action: ProductActions,
 ): CreateNewProductState => {
     switch (action.type) {
@@ -41,23 +37,10 @@ const createNewProductReducer = (
                 product: action.payload,
             };
         }
-        case CREATE_NEW_PRODUCT_FAIL: {
-            return {
-                ...state,
-                loading: false,
-                errorMessage: action.payload.errorMessage,
-            };
-        }
         case CREATE_NEW_PRODUCT_RESET: {
             return {
                 ...state,
                 success: false,
-            };
-        }
-        case CLEAR_PRODUCT_ERRORS: {
-            return {
-                ...state,
-                errorMessage: '',
             };
         }
         default: {

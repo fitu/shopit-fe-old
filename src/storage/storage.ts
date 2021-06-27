@@ -1,6 +1,6 @@
-import Item from '../state/models/Item';
-import Order from '../state/models/Order';
-import ShippingInfo from '../state/models/ShippingInfo';
+import Item from '../store/state/models/Item';
+import Order from '../store/state/models/Order';
+import ShippingInfo from '../store/state/models/ShippingInfo';
 
 enum StorageKeys {
     CART_ITEMS_KEY = 'CART_ITEMS_KEY',

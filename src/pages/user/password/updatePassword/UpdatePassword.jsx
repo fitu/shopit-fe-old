@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import MetaData from '../../../../components/util/MetaData';
 import { Route } from '../../../../router/route';
-import { clearErrors, updatePassword, updatePasswordReset } from '../../../../store/actions/auth/authActions';
+import { updatePassword, updatePasswordReset } from '../../../../store/actions/auth/authActions';
 import './styles/updatePassword.scss';
 
 const UpdatePassword = ({ history }) => {

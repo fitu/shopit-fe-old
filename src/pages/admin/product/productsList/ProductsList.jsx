@@ -7,12 +7,7 @@ import { Link } from 'react-router-dom';
 import Loader from '../../../../components/util/Loader';
 import MetaData from '../../../../components/util/MetaData';
 import { Route } from '../../../../router/route';
-import {
-    clearErrors,
-    deleteProduct,
-    deleteProductReset,
-    getAdminProducts,
-} from '../../../../store/actions/product/productAction';
+import { deleteProduct, deleteProductReset, getAdminProducts } from '../../../../store/actions/product/productAction';
 import Sidebar from '../../sidebar/Sidebar';
 import './styles/productsList.scss';
 

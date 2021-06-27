@@ -1,8 +1,6 @@
-import { CLEAR_PRODUCT_ERRORS } from '../../actions/product/actions/clearProductErrorsActions';
 import {
     GET_PRODUCT_DETAILS_REQUEST,
     GET_PRODUCT_DETAILS_SUCCESS,
-    GET_PRODUCT_DETAILS_FAIL,
 } from '../../actions/product/actions/getProductDetailsActions';
 import { ProductActions } from '../../actions/product/productAction';
 import Product from '../../state/models/Product';
@@ -10,17 +8,15 @@ import Product from '../../state/models/Product';
 type ProductDetailsState = {
     loading: boolean;
     product: Product | undefined;
-    errorMessage: string;
 };
 
-const initialState = {
+const INITIAL_STATE = {
     loading: false,
     product: undefined,
-    errorMessage: '',
 };
 
 const productDetailsReducer = (
-    state: ProductDetailsState | undefined = initialState,
+    state: ProductDetailsState | undefined = INITIAL_STATE,
     action: ProductActions,
 ): ProductDetailsState => {
     switch (action.type) {
@@ -35,19 +31,6 @@ const productDetailsReducer = (
                 ...state,
                 loading: false,
                 product: action.payload,
-            };
-        }
-        case GET_PRODUCT_DETAILS_FAIL: {
-            return {
-                ...state,
-                loading: false,
-                errorMessage: action.payload.errorMessage,
-            };
-        }
-        case CLEAR_PRODUCT_ERRORS: {
-            return {
-                ...state,
-                errorMessage: '',
             };
         }
         default: {

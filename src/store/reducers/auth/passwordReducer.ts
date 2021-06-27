@@ -1,31 +1,20 @@
-import { CLEAR_AUTH_ERRORS } from '../../actions/auth/actions/clearAuthErrorsActions';
-import {
-    FORGOT_PASSWORD_REQUEST,
-    FORGOT_PASSWORD_SUCCESS,
-    FORGOT_PASSWORD_FAIL,
-} from '../../actions/auth/actions/forgotPasswordActions';
-import {
-    RESET_PASSWORD_REQUEST,
-    RESET_PASSWORD_SUCCESS,
-    RESET_PASSWORD_FAIL,
-} from '../../actions/auth/actions/resetPasswordActions';
+import { FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS } from '../../actions/auth/actions/forgotPasswordActions';
+import { RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS } from '../../actions/auth/actions/resetPasswordActions';
 import { AuthActions } from '../../actions/auth/authActions';
 
 type PasswordState = {
     loading: boolean;
     message: string;
     success: boolean;
-    errorMessage: string;
 };
 
-const initialState = {
+const INITIAL_STATE = {
     loading: false,
     message: '',
     success: false,
-    errorMessage: '',
 };
 
-const passwordReducer = (state: PasswordState | undefined = initialState, action: AuthActions): PasswordState => {
+const passwordReducer = (state: PasswordState | undefined = INITIAL_STATE, action: AuthActions): PasswordState => {
     switch (action.type) {
         case FORGOT_PASSWORD_REQUEST:
         case RESET_PASSWORD_REQUEST: {
@@ -44,20 +33,6 @@ const passwordReducer = (state: PasswordState | undefined = initialState, action
             return {
                 ...state,
                 success: true,
-            };
-        }
-        case FORGOT_PASSWORD_FAIL:
-        case RESET_PASSWORD_FAIL: {
-            return {
-                ...state,
-                loading: false,
-                errorMessage: action.payload.errorMessage,
-            };
-        }
-        case CLEAR_AUTH_ERRORS: {
-            return {
-                ...state,
-                errorMessage: '',
             };
         }
         default: {

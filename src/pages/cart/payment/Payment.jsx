@@ -6,9 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { processPayment } from '../../../api/api';
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
-import { clearCart } from '../../../store/actions/cart/cartActions';
-import { clearErrors, createOrder } from '../../../store/actions/order/orderActions';
-import { getOrderInfo } from '../../../store/repository/repository';
+import { createOrder } from '../../../store/actions/order/orderActions';
+import { getOrderInfo } from '../../../storage/storage';
 import CheckoutSteps from '../components/CheckoutSteps';
 import './styles/payment.scss';
 

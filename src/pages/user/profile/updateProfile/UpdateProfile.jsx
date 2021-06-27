@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import MetaData from '../../../../components/util/MetaData';
 import { Route } from '../../../../router/route';
-import { clearErrors, loadUser, updateProfile, updateProfileReset } from '../../../../store/actions/auth/authActions';
+import { loadUser, updateProfile, updateProfileReset } from '../../../../store/actions/auth/authActions';
 import './styles/updateProfile.scss';
 
 const UpdateProfile = ({ history }) => {

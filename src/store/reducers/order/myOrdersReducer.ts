@@ -1,25 +1,18 @@
-import { CLEAR_ORDER_ERRORS } from '../../actions/order/actions/clearOrderErrorActions';
-import {
-    GET_MY_ORDERS_REQUEST,
-    GET_MY_ORDERS_SUCCESS,
-    GET_MY_ORDERS_FAIL,
-} from '../../actions/order/actions/getMyOrdersActions';
+import { GET_MY_ORDERS_REQUEST, GET_MY_ORDERS_SUCCESS } from '../../actions/order/actions/getMyOrdersActions';
 import { OrderActions } from '../../actions/order/orderActions';
 import Order from '../../state/models/Order';
 
 type MyOrdersState = {
     loading: boolean;
     orders: Array<Order>;
-    errorMessage: string;
 };
 
-const initialState = {
+const INITIAL_STATE = {
     loading: false,
     orders: [],
-    errorMessage: '',
 };
 
-const myOrdersReducer = (state: MyOrdersState | undefined = initialState, action: OrderActions): MyOrdersState => {
+const myOrdersReducer = (state: MyOrdersState | undefined = INITIAL_STATE, action: OrderActions): MyOrdersState => {
     switch (action.type) {
         case GET_MY_ORDERS_REQUEST: {
             return {
@@ -32,19 +25,6 @@ const myOrdersReducer = (state: MyOrdersState | undefined = initialState, action
                 ...state,
                 loading: false,
                 orders: action.payload,
-            };
-        }
-        case GET_MY_ORDERS_FAIL: {
-            return {
-                ...state,
-                loading: false,
-                errorMessage: action.payload.errorMessage,
-            };
-        }
-        case CLEAR_ORDER_ERRORS: {
-            return {
-                ...state,
-                errorMessage: ' ',
             };
         }
         default: {
