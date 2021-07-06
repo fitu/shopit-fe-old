@@ -4,12 +4,13 @@
 4. test a component with enzyme
 5. create a snapshot with react-test-renderer
 
-jest: for running tests and unit testing
-msm: for mocking api
-testing-library/react: core react testing framework. we test the component from user’s perspective. Let’s say we want to test a drop down component, we won’t test the component according to it’s state and props
-enzyme: we are testing the component using the state and props of the component. This generally means that the tests are brittle
-react-test-renderer: to create a snapshot. provides a React renderer that can be used to render React components to pure JavaScript objects, without depending on the DOM or a native mobile environment.
-testing-library/react-hooks: to test custom hooks
+* jest: for running tests and unit testing
+* testing-library/react: core react testing framework. we test the component from user’s perspective. Let’s say we want to test a drop down component, we won’t test the component according to it’s state and props
+* react-test-renderer: to create a snapshot. provides a React renderer that can be used to render React components to pure JavaScript objects, without depending on 
+the DOM or a native mobile environment.
+
+* msm: for mocking api
+* testing-library/react-hooks: to test custom hooks
 
 check:
 https://www.youtube.com/watch?v=3e1GHCA3GP0
