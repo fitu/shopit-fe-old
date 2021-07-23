@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 
-import facebook from '../../../resources/strings/pages/user/register/integrations/facebook';
 import Integrations from '../../../models/integrations/Integrations';
 import facebookProperties from '../../../models/integrations/facebookIntegration';
+import googleProperties from '../../../models/integrations/googleIntegration';
 import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
@@ -38,17 +39,28 @@ const Register = ({ history }) => {
         }
     }, [dispatch, isAuthenticated, error, alert, history]);
 
-    const facebookResponseHandler = ({ name, email, accessToken, picture }) => {
-        if (accessToken) {
-            const formData = new FormData();
-            formData.set('name', name);
-            formData.set('email', email);
-            formData.set('token', accessToken);
-            formData.set('avatar', picture.data.url);
-            dispatch(register(formData, Integrations.FACEBOOK));
-        } else {
-            alert.error(facebook.errorLoginmessage);
-        }
+    const facebookResponseHandler = (response) => {
+        const formData = new FormData();
+        formData.set('name', response.name);
+        formData.set('email', response.email);
+        formData.set('token', response.accessToken);
+        formData.set('avatar', response.picture.data.url);
+        dispatch(register(formData, Integrations.FACEBOOK));
+    };
+    const loginFacebookFailureHandler = (error) => {
+        alert.error(error);
+    }
+    const GoogleresponseHandler = (response)=>{
+        console.log(response);
+        const formData = new FormData();
+        formData.set('name', response.profileObj.name);
+        formData.set('email', response.profileObj.email);
+        formData.set('token', response.profileObj.googleId);
+        formData.set('avatar', response.profileObj.imageUrl);
+        dispatch(register(formData, Integrations.GOOGLE));
+    };
+    const loginGoogleFailureHandler = (error)=>{
+        alert.error(error);
     };
 
     const submitHandler = (event) => {
@@ -159,6 +171,14 @@ const Register = ({ history }) => {
                     autoLoad={facebookProperties.autoLoad}
                     fields={facebookProperties.fields}
                     callback={facebookResponseHandler}
+                    onFailure={loginFacebookFailureHandler}
+                />
+                <GoogleLogin
+                    clientId={googleProperties.appId}
+                    buttonText={googleProperties.buttonText}
+                    onSuccess={GoogleresponseHandler}
+                    onFailure={loginGoogleFailureHandler}
+                    cookiePolicy={googleProperties.cookiePolicy}
                 />
             </div>
         </>
