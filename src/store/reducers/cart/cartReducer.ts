@@ -27,7 +27,7 @@ const cartReducer = (state: CartState = INITIAL_STATE, action: CartActions): Car
 
     switch (action.type) {
         case REQUEST_ADD_PRODUCT_TO_CART_FINISHED: {
-            const item = action.payload!!;
+            const item = action.payload!;
             const isItemExists = _.find(state?.cart?.cartItems, ['product', item?.product.id]);
             if (isItemExists) {
                 return {
