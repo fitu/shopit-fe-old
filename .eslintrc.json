@@ -56,12 +56,15 @@
         "no-restricted-syntax": "warn",
         "no-useless-return": "warn",
         "no-empty-function": "warn",
+        "no-dupe-keys": "warn",
+        "no-underscore-dangle": "warn",
+        "no-undef": "warn",
         "no-unused-expressions": "warn",
         "object-shorthand": "warn",
         // You must disable the base rule as it can report incorrect errors
         "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": "error",
-        "@typescript-eslint/no-shadow": "error",
+        "@typescript-eslint/no-use-before-define": "warn",
+        "@typescript-eslint/no-shadow": "warn",
         "@typescript-eslint/explicit-module-boundary-types": "warn",
         "@typescript-eslint/no-useless-constructor": "error",
         "@typescript-eslint/no-empty-function": "warn",
@@ -271,7 +274,9 @@
         ],
 
         "unicorn/filename-case": "off",
+        "unicorn/consistent-destructuring": "warn",
         "unicorn/consistent-function-scoping": "off",
+        "unicorn/no-array-reduce": "warn",
         "unicorn/prevent-abbreviations": [
             "warn",
             {
@@ -324,6 +329,7 @@
         "jsx-a11y/no-noninteractive-element-interactions": "warn",
         "jsx-a11y/mouse-events-have-key-events": "warn",
         "jsx-a11y/no-static-element-interactions": "warn",
+        "jsx-a11y/anchor-is-valid": "warn",
 
         "prettier/prettier": "warn"
     }
