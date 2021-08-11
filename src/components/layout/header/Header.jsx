@@ -16,7 +16,7 @@ const Header = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
     // TODO: replace loading to isLoggedIn
-    const { user, loading } = useSelector((state) => state.auth);
+    const { user, isAuthenticated } = useSelector((state) => state.auth);
     const { cartItems } = useSelector((state) => state.cart);
 
     const logoutHandler = () => {
@@ -32,13 +32,12 @@ const Header = () => {
 
             <Route render={({ history }) => <Search history={history} />} />
             <div className={'header-profile'}>
-                
                 <CartHeader cartItems={cartItems} />
                 <div className={'header-profile__container'}>
-                    {user ? (
+                    {isAuthenticated ? (
                         <LoggedUserHeader logoutHandler={logoutHandler} user={user} />
                     ) : (
-                        <LoginButton isLoggedIn={loading} />
+                        <LoginButton isLoggedIn={isAuthenticated} />
                     )}
                 </div>
             </div>
