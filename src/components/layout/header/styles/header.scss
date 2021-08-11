@@ -19,7 +19,7 @@
 
 .header-search {
     overflow: hidden;
-    border-radius: 9999px;
+    border-radius: 25px;
     border: 1px solid black;
     background: white;
 }
@@ -34,12 +34,16 @@
     flex: 1 1 auto;
     padding-left: 1rem;
     border: none;
+    
+    &:focus-visible {
+        outline: none;
+    }
 }
 
 .header_search__button {
     flex: 0 1 3rem;
     background-color: var(--primary-color);
-    border-radius: 9999px;
+    border-radius: 50%;
     border: 2px solid white;
 }
 
