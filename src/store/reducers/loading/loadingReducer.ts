@@ -2,7 +2,6 @@ import _ from 'lodash';
 
 import { BaseAction } from '../../actions/BaseAction';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type LoadingState = {};
 
 const INITIAL_STATE = {};
