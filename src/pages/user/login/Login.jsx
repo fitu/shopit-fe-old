@@ -3,7 +3,6 @@ import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
 import { login } from '../../../store/actions/auth/authActions';
@@ -36,10 +35,6 @@ const Login = ({ history, location }) => {
         event.preventDefault();
         dispatch(login(email, password));
     };
-
-    if (loading) {
-        return <Loader />;
-    }
 
     return (
         <>

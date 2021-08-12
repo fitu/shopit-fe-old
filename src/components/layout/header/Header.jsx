@@ -34,11 +34,7 @@ const Header = () => {
             <div className={'header-profile'}>
                 <CartHeader cartItems={cartItems} />
                 <div className={'header-profile__container'}>
-                    {isAuthenticated ? (
-                        <LoggedUserHeader logoutHandler={logoutHandler} user={user} />
-                    ) : (
-                        <LoginButton isLoggedIn={isAuthenticated} />
-                    )}
+                    {isAuthenticated ? <LoggedUserHeader logoutHandler={logoutHandler} user={user} /> : <LoginButton />}
                 </div>
             </div>
         </nav>
