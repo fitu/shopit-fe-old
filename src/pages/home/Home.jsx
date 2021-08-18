@@ -3,10 +3,9 @@ import { useAlert } from 'react-alert';
 import Pagination from 'react-js-pagination';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Loader from '../../components/util/Loader';
 import MetaData from '../../components/util/MetaData';
 import { getProducts } from '../../store/actions/product/productAction';
-import { LoadingContext } from '../../Context/loadingContext';
+import { LoadingContext } from '../../context/LoadingProvider';
 
 import HomeProducts from './components/HomeProducts';
 import HomeProductsWithFilters from './components/HomeProductsWithFilters';
@@ -15,7 +14,7 @@ import './styles/home.scss';
 const Home = ({ match }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [price, setPrice] = useState([1, 1000]);
-    const {loading1, setLoading}= useContext(LoadingContext);
+    const { setIsLoading } = useContext(LoadingContext);
 
     const alert = useAlert();
     const dispatch = useDispatch();
@@ -33,12 +32,7 @@ const Home = ({ match }) => {
     }, [dispatch, alert, error, keyword, price, currentPage]);
 
     useEffect(() => {
-        setLoading({loading1: loading})
-        {console.log(loading);}
-        {console.log(loading1)}
-        {
-            console.log(setLoading);
-        }
+        setIsLoading(loading);
     }, [loading]);
 
     const setCurrentPageNumber = (pageNumber) => {

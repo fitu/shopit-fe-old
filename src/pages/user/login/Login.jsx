@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { loadingContext } from '../../../Context/loadingContext';
 
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
