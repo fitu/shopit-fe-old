@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { loadingContext } from '../../../Context/loadingContext';
 
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
@@ -9,6 +10,8 @@ import { login } from '../../../store/actions/auth/authActions';
 import './styles/login.scss';
 
 const Login = ({ history, location }) => {
+
+    // const { loading1, changeLoading} = useContext(loadingContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -68,7 +71,6 @@ const Login = ({ history, location }) => {
                         <Link className={''} to={Route.PASSWORD_FORGOT}>
                             {'Forgot Password?'}
                         </Link>
-
                         <button className={''} id={'login_button'} type={'submit'}>
                             {'LOGIN'}
                         </button>

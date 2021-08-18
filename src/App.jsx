@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { positions, Provider as AlertProvider, transitions } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 import { useSelector } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { loadingContext } from './Context/loadingContext';
 
 import Footer from './components/layout/footer/Footer';
 import Header from './components/layout/header/Header';
@@ -17,6 +18,7 @@ const alertOptions = {
     transition: transitions.SCALE
 };
 
+
 const App = () => {
     const { user, loading } = useSelector((state) => state.auth);
     return (
@@ -25,7 +27,9 @@ const App = () => {
                 <div className={'app'}>
                     <Header />
                     <div className={'main--container'}>
-                        <AppRouter />
+                        <loadingProvider>
+                            <AppRouter />
+                        </loadingProvider>
                     </div>
                     {!loading && user?.role !== Role.ADMIN && <Footer />}
                 </div>
