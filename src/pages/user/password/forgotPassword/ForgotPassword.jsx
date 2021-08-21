@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import MetaData from '../../../../components/util/MetaData';
 import { forgotPassword } from '../../../../store/actions/auth/authActions';
+import { LoadingContext } from '../../../../context/LoadingProvider';
 import './styles/forgotPassword.scss';
 
 const ForgotPassword = () => {
@@ -11,6 +12,7 @@ const ForgotPassword = () => {
 
     const alert = useAlert();
     const dispatch = useDispatch();
+    const { setIsLoading } = useContext(LoadingContext);
 
     const { error, message, loading } = useSelector((state) => state.password);
 
@@ -24,6 +26,10 @@ const ForgotPassword = () => {
             alert.success(message);
         }
     }, [dispatch, error, alert, message]);
+
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
 
     const submitHandler = (event) => {
         event.preventDefault();

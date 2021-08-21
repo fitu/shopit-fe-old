@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useContext } from 'react';
+import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import './styles/dashboard.scss';
@@ -9,6 +9,7 @@ import { Route } from '../../../router/route';
 import { getAllUsers } from '../../../store/actions/auth/authActions';
 import { getAllOrders } from '../../../store/actions/order/orderActions';
 import { getAdminProducts } from '../../../store/actions/product/productAction';
+import { LoadingContext } from '../../../context/LoadingProvider';
 import Sidebar from '../sidebar/Sidebar';
 
 const Dashboard = () => {
@@ -16,6 +17,7 @@ const Dashboard = () => {
     const { products } = useSelector((state) => state.product);
     const { orders, totalAmount, loading } = useSelector((state) => state.allOrders);
     const { users } = useSelector((state) => state.allUsers);
+    const { setIsLoading } = useContext(LoadingContext);
 
     let outOfStock = 0;
     products.forEach((product) => {
@@ -30,17 +32,18 @@ const Dashboard = () => {
         dispatch(getAllUsers());
     }, [dispatch]);
 
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
+
     return (
-        <div className={''}>
+        <div className={''}>    
             <div className={''}>
                 <Sidebar />
             </div>
 
             <div className={''}>
                 <h1 className={''}>{'Dashboard'}</h1>
-                {loading ? (
-                    <Loader />
-                ) : (
                     <>
                         <Metadata title={'Dashboard'} />
                         <div className={''}>
@@ -120,7 +123,6 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </>
-                )}
             </div>
         </div>
     );

@@ -9,6 +9,7 @@ import MetaData from '../../../../components/util/MetaData';
 import { Route } from '../../../../router/route';
 import { deleteUser, getAllUsers } from '../../../../store/actions/auth/authActions';
 import Sidebar from '../../sidebar/Sidebar';
+import { LoadingContext } from '../../../../context/LoadingProvider';
 import './styles/usersList.scss';
 
 const UsersList = ({ history }) => {
@@ -17,6 +18,7 @@ const UsersList = ({ history }) => {
 
     const { loading, error, users = [] } = useSelector((state) => state.allUsers);
     const { isDeleted } = useSelector((state) => state.user);
+    const { setIsLoading } = useContext(LoadingContext);
 
     useEffect(() => {
         dispatch(getAllUsers());
@@ -31,6 +33,10 @@ const UsersList = ({ history }) => {
             dispatch(deleteUserReset());
         }
     }, [dispatch, alert, error, history, isDeleted]);
+
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
 
     const deleteUserHandler = (id) => {
         dispatch(deleteUser(id));
@@ -100,7 +106,7 @@ const UsersList = ({ history }) => {
                 </div>
                 <div className={''}>
                     <h1 className={''}>{'All users'}</h1>
-                    {loading ? <Loader /> : <MDBDataTable bordered hover striped className={''} data={setUsers()} />}
+                    <MDBDataTable bordered hover striped className={''} data={setUsers()} />
                 </div>
             </div>
         </>

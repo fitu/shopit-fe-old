@@ -14,6 +14,6 @@ const LoadingProvider = (props) => {
             {props.children}
         </LoadingContext.Provider>
     );
-};
+};  
 
 export default LoadingProvider;
