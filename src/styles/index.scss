@@ -8,8 +8,11 @@
     width: 100%;
     height: 100%;
 
-    --primary-color: #febd69;
-    --secondary-color: #000000;
+    --primary-color: #367179;
+    --secondary-color: #212332;
+    --terceary-color: #07bdd1;
+    --background-color: #3f4249;
+
 }
 
 html,
@@ -26,6 +29,7 @@ body {
     display: grid;
     grid-row-gap: 1rem;
     grid-template-rows: 6rem auto 3rem;
+    background-color: var(--secondary-color);
 }
 
 .main--container {
