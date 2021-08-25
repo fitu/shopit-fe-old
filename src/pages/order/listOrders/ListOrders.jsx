@@ -20,7 +20,6 @@ const ListOrders = () => {
 
     useEffect(() => {
         dispatch(myOrders());
-        console.log(loading);
         if (error) {
             alert.error(error);
             dispatch(clearErrors());
@@ -30,7 +29,6 @@ const ListOrders = () => {
 
     useEffect(() => {
         setIsLoading(loading);
-        console.log(loading);
     }, [loading]);
 
     const setOrders = () => {

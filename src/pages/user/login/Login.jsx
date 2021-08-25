@@ -10,7 +10,6 @@ import './styles/login.scss';
 
 const Login = ({ history, location }) => {
 
-    // const { loading1, changeLoading} = useContext(loadingContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
