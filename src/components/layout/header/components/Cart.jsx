@@ -8,7 +8,7 @@ import { Route as LocalRoutes } from '../../../../router/route';
 const CartHeader = ({ cartItems }) => (
     <Link className={'header-profile__cart'} to={LocalRoutes.CART}>
         <span className={'header-profile__cart--title'}>{Strings.cart}</span>
-        <img src={'./images/cartBuy.png'} alt={'logo-cart'}/>
+        <img src={'./images/header_cart.png'} alt={'logo-cart'}/>
         <span className={'header-profile__cart--total'}>{cartItems.length}</span>
     </Link>
 );

@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--primary-color);
-    border-bottom: 0.2rem solid var(--background-color);
+    background-color: var(--blue_dark-color);
+    border-bottom: 3px solid var(--background-color);
 }
 
 /********/
@@ -49,13 +49,13 @@
 
 .header_search__button {
     flex: 0 1 3rem;
-    background-color: var(--primary-color);
+    background-color: var(--blue_dark-color);
     border-radius: 50%;
     border: 2px solid white;
     cursor: pointer;
 
     &:hover {
-        background-color: var(--terceary-color);
+        background-color: var(--blue_light-color);
     }
 }
 
@@ -80,7 +80,7 @@
 
 
     &:hover {
-        color: var(--secondary-color);
+        color: var(--dark-color);
     }
 
     img {
@@ -99,7 +99,7 @@
 
 .header-profile__cart--total {
     color: white;
-    background-color: var(--terceary-color);
+    background-color: var(--blue_light-color);
     font-weight: 500;
     border-radius: 9999px;
     font-size: 1.2rem;
@@ -114,8 +114,8 @@
 }
 
 .header-profile__login-button {
-    color: #ffffffc0;
-    background-color: var(--terceary-color);
+    color: hsla(0, 0%, 100%, 0.753);
+    background-color: var(--blue_light-color);
     border-radius: 9999px;
     padding: 0.375rem 1.75rem;
     text-decoration: none;
