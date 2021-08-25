@@ -27,7 +27,7 @@ const Header = () => {
     return (
         <nav className={'header'}>
             <Link className={'header-logo'} to={LocalRoutes.HOME}>
-                <img alt={'Logo'} src={'./images/logo.png'} />
+                <img alt={'Logo'} src={'./images/logo_shopit.png'} />
             </Link>
 
             <Route render={({ history }) => <Search history={history} />} />

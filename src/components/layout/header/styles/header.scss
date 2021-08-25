@@ -2,7 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: grey;
+    background-color: var(--blue_dark-color);
+    border-bottom: 3px solid var(--background-color);
 }
 
 /********/
@@ -10,7 +11,13 @@
 /********/
 
 .header-logo {
-    padding-left: 0.75rem;
+    padding-left: 1rem;
+
+    img {
+        height: 4rem;
+        border: 1.5px solid white;
+        border-radius: 5px;
+    }
 }
 
 /**********/
@@ -20,7 +27,7 @@
 .header-search {
     overflow: hidden;
     border-radius: 25px;
-    border: 1px solid black;
+    border: 1px solid white;
     background: white;
 }
 
@@ -42,9 +49,14 @@
 
 .header_search__button {
     flex: 0 1 3rem;
-    background-color: var(--primary-color);
+    background-color: var(--blue_dark-color);
     border-radius: 50%;
     border: 2px solid white;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--blue_light-color);
+    }
 }
 
 /*****************/
@@ -56,27 +68,45 @@
     align-items: center;
     margin-left: 1rem;
     margin-right: 1rem;
+    text-decoration: none;
 }
 
 .header-profile__cart {
+    display: flex;
+    align-items: center;
+    color: var(--background-color);
+    text-decoration: none;
+    font-size: 1.25rem;
+
+
     &:hover {
-        color: black;
-        text-decoration: none;
+        color: var(--dark-color);
+    }
+
+    img {
+        height: 1.5rem;
+        padding-left: 1rem;
     }
 }
 
 .header-profile__cart--title {
     color: white;
+    
+    &:hover {
+        color: var(--background-color)
+    }
 }
 
 .header-profile__cart--total {
-    background-color: var(--primary-color);
-    font-weight: 700;
+    color: white;
+    background-color: var(--blue_light-color);
+    font-weight: 500;
     border-radius: 9999px;
-    font-size: 0.875rem;
+    font-size: 1.2rem;
     line-height: 1.25rem;
     padding: 0.25rem 0.5rem;
     margin-left: 0.25rem;
+
 }
 
 .header-profile__container {
@@ -84,12 +114,14 @@
 }
 
 .header-profile__login-button {
-    background-color: var(--primary-color);
+    color: hsla(0, 0%, 100%, 0.753);
+    background-color: var(--blue_light-color);
     border-radius: 9999px;
     padding: 0.375rem 1.75rem;
+    text-decoration: none;
 
     &:hover {
-        text-decoration: none;
+        background-color: var(--background-color);
     }
 }
 
