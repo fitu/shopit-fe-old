@@ -1,5 +1,5 @@
 import { MDBDataTable } from 'mdbreact';
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext} from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -8,11 +8,13 @@ import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
 import { myOrders } from '../../../store/actions/order/orderActions';
+import { LoadingContext } from '../../../context/LoadingProvider';
 import './styles/listOrders.scss';
 
 const ListOrders = () => {
-    const alert = useAlert();
+    const alert = useAlert();   
     const dispatch = useDispatch();
+    const { setIsLoading } = useContext(LoadingContext);
 
     const { loading, error, orders } = useSelector((state) => state.myOrders);
 
@@ -22,7 +24,12 @@ const ListOrders = () => {
             alert.error(error);
             dispatch(clearErrors());
         }
+        
     }, [dispatch, alert, error]);
+
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
 
     const setOrders = () => {
         const data = {
@@ -83,11 +90,7 @@ const ListOrders = () => {
             <MetaData title={'My Orders'} />
             <h1 className={'my-orders__title'}>{'My Orders'}</h1>
 
-            {loading ? (
-                <Loader />
-            ) : (
                 <MDBDataTable bordered hover striped className={'my-orders__table'} data={setOrders()} />
-            )}
         </>
     );
 };

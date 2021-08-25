@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import './styles/processOrder.scss';
-import Loader from '../../../../components/util/Loader';
 import MetaData from '../../../../components/util/MetaData';
 import OrderStatus from '../../../../models/orderStatus';
 import { getOrderDetails, updateOrder } from '../../../../store/actions/order/orderActions';
 import Sidebar from '../../sidebar/Sidebar';
+import { LoadingContext } from '../../../../context/LoadingProvider';
 
 const ProcessOrder = ({ match }) => {
     const alert = useAlert();
@@ -19,6 +19,7 @@ const ProcessOrder = ({ match }) => {
     const { loading, order } = useSelector((state) => state.orderDetails);
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order;
     const { error, isUpdated } = useSelector((state) => state.order);
+    const { setIsLoading } = useContext(LoadingContext);
 
     useEffect(() => {
         dispatch(getOrderDetails(match.params.id));
@@ -32,6 +33,10 @@ const ProcessOrder = ({ match }) => {
             dispatch(updateOrderReset());
         }
     }, [dispatch, alert, error, isUpdated, match.params.id]);
+
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
 
     const updateOrderHanlder = (id) => {
         const formData = new FormData();
@@ -53,9 +58,6 @@ const ProcessOrder = ({ match }) => {
                     <Sidebar />
                 </div>
                 <div className={''}>
-                    {loading ? (
-                        <Loader />
-                    ) : (
                         <div className={''}>
                             <div className={''}>
                                 <h2 className={''}>
@@ -152,7 +154,6 @@ const ProcessOrder = ({ match }) => {
                                 </button>
                             </div>
                         </div>
-                    )}
                 </div>
             </div>
         </>

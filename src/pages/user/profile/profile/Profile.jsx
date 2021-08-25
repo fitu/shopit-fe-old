@@ -6,14 +6,17 @@ import Loader from '../../../../components/util/Loader';
 import Metadata from '../../../../components/util/MetaData';
 import Role from '../../../../models/role';
 import { Route } from '../../../../router/route';
+import { LoadingContext } from '../../../../context/LoadingProvider';
 import './styles/profile.scss';
 
 const Profile = () => {
     const { user, loading } = useSelector((state) => state.auth);
+    const { setIsLoading } = useContext(LoadingContext);
 
-    if (loading) {
-        return <Loader />;
-    }
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
+
     return (
         <>
             <Metadata title={'My profile'} />

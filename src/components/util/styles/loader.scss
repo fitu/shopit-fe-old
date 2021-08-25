@@ -1,9 +1,59 @@
+
 .loader {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2rem;
-    padding-left: 0;
-    width: 8rem;
-    height: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 4rem;
+    width: 0.5rem;
+    background-color: transparent;
+    animation: paddles 0.75s ease-out infinite;
+    transform: translate3d(0, 0, 0);
+
+    &:before {
+        content: '';
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: 0.2rem;
+        width: 1rem;
+        height: 1rem;
+        background-color: hsl(34, 99%, 70%);
+        border-radius: 50%;
+        animation: ballbounce 0.6s ease-out infinite;
+    }
+}
+
+@keyframes paddles {
+    0% {
+        box-shadow: -25px -10px 0px hsl(34, 99%, 70%), 25px 10px 0px hsl(34, 99%, 70%);
+    }
+    50% {
+        box-shadow: -25px 8px 0px hsl(34, 99%, 70%), 25px -10px 0px hsl(34, 99%, 70%);
+    }
+    100% {
+        box-shadow: -25px -10px 0px hsl(34, 99%, 70%), 25px 10px 0px hsl(34, 99%, 70%);
+    }
+}
+
+@keyframes ballbounce {
+    0% {
+        transform: translateX(-20px) scale(1, 1.2);
+    }
+    25% {
+        transform: scale(1.2, 1);
+    }
+    50% {
+        transform: translateX(15px) scale(1, 1.2);
+    }
+    75% {
+        transform: scale(1.2, 1);
+    }
+    100% {
+        transform: translateX(-20px);
+    }
 }

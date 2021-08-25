@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -9,13 +9,14 @@ import { login } from '../../../store/actions/auth/authActions';
 import './styles/login.scss';
 
 const Login = ({ history, location }) => {
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { isAuthenticated, loading, error } = useSelector((state) => state.auth);
+    const { isAuthenticated, error } = useSelector((state) => state.auth);
 
     const redirect = location.search ? location.search.split('=')[1] : Route.HOME;
 
@@ -68,7 +69,6 @@ const Login = ({ history, location }) => {
                         <Link className={''} to={Route.PASSWORD_FORGOT}>
                             {'Forgot Password?'}
                         </Link>
-
                         <button className={''} id={'login_button'} type={'submit'}>
                             {'LOGIN'}
                         </button>

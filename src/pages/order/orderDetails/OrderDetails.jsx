@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
 import { getOrderDetails } from '../../../store/actions/order/orderActions';
+import { LoadingContext } from '../../../context/LoadingProvider';
 import './styles/orderDetails.scss';
 
 const OrderDetails = ({ match }) => {
@@ -14,6 +15,7 @@ const OrderDetails = ({ match }) => {
 
     const { loading, error, order } = useSelector((state) => state.orderDetails);
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order;
+    const { setIsLoading } = useContext(LoadingContext);
 
     useEffect(() => {
         dispatch(getOrderDetails(match.params.id));
@@ -24,15 +26,16 @@ const OrderDetails = ({ match }) => {
         }
     }, [dispatch, alert, error, match.params.id]);
 
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
+
     const shippingDetails =
         shippingInfo &&
         `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country}`;
 
     const isPaid = paymentInfo?.status === 'succeeded';
 
-    if (loading) {
-        return <Loader />;
-    }
 
     const paidStyle = isPaid ? { color: 'green' } : { color: 'red' };
     const paidLabel = isPaid ? 'PAID' : 'NOT PAID';

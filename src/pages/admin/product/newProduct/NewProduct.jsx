@@ -7,6 +7,7 @@ import Category from '../../../../models/category';
 import { Route } from '../../../../router/route';
 import { newProduct } from '../../../../store/actions/product/productAction';
 import Sidebar from '../../sidebar/Sidebar';
+import { LoadingContext } from '../../../../context/LoadingProvider';
 import './styles/newProduct.scss';
 
 const NewProduct = ({ history }) => {
@@ -21,8 +22,10 @@ const NewProduct = ({ history }) => {
     const [seller, setSeller] = useState('');
     const [images, setImage] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
+    
 
     const { loading, error, success } = useSelector((state) => state.newProduct);
+    const { setIsLoading } = useContext(LoadingContext);
 
     useEffect(() => {
         if (error) {
@@ -36,6 +39,10 @@ const NewProduct = ({ history }) => {
             dispatch(newProductReset());
         }
     }, [dispatch, alert, history, error, success]);
+
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
 
     const submitHandler = (event) => {
         event.preventDefault();

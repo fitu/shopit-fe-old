@@ -6,6 +6,7 @@ import Loader from '../../../components/util/Loader';
 import MetaData from '../../../components/util/MetaData';
 import { Route } from '../../../router/route';
 import { register } from '../../../store/actions/auth/authActions';
+import { LoadingContext } from '../../../context/LoadingProvider';
 import './styles/register.scss';
 
 const Register = ({ history }) => {
@@ -19,6 +20,7 @@ const Register = ({ history }) => {
 
     const alert = useAlert();
     const dispatch = useDispatch();
+    const { setIsLoading } = useContext(LoadingContext);
 
     const { isAuthenticated, loading, error } = useSelector((state) => state.auth);
 
@@ -62,9 +64,9 @@ const Register = ({ history }) => {
         }
     };
 
-    if (loading) {
-        return <Loader />;
-    }
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
 
     return (
         <>

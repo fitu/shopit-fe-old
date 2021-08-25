@@ -85,7 +85,9 @@ const myOrders: ActionCreator<ThunkAction<Promise<void>, StoreState, void, GetMy
             dispatch({
                 type: REQUEST_GET_MY_ORDERS_FINISHED,
                 payload: response.orders.map((order) => OrderApi.toState(order)),
+                
             });
+            
         } catch (error) {
             dispatch({ type: REQUEST_GET_MY_ORDERS_FINISHED, error: { message: error.message }, isError: true });
         }

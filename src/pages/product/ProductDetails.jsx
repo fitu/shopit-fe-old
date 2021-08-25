@@ -10,6 +10,7 @@ import ListReviews from '../review/ListReviews';
 import AddReviewModal from './components/AddReviewModal';
 import ProductImages from './components/ProductImages';
 import ProductInfo from './components/ProductInfo';
+import { LoadingContext } from '../../context/LoadingProvider';
 import './styles/productDetails.scss';
 
 const ProductDetails = ({ match }) => {
@@ -20,6 +21,7 @@ const ProductDetails = ({ match }) => {
 
     const { loading, error, product } = useSelector((state) => state.productDetails);
     const { error: reviewError, success } = useSelector((state) => state.newReview);
+    const { setIsLoading } = useContext(LoadingContext);
 
     useEffect(() => {
         if (error || reviewError) {
@@ -35,9 +37,9 @@ const ProductDetails = ({ match }) => {
         dispatch(getProductDetails(match.params.id));
     }, [dispatch, alert, error, reviewError, success, match.params.id]);
 
-    if (loading) {
-        return <Loader />;
-    }
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
 
     return (
         <>

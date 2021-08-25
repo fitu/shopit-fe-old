@@ -1,5 +1,5 @@
 import { MDBDataTable } from 'mdbreact';
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,7 @@ import Loader from '../../../../components/util/Loader';
 import MetaData from '../../../../components/util/MetaData';
 import { Route } from '../../../../router/route';
 import { deleteOrder, getAllOrders } from '../../../../store/actions/order/orderActions';
+import { LoadingContext } from '../../../../context/LoadingProvider';
 import Sidebar from '../../sidebar/Sidebar';
 import './styles/orderList.scss';
 
@@ -17,6 +18,7 @@ const OrderList = ({ history }) => {
 
     const { loading, error, orders = [] } = useSelector((state) => state.allOrders);
     const { isDeleted } = useSelector((state) => state.order);
+    const { setIsLoading } = useContext(LoadingContext);
 
     useEffect(() => {
         dispatch(getAllOrders());
@@ -31,6 +33,10 @@ const OrderList = ({ history }) => {
             dispatch(deleteOrderReset());
         }
     }, [dispatch, alert, error, history, isDeleted]);
+
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
 
     const deleteOrderHandler = (id) => {
         dispatch(deleteOrder(id));
@@ -104,7 +110,7 @@ const OrderList = ({ history }) => {
                 </div>
                 <div className={''}>
                     <h1 className={''}>{'All orders'}</h1>
-                    {loading ? <Loader /> : <MDBDataTable bordered hover striped className={''} data={setOrders()} />}
+                    <MDBDataTable bordered hover striped className={''} data={setOrders()} />
                 </div>
             </div>
         </>

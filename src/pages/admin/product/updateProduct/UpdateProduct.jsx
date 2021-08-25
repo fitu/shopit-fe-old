@@ -7,6 +7,7 @@ import Category from '../../../../models/category';
 import { Route } from '../../../../router/route';
 import { getProductDetails, updateProduct } from '../../../../store/actions/product/productAction';
 import Sidebar from '../../sidebar/Sidebar';
+import { LoadingContext } from '../../../../context/LoadingProvider';
 import './styles/updateProduct.scss';
 
 const UpdateProduct = ({ match, history }) => {
@@ -25,6 +26,7 @@ const UpdateProduct = ({ match, history }) => {
 
     const { error, product } = useSelector((state) => state.productDetails);
     const { loading, error: updateError, isUpdated } = useSelector((state) => state.product);
+    const { setIsLoading } = useContext(LoadingContext);
 
     useEffect(() => {
         if (error) {
@@ -54,6 +56,10 @@ const UpdateProduct = ({ match, history }) => {
             setOldImages(product.images);
         }
     }, [dispatch, alert, error, updateError, match.params.id, product, history, isUpdated]);
+
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
 
     const submitHandler = (event) => {
         event.preventDefault();

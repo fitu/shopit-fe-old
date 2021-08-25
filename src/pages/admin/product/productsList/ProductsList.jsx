@@ -9,6 +9,7 @@ import MetaData from '../../../../components/util/MetaData';
 import { Route } from '../../../../router/route';
 import { deleteProduct, getAdminProducts } from '../../../../store/actions/product/productAction';
 import Sidebar from '../../sidebar/Sidebar';
+import { LoadingContext } from '../../../../context/LoadingProvider';
 import './styles/productsList.scss';
 
 const ProductsList = ({ history }) => {
@@ -17,6 +18,7 @@ const ProductsList = ({ history }) => {
 
     const { loading, error, products } = useSelector((state) => state.product);
     const { error: deleteError, isDeleted } = useSelector((state) => state.product);
+    const { setIsLoading } = useContext(LoadingContext);
 
     useEffect(() => {
         dispatch(getAdminProducts());
@@ -34,6 +36,10 @@ const ProductsList = ({ history }) => {
             dispatch(deleteProductReset());
         }
     }, [dispatch, alert, error, deleteError, isDeleted, history]);
+
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
 
     const setProducts = () => {
         const data = {
@@ -103,7 +109,7 @@ const ProductsList = ({ history }) => {
                 </div>
                 <div className={''}>
                     <h1 className={''}>{'All products'}</h1>
-                    {loading ? <Loader /> : <MDBDataTable bordered hover striped className={''} data={setProducts()} />}
+                    <MDBDataTable bordered hover striped className={''} data={setProducts()} />
                 </div>
             </div>
         </>
