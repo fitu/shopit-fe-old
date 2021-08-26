@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { positions, Provider as AlertProvider, transitions } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
-import { useSelector } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import Footer from './components/layout/footer/Footer';
 import Header from './components/layout/header/Header';
 import LoadingProvider from './context/LoadingProvider';
-import Role from './models/role';
 import AppRouter from './router/AppRouter';
 
 const alertOptions = {
@@ -19,8 +17,6 @@ const alertOptions = {
 };
 
 const App = () => {
-    const { user, loading } = useSelector((state) => state.auth);
-
     return (
         <AlertProvider template={AlertTemplate} {...alertOptions}>
             <Router>
@@ -31,7 +27,7 @@ const App = () => {
                             <AppRouter />
                         </LoadingProvider>
                     </div>
-                    {!loading && user?.role !== Role.ADMIN && <Footer />}
+                    <Footer />
                 </div>
             </Router>
         </AlertProvider>
